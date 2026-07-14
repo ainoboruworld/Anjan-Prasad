@@ -1,89 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { Wordmark } from "./brand/ApMark";
 import { easeSmooth } from "./motion";
-
-type NavItem = {
-  label: string;
-  href: string;
-  children?: { label: string; href: string; description: string }[];
-};
-
-const NAV: NavItem[] = [
-  {
-    label: "Courses",
-    href: "#courses",
-    children: [
-      {
-        label: "Demo Session",
-        href: "#demo",
-        description: "A working introduction to the advisory approach.",
-      },
-      {
-        label: "Premium Course",
-        href: "#premium",
-        description: "The complete operations & growth curriculum.",
-      },
-      {
-        label: "Business Advisory",
-        href: "#advisory",
-        description: "Ongoing, hands-on engagements for leadership teams.",
-      },
-      {
-        label: "Counselling",
-        href: "#counselling",
-        description: "One-to-one guidance for founders at a crossroads.",
-      },
-    ],
-  },
-  {
-    label: "Resources",
-    href: "#resources",
-    children: [
-      {
-        label: "Blogs",
-        href: "#blogs",
-        description: "Field notes on operations, systems, and scale.",
-      },
-      {
-        label: "Case Studies",
-        href: "#cases",
-        description: "How real businesses were rebuilt to grow.",
-      },
-      {
-        label: "Featured Media",
-        href: "#media",
-        description: "Talks, interviews, and press appearances.",
-      },
-    ],
-  },
-];
-
-const RIGHT_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
-
-function Logo() {
-  return (
-    <a
-      href="#top"
-      aria-label="Anjan Prasad — home"
-      className="flex items-center gap-2"
-    >
-      <span className="text-xl font-bold italic tracking-tight text-foreground">
-        Anjan
-      </span>
-      <span
-        aria-hidden
-        className="inline-block h-2.5 w-2.5 rounded-[3px] bg-brand"
-      />
-    </a>
-  );
-}
+import { NAV, type NavItem } from "@/lib/data";
 
 function Dropdown({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false);
@@ -94,11 +18,10 @@ function Dropdown({ item }: { item: NavItem }) {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
-        type="button"
+      <Link
+        href={item.href}
         aria-expanded={open}
         aria-haspopup="menu"
-        onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-1 py-2 text-[length:var(--text-nav)] text-foreground-muted transition-colors hover:text-foreground"
       >
         {item.label}
@@ -108,7 +31,7 @@ function Dropdown({ item }: { item: NavItem }) {
           }`}
           strokeWidth={1.75}
         />
-      </button>
+      </Link>
 
       <AnimatePresence>
         {open && (
@@ -122,7 +45,7 @@ function Dropdown({ item }: { item: NavItem }) {
           >
             <div className="overflow-hidden rounded-2xl border border-border bg-glass p-2 shadow-2xl backdrop-blur-xl">
               {item.children?.map((child) => (
-                <a
+                <Link
                   key={child.label}
                   href={child.href}
                   role="menuitem"
@@ -134,7 +57,7 @@ function Dropdown({ item }: { item: NavItem }) {
                   <span className="mt-0.5 block text-xs leading-relaxed text-foreground-muted">
                     {child.description}
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -166,56 +89,59 @@ export function Header() {
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+        visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
       }}
       className="fixed inset-x-0 top-0 z-50"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div
-          className={`mt-4 flex items-center justify-between rounded-full border border-border bg-glass px-5 backdrop-blur-xl transition-all duration-300 ${
+          className={`mt-4 flex items-center justify-between gap-4 rounded-full border border-border bg-glass px-5 backdrop-blur-xl transition-all duration-300 ${
             scrolled ? "py-2 shadow-lg" : "py-3"
           }`}
         >
           <motion.div variants={fadeDown} transition={{ ease: easeSmooth }}>
-            <Logo />
+            <Link href="/" aria-label="Anjan Prasad — home">
+              <Wordmark />
+            </Link>
           </motion.div>
 
           <motion.nav
             variants={fadeDown}
             transition={{ ease: easeSmooth }}
             aria-label="Primary"
-            className="hidden items-center gap-8 lg:flex"
+            className="hidden items-center gap-7 xl:flex"
           >
-            {NAV.map((item) => (
-              <Dropdown key={item.label} item={item} />
-            ))}
+            {NAV.map((item) =>
+              item.children ? (
+                <Dropdown key={item.label} item={item} />
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="py-2 text-[length:var(--text-nav)] text-foreground-muted transition-colors hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </motion.nav>
 
           <motion.div
             variants={fadeDown}
             transition={{ ease: easeSmooth }}
-            className="hidden items-center gap-6 lg:flex"
+            className="hidden items-center gap-5 xl:flex"
           >
-            {RIGHT_LINKS.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="text-[length:var(--text-nav)] text-foreground-muted transition-colors hover:text-foreground"
-              >
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="#signin"
+            <Link
+              href="/sign-in"
               className="text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:text-brand"
             >
               Sign In
-            </a>
+            </Link>
             <ThemeToggle />
           </motion.div>
 
           {/* Mobile controls */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 xl:hidden">
             <ThemeToggle />
             <button
               type="button"
@@ -242,41 +168,42 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: easeSmooth }}
-            className="mx-auto mt-3 max-w-7xl px-6 lg:hidden"
+            className="mx-auto mt-3 max-w-7xl px-4 sm:px-6 xl:hidden"
           >
-            <div className="max-h-[70vh] overflow-y-auto rounded-3xl border border-border bg-glass p-4 backdrop-blur-xl">
+            <div className="max-h-[75vh] overflow-y-auto rounded-3xl border border-border bg-glass p-4 backdrop-blur-xl">
               {NAV.map((item) => (
-                <div key={item.label} className="py-2">
-                  <span className="px-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <div key={item.label} className="py-1.5">
+                  <Link
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded-xl px-2 py-2.5 text-base font-medium text-foreground transition-colors hover:bg-background-elevated"
+                  >
                     {item.label}
-                  </span>
-                  <div className="mt-1">
-                    {item.children?.map((child) => (
-                      <a
-                        key={child.label}
-                        href={child.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="block rounded-xl px-2 py-2.5 text-base text-foreground transition-colors hover:bg-background-elevated"
-                      >
-                        {child.label}
-                      </a>
-                    ))}
-                  </div>
+                  </Link>
+                  {item.children && (
+                    <div className="ml-2 border-l border-border pl-3">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          href={child.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block rounded-xl px-2 py-2 text-sm text-foreground-muted transition-colors hover:text-foreground"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
               <div className="mt-2 border-t border-border pt-3">
-                {[...RIGHT_LINKS, { label: "Sign In", href: "#signin" }].map(
-                  (l) => (
-                    <a
-                      key={l.label}
-                      href={l.href}
-                      onClick={() => setMobileOpen(false)}
-                      className="block rounded-xl px-2 py-2.5 text-base text-foreground transition-colors hover:bg-background-elevated"
-                    >
-                      {l.label}
-                    </a>
-                  )
-                )}
+                <Link
+                  href="/sign-in"
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-xl px-2 py-2.5 text-base font-medium text-brand"
+                >
+                  Sign In
+                </Link>
               </div>
             </div>
           </motion.div>

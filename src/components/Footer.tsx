@@ -1,13 +1,38 @@
 "use client";
 
+import Link from "next/link";
 import type { ComponentType, SVGProps } from "react";
+import { Wordmark } from "./brand/ApMark";
 
-const COLUMNS: { heading: string; links: string[] }[] = [
-  { heading: "Business", links: ["About", "Courses", "Business Advisory"] },
-  { heading: "Resources", links: ["Blogs", "Case Studies", "Featured Media"] },
-];
+const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
+  [
+    {
+      heading: "Practice",
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Business Advisory", href: "/business-advisory" },
+        { label: "Counselling", href: "/counselling" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+    {
+      heading: "Learn",
+      links: [
+        { label: "Courses", href: "/courses" },
+        { label: "Demo Session", href: "/courses#demo" },
+        { label: "Premium Course", href: "/courses#premium" },
+      ],
+    },
+    {
+      heading: "Resources",
+      links: [
+        { label: "Blogs", href: "/resources/blogs" },
+        { label: "Case Studies", href: "/resources/case-studies" },
+        { label: "Featured Media", href: "/resources/featured-media" },
+      ],
+    },
+  ];
 
-/* Brand marks kept as inline SVGs so the layout stays self-contained. */
 function LinkedInIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
@@ -55,20 +80,11 @@ export function Footer() {
     <footer className="border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold italic tracking-tight text-foreground">
-                Anjan
-              </span>
-              <span
-                aria-hidden
-                className="inline-block h-2.5 w-2.5 rounded-[3px] bg-brand"
-              />
-            </div>
+            <Wordmark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground-muted">
-              Business operations & growth consulting for founders and
-              leadership teams building for the long term.
+              Anjan Prasad builds profitable businesses — and helps founders and
+              leadership teams do the same, with systems built to last.
             </p>
           </div>
 
@@ -79,75 +95,35 @@ export function Footer() {
               </h3>
               <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
                       className="text-sm text-foreground-muted transition-colors hover:text-foreground"
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </nav>
           ))}
-
-          {/* Connect */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground">Connect</h3>
-            <div className="mt-5 flex gap-3">
-              {SOCIALS.map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground-muted transition-colors hover:border-border-strong hover:text-foreground"
-                >
-                  <Icon className="h-[18px] w-[18px]" />
-                </a>
-              ))}
-            </div>
-
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-6 flex max-w-xs items-center gap-2"
-            >
-              <label htmlFor="footer-email" className="sr-only">
-                Newsletter email
-              </label>
-              <input
-                id="footer-email"
-                type="email"
-                placeholder="Email"
-                className="h-10 flex-1 rounded-full border border-border bg-background-elevated px-4 text-sm text-foreground placeholder:text-muted focus:border-brand focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="h-10 shrink-0 rounded-full bg-foreground px-4 text-sm font-medium text-background transition-opacity hover:opacity-90"
-              >
-                Join
-              </button>
-            </form>
-          </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
+        <div className="mt-16 flex flex-col gap-6 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted">
             © {new Date().getFullYear()} Anjan Prasad. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a
-              href="#privacy"
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Privacy
-            </a>
-            <a
-              href="#terms"
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
-              Terms
-            </a>
+          <div className="flex gap-3">
+            {SOCIALS.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground-muted transition-colors hover:border-border-strong hover:text-foreground"
+              >
+                <Icon className="h-[18px] w-[18px]" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

@@ -2,8 +2,17 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { CTAButton, GhostButton } from "./ui/Primitives";
 import { easeSmooth, slideInLeft, staggerContainer } from "./motion";
+
+const ROLES = [
+  "Entrepreneur",
+  "CEO",
+  "Operator",
+  "Advisor",
+  "Investor",
+  "Mentor",
+];
 
 /** Monochrome executive silhouette — a placeholder for a real portrait. */
 function Silhouette() {
@@ -20,14 +29,11 @@ function Silhouette() {
           <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0.05" />
         </linearGradient>
       </defs>
-      {/* Head */}
       <circle cx="200" cy="150" r="78" fill="url(#ap-figure)" />
-      {/* Shoulders / torso */}
       <path
         d="M60 480 C60 360 120 300 200 300 C280 300 340 360 340 480 Z"
         fill="url(#ap-figure)"
       />
-      {/* Collar accent */}
       <path
         d="M168 318 L200 372 L232 318"
         fill="none"
@@ -40,13 +46,44 @@ function Silhouette() {
   );
 }
 
+/** Floating stat chip that hovers over the portrait. */
+function FloatChip({
+  className,
+  value,
+  label,
+  delay,
+}: {
+  className: string;
+  value: string;
+  label: string;
+  delay: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.7, ease: easeSmooth, delay }}
+      className={`absolute z-10 rounded-2xl border border-border bg-glass px-4 py-3 backdrop-blur-xl ${className}`}
+    >
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay }}
+      >
+        <p className="font-display text-lg font-semibold text-foreground">
+          {value}
+        </p>
+        <p className="text-xs text-foreground-muted">{label}</p>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-
   const figureY = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const glowY = useTransform(scrollYProgress, [0, 1], [0, 60]);
 
@@ -54,7 +91,7 @@ export function Hero() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
+      className="bg-grid relative flex min-h-screen items-center overflow-hidden pt-36 pb-20"
     >
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2">
         {/* Left — editorial copy */}
@@ -68,48 +105,71 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-foreground-muted"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            Business Operations & Growth
+            Business Builder · Operator · Advisor
           </motion.span>
 
           <motion.h1
             variants={slideInLeft}
-            className="mt-7 text-[length:var(--text-hero)] font-semibold leading-[1.04] tracking-[-0.03em] text-foreground"
+            className="mt-7 font-display text-[length:var(--text-hero)] font-semibold leading-[1.04] tracking-[-0.03em] text-foreground"
           >
-            Building businesses that scale beyond their founder.
+            Anjan Prasad builds{" "}
+            <span className="text-brand">profitable businesses.</span>
           </motion.h1>
 
           <motion.p
             variants={slideInLeft}
             className="mt-7 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted"
           >
-            Anjan Prasad works with founders, business owners, and leadership
-            teams to turn ambition into systemised, durable performance —
-            operations that hold up as the company grows.
+            Fifteen years founding companies, operating them, and advising
+            global brands — turning ambition into scalable, sustainable growth
+            built on systems, not heroics.
           </motion.p>
 
-          <motion.div variants={slideInLeft} className="mt-10">
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-[15px] font-semibold text-[#0a0a0a] shadow-[0_10px_30px_-10px_rgba(238,192,75,0.6)] transition-all duration-300 hover:scale-[1.03] hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(238,192,75,0.7)]"
-            >
-              Book a working session
-              <ArrowUpRight
-                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                strokeWidth={2}
-              />
-            </a>
+          <motion.div
+            variants={slideInLeft}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <CTAButton href="/business-advisory">
+              Apply for advisory
+            </CTAButton>
+            <GhostButton href="/about">Read the story</GhostButton>
           </motion.div>
+
+          <motion.ul
+            variants={slideInLeft}
+            className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted"
+          >
+            {ROLES.map((r) => (
+              <li key={r} className="flex items-center gap-2">
+                <span className="h-1 w-1 rounded-full bg-brand/70" />
+                {r}
+              </li>
+            ))}
+          </motion.ul>
         </motion.div>
 
         {/* Right — floating silhouette with radial lighting */}
-        <div className="relative flex h-[440px] items-center justify-center lg:h-[560px]">
+        <div className="relative flex h-[440px] items-center justify-center lg:h-[580px]">
           <motion.div
             style={{ y: glowY }}
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10"
           >
-            <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(238,192,75,0.18),transparent_62%)] blur-2xl" />
+            <div className="absolute left-1/2 top-1/2 h-[540px] w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(238,192,75,0.18),transparent_62%)] blur-2xl" />
           </motion.div>
+
+          <FloatChip
+            className="left-0 top-10"
+            value="15+ yrs"
+            label="Building businesses"
+            delay={0.9}
+          />
+          <FloatChip
+            className="right-0 bottom-16"
+            value="10X"
+            label="Growth delivered"
+            delay={1.1}
+          />
 
           <motion.div
             style={{ y: figureY }}
@@ -120,11 +180,7 @@ export function Hero() {
           >
             <motion.div
               animate={{ y: [0, -14, 0] }}
-              transition={{
-                duration: 7,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
+              transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
               className="h-full w-full overflow-hidden rounded-[2rem] border border-border bg-background-elevated/40"
             >
               <Silhouette />

@@ -15,13 +15,17 @@ export function Explainer() {
           viewport={inViewOnce}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-            What Anjan does
+          <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+            Featured motion graphics
+          </span>
+          <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+            The brand film
           </h2>
           <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-            A short film on how operations become the engine of growth — from
-            first diagnosis to a business that runs without the founder in every
-            room.
+            A cinematic look at how operations become the engine of growth —
+            from first diagnosis to a business that runs without the founder in
+            every room.
           </p>
         </motion.div>
 

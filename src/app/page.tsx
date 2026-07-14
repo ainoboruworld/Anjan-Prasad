@@ -1,23 +1,23 @@
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { Brands } from "@/components/Brands";
+import { Impact } from "@/components/home/Impact";
+import { CompaniesBuilt } from "@/components/home/CompaniesBuilt";
+import { BrandsWall } from "@/components/home/BrandsWall";
+import { Expertise } from "@/components/home/Expertise";
 import { Explainer } from "@/components/Explainer";
 import { Testimonials } from "@/components/Testimonials";
 import { Newsletter } from "@/components/Newsletter";
-import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Brands />
-        <Explainer />
-        <Testimonials />
-        <Newsletter />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <Impact />
+      <CompaniesBuilt />
+      <BrandsWall />
+      <Expertise />
+      <Explainer />
+      <Testimonials />
+      <Newsletter />
+    </main>
   );
 }
