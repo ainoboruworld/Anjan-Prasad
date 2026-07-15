@@ -121,7 +121,7 @@ export default function TestimonialsPage() {
               <span className="editorial-accent text-brand">to this page.</span>
             </h2>
             <div className="mt-9">
-              <CTAButton href="/courses#demo">Start with the ₹199 session</CTAButton>
+              <CTAButton href="/courses#demo">Start with the Demo Session</CTAButton>
             </div>
           </Reveal>
         </div>

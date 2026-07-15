@@ -63,12 +63,9 @@ export function Journey() {
                 <p className="mt-6 text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
                   {ch.copy}
                 </p>
-                <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-foreground-muted">
-                  {ch.detail}
-                </p>
 
                 {/* Chapter marks — organisations, drawn as connected nodes */}
-                <ul className="mt-8 flex flex-wrap items-center gap-x-2 gap-y-3">
+                <ul className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-3">
                   {ch.marks.map((m, j) => (
                     <li key={m} className="flex items-center gap-2">
                       {j > 0 && (

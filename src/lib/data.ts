@@ -23,22 +23,22 @@ export type NavItem = {
 export const NAV: NavItem[] = [
   { label: "About", href: "/about" },
   {
-    label: "Learn",
+    label: "Courses",
     href: "/courses",
     children: [
       {
-        label: "Courses",
-        href: "/courses",
-        description: "The ₹199 Demo Session and the flagship Premium Course.",
+        label: "Demo Session",
+        href: "/courses#demo",
+        description: "Every Saturday · 3 hours live · ₹199 registration fee.",
       },
       {
-        label: "Corporate Training",
-        href: "/corporate-training",
-        description: "Enterprise programs in leadership, AI, and transformation.",
+        label: "Live Course",
+        href: "/courses#live",
+        description: "The flagship live learning program — projects, AI, mentorship.",
       },
     ],
   },
-  { label: "Consulting", href: "/consulting" },
+  { label: "Business Advisory", href: "/business-advisory" },
   {
     label: "Insights",
     href: "/knowledge-hub",
@@ -87,6 +87,19 @@ export const PHILOSOPHY_SCENES = [
   },
 ] as const;
 
+/* ────────────────────── Contact & social presence ─────────────────────── */
+
+export const CONTACT_EMAIL = "performance@noboruworld.com";
+/** Set when the official number is confirmed — the UI hides the row if empty. */
+export const CONTACT_PHONE: string = "";
+
+export const SOCIALS = [
+  { name: "Instagram", href: "https://www.instagram.com/anjanpr/?hl=en" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/anjanprasad/" },
+  /** Official channel link pending — icon stays visible per brand direction. */
+  { name: "YouTube", href: "#" },
+] as const;
+
 /* ─────────────────────────────── Journey ──────────────────────────────── */
 
 export type JourneyChapter = {
@@ -102,56 +115,56 @@ export const JOURNEY: JourneyChapter[] = [
   {
     index: "01",
     era: "Corporate Foundation",
-    title: "Learning how large businesses actually run",
-    copy: "Media, data, and growth mandates inside global agencies and consultancies — where discipline is not optional.",
+    title: "Learning how large businesses run",
+    copy: "Growth mandates inside global agencies and consultancies — where discipline is not optional.",
     marks: ["Mindshare · GroupM", "IPG Mediabrands", "Accenture"],
     detail:
-      "Years spent inside the engine rooms of global brands: planning cycles, P&L reviews, and the systems that keep billion-dollar businesses accountable.",
+      "Years inside the engine rooms of global brands: planning cycles, P&L reviews, and the systems that keep billion-dollar businesses accountable.",
   },
   {
     index: "02",
-    era: "Enterprise Scale",
-    title: "Operating growth at enterprise altitude",
-    copy: "Marketing technology and travel commerce at scale — where a one-percent improvement moves millions.",
+    era: "Enterprise Leadership",
+    title: "Owning growth at enterprise altitude",
+    copy: "Marketing technology and travel commerce at scale — where one percent moves millions.",
     marks: ["Zeta Global", "Fareportal"],
     detail:
       "Owning outcomes across markets and channels, and learning that scale is an operations problem long before it is a marketing problem.",
   },
   {
     index: "03",
-    era: "Entrepreneurship",
-    title: "Building companies from zero",
-    copy: "Founding and co-founding businesses across growth, consumer, and compliance — bootstrapped and profitable.",
+    era: "Building Businesses",
+    title: "Starting companies from zero",
+    copy: "Founding businesses across growth, consumer, and compliance — bootstrapped and profitable.",
     marks: ["Noboru World", "Lushful", "Filing Buddy"],
     detail:
       "Three companies started from a blank page. Payroll made, margins defended, systems written by hand — the education no classroom sells.",
   },
   {
     index: "04",
+    era: "Scaling Ventures",
+    title: "Turning products into companies",
+    copy: "Recurring revenue, real teams, defensible margins — growth made repeatable.",
+    marks: ["Enterprise clients", "Thousands of SMEs"],
+    detail:
+      "The ventures grew past their founder: enterprise product lines, recurring-revenue bases, and leadership benches that run the week without him.",
+  },
+  {
+    index: "05",
     era: "Business Transformation",
     title: "Rebuilding businesses from the inside",
-    copy: "Advisory engagements where the work is done in the operating rhythm of the client — not in a slide deck.",
+    copy: "Advisory done in the client's operating rhythm — not in a slide deck.",
     marks: ["Founders", "SMEs", "Enterprises"],
     detail:
       "Revenue engines redesigned, back offices rebuilt, leadership benches formed. Transformation measured in margin, not in meetings.",
   },
   {
-    index: "05",
-    era: "Founder Mentorship",
-    title: "Teaching what building actually takes",
-    copy: "Courses, counselling, and a growing community of people who want businesses that outlast them.",
-    marks: ["Students", "Professionals", "Founders"],
-    detail:
-      "The playbooks earned across two decades, translated into programs anyone ambitious can start with — from ₹199.",
-  },
-  {
     index: "06",
-    era: "Today",
-    title: "AP.com — the ecosystem",
-    copy: "One platform for starting, building, and scaling profitable businesses in India.",
-    marks: ["AP.com"],
+    era: "Founder Mentor",
+    title: "Teaching what building takes",
+    copy: "Courses, mentorship, and a growing community of people who want businesses that outlast them.",
+    marks: ["AP.com", "IIFT", "IMT Ghaziabad"],
     detail:
-      "Education, consulting, corporate training, and community — connected into a single system for business growth.",
+      "The playbooks earned across two decades — taught live, lectured at institutes, and translated into programs anyone ambitious can start with.",
   },
 ];
 
@@ -279,8 +292,8 @@ export const PERSONAS: Persona[] = [
       "A network that opens the first door.",
     ],
     path: [
-      { label: "₹199 Demo Session", href: "/courses#demo", note: "See how businesses are actually built." },
-      { label: "Premium Course", href: "/courses#premium", note: "Projects, mentorship, and community." },
+      { label: "Demo Session", href: "/courses#demo", note: "See how businesses are actually built." },
+      { label: "Live Course", href: "/courses#live", note: "Projects, mentorship, and community." },
       { label: "Knowledge Hub", href: "/knowledge-hub", note: "Free playbooks to start today." },
     ],
   },
@@ -297,8 +310,8 @@ export const PERSONAS: Persona[] = [
       "A tested path from salary to ownership.",
     ],
     path: [
-      { label: "₹199 Demo Session", href: "/courses#demo", note: "A working preview of the playbook." },
-      { label: "Premium Course", href: "/courses#premium", note: "Build a venture alongside your job." },
+      { label: "Demo Session", href: "/courses#demo", note: "A working preview of the playbook." },
+      { label: "Live Course", href: "/courses#live", note: "Build a venture alongside your job." },
       { label: "Case Studies", href: "/case-studies", note: "Proof it works for people like you." },
     ],
   },
@@ -315,9 +328,9 @@ export const PERSONAS: Persona[] = [
       "A growth engine that is repeatable, not heroic.",
     ],
     path: [
-      { label: "Consulting", href: "/consulting", note: "Hands-on transformation, inside your business." },
+      { label: "Business Advisory", href: "/business-advisory", note: "Hands-on transformation, inside your business." },
       { label: "Case Studies", href: "/case-studies", note: "How other founders rebuilt." },
-      { label: "Premium Course", href: "/courses#premium", note: "The playbook, self-driven." },
+      { label: "Live Course", href: "/courses#live", note: "The playbook, self-driven." },
     ],
   },
   {
@@ -333,8 +346,8 @@ export const PERSONAS: Persona[] = [
       "A second growth curve.",
     ],
     path: [
-      { label: "Consulting", href: "/consulting", note: "Growth, RevOps, and transformation." },
-      { label: "Corporate Training", href: "/corporate-training", note: "Upskill the leadership bench." },
+      { label: "Business Advisory", href: "/business-advisory", note: "Growth, RevOps, and transformation." },
+      { label: "Case Studies", href: "/case-studies", note: "Transformations like yours." },
       { label: "Contact", href: "/contact", note: "Start with a conversation." },
     ],
   },
@@ -351,8 +364,8 @@ export const PERSONAS: Persona[] = [
       "Community and mentorship that shows up.",
     ],
     path: [
-      { label: "₹199 Demo Session", href: "/courses#demo", note: "Start small, see the method." },
-      { label: "Premium Course", href: "/courses#premium", note: "Mentorship and community included." },
+      { label: "Demo Session", href: "/courses#demo", note: "Start small, see the method." },
+      { label: "Live Course", href: "/courses#live", note: "Mentorship and community included." },
       { label: "Testimonials", href: "/testimonials", note: "Women who built with AP.com." },
     ],
   },
@@ -369,14 +382,14 @@ export const PERSONAS: Persona[] = [
       "Leadership and workforce capability that sticks.",
     ],
     path: [
-      { label: "Corporate Training", href: "/corporate-training", note: "Leadership, AI, and upskilling programs." },
-      { label: "Consulting", href: "/consulting", note: "Fractional CXO and transformation." },
+      { label: "Business Advisory", href: "/business-advisory", note: "Transformation, training, and fractional leadership." },
       { label: "Media & Recognition", href: "/media", note: "Why organisations trust AP.com." },
+      { label: "Contact", href: "/contact", note: "Design an engagement." },
     ],
   },
 ];
 
-/* ────────────────────────────── Consulting ────────────────────────────── */
+/* ─────────────────────────── Business advisory ────────────────────────── */
 
 export type ConsultingOutcome = {
   id: string;
@@ -470,110 +483,157 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     outcome: "Compounding productivity — measured, not promised.",
     proof: "AI-first operating systems built and shipped at Noboru World.",
   },
+  {
+    id: "corporate-training",
+    title: "Corporate Training",
+    challenge: "Teams need leadership, AI, and modern operating skills — and workshops alone don't stick.",
+    approach: "Design capability programs from your workflows, your data, your constraints.",
+    execution: "Cohorts anchored to live work: leadership, AI for business teams, transformation, upskilling.",
+    outcome: "Measured capability across the whole floor — baseline before, evidence after.",
+    proof: "Programs taught by an operator who has run the functions being trained.",
+  },
 ];
+
+export const ADVISORY_PROBLEMS = [
+  "Growth has plateaued and every quarter starts from zero",
+  "The founder is the bottleneck for every decision",
+  "Margins are shrinking while revenue grows",
+  "Marketing, sales, and operations pull in different directions",
+  "Digital and AI feel urgent but nobody owns them",
+  "Teams need modern skills faster than hiring can deliver",
+] as const;
+
+export const ADVISORY_PROCESS = [
+  {
+    step: "01",
+    title: "Enquiry & fit",
+    copy: "You share where the business is. We tell you honestly whether advisory will move it.",
+  },
+  {
+    step: "02",
+    title: "Diagnostic",
+    copy: "Two weeks inside your numbers and your rooms before any recommendation exists.",
+  },
+  {
+    step: "03",
+    title: "Mandate",
+    copy: "One named outcome, one metric, one operating rhythm — agreed before work begins.",
+  },
+  {
+    step: "04",
+    title: "Execution",
+    copy: "Systems installed with your team, inside your week — capability transfers, dependency doesn't.",
+  },
+  {
+    step: "05",
+    title: "Handover",
+    copy: "The engagement ends with your team running the system and the metric on the board.",
+  },
+] as const;
+
+export const ADVISORY_OUTCOMES = [
+  "A growth engine that forecasts instead of hopes",
+  "Margins defended by pricing and purchasing discipline",
+  "An operating cadence the leadership team runs without you",
+  "AI and automation working in real workflows",
+  "A leadership bench you can actually hand things to",
+] as const;
+
+export const ADVISORY_FAQS = [
+  {
+    q: "How is this different from hiring a consulting firm?",
+    a: "Firms deliver recommendations; this engagement delivers installed systems. Anjan works inside your operating rhythm — in the weekly reviews, in the numbers, alongside the team — until the outcome is running without him.",
+  },
+  {
+    q: "What size of business is this for?",
+    a: "Founders and SMEs with real revenue, and enterprises with a specific transformation or capability mandate. If a Demo Session or the Live Course is the better starting point for your stage, we'll say so.",
+  },
+  {
+    q: "How long does an engagement run?",
+    a: "The diagnostic takes two weeks. Mandates typically run one to two quarters — long enough to install a system, short enough to stay accountable to the metric.",
+  },
+  {
+    q: "Does advisory include corporate training?",
+    a: "Yes. Capability programs — leadership, AI for business teams, transformation, upskilling — run as part of an advisory mandate or standalone for organisations.",
+  },
+  {
+    q: "What does it cost?",
+    a: "Engagements are scoped to the mandate after the diagnostic. Every engagement names its metric on day one, so the investment is always measured against a stated outcome.",
+  },
+  {
+    q: "What happens after I send the enquiry?",
+    a: "A human reply within one working day, and a working conversation about your business — not a pitch about ours.",
+  },
+] as const;
 
 /* ─────────────────────────────── Courses ──────────────────────────────── */
 
-export type Course = {
-  id: string;
-  badge: string;
-  name: string;
-  price: string;
-  priceNote: string;
-  promise: string;
-  description: string;
-  pillars: { title: string; copy: string }[];
-  outcomes: string[];
-  cta: string;
-};
+export const DEMO_SESSION = {
+  id: "demo",
+  badge: "Start here",
+  name: "Demo Session",
+  fee: "₹199",
+  feeLabel: "Registration Fee",
+  schedule: "Every Saturday",
+  format: "3 Hours Live",
+  promise: "See how profitable businesses are actually built — in one Saturday.",
+  description:
+    "Not a webinar. A live working session where Anjan walks through the operating playbook on real business models — how ideas are validated, how margins are designed, and where most businesses quietly fail.",
+  hours: [
+    {
+      hour: "Hour 1",
+      title: "Discussion & Business Assessment",
+      copy: "Where you are, what you're building, and an honest read of the gaps.",
+    },
+    {
+      hour: "Hour 2",
+      title: "Practical Learning",
+      copy: "The 0 → 1 → Scale framework applied live on real business models.",
+    },
+    {
+      hour: "Hour 3",
+      title: "Interactive Q&A",
+      copy: "Your questions, your business, answered in the room.",
+    },
+  ],
+  audience: [
+    "Students building career capital before the first job",
+    "Professionals planning the move from salary to ownership",
+    "Founders who want systems instead of firefighting",
+    "Business owners modernising a running company",
+  ],
+  outcomes: [
+    "Understand the anatomy of a profitable business",
+    "See the validation method before you spend a rupee",
+    "Know your exact next step — this month",
+  ],
+  cta: "Register for Saturday",
+} as const;
 
-export const COURSES: Course[] = [
-  {
-    id: "demo",
-    badge: "Start here",
-    name: "The Demo Session",
-    price: "₹199",
-    priceNote: "One live session · 90 minutes",
-    promise: "See how profitable businesses are actually built — in one working session.",
-    description:
-      "Not a webinar. A working session where Anjan walks through the operating playbook on a real business model — how ideas are validated, how margins are designed, and where most businesses quietly fail.",
-    pillars: [
-      { title: "Live, not recorded", copy: "A real session with real questions answered." },
-      { title: "The full map", copy: "The 0 → 1 → Scale framework, end to end." },
-      { title: "Your next step", copy: "Leave knowing exactly what to do this month." },
-    ],
-    outcomes: [
-      "Understand the anatomy of a profitable business",
-      "See the validation method before you spend a rupee",
-      "Decide — with evidence — if the Premium Course is for you",
-    ],
-    cta: "Reserve a seat — ₹199",
-  },
-  {
-    id: "premium",
-    badge: "Flagship",
-    name: "The Premium Course",
-    price: "₹9,000",
-    priceNote: "Cohort program · projects, mentorship & community",
-    promise: "Build a real business system — not a certificate.",
-    description:
-      "A structured program that takes you from idea to operating business: validation, positioning, sales, finance, AI-assisted systems, and the discipline that keeps it all profitable. Taught by an operator who has done it three times.",
-    pillars: [
-      { title: "Implementation-first", copy: "Every module ends with something built, not something watched." },
-      { title: "AI-native", copy: "Modern AI workflows woven through marketing, ops, and finance." },
-      { title: "Mentorship", copy: "Direct review of your work — the feedback loop most courses skip." },
-      { title: "Community", copy: "A network of builders that outlives the cohort." },
-    ],
-    outcomes: [
-      "A validated business model with real unit economics",
-      "A working sales and marketing engine",
-      "AI-assisted operating systems you run yourself",
-      "A community and mentors invested in your progress",
-    ],
-    cta: "Apply for the next cohort",
-  },
-];
-
-/* ────────────────────────── Corporate training ────────────────────────── */
-
-export type TrainingProgram = {
-  title: string;
-  copy: string;
-  audience: string;
-};
-
-export const TRAINING_PROGRAMS: TrainingProgram[] = [
-  {
-    title: "Leadership & Executive Development",
-    copy: "Operating-cadence leadership for managers becoming executives — decision quality, accountability, and rhythm.",
-    audience: "Senior managers · Directors · New CXOs",
-  },
-  {
-    title: "AI for Business Teams",
-    copy: "From AI curiosity to AI capability: practical workflows for marketing, operations, finance, and support teams.",
-    audience: "Full functions · Cross-functional cohorts",
-  },
-  {
-    title: "Digital Transformation",
-    copy: "How to modernise a running business — sequencing, change management, and the systems that make it stick.",
-    audience: "Transformation offices · Business heads",
-  },
-  {
-    title: "Modern Marketing & Growth",
-    copy: "Brand, performance, and revenue operations as one system — taught by someone who has run all three.",
-    audience: "Marketing & growth teams",
-  },
-  {
-    title: "Automation & Business Systems",
-    copy: "Documenting, simplifying, and automating the workflows that eat your teams' weeks.",
-    audience: "Operations teams · Shared services",
-  },
-  {
-    title: "Workforce Upskilling",
-    copy: "Structured capability programs that move the whole organisation, measured before and after.",
-    audience: "HR & L&D leaders",
-  },
-];
+export const LIVE_COURSE = {
+  id: "live",
+  badge: "Flagship",
+  name: "Live Course",
+  altName: "Live Learning Program",
+  price: "₹9,000",
+  priceNote: "Cohort program · projects, mentorship & community",
+  promise: "Build a real business system — not a certificate.",
+  description:
+    "A structured live program that takes you from idea to operating business: validation, positioning, sales, finance, AI-assisted systems, and the discipline that keeps it all profitable. Taught by an operator who has done it three times.",
+  pillars: [
+    { title: "Implementation-first", copy: "Every module ends with something built, not something watched." },
+    { title: "AI-native", copy: "Modern AI workflows woven through marketing, ops, and finance." },
+    { title: "Mentorship", copy: "Direct review of your work — the feedback loop most courses skip." },
+    { title: "Community", copy: "A network of builders that outlives the cohort." },
+  ],
+  outcomes: [
+    "A validated business model with real unit economics",
+    "A working sales and marketing engine",
+    "AI-assisted operating systems you run yourself",
+    "A community and mentors invested in your progress",
+  ],
+  cta: "Apply for the next cohort",
+} as const;
 
 /* ───────────────────────────── Knowledge hub ──────────────────────────── */
 
@@ -839,7 +899,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
   {
     kind: "Guest Lecture",
     title: "Entrepreneurship in Practice",
-    venue: "Business schools & institutes",
+    venue: "IIFT · IMT Ghaziabad · business schools",
     year: "Ongoing",
     note: "Guest sessions on validation, unit economics, and founder discipline.",
   },
@@ -906,23 +966,16 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "The Premium Course made me build, not watch. I left with a validated model and my first paying customers.",
+      "The Live Course made me build, not watch. I left with a validated model and my first paying customers.",
     name: "Sneha Iyer",
-    title: "Premium Course alum · D2C founder",
+    title: "Live Course alum · D2C founder",
     kind: "Student",
   },
   {
     quote:
-      "₹199 was the best money I've spent on my career. The demo session alone reframed how I think about business.",
+      "The best money I've spent on my career. The Demo Session alone reframed how I think about business.",
     name: "Arjun Nair",
     title: "Working professional · Demo Session attendee",
     kind: "Student",
   },
 ];
-
-/* ─────────────────────────────── Actions ──────────────────────────────── */
-
-export const APPLY_CONSULTING_URL = "/contact?interest=consulting";
-export const BOOK_DEMO_URL = "/contact?interest=demo";
-export const APPLY_PREMIUM_URL = "/contact?interest=premium";
-export const TRAINING_URL = "/contact?interest=training";

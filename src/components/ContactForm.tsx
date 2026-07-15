@@ -3,27 +3,50 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { submitForm, type FormType } from "@/lib/forms";
 
-const INTERESTS = [
-  { id: "demo", label: "₹199 Demo Session" },
-  { id: "premium", label: "Premium Course" },
-  { id: "consulting", label: "Consulting" },
-  { id: "training", label: "Corporate Training" },
-  { id: "speaking", label: "Speaking / Media" },
-  { id: "other", label: "Something else" },
-];
+const REASONS = [
+  "Business Advisory",
+  "Demo Session",
+  "Live Course",
+  "Partnership",
+  "Speaking Engagement",
+  "General Enquiry",
+  "Other",
+] as const;
+
+/** Map ?interest= query values to a preselected reason. */
+const INTEREST_TO_REASON: Record<string, (typeof REASONS)[number]> = {
+  "business-advisory": "Business Advisory",
+  consulting: "Business Advisory",
+  training: "Business Advisory",
+  demo: "Demo Session",
+  "live-course": "Live Course",
+  premium: "Live Course",
+  partnership: "Partnership",
+  speaking: "Speaking Engagement",
+};
+
+/** Route a submission to the right spreadsheet tab by reason. */
+const REASON_TO_FORM_TYPE: Record<string, FormType> = {
+  "Business Advisory": "Business Advisory",
+  "Demo Session": "Demo Session",
+  "Live Course": "Contact",
+  Partnership: "General Enquiries",
+  "Speaking Engagement": "General Enquiries",
+  "General Enquiry": "General Enquiries",
+  Other: "General Enquiries",
+};
 
 const inputCls =
   "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
 
-/**
- * Contact form with contextual intent chips. Client-side confirmation only —
- * wire onSubmit to the real inbox/CRM endpoint when it exists.
- */
+/** Contact form — posts through the shared forms layer. */
 export function ContactForm({ initialInterest }: { initialInterest?: string }) {
-  const [interest, setInterest] = useState(
-    INTERESTS.some((i) => i.id === initialInterest) ? initialInterest! : "demo"
+  const [reason, setReason] = useState<string>(
+    INTEREST_TO_REASON[initialInterest ?? ""] ?? ""
   );
+  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
   if (sent) {
@@ -48,46 +71,34 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
     );
   }
 
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="space-y-6"
-    >
-      <fieldset>
-        <legend className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
-          I&apos;m here about
-        </legend>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {INTERESTS.map((i) => {
-            const on = interest === i.id;
-            return (
-              <button
-                key={i.id}
-                type="button"
-                onClick={() => setInterest(i.id)}
-                aria-pressed={on}
-                className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
-                  on
-                    ? "border-brand bg-brand font-semibold text-brand-ink"
-                    : "border-border text-foreground-muted hover:border-border-strong hover:text-foreground"
-                }`}
-              >
-                {i.label}
-              </button>
-            );
-          })}
-        </div>
-      </fieldset>
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    const f = new FormData(e.currentTarget);
+    const v = (k: string) => (f.get(k) as string) ?? "";
+    await submitForm({
+      formType: REASON_TO_FORM_TYPE[v("reason")] ?? "Contact",
+      name: v("fullName"),
+      email: v("email"),
+      phone: v("phone"),
+      company: v("companyName"),
+      data: {
+        "Why do you want to contact us?": v("reason"),
+        Message: v("message"),
+      },
+    });
+    setSending(false);
+    setSent(true);
+  };
 
+  return (
+    <form onSubmit={onSubmit} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className="sr-only">
-            Name
+            Full Name
           </label>
-          <input id="contact-name" required placeholder="Your name" className={inputCls} />
+          <input id="contact-name" name="fullName" required placeholder="Full name" className={inputCls} />
         </div>
         <div>
           <label htmlFor="contact-email" className="sr-only">
@@ -95,12 +106,51 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
           </label>
           <input
             id="contact-email"
+            name="email"
             type="email"
             required
             placeholder="you@company.com"
             className={inputCls}
           />
         </div>
+        <div>
+          <label htmlFor="contact-phone" className="sr-only">
+            Phone Number
+          </label>
+          <input id="contact-phone" name="phone" type="tel" required placeholder="+91" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="contact-company" className="sr-only">
+            Company Name (optional)
+          </label>
+          <input
+            id="contact-company"
+            name="companyName"
+            placeholder="Company (optional)"
+            className={inputCls}
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="contact-reason" className="sr-only">
+          Why do you want to contact us?
+        </label>
+        <select
+          id="contact-reason"
+          name="reason"
+          required
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          className={inputCls}
+        >
+          <option value="" disabled>
+            Why do you want to contact us?
+          </option>
+          {REASONS.map((r) => (
+            <option key={r}>{r}</option>
+          ))}
+        </select>
       </div>
 
       <div>
@@ -109,6 +159,7 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
         </label>
         <textarea
           id="contact-message"
+          name="message"
           rows={5}
           required
           placeholder="A few lines about your business, your goal, or your question…"
@@ -118,9 +169,10 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
 
       <button
         type="submit"
-        className="group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink transition-colors hover:bg-brand-hover"
+        disabled={sending}
+        className="group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink transition-colors hover:bg-brand-hover disabled:opacity-60"
       >
-        Send it
+        {sending ? "Sending…" : "Send it"}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
       </button>
     </form>

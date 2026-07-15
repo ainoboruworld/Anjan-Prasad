@@ -187,7 +187,7 @@ export function Header() {
               href="/courses#demo"
               className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-brand-ink transition-colors hover:bg-brand-hover"
             >
-              Start for ₹199
+              Book Demo Session
             </Link>
             <ThemeToggle />
           </motion.div>
@@ -257,7 +257,7 @@ export function Header() {
                   href="/courses#demo"
                   className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-brand-ink"
                 >
-                  Start for ₹199
+                  Book Demo Session
                 </Link>
               </div>
             </div>

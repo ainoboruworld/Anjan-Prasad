@@ -130,16 +130,15 @@ export function Hero() {
             variants={slideInLeft}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <CTAButton href="/courses#demo">Start for ₹199</CTAButton>
-            <GhostButton href="/consulting">Work with Anjan</GhostButton>
+            <CTAButton href="/courses#demo">Book a Demo Session</CTAButton>
+            <GhostButton href="/business-advisory">Work with Anjan</GhostButton>
           </motion.div>
 
           <motion.p
             variants={slideInLeft}
             className="mt-12 max-w-md text-sm leading-relaxed text-foreground-muted"
           >
-            Three companies founded. Global brands operated. Two decades of
-            systems — now one ecosystem for people who build.
+            Three companies founded. Two decades of systems. One ecosystem.
           </motion.p>
         </motion.div>
 

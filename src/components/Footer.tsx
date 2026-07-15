@@ -1,21 +1,21 @@
 import Link from "next/link";
 import { Wordmark } from "./brand/ApMark";
 import { Newsletter } from "./Newsletter";
+import { SocialLinks } from "./SocialLinks";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Learn",
     links: [
-      { label: "₹199 Demo Session", href: "/courses#demo" },
-      { label: "Premium Course", href: "/courses#premium" },
-      { label: "Corporate Training", href: "/corporate-training" },
+      { label: "Demo Session", href: "/courses#demo" },
+      { label: "Live Course", href: "/courses#live" },
       { label: "Knowledge Hub", href: "/knowledge-hub" },
     ],
   },
   {
     title: "Work with us",
     links: [
-      { label: "Consulting", href: "/consulting" },
+      { label: "Business Advisory", href: "/business-advisory" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Testimonials", href: "/testimonials" },
       { label: "Contact", href: "/contact" },
@@ -66,6 +66,7 @@ export function Footer() {
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-foreground-muted">
             0 → 1 → Scale
           </p>
+          <SocialLinks className="mt-6" />
         </div>
 
         {COLUMNS.map((col) => (

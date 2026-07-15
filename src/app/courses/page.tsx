@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
-import { BOOK_DEMO_URL, APPLY_PREMIUM_URL, COURSES } from "@/lib/data";
+import { DEMO_SESSION, LIVE_COURSE } from "@/lib/data";
+import { DemoForm } from "@/components/courses/DemoForm";
 import { CTAButton, Eyebrow, GhostButton, PageHero, RuleTick } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Courses — The ₹199 Demo Session & the Premium Course",
+  title: "Courses — Demo Session & Live Course",
   description:
-    "Implementation-first business education: see the method for ₹199, then build a real business system in the ₹9,000 Premium Course — projects, AI, mentorship, and community.",
+    "Implementation-first business education: the Saturday Demo Session (₹199 registration fee, 3 hours live) and the flagship Live Course — projects, AI, mentorship, and community.",
 };
 
 export default function CoursesPage() {
-  const [demo, premium] = COURSES;
-
   return (
     <main>
       <PageHero
@@ -24,71 +23,100 @@ export default function CoursesPage() {
             <span className="editorial-accent text-brand">A build.</span>
           </>
         }
-        lead="Two programs, one method: the operating playbook behind three bootstrapped companies, taught by implementation — projects, AI workflows, mentorship, and a community that keeps you building."
+        lead="Two live programs, one method: the operating playbook behind three bootstrapped companies — taught by implementation, not by slides."
       >
         <div className="flex flex-wrap gap-4">
-          <CTAButton href="#demo">Start with ₹199</CTAButton>
-          <GhostButton href="#premium">See the flagship</GhostButton>
+          <CTAButton href="#demo">Book the Demo Session</CTAButton>
+          <GhostButton href="#live">See the Live Course</GhostButton>
         </div>
       </PageHero>
 
-      {/* ── Demo Session — the opening act ── */}
+      {/* ── Demo Session — the first step into AP.com ── */}
       <section id="demo" className="scroll-mt-28 border-t border-border py-24">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <Reveal>
-              <Eyebrow>{demo.badge}</Eyebrow>
-              <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-                {demo.name}
-              </h2>
-              <p className="mt-2 font-display text-5xl font-semibold text-brand">
-                {demo.price}
-                <span className="ml-3 align-middle text-sm font-normal uppercase tracking-[0.18em] text-foreground-muted">
-                  {demo.priceNote}
-                </span>
-              </p>
-              <p className="mt-6 text-[length:var(--text-lead)] leading-relaxed text-foreground">
-                {demo.promise}
-              </p>
-              <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                {demo.description}
-              </p>
-              <div className="mt-9">
-                <CTAButton href={BOOK_DEMO_URL}>{demo.cta}</CTAButton>
-              </div>
-            </Reveal>
+          <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <Reveal>
+                <Eyebrow>{DEMO_SESSION.badge}</Eyebrow>
+                <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+                  {DEMO_SESSION.name}
+                </h2>
+                <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium uppercase tracking-[0.18em] text-foreground-muted">
+                  <span className="text-brand">{DEMO_SESSION.fee} {DEMO_SESSION.feeLabel}</span>
+                  <span aria-hidden>·</span>
+                  <span>{DEMO_SESSION.schedule}</span>
+                  <span aria-hidden>·</span>
+                  <span>{DEMO_SESSION.format}</span>
+                </p>
+                <p className="mt-6 text-[length:var(--text-lead)] leading-relaxed text-foreground">
+                  {DEMO_SESSION.promise}
+                </p>
+                <p className="mt-4 max-w-xl text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+                  {DEMO_SESSION.description}
+                </p>
+              </Reveal>
 
-            <div className="lg:pt-6">
-              <RevealGroup className="space-y-4">
-                {demo.pillars.map((p, i) => (
+              {/* The three hours */}
+              <RevealGroup className="mt-10 space-y-4">
+                {DEMO_SESSION.hours.map((h) => (
                   <RevealItem
-                    key={p.title}
-                    className="flex gap-5 rounded-2xl border border-border bg-background-elevated p-6"
+                    key={h.hour}
+                    className="flex gap-6 rounded-2xl border border-border bg-background-elevated p-6"
                   >
-                    <span className="font-display text-sm font-semibold text-brand">
-                      {String(i + 1).padStart(2, "0")}
+                    <span className="w-16 shrink-0 font-display text-sm font-semibold uppercase tracking-wide text-brand">
+                      {h.hour}
                     </span>
                     <span>
-                      <span className="block font-medium text-foreground">{p.title}</span>
+                      <span className="block font-medium text-foreground">{h.title}</span>
                       <span className="mt-1 block text-sm leading-relaxed text-foreground-muted">
-                        {p.copy}
+                        {h.copy}
                       </span>
                     </span>
                   </RevealItem>
                 ))}
               </RevealGroup>
-              <Reveal className="mt-6 rounded-2xl border border-brand/30 bg-brand/5 p-6">
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
-                  You leave with
+
+              {/* Who should attend + outcomes */}
+              <div className="mt-10 grid gap-8 sm:grid-cols-2">
+                <Reveal>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
+                    Who should attend
+                  </p>
+                  <ul className="mt-3 space-y-2.5">
+                    {DEMO_SESSION.audience.map((a) => (
+                      <li key={a} className="flex gap-2.5 text-[15px] leading-relaxed text-foreground-muted">
+                        <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
+                        {a}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+                <Reveal>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
+                    You leave with
+                  </p>
+                  <ul className="mt-3 space-y-2.5">
+                    {DEMO_SESSION.outcomes.map((o) => (
+                      <li key={o} className="flex gap-2.5 text-[15px] leading-relaxed text-foreground">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-brand" strokeWidth={2.5} />
+                        {o}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+            </div>
+
+            {/* Registration */}
+            <div className="lg:sticky lg:top-32 lg:self-start">
+              <Reveal className="rounded-3xl border border-border bg-background-elevated p-8 shadow-[var(--shadow-soft)]">
+                <DemoForm />
+              </Reveal>
+              <Reveal className="mt-4">
+                <p className="text-center text-xs leading-relaxed text-foreground-muted">
+                  The first step into AP.com — decide about everything else
+                  with evidence.
                 </p>
-                <ul className="mt-3 space-y-2">
-                  {demo.outcomes.map((o) => (
-                    <li key={o} className="flex gap-2.5 text-[15px] text-foreground">
-                      <Check className="mt-1 h-4 w-4 shrink-0 text-brand" strokeWidth={2.5} />
-                      {o}
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             </div>
           </div>
@@ -97,29 +125,29 @@ export default function CoursesPage() {
 
       <RuleTick />
 
-      {/* ── Premium Course — the flagship launch ── */}
-      <section id="premium" className="scroll-mt-28 py-24">
+      {/* ── Live Course — the flagship program ── */}
+      <section id="live" className="scroll-mt-28 py-24">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <Eyebrow className="justify-center">{premium.badge}</Eyebrow>
+            <Eyebrow className="justify-center">{LIVE_COURSE.badge}</Eyebrow>
             <h2 className="mt-5 font-display text-[length:var(--text-chapter)] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground">
-              {premium.name}{" "}
-              <span className="editorial-accent text-brand">{premium.price}</span>
+              {LIVE_COURSE.name}{" "}
+              <span className="editorial-accent text-brand">{LIVE_COURSE.price}</span>
             </h2>
             <p className="mt-3 text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
-              {premium.priceNote}
+              {LIVE_COURSE.altName} · {LIVE_COURSE.priceNote}
             </p>
             <p className="mt-7 text-[length:var(--text-lead)] leading-relaxed text-foreground">
-              {premium.promise}
+              {LIVE_COURSE.promise}
             </p>
             <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              {premium.description}
+              {LIVE_COURSE.description}
             </p>
           </Reveal>
 
           {/* Pillars as an architectural cross-section */}
           <RevealGroup className="mx-auto mt-16 grid max-w-5xl gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2">
-            {premium.pillars.map((p, i) => (
+            {LIVE_COURSE.pillars.map((p, i) => (
               <RevealItem
                 key={p.title}
                 className="bg-blueprint bg-background p-8 transition-colors duration-300 hover:bg-background-elevated"
@@ -143,7 +171,7 @@ export default function CoursesPage() {
               What you will have built by the end
             </p>
             <ul className="mt-6 divide-y divide-border rounded-3xl border border-border">
-              {premium.outcomes.map((o, i) => (
+              {LIVE_COURSE.outcomes.map((o, i) => (
                 <li key={o} className="flex items-center gap-5 px-7 py-5">
                   <span className="font-display text-sm font-semibold text-brand">
                     {String(i + 1).padStart(2, "0")}
@@ -153,14 +181,14 @@ export default function CoursesPage() {
               ))}
             </ul>
             <div className="mt-10 text-center">
-              <CTAButton href={APPLY_PREMIUM_URL}>{premium.cta}</CTAButton>
+              <CTAButton href="/contact?interest=live-course">{LIVE_COURSE.cta}</CTAButton>
               <p className="mt-5 text-sm text-foreground-muted">
                 Unsure? The{" "}
                 <Link
                   href="#demo"
                   className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
                 >
-                  ₹199 Demo Session
+                  Demo Session
                 </Link>{" "}
                 exists precisely so you can decide with evidence.
               </p>

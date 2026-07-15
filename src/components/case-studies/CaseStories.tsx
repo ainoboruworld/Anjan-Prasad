@@ -158,7 +158,7 @@ export function CaseStories() {
                     {c.lesson}
                   </p>
                   <div className="mt-6">
-                    <TextLink href="/consulting">The practice behind it</TextLink>
+                    <TextLink href="/business-advisory">The practice behind it</TextLink>
                   </div>
                 </aside>
               </div>

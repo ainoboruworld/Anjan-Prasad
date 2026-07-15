@@ -37,7 +37,7 @@ export default function CaseStudiesPage() {
               <span className="editorial-accent text-brand">the next dossier.</span>
             </h2>
             <div className="mt-9">
-              <CTAButton href="/contact?interest=consulting">Start a transformation</CTAButton>
+              <CTAButton href="/business-advisory#enquiry">Start a transformation</CTAButton>
             </div>
           </Reveal>
         </div>

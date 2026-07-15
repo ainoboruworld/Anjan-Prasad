@@ -7,23 +7,23 @@ const PILLARS = [
   {
     index: "I",
     title: "Learn",
-    copy: "The ₹199 Demo Session and the flagship Premium Course — implementation-first business education.",
+    copy: "The Demo Session and the flagship Live Course — implementation-first business education.",
     href: "/courses",
     label: "Courses",
   },
   {
     index: "II",
     title: "Transform",
-    copy: "Hands-on consulting that rebuilds revenue engines, operations, and finance from the inside.",
-    href: "/consulting",
-    label: "Consulting",
+    copy: "Hands-on advisory that rebuilds revenue engines, operations, and teams from the inside.",
+    href: "/business-advisory",
+    label: "Business Advisory",
   },
   {
     index: "III",
-    title: "Upskill",
-    copy: "Corporate programs in leadership, AI, and modern operating systems for whole organisations.",
-    href: "/corporate-training",
-    label: "Corporate Training",
+    title: "Prove",
+    copy: "Transformation stories told end to end — challenge, execution, and the numbers after.",
+    href: "/case-studies",
+    label: "Case Studies",
   },
   {
     index: "IV",
@@ -51,9 +51,8 @@ export function Ecosystem() {
             </span>
           </h2>
           <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-            AP.com connects education, consulting, corporate training, and
-            community into a single system — so wherever you are between idea
-            and scale, the next step already exists.
+            Education, advisory, and community — one system, so the next step
+            always exists.
           </p>
         </Reveal>
 

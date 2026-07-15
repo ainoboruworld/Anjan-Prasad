@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/data";
 import { ContactForm } from "@/components/ContactForm";
+import { SocialLinks } from "@/components/SocialLinks";
 import { Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -38,6 +40,34 @@ export default async function ContactPage({
             <dl className="mt-12 space-y-5 border-t border-border pt-8 text-sm">
               <div className="flex gap-6">
                 <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
+                  Email
+                </dt>
+                <dd>
+                  <a
+                    href={`mailto:${CONTACT_EMAIL}`}
+                    className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
+                  >
+                    {CONTACT_EMAIL}
+                  </a>
+                </dd>
+              </div>
+              {CONTACT_PHONE && (
+                <div className="flex gap-6">
+                  <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
+                    Phone
+                  </dt>
+                  <dd>
+                    <a
+                      href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`}
+                      className="font-medium text-foreground hover:text-brand"
+                    >
+                      {CONTACT_PHONE}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              <div className="flex gap-6">
+                <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
                   Replies
                 </dt>
                 <dd className="text-foreground">Human, within one working day</dd>
@@ -46,13 +76,15 @@ export default async function ContactPage({
                 <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
                   Fastest start
                 </dt>
-                <dd className="text-foreground">The ₹199 Demo Session — book it directly</dd>
+                <dd className="text-foreground">The Saturday Demo Session — book it directly</dd>
               </div>
-              <div className="flex gap-6">
+              <div className="flex items-center gap-6">
                 <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                  Based in
+                  Social
                 </dt>
-                <dd className="text-foreground">India · working globally</dd>
+                <dd>
+                  <SocialLinks />
+                </dd>
               </div>
             </dl>
           </Reveal>
