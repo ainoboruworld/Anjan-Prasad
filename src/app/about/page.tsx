@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JOURNEY } from "@/lib/data";
+import { Chapters } from "@/components/about/Chapters";
 import { CTAButton, Eyebrow, GhostButton, PageHero, RuleTick } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
@@ -56,56 +56,9 @@ export default function AboutPage() {
         </RevealGroup>
       </section>
 
-      {/* The chapters, told as an editorial longread */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6" data-cursor="text">
-          {JOURNEY.map((ch, i) => {
-            const flip = i % 2 === 1;
-            return (
-              <Reveal
-                key={ch.index}
-                className={`grid gap-8 border-b border-border py-16 last:border-b-0 lg:grid-cols-12 ${
-                  i === 0 ? "pt-0" : ""
-                }`}
-              >
-                {/* Numeral + era column */}
-                <div
-                  className={`lg:col-span-4 ${flip ? "lg:order-2 lg:text-right" : ""}`}
-                >
-                  <p aria-hidden className="numeral-outline font-display text-8xl font-bold leading-none">
-                    {ch.index}
-                  </p>
-                  <p className="mt-4 text-xs font-medium uppercase tracking-[0.26em] text-brand">
-                    {ch.era}
-                  </p>
-                </div>
-
-                {/* Narrative column */}
-                <div className={`lg:col-span-7 ${flip ? "lg:order-1" : "lg:col-start-6"}`}>
-                  <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-                    {ch.title}
-                  </h2>
-                  <p className="mt-5 text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-                    {ch.copy}
-                  </p>
-                  <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                    {ch.detail}
-                  </p>
-                  <p className="mt-6 flex flex-wrap gap-2">
-                    {ch.marks.map((m) => (
-                      <span
-                        key={m}
-                        className="rounded-full border border-border px-4 py-1.5 text-sm text-foreground"
-                      >
-                        {m}
-                      </span>
-                    ))}
-                  </p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
+      {/* The chapters, told as an immersive editorial longread */}
+      <section className="py-16 sm:py-20">
+        <Chapters />
       </section>
 
       <RuleTick />
@@ -124,7 +77,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
               <CTAButton href="/courses">Learn the method</CTAButton>
-              <GhostButton href="/consulting">Bring it into your business</GhostButton>
+              <GhostButton href="/business-advisory">Bring it into your business</GhostButton>
             </div>
           </Reveal>
         </div>

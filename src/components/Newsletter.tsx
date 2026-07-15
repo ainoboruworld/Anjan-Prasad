@@ -3,18 +3,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { submitForm } from "@/lib/forms";
 
-/**
- * Newsletter capture. Client-side confirmation only for now — wire the
- * submit handler to the real email provider when it exists.
- */
+/** Newsletter capture — posts through the shared forms layer. */
 export function Newsletter() {
   const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.includes("@")) return;
+    setSending(true);
+    await submitForm({ formType: "Newsletter", email });
+    setSending(false);
     setDone(true);
   };
 
@@ -49,9 +51,10 @@ export function Newsletter() {
       />
       <button
         type="submit"
-        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-colors hover:bg-brand hover:text-brand-ink"
+        disabled={sending}
+        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-colors hover:bg-brand hover:text-brand-ink disabled:opacity-60"
       >
-        Subscribe
+        {sending ? "Subscribing…" : "Subscribe"}
         <ArrowRight
           className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
           strokeWidth={2}

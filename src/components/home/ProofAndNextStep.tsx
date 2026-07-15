@@ -58,12 +58,11 @@ export function ProofAndNextStep() {
               <span className="editorial-accent text-brand">has a method.</span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-              See it working in one session — or bring it into your business
-              directly.
+              See it working this Saturday — or bring it into your business.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <CTAButton href="/courses#demo">Reserve the ₹199 session</CTAButton>
-              <GhostButton href="/contact">Talk to us</GhostButton>
+              <CTAButton href="/courses#demo">Book a Demo Session</CTAButton>
+              <GhostButton href="/business-advisory">Business Advisory</GhostButton>
             </div>
             <p className="mt-8 text-sm text-foreground-muted">
               Prefer to read first?{" "}

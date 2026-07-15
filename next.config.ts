@@ -2,9 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async redirects() {
-    // Legacy IA → the ecosystem IA.
+    // Legacy IA → the current IA.
     return [
-      { source: "/business-advisory", destination: "/consulting", permanent: true },
+      { source: "/consulting", destination: "/business-advisory", permanent: true },
+      { source: "/corporate-training", destination: "/business-advisory", permanent: true },
       { source: "/counselling", destination: "/contact", permanent: true },
       { source: "/resources/blogs", destination: "/knowledge-hub", permanent: true },
       { source: "/resources/case-studies", destination: "/case-studies", permanent: true },
