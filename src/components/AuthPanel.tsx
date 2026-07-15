@@ -2,250 +2,132 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, Mail, Phone } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { easeSmooth } from "./motion";
 
-type Mode = "signin" | "register";
-type Method = "email" | "mobile";
+const inputCls =
+  "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
 
-const FIELD =
-  "h-12 w-full rounded-xl border border-border bg-background-elevated px-4 text-[15px] text-foreground placeholder:text-muted transition-colors focus:border-brand focus:outline-none";
-const LABEL = "mb-2 block text-sm text-foreground";
-
-const OCCUPATIONS = [
-  "Student",
-  "Working Professional",
-  "Founder",
-  "Business Owner",
-  "Freelancer",
-  "Other",
-];
-
+/**
+ * Sign-in / create-account panel. UI only — connect to the real auth
+ * provider when the member area ships.
+ */
 export function AuthPanel() {
-  const [mode, setMode] = useState<Mode>("signin");
-  const [method, setMethod] = useState<Method>("email");
-  const [step, setStep] = useState<"details" | "otp">("details");
+  const [mode, setMode] = useState<"in" | "up">("in");
+  const [done, setDone] = useState(false);
 
-  const reset = () => setStep("details");
+  if (done) {
+    return (
+      <div className="rounded-3xl border border-brand/40 bg-brand/10 p-10 text-center" role="status">
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand">
+          <Check className="h-6 w-6 text-brand-ink" strokeWidth={2.5} />
+        </span>
+        <h2 className="mt-5 font-display text-2xl font-semibold text-foreground">
+          The member area is almost ready.
+        </h2>
+        <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-foreground-muted">
+          Accounts open with the next cohort — you&apos;ll be first to know at
+          this address.
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full max-w-md">
+    <div className="rounded-3xl border border-border bg-background-elevated p-8 shadow-[var(--shadow-soft)] sm:p-10">
       {/* Mode switch */}
-      <div className="mb-8 grid grid-cols-2 rounded-full border border-border bg-background-elevated/50 p-1">
-        {(["signin", "register"] as Mode[]).map((m) => (
+      <div
+        role="tablist"
+        aria-label="Sign in or create account"
+        className="grid grid-cols-2 rounded-full border border-border p-1"
+      >
+        {(
+          [
+            ["in", "Sign in"],
+            ["up", "Create account"],
+          ] as const
+        ).map(([m, label]) => (
           <button
             key={m}
-            type="button"
-            onClick={() => {
-              setMode(m);
-              reset();
-            }}
+            role="tab"
+            aria-selected={mode === m}
+            onClick={() => setMode(m)}
             className={`relative rounded-full py-2.5 text-sm font-medium transition-colors ${
-              mode === m ? "text-[#0a0a0a]" : "text-foreground-muted"
+              mode === m ? "text-brand-ink" : "text-foreground-muted hover:text-foreground"
             }`}
           >
             {mode === m && (
               <motion.span
                 layoutId="auth-pill"
                 className="absolute inset-0 rounded-full bg-brand"
-                transition={{ duration: 0.3, ease: easeSmooth }}
+                transition={{ duration: 0.35, ease: easeSmooth }}
               />
             )}
-            <span className="relative">
-              {m === "signin" ? "Sign In" : "Register"}
-            </span>
+            <span className="relative">{label}</span>
           </button>
         ))}
       </div>
 
       <AnimatePresence mode="wait">
-        {step === "otp" ? (
-          <motion.div
-            key="otp"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3, ease: easeSmooth }}
+        <motion.form
+          key={mode}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: easeSmooth }}
+          className="mt-8 space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setDone(true);
+          }}
+        >
+          {mode === "up" && (
+            <div>
+              <label htmlFor="auth-name" className="sr-only">
+                Name
+              </label>
+              <input id="auth-name" required placeholder="Your name" className={inputCls} />
+            </div>
+          )}
+          <div>
+            <label htmlFor="auth-email" className="sr-only">
+              Email
+            </label>
+            <input
+              id="auth-email"
+              type="email"
+              required
+              placeholder="you@company.com"
+              className={inputCls}
+            />
+          </div>
+          <div>
+            <label htmlFor="auth-password" className="sr-only">
+              Password
+            </label>
+            <input
+              id="auth-password"
+              type="password"
+              required
+              minLength={8}
+              placeholder="Password"
+              className={inputCls}
+            />
+          </div>
+          <button
+            type="submit"
+            className="group flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-4 text-[15px] font-semibold text-background transition-colors hover:bg-brand hover:text-brand-ink"
           >
-            <button
-              type="button"
-              onClick={reset}
-              className="mb-6 inline-flex items-center gap-1.5 text-sm text-foreground-muted transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="h-4 w-4" strokeWidth={1.75} /> Back
-            </button>
-            <h2 className="font-display text-2xl font-semibold text-foreground">
-              Enter the code
-            </h2>
-            <p className="mt-2 text-sm text-foreground-muted">
-              We sent a 6-digit code to your {method}. Enter it below to
-              continue.
-            </p>
-            <div className="mt-8 flex justify-between gap-2">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <input
-                  key={i}
-                  inputMode="numeric"
-                  maxLength={1}
-                  aria-label={`Digit ${i + 1}`}
-                  className="h-14 w-full rounded-xl border border-border bg-background-elevated text-center text-lg font-semibold text-foreground focus:border-brand focus:outline-none"
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              className="mt-8 h-12 w-full rounded-full bg-brand text-[15px] font-semibold text-[#0a0a0a] transition-all hover:scale-[1.01] hover:bg-brand-hover"
-            >
-              Verify &amp; continue
-            </button>
-            <p className="mt-5 text-center text-sm text-muted">
-              Didn&apos;t get it?{" "}
-              <button type="button" className="font-medium text-brand">
-                Resend code
-              </button>
-            </p>
-          </motion.div>
-        ) : (
-          <motion.form
-            key={mode}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.3, ease: easeSmooth }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              setStep("otp");
-            }}
-          >
-            <h2 className="font-display text-2xl font-semibold text-foreground">
-              {mode === "signin"
-                ? "Welcome back."
-                : "Create your account."}
-            </h2>
-            <p className="mt-2 text-sm text-foreground-muted">
-              {mode === "signin"
-                ? "Sign in with a one-time passcode — no password to remember."
-                : "Join to access sessions, courses, and resources."}
-            </p>
-
-            {/* Method toggle */}
-            <div className="mt-7 grid grid-cols-2 gap-2">
-              {(["email", "mobile"] as Method[]).map((m) => (
-                <button
-                  key={m}
-                  type="button"
-                  onClick={() => setMethod(m)}
-                  className={`flex items-center justify-center gap-2 rounded-xl border py-2.5 text-sm font-medium transition-colors ${
-                    method === m
-                      ? "border-brand bg-brand/10 text-brand"
-                      : "border-border text-foreground-muted hover:text-foreground"
-                  }`}
-                >
-                  {m === "email" ? (
-                    <Mail className="h-4 w-4" strokeWidth={1.75} />
-                  ) : (
-                    <Phone className="h-4 w-4" strokeWidth={1.75} />
-                  )}
-                  {m === "email" ? "Email" : "Mobile"}
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-6 space-y-5">
-              {mode === "register" && (
-                <div>
-                  <label htmlFor="a-name" className={LABEL}>
-                    Full name
-                  </label>
-                  <input id="a-name" required placeholder="Your name" className={FIELD} />
-                </div>
-              )}
-
-              {method === "email" ? (
-                <div>
-                  <label htmlFor="a-email" className={LABEL}>
-                    Email
-                  </label>
-                  <input
-                    id="a-email"
-                    type="email"
-                    required
-                    placeholder="you@company.com"
-                    className={FIELD}
-                  />
-                </div>
-              ) : (
-                <div>
-                  <label htmlFor="a-mobile" className={LABEL}>
-                    Mobile number
-                  </label>
-                  <input
-                    id="a-mobile"
-                    type="tel"
-                    required
-                    placeholder="+91 00000 00000"
-                    className={FIELD}
-                  />
-                </div>
-              )}
-
-              {mode === "register" && (
-                <>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="a-age" className={LABEL}>
-                        Age
-                      </label>
-                      <input
-                        id="a-age"
-                        type="number"
-                        min={13}
-                        placeholder="28"
-                        className={FIELD}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="a-alt" className={LABEL}>
-                        {method === "email" ? "Mobile" : "Email"}
-                      </label>
-                      <input
-                        id="a-alt"
-                        placeholder={method === "email" ? "Phone" : "Email"}
-                        className={FIELD}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="a-occ" className={LABEL}>
-                      Occupation
-                    </label>
-                    <select id="a-occ" defaultValue="" className={FIELD}>
-                      <option value="" disabled>
-                        Select occupation
-                      </option>
-                      {OCCUPATIONS.map((o) => (
-                        <option key={o}>{o}</option>
-                      ))}
-                    </select>
-                  </div>
-                </>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="mt-8 h-12 w-full rounded-full bg-brand text-[15px] font-semibold text-[#0a0a0a] transition-all hover:scale-[1.01] hover:bg-brand-hover"
-            >
-              Send one-time code
-            </button>
-
-            <p className="mt-5 text-center text-xs leading-relaxed text-muted">
-              By continuing you agree to the Terms and Privacy Policy. A
-              one-time passcode will be sent to your {method}.
-            </p>
-          </motion.form>
-        )}
+            {mode === "in" ? "Sign in" : "Create account"}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
+          </button>
+        </motion.form>
       </AnimatePresence>
+
+      <p className="mt-6 text-center text-xs leading-relaxed text-foreground-muted">
+        Course access, community, and saved playbooks live here once the member
+        area opens.
+      </p>
     </div>
   );
 }

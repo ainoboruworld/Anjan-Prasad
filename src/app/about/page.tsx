@@ -1,71 +1,21 @@
 import type { Metadata } from "next";
-import { GraduationCap, Mic, Target, Telescope } from "lucide-react";
-import { PageHero, SectionHeading, Eyebrow, CTAButton } from "@/components/ui/Primitives";
+import { JOURNEY } from "@/lib/data";
+import { CTAButton, Eyebrow, GhostButton, PageHero, RuleTick } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { LogoGrid } from "@/components/ui/LogoBadge";
-import { riseIn, slideInLeft } from "@/components/motion";
-import { BRANDS, CAREER, COMPANIES } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Anjan Prasad",
   description:
-    "The story of Anjan Prasad — entrepreneur, operator, CEO, investor, and advisor who has spent 15+ years building profitable, scalable businesses.",
+    "Corporate leader, strategist, entrepreneur, business builder, advisor, mentor — the operator behind AP.com, India's business growth ecosystem.",
 };
 
-const TIMELINE = [
-  {
-    year: "2009",
-    title: "Into the arena",
-    desc: "Started inside the agencies and consultancies that build the world's biggest brands — learning how growth actually works at scale.",
-  },
-  {
-    year: "2014",
-    title: "The operator's turn",
-    desc: "Moved from advising to operating — taking ownership of P&Ls and discovering that systems, not slogans, build profit.",
-  },
-  {
-    year: "2018",
-    title: "Building companies",
-    desc: "Founded and co-founded ventures across brand, consumer, and finance operations — each built to be profitable and to last.",
-  },
-  {
-    year: "2021",
-    title: "Enterprise products",
-    desc: "Built enterprise marketing and operations products, bringing operator discipline to software and services.",
-  },
-  {
-    year: "Today",
-    title: "Advisor & mentor",
-    desc: "Advising founders and leadership teams, teaching the next generation, and speaking on the economics of sustainable growth.",
-  },
-];
-
-const PHILOSOPHY = [
-  {
-    title: "Profit is the proof",
-    desc: "Vanity metrics fade. A business that makes money sustainably is the only real evidence that the model works.",
-  },
-  {
-    title: "Systems over heroics",
-    desc: "The goal is a business that runs on process and cadence — not on any one person's stamina.",
-  },
-  {
-    title: "Founder-led, founder-free",
-    desc: "Great founders set direction and build the machine — then step out of the machine's daily turning.",
-  },
-];
-
-const LEADERSHIP = [
-  {
-    Icon: GraduationCap,
-    title: "Visiting Professor",
-    desc: "Teaching business strategy and operations to the next generation of founders and leaders.",
-  },
-  {
-    Icon: Mic,
-    title: "Industry Speaker",
-    desc: "A regular voice on stages and podcasts on growth, operations, and building profitable businesses.",
-  },
+const ARC = [
+  "Corporate Leader",
+  "Strategist",
+  "Entrepreneur",
+  "Business Builder",
+  "Advisor",
+  "Mentor",
 ];
 
 export default function AboutPage() {
@@ -73,179 +23,110 @@ export default function AboutPage() {
     <main>
       <PageHero
         eyebrow="About"
-        title="A builder of businesses — not a teacher of theory."
-        lead="Fifteen years founding companies, running them, and advising the brands you know. This is the story behind the work."
+        title={
+          <>
+            He has built businesses —{" "}
+            <span className="editorial-accent text-brand">
+              not just talked about them.
+            </span>
+          </>
+        }
+        lead="Anjan Prasad is a business transformation and growth advisor. This is not a biography; it is the record of how an operator was formed."
       />
 
-      {/* Journey timeline */}
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6">
-          <SectionHeading eyebrow="The journey" title="From the arena to the boardroom." align="left" />
-          <div className="relative mt-16">
-            <span
-              aria-hidden
-              className="absolute left-[7px] top-2 bottom-2 w-px bg-border sm:left-[calc(6rem+7px)]"
-            />
-            <RevealGroup className="space-y-12">
-              {TIMELINE.map((t) => (
-                <RevealItem
-                  key={t.year}
-                  variants={slideInLeft}
-                  className="relative flex flex-col gap-3 pl-8 sm:flex-row sm:gap-8 sm:pl-0"
-                >
-                  <div className="flex items-center gap-3 sm:w-24 sm:flex-col sm:items-start">
-                    <span className="font-display text-sm font-semibold text-brand">
-                      {t.year}
-                    </span>
-                  </div>
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-brand bg-background sm:left-24"
-                  />
-                  <div className="sm:flex-1 sm:pl-8">
-                    <h3 className="font-display text-lg font-semibold text-foreground">
-                      {t.title}
-                    </h3>
-                    <p className="mt-2 text-[15px] leading-relaxed text-foreground-muted">
-                      {t.desc}
-                    </p>
-                  </div>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy */}
-      <section className="border-y border-border bg-background-elevated/30 py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading eyebrow="Philosophy" title="The beliefs that shape the work." />
-          <RevealGroup className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PHILOSOPHY.map((p) => (
-              <RevealItem
-                key={p.title}
-                variants={riseIn}
-                className="rounded-[1.5rem] border border-border bg-background p-8"
-              >
-                <h3 className="font-display text-xl font-semibold text-foreground">
-                  {p.title}
-                </h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-foreground-muted">
-                  {p.desc}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* Companies built */}
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading eyebrow="Companies built" title="Profitable businesses, built from the inside." />
-          <RevealGroup className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {COMPANIES.map((c) => (
-              <RevealItem
-                key={c.name}
-                variants={riseIn}
-                className="rounded-[1.5rem] border border-border bg-background-elevated/40 p-8"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-background font-display text-lg font-bold text-foreground">
-                  {c.name.charAt(0)}
-                </div>
-                <h3 className="mt-6 font-display text-xl font-semibold text-foreground">
-                  {c.name}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-brand">{c.role}</p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground-muted">
-                  {c.description}
-                </p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* Brands + Career */}
-      <section className="border-t border-border py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading eyebrow="Brands worked with" title="Range earned across the market." />
-          <div className="mt-12">
-            <LogoGrid names={BRANDS} />
-          </div>
-          <div className="mx-auto mt-20 text-center">
-            <Eyebrow>Career experience</Eyebrow>
-          </div>
-          <div className="mt-8">
-            <LogoGrid names={CAREER} />
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership / professor / speaker */}
-      <section className="border-t border-border bg-background-elevated/30 py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading eyebrow="Beyond the businesses" title="Leadership, teaching, and the stage." />
-          <RevealGroup className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {LEADERSHIP.map(({ Icon, title, desc }) => (
-              <RevealItem
-                key={title}
-                variants={riseIn}
-                className="flex gap-6 rounded-[1.5rem] border border-border bg-background p-8"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border text-brand">
-                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+      {/* The identity arc — one line, six becomings */}
+      <section className="border-y border-border bg-background-elevated py-14">
+        <RevealGroup className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-3 gap-y-4 px-6">
+          {ARC.map((role, i) => (
+            <RevealItem key={role} className="flex items-center gap-3">
+              {i > 0 && (
+                <span aria-hidden className="font-serif text-xl italic text-brand">
+                  →
                 </span>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-foreground-muted">
-                    {desc}
+              )}
+              <span
+                className={`font-display text-2xl font-semibold tracking-tight sm:text-3xl ${
+                  i === ARC.length - 1 ? "text-brand" : "text-foreground"
+                }`}
+              >
+                {role}
+              </span>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {/* The chapters, told as an editorial longread */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6" data-cursor="text">
+          {JOURNEY.map((ch, i) => {
+            const flip = i % 2 === 1;
+            return (
+              <Reveal
+                key={ch.index}
+                className={`grid gap-8 border-b border-border py-16 last:border-b-0 lg:grid-cols-12 ${
+                  i === 0 ? "pt-0" : ""
+                }`}
+              >
+                {/* Numeral + era column */}
+                <div
+                  className={`lg:col-span-4 ${flip ? "lg:order-2 lg:text-right" : ""}`}
+                >
+                  <p aria-hidden className="numeral-outline font-display text-8xl font-bold leading-none">
+                    {ch.index}
+                  </p>
+                  <p className="mt-4 text-xs font-medium uppercase tracking-[0.26em] text-brand">
+                    {ch.era}
                   </p>
                 </div>
-              </RevealItem>
-            ))}
-          </RevealGroup>
+
+                {/* Narrative column */}
+                <div className={`lg:col-span-7 ${flip ? "lg:order-1" : "lg:col-start-6"}`}>
+                  <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                    {ch.title}
+                  </h2>
+                  <p className="mt-5 text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
+                    {ch.copy}
+                  </p>
+                  <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+                    {ch.detail}
+                  </p>
+                  <p className="mt-6 flex flex-wrap gap-2">
+                    {ch.marks.map((m) => (
+                      <span
+                        key={m}
+                        className="rounded-full border border-border px-4 py-1.5 text-sm text-foreground"
+                      >
+                        {m}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
-      {/* Vision & Mission */}
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <Reveal variants={riseIn}>
-              <div className="h-full rounded-[1.75rem] border border-border bg-background-elevated/40 p-10">
-                <Telescope className="h-7 w-7 text-brand" strokeWidth={1.5} />
-                <h3 className="mt-6 font-display text-2xl font-semibold text-foreground">
-                  Vision
-                </h3>
-                <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                  A world where more founders build businesses that are
-                  genuinely profitable, calmly run, and built to outlast the
-                  people who started them.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal variants={riseIn}>
-              <div className="h-full rounded-[1.75rem] border border-border bg-background-elevated/40 p-10">
-                <Target className="h-7 w-7 text-brand" strokeWidth={1.5} />
-                <h3 className="mt-6 font-display text-2xl font-semibold text-foreground">
-                  Mission
-                </h3>
-                <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                  To give founders the operating knowledge, systems, and counsel
-                  that turn ambition into sustainable, scalable, profitable
-                  growth.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+      <RuleTick />
 
-          <div className="mt-16 flex justify-center">
-            <CTAButton href="/contact">Start a conversation</CTAButton>
-          </div>
+      {/* What that history means for you */}
+      <section className="py-24">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <Reveal>
+            <Eyebrow className="justify-center">Why it matters</Eyebrow>
+            <p className="mt-8 font-display text-3xl font-medium leading-[1.3] tracking-tight text-foreground sm:text-4xl">
+              Every framework on this platform was paid for in payroll,
+              margins, and hard quarters —{" "}
+              <span className="editorial-accent text-brand">
+                before it was ever taught.
+              </span>
+            </p>
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+              <CTAButton href="/courses">Learn the method</CTAButton>
+              <GhostButton href="/consulting">Bring it into your business</GhostButton>
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>

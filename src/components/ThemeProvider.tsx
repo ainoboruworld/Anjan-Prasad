@@ -4,8 +4,8 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ComponentProps } from "react";
 
 /**
- * App-wide theme provider. Dark is the default surface; the class
- * strategy pairs with the `@custom-variant dark` rule in globals.css.
+ * App-wide theme provider. Follows the system preference by default;
+ * the class strategy pairs with `@custom-variant dark` in globals.css.
  */
 export function ThemeProvider({
   children,
@@ -14,8 +14,8 @@ export function ThemeProvider({
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="dark"
-      enableSystem={false}
+      defaultTheme="system"
+      enableSystem
       disableTransitionOnChange={false}
       {...props}
     >

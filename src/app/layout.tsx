@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Manrope, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Preloader } from "@/components/Preloader";
@@ -19,13 +19,35 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "Anjan Prasad — Business Builder, Operator & Advisor",
-    template: "%s — Anjan Prasad",
+    default: "AP.com — India's Business Growth Ecosystem",
+    template: "%s — AP.com",
   },
   description:
-    "Anjan Prasad builds profitable businesses. Entrepreneur, CEO, operator, and advisor with 15+ years turning ambition into scalable, sustainable growth for founders and global brands.",
+    "AP.com is India's business growth ecosystem — where entrepreneurs, professionals, and organisations learn how successful businesses are actually built. Led by Anjan Prasad, business transformation and growth advisor.",
+  keywords: [
+    "start a business in India",
+    "business growth",
+    "business consulting",
+    "corporate training",
+    "AI for business",
+    "Anjan Prasad",
+  ],
+  openGraph: {
+    title: "AP.com — India's Business Growth Ecosystem",
+    description:
+      "Start, build, and scale a profitable business — with the operator who has done it three times.",
+    type: "website",
+    locale: "en_IN",
+  },
 };
 
 export default function RootLayout({
@@ -37,9 +59,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${manrope.variable}`}
+      className={`${inter.variable} ${manrope.variable} ${fraunces.variable}`}
     >
-      <body className="min-h-screen antialiased">
+      <body className="bg-paper min-h-screen antialiased">
         <ThemeProvider>
           <Preloader />
           <Cursor />

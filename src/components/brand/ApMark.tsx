@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-/** The "Anjan■" wordmark used across the site. */
+/** The "AP.com" wordmark used across the site. */
 export function Wordmark({
   className = "",
   onDark,
@@ -9,18 +9,22 @@ export function Wordmark({
   onDark?: boolean;
 }) {
   return (
-    <span className={`flex items-center gap-2 ${className}`}>
+    <span className={`flex items-baseline gap-0.5 ${className}`}>
       <span
-        className={`font-display text-xl font-bold italic tracking-tight ${
+        className={`font-display text-xl font-bold tracking-tight ${
           onDark ? "text-white" : "text-foreground"
         }`}
       >
-        Anjan
+        AP
       </span>
+      <span aria-hidden className="mx-0.5 inline-block h-1.5 w-1.5 rotate-45 bg-brand" />
       <span
-        aria-hidden
-        className="inline-block h-2.5 w-2.5 rounded-[3px] bg-brand"
-      />
+        className={`font-display text-xl font-semibold tracking-tight ${
+          onDark ? "text-white/70" : "text-foreground-muted"
+        }`}
+      >
+        com
+      </span>
     </span>
   );
 }
