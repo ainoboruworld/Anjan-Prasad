@@ -7,10 +7,13 @@ frontend never changes when the backend does.
 Until the real backend exists, submissions land in **one Google Spreadsheet**
 (a tab per form) and trigger an email to **performance@noboruworld.com**.
 
-## 1. Create the spreadsheet
+## 1. The spreadsheet
 
-Create a Google Sheet named `AP.com — Form Submissions`. The script below
-creates these tabs automatically on first submission:
+The spreadsheet already exists (owned by ai.noboruworld@gmail.com):
+
+**[AP.com — Form Submissions](https://docs.google.com/spreadsheets/d/1uTyjGF-HVlLvfwXHynk5fxxtmp5v311PSzi6MELt0IY/edit)**
+
+The script creates these tabs automatically on first submission:
 
 - `Contact`
 - `Business Advisory`
@@ -22,7 +25,8 @@ Each row: `Timestamp · Name · Email · Phone · Company · Source Page · Form
 
 ## 2. Add the Apps Script
 
-In the spreadsheet: **Extensions → Apps Script**, replace the contents with:
+In the spreadsheet: **Extensions → Apps Script**, replace the contents with
+the script from [`apps-script/Code.gs`](../apps-script/Code.gs) (same code below):
 
 ```js
 const NOTIFY_EMAIL = "performance@noboruworld.com";
