@@ -2,12 +2,28 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
-const FIELD =
-  "h-12 w-full rounded-xl border border-border bg-background-elevated px-4 text-[15px] text-foreground placeholder:text-muted transition-colors focus:border-brand focus:outline-none";
+const INTERESTS = [
+  { id: "demo", label: "₹199 Demo Session" },
+  { id: "premium", label: "Premium Course" },
+  { id: "consulting", label: "Consulting" },
+  { id: "training", label: "Corporate Training" },
+  { id: "speaking", label: "Speaking / Media" },
+  { id: "other", label: "Something else" },
+];
 
-export function ContactForm() {
+const inputCls =
+  "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
+
+/**
+ * Contact form with contextual intent chips. Client-side confirmation only —
+ * wire onSubmit to the real inbox/CRM endpoint when it exists.
+ */
+export function ContactForm({ initialInterest }: { initialInterest?: string }) {
+  const [interest, setInterest] = useState(
+    INTERESTS.some((i) => i.id === initialInterest) ? initialInterest! : "demo"
+  );
   const [sent, setSent] = useState(false);
 
   if (sent) {
@@ -15,17 +31,18 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col items-center rounded-[1.5rem] border border-border bg-background-elevated/40 p-12 text-center"
+        className="rounded-3xl border border-brand/40 bg-brand/10 p-10 text-center"
+        role="status"
       >
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand/15 text-brand">
-          <Check className="h-6 w-6" strokeWidth={2.5} />
+        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand">
+          <Check className="h-6 w-6 text-brand-ink" strokeWidth={2.5} />
         </span>
-        <h3 className="mt-6 font-display text-xl font-semibold text-foreground">
-          Message received.
-        </h3>
-        <p className="mt-2 max-w-sm text-sm text-foreground-muted">
-          Thank you for reaching out. You&apos;ll hear back within two business
-          days.
+        <h2 className="mt-5 font-display text-2xl font-semibold text-foreground">
+          Received. Properly.
+        </h2>
+        <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-foreground-muted">
+          Your note is in the queue and gets a human reply — usually within one
+          working day.
         </p>
       </motion.div>
     );
@@ -37,68 +54,74 @@ export function ContactForm() {
         e.preventDefault();
         setSent(true);
       }}
-      className="rounded-[1.5rem] border border-border bg-background-elevated/40 p-8 sm:p-10"
+      className="space-y-6"
     >
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <fieldset>
+        <legend className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
+          I&apos;m here about
+        </legend>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {INTERESTS.map((i) => {
+            const on = interest === i.id;
+            return (
+              <button
+                key={i.id}
+                type="button"
+                onClick={() => setInterest(i.id)}
+                aria-pressed={on}
+                className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
+                  on
+                    ? "border-brand bg-brand font-semibold text-brand-ink"
+                    : "border-border text-foreground-muted hover:border-border-strong hover:text-foreground"
+                }`}
+              >
+                {i.label}
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="c-name" className="mb-2 block text-sm text-foreground">
-            Full name
+          <label htmlFor="contact-name" className="sr-only">
+            Name
           </label>
-          <input id="c-name" required placeholder="Your name" className={FIELD} />
+          <input id="contact-name" required placeholder="Your name" className={inputCls} />
         </div>
         <div>
-          <label htmlFor="c-email" className="mb-2 block text-sm text-foreground">
+          <label htmlFor="contact-email" className="sr-only">
             Email
           </label>
           <input
-            id="c-email"
+            id="contact-email"
             type="email"
             required
             placeholder="you@company.com"
-            className={FIELD}
+            className={inputCls}
           />
-        </div>
-        <div>
-          <label htmlFor="c-company" className="mb-2 block text-sm text-foreground">
-            Company
-          </label>
-          <input id="c-company" placeholder="Company name" className={FIELD} />
-        </div>
-        <div>
-          <label htmlFor="c-topic" className="mb-2 block text-sm text-foreground">
-            I&apos;m interested in
-          </label>
-          <select id="c-topic" className={FIELD} defaultValue="">
-            <option value="" disabled>
-              Select a topic
-            </option>
-            <option>Business Advisory</option>
-            <option>Counselling</option>
-            <option>Courses</option>
-            <option>Speaking &amp; Media</option>
-            <option>Something else</option>
-          </select>
         </div>
       </div>
 
-      <div className="mt-5">
-        <label htmlFor="c-message" className="mb-2 block text-sm text-foreground">
+      <div>
+        <label htmlFor="contact-message" className="sr-only">
           Message
         </label>
         <textarea
-          id="c-message"
-          required
+          id="contact-message"
           rows={5}
-          placeholder="Tell me a little about your business and what you're looking for."
-          className="w-full rounded-xl border border-border bg-background-elevated px-4 py-3 text-[15px] text-foreground placeholder:text-muted transition-colors focus:border-brand focus:outline-none"
+          required
+          placeholder="A few lines about your business, your goal, or your question…"
+          className={`${inputCls} resize-y`}
         />
       </div>
 
       <button
         type="submit"
-        className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand px-8 text-[15px] font-semibold text-[#0a0a0a] transition-all duration-300 hover:scale-[1.02] hover:bg-brand-hover"
+        className="group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink transition-colors hover:bg-brand-hover"
       >
-        Send message
+        Send it
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
       </button>
     </form>
   );
