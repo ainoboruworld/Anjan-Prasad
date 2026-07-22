@@ -4,6 +4,7 @@ import { TrustIndicators } from "@/components/home/TrustIndicators";
 import { AboutPreview } from "@/components/home/AboutPreview";
 import { AdvisoryServices } from "@/components/home/AdvisoryServices";
 import { ConsultingPreview } from "@/components/home/ConsultingPreview";
+import { WhoWeHelp } from "@/components/home/WhoWeHelp";
 import { BrandsWall } from "@/components/home/BrandsWall";
 import { TestimonialsHome } from "@/components/home/TestimonialsHome";
 import { FeaturedMedia } from "@/components/home/FeaturedMedia";
@@ -29,6 +30,7 @@ export default function Home() {
       <AboutPreview />
       <AdvisoryServices />
       <ConsultingPreview />
+      <WhoWeHelp />
       <BrandsWall />
       <TestimonialsHome />
       <FeaturedMedia />
