@@ -209,6 +209,37 @@ body {
  * the blueprint character via the `.dark` overrides below.
  */
 
+/*
+ * Hero surface — a premium, grid-free treatment in BOTH themes so the
+ * headline, CTAs, and portrait stay the focus. Light keeps a soft warm
+ * wash; dark builds depth from layered radial glows and a gentle vertical
+ * gradient instead of drafting lines.
+ */
+.hero-bg {
+  background-image: radial-gradient(
+    130% 90% at 50% -10%,
+    color-mix(in srgb, var(--brand-gold) 6%, transparent),
+    transparent 58%
+  );
+}
+.dark .hero-bg {
+  background-image: radial-gradient(
+      78% 60% at 50% -5%,
+      color-mix(in srgb, var(--brand-gold) 9%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      55% 45% at 84% 18%,
+      rgba(242, 240, 234, 0.035),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      var(--background-elevated),
+      var(--background) 46%
+    );
+}
+
 /* Light: hero-type sections get a soft vertical warmth, no grid. */
 .bg-grid {
   background-image: radial-gradient(

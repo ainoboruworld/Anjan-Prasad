@@ -85,7 +85,7 @@ export function Hero() {
     <section
       ref={ref}
       onMouseMove={onMove}
-      className="bg-grid relative flex min-h-screen items-center overflow-hidden pt-36 pb-20"
+      className="hero-bg relative flex min-h-screen items-center overflow-hidden pt-36 pb-20"
     >
       <motion.div
         aria-hidden
