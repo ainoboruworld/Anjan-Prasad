@@ -41,8 +41,7 @@ const ADVISORY_AREAS = [
   "Not sure yet",
 ];
 
-const inputCls =
-  "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
+const inputCls = "input";
 
 function Field({
   label,

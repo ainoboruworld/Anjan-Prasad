@@ -113,33 +113,45 @@ export function Hero() {
             variants={slideInLeft}
             className="mt-7 font-display text-[length:var(--text-hero)] font-semibold leading-[1.02] tracking-[-0.035em] text-foreground"
           >
-            Business Transformation
+            Build a business
             <br />
-            &amp; Growth <span className="editorial-accent text-brand">Advisor</span>
+            that <span className="editorial-accent text-brand">outlasts you.</span>
           </motion.h1>
 
           <motion.p
             variants={slideInLeft}
             className="mt-7 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted"
           >
-            Building structured, scalable businesses from{" "}
-            <span className="font-medium text-foreground">0 → 1 → Scale</span>.
+            Anjan Prasad — business transformation &amp; growth advisor.
+            Structured, scalable businesses from{" "}
+            <span className="font-medium text-foreground">0 → 1 → Scale</span>,
+            taught and installed by an operator who has done it three times.
           </motion.p>
 
           <motion.div
             variants={slideInLeft}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <CTAButton href="/courses#demo">Book a Demo Session</CTAButton>
-            <GhostButton href="/business-advisory">Work with Anjan</GhostButton>
+            <CTAButton href="/courses#demo">Book a ₹199 Demo Session</CTAButton>
+            <GhostButton href="/business-advisory">Explore Business Advisory</GhostButton>
           </motion.div>
 
-          <motion.p
+          <motion.ul
             variants={slideInLeft}
-            className="mt-12 max-w-md text-sm leading-relaxed text-foreground-muted"
+            aria-label="Trust indicators"
+            className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-foreground-muted"
           >
-            Three companies founded. Two decades of systems. One ecosystem.
-          </motion.p>
+            {[
+              "3 companies founded",
+              "20+ years operating",
+              "25+ global brands advised",
+            ].map((t) => (
+              <li key={t} className="flex items-center gap-2">
+                <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand" />
+                {t}
+              </li>
+            ))}
+          </motion.ul>
         </motion.div>
 
         {/* Portrait plate with parallax */}

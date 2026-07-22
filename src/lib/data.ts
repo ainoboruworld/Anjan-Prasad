@@ -21,7 +21,10 @@ export type NavItem = {
 };
 
 export const NAV: NavItem[] = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Business Advisory", href: "/business-advisory" },
+  { label: "1-to-1 Consulting", href: "/consulting" },
   {
     label: "Courses",
     href: "/courses",
@@ -38,34 +41,27 @@ export const NAV: NavItem[] = [
       },
     ],
   },
-  { label: "Business Advisory", href: "/business-advisory" },
   {
-    label: "Insights",
-    href: "/knowledge-hub",
+    label: "Resources",
+    href: "/resources",
     children: [
       {
-        label: "Knowledge Hub",
+        label: "Blogs",
         href: "/knowledge-hub",
         description: "Playbooks, frameworks, and field notes on building businesses.",
       },
       {
-        label: "Case Studies",
-        href: "/case-studies",
-        description: "Business transformations, told end to end.",
+        label: "Newsletter",
+        href: "/resources#newsletter",
+        description: "One operator's letter, every week — method, not motivation.",
       },
       {
-        label: "Media & Recognition",
+        label: "Featured Media",
         href: "/media",
-        description: "Talks, podcasts, faculty work, and press.",
-      },
-      {
-        label: "Testimonials",
-        href: "/testimonials",
-        description: "Founders and students, in their own words.",
+        description: "Talks, videos, podcasts, faculty work, and press.",
       },
     ],
   },
-  { label: "Contact", href: "/contact" },
 ];
 
 /* ─────────────────────────── Core positioning ─────────────────────────── */
@@ -92,6 +88,8 @@ export const PHILOSOPHY_SCENES = [
 export const CONTACT_EMAIL = "performance@noboruworld.com";
 /** Set when the official number is confirmed — the UI hides the row if empty. */
 export const CONTACT_PHONE: string = "";
+/** Set when the office address is confirmed — the UI hides the row if empty. */
+export const OFFICE_LOCATION: string = "";
 
 export const SOCIALS = [
   { name: "Instagram", href: "https://www.instagram.com/anjanpr/?hl=en" },
@@ -634,6 +632,62 @@ export const LIVE_COURSE = {
   ],
   cta: "Apply for the next cohort",
 } as const;
+
+/* ──────────────────────────── 1-to-1 Consulting ───────────────────────── */
+
+export const CONSULTING_SESSION = {
+  badge: "Direct access",
+  name: "1-to-1 Consulting",
+  promise: "One hour with the operator. One decision moved.",
+  description:
+    "A private working session with Anjan on the single question that matters most in your business right now — pricing, positioning, growth, hiring, or the next big call. You bring the context; you leave with a decision and a plan.",
+  format: [
+    { title: "60 minutes, live", copy: "Video call, fully focused on your business — no deck, no pitch." },
+    { title: "Prepared, not improvised", copy: "You share context in advance; Anjan arrives having read it." },
+    { title: "A written next step", copy: "You leave with the decision framed and the first actions named." },
+  ],
+  topics: [
+    "Pricing & positioning",
+    "Growth strategy",
+    "Hiring & org design",
+    "Cash flow & margins",
+    "AI in operations",
+    "Career → ownership",
+  ],
+  cta: "Schedule a 1-to-1 Consultation",
+} as const;
+
+/* ─────────────────────────── Featured videos ──────────────────────────── */
+
+export type FeaturedVideo = {
+  /** YouTube video ID — thumbnail and link are derived from it. */
+  videoId: string;
+  title: string;
+  note: string;
+};
+
+/**
+ * Representative slate — swap in real IDs from the official channel.
+ * An empty videoId renders a branded placeholder plate instead of a
+ * broken thumbnail, so the section ships before the channel does.
+ */
+export const FEATURED_VIDEOS: FeaturedVideo[] = [
+  {
+    videoId: "",
+    title: "How Profitable Businesses Are Actually Built",
+    note: "The 0 → 1 → Scale framework, explained on real business models.",
+  },
+  {
+    videoId: "",
+    title: "Validate Before You Build",
+    note: "A ₹0 validation method that kills bad ideas in two weeks.",
+  },
+  {
+    videoId: "",
+    title: "AI Operating Systems for Small Businesses",
+    note: "Where AI actually pays back in an SME — and where it doesn't.",
+  },
+];
 
 /* ───────────────────────────── Knowledge hub ──────────────────────────── */
 
