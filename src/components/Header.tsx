@@ -179,15 +179,9 @@ export function Header() {
           >
             <Link
               href="/sign-in"
-              className="text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:text-brand"
+              className="rounded-full border border-border-strong px-5 py-2 text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:bg-background-elevated"
             >
               Sign In
-            </Link>
-            <Link
-              href="/courses#demo"
-              className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-brand-ink transition-colors hover:bg-brand-hover"
-            >
-              Book Demo Session
             </Link>
             <ThemeToggle />
           </motion.div>
@@ -249,15 +243,9 @@ export function Header() {
               <div className="mt-2 flex items-center justify-between border-t border-border pt-3">
                 <Link
                   href="/sign-in"
-                  className="rounded-xl px-2 py-2.5 text-base font-medium text-foreground"
+                  className="rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground"
                 >
                   Sign In
-                </Link>
-                <Link
-                  href="/courses#demo"
-                  className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-brand-ink"
-                >
-                  Book Demo Session
                 </Link>
               </div>
             </div>

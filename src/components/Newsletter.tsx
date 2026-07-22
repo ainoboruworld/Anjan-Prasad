@@ -5,17 +5,20 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { submitForm } from "@/lib/forms";
 
-/** Newsletter capture — posts through the shared forms layer. */
+/** Newsletter capture — name + email, posts through the shared forms layer. */
 export function Newsletter() {
-  const [email, setEmail] = useState("");
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.includes("@")) return;
     setSending(true);
-    await submitForm({ formType: "Newsletter", email });
+    const f = new FormData(e.currentTarget);
+    await submitForm({
+      formType: "Newsletter",
+      name: (f.get("name") as string) ?? "",
+      email: (f.get("email") as string) ?? "",
+    });
     setSending(false);
     setDone(true);
   };
@@ -35,24 +38,37 @@ export function Newsletter() {
   }
 
   return (
-    <form onSubmit={submit} className="flex w-full min-w-0 max-w-md flex-wrap gap-2 lg:ml-auto">
+    <form
+      onSubmit={submit}
+      className="flex w-full min-w-0 max-w-xl flex-wrap gap-2 lg:ml-auto"
+    >
+      <label htmlFor="newsletter-name" className="sr-only">
+        Name
+      </label>
+      <input
+        id="newsletter-name"
+        name="name"
+        required
+        size={8}
+        placeholder="Your name"
+        className="input min-w-0 flex-1 rounded-full"
+      />
       <label htmlFor="newsletter-email" className="sr-only">
         Email address
       </label>
       <input
         id="newsletter-email"
+        name="email"
         type="email"
         required
         size={10}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
         placeholder="you@company.com"
-        className="min-w-0 flex-1 rounded-full border border-border-strong bg-background px-5 py-3.5 text-sm text-foreground placeholder:text-foreground-muted focus:border-brand focus:outline-none"
+        className="input min-w-0 flex-[1.4] rounded-full"
       />
       <button
         type="submit"
         disabled={sending}
-        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-foreground px-6 py-3.5 text-sm font-semibold text-background transition-colors hover:bg-brand hover:text-brand-ink disabled:opacity-60"
+        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(217,167,46,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
       >
         {sending ? "Subscribing…" : "Subscribe"}
         <ArrowRight

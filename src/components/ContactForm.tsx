@@ -38,8 +38,7 @@ const REASON_TO_FORM_TYPE: Record<string, FormType> = {
   Other: "General Enquiries",
 };
 
-const inputCls =
-  "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
+const inputCls = "input";
 
 /** Contact form — posts through the shared forms layer. */
 export function ContactForm({ initialInterest }: { initialInterest?: string }) {

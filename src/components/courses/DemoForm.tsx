@@ -5,8 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { submitForm } from "@/lib/forms";
 
-const inputCls =
-  "w-full rounded-2xl border border-border-strong bg-background px-5 py-3.5 text-[15px] text-foreground placeholder:text-foreground-muted transition-colors focus:border-brand focus:outline-none";
+const inputCls = "input";
 
 /** Demo Session registration — posts through the shared forms layer. */
 export function DemoForm() {
