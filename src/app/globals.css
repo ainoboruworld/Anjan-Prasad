@@ -18,20 +18,26 @@
   --brand-gold-hover: #e5b64a;
   --brand-gold-ink: #14120b;
 
-  /* Light theme — warm paper */
-  --background: #faf8f3;
-  --background-elevated: #f2efe7;
-  --background-sunken: #edeade;
-  --foreground: #17150f;
-  --foreground-muted: #5f5b50;
-  --border: rgba(23, 21, 15, 0.12);
-  --border-strong: rgba(23, 21, 15, 0.2);
-  --glass: rgba(250, 248, 243, 0.72);
-  --hairline: rgba(23, 21, 15, 0.07);
+  /* Light theme — warm paper.
+     Page sits a touch warm; elevated surfaces lift toward near-white so
+     cards genuinely float. Muted ink is darkened for AA contrast. */
+  --background: #f6f3ec;
+  --background-elevated: #fffdf8;
+  --background-sunken: #efeadf;
+  --foreground: #1a1712;
+  --foreground-muted: #57534a;
+  --border: rgba(23, 21, 15, 0.09);
+  --border-strong: rgba(23, 21, 15, 0.16);
+  --glass: rgba(252, 250, 245, 0.78);
+  --hairline: rgba(23, 21, 15, 0.06);
   --blueprint: rgba(23, 21, 15, 0.16);
-  --shadow-soft: 0 24px 60px -30px rgba(23, 21, 15, 0.25);
-  --shadow-card: 0 1px 2px rgba(23, 21, 15, 0.05), 0 12px 32px -18px rgba(23, 21, 15, 0.18);
-  --shadow-card-hover: 0 2px 4px rgba(23, 21, 15, 0.06), 0 24px 48px -20px rgba(23, 21, 15, 0.28);
+  --shadow-soft: 0 24px 60px -30px rgba(52, 42, 20, 0.28);
+  --shadow-card: 0 1px 1px rgba(52, 42, 20, 0.04),
+    0 4px 10px -4px rgba(52, 42, 20, 0.06),
+    0 18px 40px -24px rgba(52, 42, 20, 0.22);
+  --shadow-card-hover: 0 1px 1px rgba(52, 42, 20, 0.05),
+    0 8px 18px -6px rgba(52, 42, 20, 0.1),
+    0 30px 60px -26px rgba(52, 42, 20, 0.3);
 }
 
 .dark {
@@ -196,15 +202,41 @@ body {
 
 /* ── Architectural textures ─────────────────────────────────────────── */
 
-/* Fine drafting grid used behind hero-type sections */
+/*
+ * Grid textures are a dark-mode signature only. In light mode the same
+ * classes resolve to clean surfaces with a whisper of warm depth — no
+ * drafting lines — so the palette reads calm and premium. Dark mode keeps
+ * the blueprint character via the `.dark` overrides below.
+ */
+
+/* Light: hero-type sections get a soft vertical warmth, no grid. */
 .bg-grid {
+  background-image: radial-gradient(
+    130% 90% at 50% -10%,
+    color-mix(in srgb, var(--brand-gold) 5%, transparent),
+    transparent 60%
+  );
+}
+.dark .bg-grid {
   background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
     linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-/* Denser blueprint grid — preloader and feature panels */
+/* Light: feature panels / CTA bands get a layered gradient wash, no grid. */
 .bg-blueprint {
+  background-image: radial-gradient(
+      90% 120% at 100% 0%,
+      color-mix(in srgb, var(--brand-gold) 6%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--foreground) 3%, transparent),
+      transparent 40%
+    );
+}
+.dark .bg-blueprint {
   background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
     linear-gradient(90deg, var(--hairline) 1px, transparent 1px),
     linear-gradient(var(--blueprint) 1px, transparent 1px),
@@ -212,11 +244,8 @@ body {
   background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
 }
 
-/* Subtle paper grain for light mode surfaces */
+/* Body base: clean in both themes — no paper grain, no overlay. */
 .bg-paper {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-}
-.dark .bg-paper {
   background-image: none;
 }
 
