@@ -3,11 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Briefcase,
+  Building2,
+  GraduationCap,
+  Rocket,
+  Sparkles,
+  Store,
+  type LucideIcon,
+} from "lucide-react";
 import { PERSONAS } from "@/lib/data";
-import { Eyebrow } from "../ui/Primitives";
-import { Reveal } from "../ui/Reveal";
+import { SectionHeading } from "../ui/Primitives";
 import { easeSmooth } from "../motion";
+
+/** One icon per identity — keyed to the persona ids in the content layer. */
+const PERSONA_ICON: Record<string, LucideIcon> = {
+  student: GraduationCap,
+  professional: Briefcase,
+  founder: Rocket,
+  owner: Store,
+  "woman-entrepreneur": Sparkles,
+  enterprise: Building2,
+};
 
 /**
  * "I am…" — an interactive identity selector. Choosing a path reveals
@@ -19,20 +37,24 @@ export function WhoWeHelp() {
   const active = PERSONAS.find((p) => p.id === activeId) ?? PERSONAS[0];
 
   return (
-    <section className="border-t border-border bg-background-elevated py-28">
+    <section className="border-t border-border bg-background-elevated/60 py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal>
-          <Eyebrow>Who this is for</Eyebrow>
-          <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-            I am<span className="editorial-accent text-brand">…</span>
-          </h2>
-        </Reveal>
+        <SectionHeading
+          eyebrow="Who this is for"
+          title={
+            <>
+              I am<span className="editorial-accent text-brand">…</span>
+            </>
+          }
+          lead="Pick the description that fits — and see exactly how AP.com meets you where you are."
+        />
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           {/* Identity list */}
           <div role="tablist" aria-label="Choose your path" className="flex flex-col">
             {PERSONAS.map((p) => {
               const selected = p.id === activeId;
+              const Icon = PERSONA_ICON[p.id] ?? Sparkles;
               return (
                 <button
                   key={p.id}
@@ -40,11 +62,27 @@ export function WhoWeHelp() {
                   aria-selected={selected}
                   onClick={() => setActiveId(p.id)}
                   onMouseEnter={() => setActiveId(p.id)}
-                  className={`group flex items-center justify-between border-b border-border py-5 text-left transition-colors duration-300 ${
+                  className={`group relative flex items-center gap-4 border-b border-border py-5 text-left transition-colors duration-300 ${
                     selected ? "text-foreground" : "text-foreground-muted hover:text-foreground"
                   }`}
                 >
-                  <span className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {/* Active rail */}
+                  <motion.span
+                    aria-hidden
+                    animate={{ scaleY: selected ? 1 : 0, opacity: selected ? 1 : 0 }}
+                    transition={{ duration: 0.3, ease: easeSmooth }}
+                    className="absolute left-0 top-1/2 h-8 w-[3px] -translate-y-1/2 origin-center rounded-full bg-brand"
+                  />
+                  <span
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-colors duration-300 ${
+                      selected
+                        ? "border-brand/40 bg-brand/10 text-brand"
+                        : "border-border bg-background text-foreground-muted group-hover:border-border-strong"
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </span>
+                  <span className="flex-1 font-display text-2xl font-semibold tracking-tight sm:text-[1.75rem]">
                     {p.label}
                   </span>
                   <motion.span
@@ -73,7 +111,7 @@ export function WhoWeHelp() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -14 }}
                 transition={{ duration: 0.4, ease: easeSmooth }}
-                className="rounded-3xl border border-border bg-background p-8 shadow-[var(--shadow-soft)] lg:p-10"
+                className="card p-8 lg:p-10"
               >
                 <h3 className="font-display text-2xl font-semibold tracking-tight text-foreground">
                   {active.headline}
@@ -111,12 +149,12 @@ export function WhoWeHelp() {
                 <p className="mt-9 text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
                   Your path through AP.com
                 </p>
-                <div className="mt-3 divide-y divide-border">
+                <div className="mt-4 space-y-1.5">
                   {active.path.map((step, i) => (
                     <Link
                       key={step.href + step.label}
                       href={step.href}
-                      className="group flex items-center gap-4 py-3.5"
+                      className="group flex items-center gap-4 rounded-2xl border border-transparent px-3 py-3 transition-colors duration-300 hover:border-border hover:bg-background-sunken"
                     >
                       <span className="w-6 shrink-0 font-display text-sm font-semibold text-brand">
                         {String(i + 1).padStart(2, "0")}
