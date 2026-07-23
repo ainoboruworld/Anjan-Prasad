@@ -39,12 +39,6 @@ function PortraitPlate() {
         <circle cx="200" cy="180" r="62" />
         <path d="M96 486 C96 372 142 316 200 316 C258 316 304 372 304 486" />
       </g>
-      {/* Construction guides */}
-      <g stroke="var(--blueprint)" strokeWidth="0.75" strokeDasharray="4 6">
-        <line x1="200" y1="60" x2="200" y2="486" />
-        <line x1="80" y1="180" x2="320" y2="180" />
-        <circle cx="200" cy="180" r="92" />
-      </g>
       {/* Gold datum points */}
       <g fill="var(--brand-gold)">
         <circle cx="200" cy="118" r="3" />
