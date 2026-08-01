@@ -22,6 +22,7 @@ export type NavItem = {
 
 export const NAV: NavItem[] = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Business Advisory", href: "/business-advisory" },
   { label: "Consultation", href: "/consulting" },
   {
@@ -61,6 +62,7 @@ export const NAV: NavItem[] = [
       },
     ],
   },
+  { label: "Contact", href: "/contact" },
 ];
 
 /* ─────────────────────────── Core positioning ─────────────────────────── */

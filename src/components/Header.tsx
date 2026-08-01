@@ -155,7 +155,7 @@ export function Header() {
             variants={fadeDown}
             transition={{ ease: easeSmooth }}
             aria-label="Primary"
-            className="hidden items-center gap-7 xl:flex"
+            className="hidden items-center gap-6 2xl:gap-7 xl:flex"
           >
             {NAV.map((item) =>
               item.children ? (
@@ -175,8 +175,14 @@ export function Header() {
           <motion.div
             variants={fadeDown}
             transition={{ ease: easeSmooth }}
-            className="hidden items-center gap-4 xl:flex"
+            className="hidden items-center gap-3.5 xl:flex"
           >
+            <Link
+              href="/sign-in"
+              className="text-[length:var(--text-nav)] font-medium text-foreground-muted transition-colors hover:text-foreground"
+            >
+              Sign In
+            </Link>
             <ThemeToggle />
             <Link
               href="/courses/demo"
@@ -240,7 +246,13 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <div className="mt-2 border-t border-border pt-3">
+              <div className="mt-2 space-y-3 border-t border-border pt-3">
+                <Link
+                  href="/sign-in"
+                  className="block rounded-full border border-border-strong px-5 py-3 text-center text-sm font-medium text-foreground"
+                >
+                  Sign In
+                </Link>
                 <Link
                   href="/courses/demo"
                   className="block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-brand-ink"
