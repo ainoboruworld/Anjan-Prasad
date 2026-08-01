@@ -2,7 +2,7 @@ import { CONSULTING_SESSION } from "@/lib/data";
 import { CTAButton, SectionHeading } from "../ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 
-/** 1-to-1 Consulting — direct access to the operator, one decision at a time. */
+/** Consultation — direct access to the operator, one decision at a time. */
 export function ConsultingPreview() {
   return (
     <section className="py-28 sm:py-36">
@@ -13,8 +13,7 @@ export function ConsultingPreview() {
               eyebrow={CONSULTING_SESSION.badge}
               title={
                 <>
-                  1-to-1{" "}
-                  <span className="editorial-accent text-brand">Consulting.</span>
+                  <span className="editorial-accent text-brand">Consultation.</span>
                 </>
               }
               lead={CONSULTING_SESSION.description}

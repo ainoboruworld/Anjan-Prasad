@@ -25,7 +25,7 @@ export function FinalCTA() {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <CTAButton href="/courses#demo">Book a ₹199 Demo Session</CTAButton>
-            <GhostButton href="/consulting">Schedule a 1-to-1 Consultation</GhostButton>
+            <GhostButton href="/consulting">Schedule a Consultation</GhostButton>
           </div>
           <p className="mt-8 text-sm text-foreground-muted">
             Running a business already?{" "}

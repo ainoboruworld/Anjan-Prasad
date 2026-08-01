@@ -632,11 +632,11 @@ export const LIVE_COURSE = {
   cta: "Apply for the next cohort",
 } as const;
 
-/* ──────────────────────────── 1-to-1 Consulting ───────────────────────── */
+/* ──────────────────────────── Consultation ───────────────────────── */
 
 export const CONSULTING_SESSION = {
   badge: "Direct access",
-  name: "1-to-1 Consulting",
+  name: "Consultation",
   promise: "One hour with the operator. One decision moved.",
   description:
     "A private working session with Anjan on the single question that matters most in your business right now — pricing, positioning, growth, hiring, or the next big call. You bring the context; you leave with a decision and a plan.",
@@ -653,7 +653,7 @@ export const CONSULTING_SESSION = {
     "AI in operations",
     "Career → ownership",
   ],
-  cta: "Schedule a 1-to-1 Consultation",
+  cta: "Schedule a Consultation",
 } as const;
 
 /* ─────────────────────────── Featured videos ──────────────────────────── */

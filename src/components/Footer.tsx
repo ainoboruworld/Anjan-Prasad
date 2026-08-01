@@ -19,7 +19,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Work with us",
     links: [
       { label: "Business Advisory", href: "/business-advisory" },
-      { label: "1-to-1 Consulting", href: "/consulting" },
+      { label: "Consultation", href: "/consulting" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Testimonials", href: "/testimonials" },
     ],

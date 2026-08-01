@@ -5,7 +5,7 @@ import { submitForm } from "@/lib/forms";
 import { Field, SubmitButton, SuccessCard, inputCls } from "../ui/Form";
 import { CONSULTING_SESSION } from "@/lib/data";
 
-/** 1-to-1 Consultation booking form — posts through the shared forms layer. */
+/** Consultation booking form — posts through the shared forms layer. */
 export function ConsultationForm() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -25,7 +25,7 @@ export function ConsultationForm() {
     const f = new FormData(e.currentTarget);
     const v = (k: string) => (f.get(k) as string) ?? "";
     await submitForm({
-      formType: "1-to-1 Consultation",
+      formType: "Consultation",
       name: v("fullName"),
       email: v("email"),
       phone: v("phone"),

@@ -5,7 +5,7 @@ import { PageHero, SectionHeading } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "1-to-1 Consulting",
+  title: "Consultation",
   description:
     "A private working session with Anjan Prasad on the single question that matters most in your business — pricing, positioning, growth, hiring, or the next big call.",
 };
@@ -17,8 +17,7 @@ export default function ConsultingPage() {
         eyebrow={CONSULTING_SESSION.badge}
         title={
           <>
-            1-to-1{" "}
-            <span className="editorial-accent text-brand">Consulting.</span>
+            <span className="editorial-accent text-brand">Consultation.</span>
           </>
         }
         lead={CONSULTING_SESSION.description}
@@ -73,7 +72,7 @@ export default function ConsultingPage() {
               <>
                 Schedule a{" "}
                 <span className="editorial-accent text-brand">
-                  1-to-1 Consultation.
+                  Consultation.
                 </span>
               </>
             }
