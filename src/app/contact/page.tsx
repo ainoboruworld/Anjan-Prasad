@@ -23,7 +23,7 @@ export default async function ContactPage({
       <section className="bg-grid relative min-h-screen overflow-hidden pt-40 pb-24 sm:pt-48">
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/4 top-24 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(217,167,46,0.1),transparent_65%)] blur-3xl"
+          className="pointer-events-none absolute left-1/4 top-24 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.1),transparent_65%)] blur-3xl"
         />
         <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <Reveal>

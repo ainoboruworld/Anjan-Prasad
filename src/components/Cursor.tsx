@@ -78,10 +78,10 @@ export function Cursor() {
           height: mode === "text" ? 28 : size,
           borderRadius: mode === "text" ? 2 : 999,
           backgroundColor: labelled
-            ? "rgba(217,167,46,0.92)"
+            ? "rgba(79,169,255,0.92)"
             : mode === "link"
-              ? "rgba(217,167,46,0.10)"
-              : "rgba(217,167,46,1)",
+              ? "rgba(79,169,255,0.10)"
+              : "rgba(79,169,255,1)",
         }}
         transition={{ type: "spring", stiffness: 380, damping: 28 }}
       >

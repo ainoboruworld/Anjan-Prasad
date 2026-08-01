@@ -46,7 +46,7 @@ export function ProofAndNextStep() {
       <section className="bg-blueprint relative overflow-hidden border-t border-border py-32">
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(217,167,46,0.12),transparent_65%)] blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.12),transparent_65%)] blur-3xl"
         />
         <div className="mx-auto max-w-4xl px-6 text-center">
           <Reveal>

@@ -55,7 +55,7 @@ export function SubmitButton({
     <button
       type="submit"
       disabled={sending}
-      className={`group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(217,167,46,0.55)] transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(217,167,46,0.65)] disabled:opacity-60 ${className}`}
+      className={`group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(79,169,255,0.65)] disabled:opacity-60 ${className}`}
     >
       {sending ? sendingLabel : idleLabel}
       <ArrowRight

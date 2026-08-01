@@ -4,57 +4,78 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * AP.com — India's Business Growth Ecosystem.
+ * Anjan Prasad — India's Business Growth Ecosystem.
  *
- * Design language: architectural blueprint meets premium editorial.
- * Light mode is warm paper with drafting-grid texture; dark mode is
- * rich charcoal with soft depth. One gold accent, used sparingly.
+ * Design language: premium editorial, calm and architectural.
+ * Light mode is clean white with soft grey sections and Midnight Blue
+ * typography; dark mode is deep Midnight Blue with white type and Sky
+ * Blue accents. One blue accent, used with intent — never a colour wall.
  * All tokens live here so the brand can be retuned from one place.
+ *
+ * Brand palette (single source of truth):
+ *   Midnight Blue #0F3D5E · Sky Blue #4FA9FF · White #FFFFFF
+ *   Black #1E293B · Grey #F5F7FA
+ * The historical `--brand-gold*` token names are retained as the generic
+ * "brand accent" slots and now resolve to the blue system per theme, so
+ * every existing consumer retunes automatically.
  */
 
 :root {
-  /* Brand palette */
-  --brand-gold: #d9a72e;
-  --brand-gold-hover: #e5b64a;
-  --brand-gold-ink: #14120b;
+  /* Sky Blue — the always-on secondary accent. */
+  --brand-sky: #4fa9ff;
+  --brand-midnight: #0f3d5e;
 
-  /* Light theme — warm paper.
-     Page sits a touch warm; elevated surfaces lift toward near-white so
-     cards genuinely float. Muted ink is darkened for AA contrast. */
-  --background: #f6f3ec;
-  --background-elevated: #fffdf8;
-  --background-sunken: #efeadf;
-  --foreground: #1a1712;
-  --foreground-muted: #57534a;
-  --border: rgba(23, 21, 15, 0.09);
-  --border-strong: rgba(23, 21, 15, 0.16);
-  --glass: rgba(252, 250, 245, 0.78);
-  --hairline: rgba(23, 21, 15, 0.06);
-  --blueprint: rgba(23, 21, 15, 0.16);
-  --shadow-soft: 0 24px 60px -30px rgba(52, 42, 20, 0.28);
-  --shadow-card: 0 1px 1px rgba(52, 42, 20, 0.04),
-    0 4px 10px -4px rgba(52, 42, 20, 0.06),
-    0 18px 40px -24px rgba(52, 42, 20, 0.22);
-  --shadow-card-hover: 0 1px 1px rgba(52, 42, 20, 0.05),
-    0 8px 18px -6px rgba(52, 42, 20, 0.1),
-    0 30px 60px -26px rgba(52, 42, 20, 0.3);
+  /* Brand accent slot (light): Midnight Blue leads, white ink. */
+  --brand-gold: #0f3d5e;
+  --brand-gold-hover: #16537d;
+  --brand-gold-ink: #ffffff;
+
+  /* Light theme — clean white paper with grey sections.
+     Editorial: white surfaces, F5F7FA sunken sections, Midnight Blue ink. */
+  --background: #ffffff;
+  --background-elevated: #ffffff;
+  --background-sunken: #f5f7fa;
+  --foreground: #0f3d5e;
+  --foreground-muted: #52657a;
+  --border: rgba(15, 61, 94, 0.1);
+  --border-strong: rgba(15, 61, 94, 0.18);
+  --glass: rgba(255, 255, 255, 0.82);
+  --hairline: rgba(15, 61, 94, 0.06);
+  --blueprint: rgba(15, 61, 94, 0.14);
+  --shadow-soft: 0 24px 60px -30px rgba(15, 61, 94, 0.24);
+  --shadow-card: 0 1px 1px rgba(15, 61, 94, 0.04),
+    0 4px 10px -4px rgba(15, 61, 94, 0.06),
+    0 18px 40px -24px rgba(15, 61, 94, 0.18);
+  --shadow-card-hover: 0 1px 1px rgba(15, 61, 94, 0.05),
+    0 8px 18px -6px rgba(15, 61, 94, 0.1),
+    0 30px 60px -26px rgba(15, 61, 94, 0.26);
 }
 
 .dark {
-  /* Dark theme — rich charcoal */
-  --background: #0c0c0e;
-  --background-elevated: #141417;
-  --background-sunken: #08080a;
-  --foreground: #f2f0ea;
-  --foreground-muted: #96917f;
-  --border: rgba(242, 240, 234, 0.11);
-  --border-strong: rgba(242, 240, 234, 0.19);
-  --glass: rgba(12, 12, 14, 0.64);
-  --hairline: rgba(242, 240, 234, 0.06);
-  --blueprint: rgba(242, 240, 234, 0.14);
-  --shadow-soft: 0 24px 60px -30px rgba(0, 0, 0, 0.8);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -18px rgba(0, 0, 0, 0.6);
-  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 24px 48px -20px rgba(0, 0, 0, 0.75);
+  /* Dark theme — deep Midnight Blue with Sky Blue accents. */
+  --brand-sky: #4fa9ff;
+  --brand-midnight: #0f3d5e;
+
+  /* Brand accent slot (dark): Sky Blue leads, midnight ink. */
+  --brand-gold: #4fa9ff;
+  --brand-gold-hover: #6fb8ff;
+  --brand-gold-ink: #0b2c46;
+
+  --background: #0f3d5e;
+  --background-elevated: #143f60;
+  --background-sunken: #0b2f49;
+  --foreground: #ffffff;
+  --foreground-muted: #b6c6d6;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --glass: rgba(15, 61, 94, 0.62);
+  --hairline: rgba(255, 255, 255, 0.07);
+  --blueprint: rgba(255, 255, 255, 0.14);
+  --shadow-soft: 0 24px 60px -30px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 12px 32px -18px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.45),
+    0 24px 48px -20px rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
@@ -71,11 +92,15 @@
   --color-brand: var(--brand-gold);
   --color-brand-hover: var(--brand-gold-hover);
   --color-brand-ink: var(--brand-gold-ink);
+  --color-brand-sky: var(--brand-sky);
+  --color-brand-midnight: var(--brand-midnight);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
-    sans-serif;
-  --font-display: var(--font-manrope), var(--font-inter), ui-sans-serif,
-    system-ui, sans-serif;
+  /* PP Neue Montreal is the brand face; Inter is the loaded metric-similar
+     fallback used until the licensed webfont is installed. */
+  --font-sans: "PP Neue Montreal", var(--font-inter), ui-sans-serif,
+    system-ui, -apple-system, sans-serif;
+  --font-display: "PP Neue Montreal", var(--font-manrope), var(--font-inter),
+    ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
 
   /* Editorial type scale */
@@ -124,12 +149,12 @@ body {
 }
 
 ::selection {
-  background: var(--brand-gold);
-  color: var(--brand-gold-ink);
+  background: var(--brand-sky);
+  color: #ffffff;
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand-gold);
+  outline: 2px solid var(--brand-sky);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -184,7 +209,7 @@ body {
   outline: none;
   border-color: var(--brand-gold);
   box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--brand-gold) 22%, transparent);
+    color-mix(in srgb, var(--brand-sky) 22%, transparent);
 }
 
 /* Grayscale-by-default brand logos that regain presence on hover. */
@@ -218,14 +243,14 @@ body {
 .hero-bg {
   background-image: radial-gradient(
     130% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-gold) 6%, transparent),
+    color-mix(in srgb, var(--brand-sky) 6%, transparent),
     transparent 58%
   );
 }
 .dark .hero-bg {
   background-image: radial-gradient(
       78% 60% at 50% -5%,
-      color-mix(in srgb, var(--brand-gold) 9%, transparent),
+      color-mix(in srgb, var(--brand-sky) 9%, transparent),
       transparent 60%
     ),
     radial-gradient(
@@ -244,14 +269,14 @@ body {
 .bg-grid {
   background-image: radial-gradient(
     130% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-gold) 5%, transparent),
+    color-mix(in srgb, var(--brand-sky) 5%, transparent),
     transparent 60%
   );
 }
 .dark .bg-grid {
   background-image: radial-gradient(
     120% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-gold) 8%, transparent),
+    color-mix(in srgb, var(--brand-sky) 8%, transparent),
     transparent 58%
   );
 }
@@ -260,7 +285,7 @@ body {
 .bg-blueprint {
   background-image: radial-gradient(
       90% 120% at 100% 0%,
-      color-mix(in srgb, var(--brand-gold) 6%, transparent),
+      color-mix(in srgb, var(--brand-sky) 6%, transparent),
       transparent 55%
     ),
     linear-gradient(
@@ -272,7 +297,7 @@ body {
 .dark .bg-blueprint {
   background-image: radial-gradient(
       90% 120% at 100% 0%,
-      color-mix(in srgb, var(--brand-gold) 8%, transparent),
+      color-mix(in srgb, var(--brand-sky) 8%, transparent),
       transparent 55%
     ),
     linear-gradient(
