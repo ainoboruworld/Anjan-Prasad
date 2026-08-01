@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LogoMark } from "@/components/brand/LogoMark";
+import { Portrait } from "@/components/brand/Portrait";
 import {
   CTAButton,
   Eyebrow,
@@ -169,19 +170,22 @@ export default function AboutPage() {
           <Reveal>
             <div className="lg:sticky lg:top-28">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] border border-border bg-background-elevated shadow-[var(--shadow-soft)]">
-                {/* Portrait placeholder — swap for the official photograph. */}
-                <div
-                  aria-label="Portrait of Anjan Prasad — awaiting official photography"
-                  role="img"
-                  className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_50%_-10%,color-mix(in_srgb,var(--brand-sky)_10%,transparent),transparent_60%)] text-center"
-                >
-                  <span className="font-display text-6xl font-bold tracking-tight text-brand/25">
-                    AP
-                  </span>
-                  <span className="text-xs uppercase tracking-[0.24em] text-foreground-muted">
-                    Portrait — official photo pending
-                  </span>
-                </div>
+                <Portrait
+                  fallback={
+                    <div
+                      aria-label="Portrait of Anjan Prasad — awaiting official photography"
+                      role="img"
+                      className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_50%_-10%,color-mix(in_srgb,var(--brand-sky)_10%,transparent),transparent_60%)] text-center"
+                    >
+                      <span className="font-display text-6xl font-bold tracking-tight text-brand/25">
+                        AP
+                      </span>
+                      <span className="text-xs uppercase tracking-[0.24em] text-foreground-muted">
+                        Portrait — official photo pending
+                      </span>
+                    </div>
+                  }
+                />
               </div>
               <p className="mt-5 text-sm leading-relaxed text-foreground-muted">
                 Founder &amp; CEO, Noboru World · CEO, Filing Buddy · Co-founder,

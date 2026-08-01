@@ -24,7 +24,6 @@ export const metadata: Metadata = {
  * Contact details. Email is live; the placeholder rows are clearly marked
  * ("Coming soon") until the real phone, hours, and address are confirmed.
  */
-const CONTACT_EMAIL_PUBLIC = "info@ap.com";
 const LINKEDIN_URL = "https://www.linkedin.com/in/anjanprasad/";
 
 type Card = {
@@ -40,8 +39,8 @@ const CARDS: Card[] = [
   {
     icon: <Mail className="h-5 w-5" strokeWidth={1.75} />,
     label: "Email",
-    value: CONTACT_EMAIL_PUBLIC,
-    href: `mailto:${CONTACT_EMAIL_PUBLIC}`,
+    value: "Coming soon",
+    pending: true,
   },
   {
     icon: <Phone className="h-5 w-5" strokeWidth={1.75} />,
