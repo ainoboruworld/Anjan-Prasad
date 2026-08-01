@@ -249,9 +249,11 @@ body {
   );
 }
 .dark .bg-grid {
-  background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 64px 64px;
+  background-image: radial-gradient(
+    120% 90% at 50% -10%,
+    color-mix(in srgb, var(--brand-gold) 8%, transparent),
+    transparent 58%
+  );
 }
 
 /* Light: feature panels / CTA bands get a layered gradient wash, no grid. */
@@ -268,11 +270,16 @@ body {
     );
 }
 .dark .bg-blueprint {
-  background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px),
-    linear-gradient(var(--blueprint) 1px, transparent 1px),
-    linear-gradient(90deg, var(--blueprint) 1px, transparent 1px);
-  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+  background-image: radial-gradient(
+      90% 120% at 100% 0%,
+      color-mix(in srgb, var(--brand-gold) 8%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--foreground) 4%, transparent),
+      transparent 42%
+    );
 }
 
 /* Body base: clean in both themes — no paper grain, no overlay. */
