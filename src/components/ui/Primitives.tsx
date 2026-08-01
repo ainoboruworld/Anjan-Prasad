@@ -62,7 +62,7 @@ type CTAProps = {
 
 /** Primary gold call-to-action — magnetic on fine pointers. */
 export function CTAButton({ href, children, external, className = "" }: CTAProps) {
-  const cls = `group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(217,167,46,0.55)] transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(217,167,46,0.65)] ${className}`;
+  const cls = `group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(79,169,255,0.65)] ${className}`;
   const inner = (
     <>
       {children}
@@ -139,7 +139,7 @@ export function PageHero({
     <section className="bg-grid relative overflow-hidden pt-40 pb-16 sm:pt-48 sm:pb-20">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-24 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(217,167,46,0.1),transparent_65%)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-24 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.1),transparent_65%)] blur-3xl"
       />
       <div
         className={`mx-auto max-w-6xl px-6 ${align === "center" ? "text-center" : ""}`}

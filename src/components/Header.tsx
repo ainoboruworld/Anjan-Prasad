@@ -146,7 +146,7 @@ export function Header() {
           }`}
         >
           <motion.div variants={fadeDown} transition={{ ease: easeSmooth }}>
-            <Link href="/" aria-label="AP.com — home">
+            <Link href="/" aria-label="Anjan Prasad — home">
               <Wordmark />
             </Link>
           </motion.div>
@@ -177,13 +177,13 @@ export function Header() {
             transition={{ ease: easeSmooth }}
             className="hidden items-center gap-4 xl:flex"
           >
-            <Link
-              href="/sign-in"
-              className="rounded-full border border-border-strong px-5 py-2 text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:bg-background-elevated"
-            >
-              Sign In
-            </Link>
             <ThemeToggle />
+            <Link
+              href="/courses#demo"
+              className="rounded-full bg-brand px-5 py-2.5 text-[length:var(--text-nav)] font-semibold text-brand-ink shadow-[0_10px_30px_-12px_rgba(79,169,255,0.6)] transition-all hover:bg-brand-hover hover:shadow-[0_16px_40px_-14px_rgba(79,169,255,0.7)]"
+            >
+              Join ₹199 Demo Session
+            </Link>
           </motion.div>
 
           {/* Mobile controls */}
@@ -240,12 +240,12 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <div className="mt-2 flex items-center justify-between border-t border-border pt-3">
+              <div className="mt-2 border-t border-border pt-3">
                 <Link
-                  href="/sign-in"
-                  className="rounded-full border border-border-strong px-5 py-2.5 text-sm font-medium text-foreground"
+                  href="/courses#demo"
+                  className="block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-brand-ink"
                 >
-                  Sign In
+                  Join ₹199 Demo Session
                 </Link>
               </div>
             </div>

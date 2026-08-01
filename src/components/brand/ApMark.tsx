@@ -1,6 +1,10 @@
 import type { SVGProps } from "react";
 
-/** The "AP.com" wordmark used across the site. */
+/**
+ * Official "Anjan Prasad" wordmark — the brand logo used across the site.
+ * "Anjan" sits in Midnight Blue (white on dark surfaces), "Prasad" in the
+ * Sky Blue accent, stacked and tightly leaded, matching the master logo.
+ */
 export function Wordmark({
   className = "",
   onDark,
@@ -9,22 +13,15 @@ export function Wordmark({
   onDark?: boolean;
 }) {
   return (
-    <span className={`flex items-baseline gap-0.5 ${className}`}>
-      <span
-        className={`font-display text-xl font-bold tracking-tight ${
-          onDark ? "text-white" : "text-foreground"
-        }`}
-      >
-        AP
+    <span
+      role="img"
+      aria-label="Anjan Prasad"
+      className={`flex flex-col font-display text-[1.05rem] font-bold leading-[0.92] tracking-[-0.02em] ${className}`}
+    >
+      <span className={onDark ? "text-white" : "text-brand-midnight dark:text-white"}>
+        Anjan
       </span>
-      <span aria-hidden className="mx-0.5 inline-block h-1.5 w-1.5 rotate-45 bg-brand" />
-      <span
-        className={`font-display text-xl font-semibold tracking-tight ${
-          onDark ? "text-white/70" : "text-foreground-muted"
-        }`}
-      >
-        com
-      </span>
+      <span className="text-brand-sky">Prasad</span>
     </span>
   );
 }

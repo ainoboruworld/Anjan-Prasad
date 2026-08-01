@@ -68,7 +68,7 @@ export function Newsletter() {
       <button
         type="submit"
         disabled={sending}
-        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(217,167,46,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
+        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
       >
         {sending ? "Subscribing…" : "Subscribe"}
         <ArrowRight

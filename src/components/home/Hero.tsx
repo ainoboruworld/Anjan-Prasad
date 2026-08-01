@@ -67,7 +67,7 @@ export function Hero() {
   const my = useMotionValue(40);
   const smx = useSpring(mx, { stiffness: 60, damping: 20 });
   const smy = useSpring(my, { stiffness: 60, damping: 20 });
-  const lighting = useMotionTemplate`radial-gradient(560px circle at ${smx}% ${smy}%, rgba(217,167,46,0.13), transparent 65%)`;
+  const lighting = useMotionTemplate`radial-gradient(560px circle at ${smx}% ${smy}%, rgba(79,169,255,0.13), transparent 65%)`;
 
   const onMove = (e: React.MouseEvent) => {
     const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -136,9 +136,9 @@ export function Hero() {
             className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-foreground-muted"
           >
             {[
-              "3 companies founded",
-              "20+ years operating",
-              "25+ global brands advised",
+              "16+ years experience",
+              "5 ventures built",
+              "100+ brands advised",
             ].map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand" />

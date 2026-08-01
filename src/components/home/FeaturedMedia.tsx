@@ -34,7 +34,7 @@ function VideoCard({ video }: { video: FeaturedVideo }) {
           <div className="bg-blueprint absolute inset-0" aria-hidden />
         )}
         <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand text-brand-ink shadow-[0_10px_30px_-10px_rgba(217,167,46,0.7)] transition-transform duration-300 group-hover:scale-110">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.7)] transition-transform duration-300 group-hover:scale-110">
             <Play className="ml-0.5 h-5 w-5" strokeWidth={2} fill="currentColor" />
           </span>
         </span>
