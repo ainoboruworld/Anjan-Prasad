@@ -1,96 +1,161 @@
 import type { Metadata } from "next";
-import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/data";
-import { ContactForm } from "@/components/ContactForm";
-import { SocialLinks } from "@/components/SocialLinks";
-import { Eyebrow } from "@/components/ui/Primitives";
-import { Reveal } from "@/components/ui/Reveal";
+import Link from "next/link";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
+
+/** Inline LinkedIn glyph — avoids depending on a named lucide export. */
+function LinkedInGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+import { PageHero } from "@/components/ui/Primitives";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Start a conversation with AP.com — courses, consulting, corporate training, or speaking. Human replies, usually within a working day.",
+    "Get in touch with AP.com — email, phone, and office hours. For courses, consulting, corporate training, or speaking, reach out and get a human reply.",
+  alternates: { canonical: "/contact" },
 };
 
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ interest?: string }>;
-}) {
-  const { interest } = await searchParams;
+/**
+ * Contact details. Email is live; the placeholder rows are clearly marked
+ * ("Coming soon") until the real phone, hours, and address are confirmed.
+ */
+const CONTACT_EMAIL_PUBLIC = "info@ap.com";
+const LINKEDIN_URL = "https://www.linkedin.com/in/anjanprasad/";
 
+type Card = {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+  external?: boolean;
+  pending?: boolean;
+};
+
+const CARDS: Card[] = [
+  {
+    icon: <Mail className="h-5 w-5" strokeWidth={1.75} />,
+    label: "Email",
+    value: CONTACT_EMAIL_PUBLIC,
+    href: `mailto:${CONTACT_EMAIL_PUBLIC}`,
+  },
+  {
+    icon: <Phone className="h-5 w-5" strokeWidth={1.75} />,
+    label: "Phone",
+    value: "Coming soon",
+    pending: true,
+  },
+  {
+    icon: <Clock className="h-5 w-5" strokeWidth={1.75} />,
+    label: "Office Hours",
+    value: "Mon–Fri · Coming soon",
+    pending: true,
+  },
+  {
+    icon: <LinkedInGlyph />,
+    label: "LinkedIn",
+    value: "in/anjanprasad",
+    href: LINKEDIN_URL,
+    external: true,
+  },
+  {
+    icon: <MapPin className="h-5 w-5" strokeWidth={1.75} />,
+    label: "Location",
+    value: "India · Coming soon",
+    pending: true,
+  },
+];
+
+export default function ContactPage() {
   return (
     <main>
-      <section className="bg-grid relative min-h-screen overflow-hidden pt-40 pb-24 sm:pt-48">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/4 top-24 -z-10 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.1),transparent_65%)] blur-3xl"
-        />
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <Eyebrow>Contact</Eyebrow>
-            <h1 className="mt-6 font-display text-[length:var(--text-hero)] font-semibold leading-[1.04] tracking-[-0.03em] text-foreground">
-              Say the{" "}
-              <span className="editorial-accent text-brand">real thing.</span>
-            </h1>
-            <p className="mt-7 max-w-md text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-              Where the business actually is, what&apos;s actually stuck, what
-              you actually want. That&apos;s enough — the method takes it from
-              there.
-            </p>
-            <dl className="mt-12 space-y-5 border-t border-border pt-8 text-sm">
-              <div className="flex gap-6">
-                <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                  Email
-                </dt>
-                <dd>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
-                  >
-                    {CONTACT_EMAIL}
-                  </a>
-                </dd>
-              </div>
-              {CONTACT_PHONE && (
-                <div className="flex gap-6">
-                  <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                    Phone
-                  </dt>
-                  <dd>
-                    <a
-                      href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`}
-                      className="font-medium text-foreground hover:text-brand"
-                    >
-                      {CONTACT_PHONE}
-                    </a>
-                  </dd>
-                </div>
-              )}
-              <div className="flex gap-6">
-                <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                  Replies
-                </dt>
-                <dd className="text-foreground">Human, within one working day</dd>
-              </div>
-              <div className="flex gap-6">
-                <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                  Fastest start
-                </dt>
-                <dd className="text-foreground">The Saturday Demo Session — book it directly</dd>
-              </div>
-              <div className="flex items-center gap-6">
-                <dt className="w-24 shrink-0 uppercase tracking-[0.16em] text-foreground-muted">
-                  Social
-                </dt>
-                <dd>
-                  <SocialLinks />
-                </dd>
-              </div>
-            </dl>
-          </Reveal>
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Let&apos;s{" "}
+            <span className="editorial-accent text-brand">talk business.</span>
+          </>
+        }
+        lead="For courses, consulting, corporate training, or speaking — reach out and you'll get a human reply, usually within one working day."
+      />
 
-          <Reveal className="rounded-3xl border border-border bg-background-elevated p-8 shadow-[var(--shadow-soft)] sm:p-10">
-            <ContactForm initialInterest={interest} />
+      <section className="pb-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {CARDS.map((c) => {
+              const body = (
+                <>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-brand-sky transition-colors group-hover:border-brand-sky/50">
+                    {c.icon}
+                  </span>
+                  <span className="mt-5 block text-xs font-medium uppercase tracking-[0.18em] text-foreground-muted">
+                    {c.label}
+                  </span>
+                  <span
+                    className={`mt-1.5 flex items-center gap-1.5 font-display text-lg font-semibold tracking-tight ${
+                      c.pending ? "text-foreground-muted" : "text-foreground"
+                    }`}
+                  >
+                    {c.value}
+                    {c.href && (
+                      <ArrowUpRight
+                        className="h-4 w-4 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
+                        strokeWidth={2}
+                      />
+                    )}
+                  </span>
+                </>
+              );
+
+              return (
+                <RevealItem key={c.label}>
+                  {c.href ? (
+                    <Link
+                      href={c.href}
+                      {...(c.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="card card-hover group flex h-full flex-col p-7"
+                    >
+                      {body}
+                    </Link>
+                  ) : (
+                    <div className="card group flex h-full flex-col p-7">{body}</div>
+                  )}
+                </RevealItem>
+              );
+            })}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* Map placeholder */}
+      <section className="pb-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="relative aspect-[21/9] w-full overflow-hidden rounded-[1.5rem] border border-border bg-background-sunken">
+              <div
+                aria-hidden
+                className="absolute inset-0 opacity-[0.5] [background-image:linear-gradient(var(--hairline)_1px,transparent_1px),linear-gradient(90deg,var(--hairline)_1px,transparent_1px)] [background-size:44px_44px]"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background text-brand-sky">
+                  <MapPin className="h-5 w-5" strokeWidth={1.75} />
+                </span>
+                <span className="font-display text-lg font-semibold tracking-tight text-foreground">
+                  Map — location coming soon
+                </span>
+                <span className="max-w-sm text-sm text-foreground-muted">
+                  The office address and an embedded map will appear here once
+                  confirmed.
+                </span>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

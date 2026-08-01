@@ -129,7 +129,7 @@ export function Footer() {
                 href="/contact"
                 className="text-foreground underline decoration-brand underline-offset-4 transition-colors hover:text-brand"
               >
-                Contact form
+                Get in touch
               </Link>
             </li>
           </ul>
