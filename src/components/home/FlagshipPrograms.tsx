@@ -16,14 +16,14 @@ export function FlagshipPrograms() {
           <Eyebrow>The programs</Eyebrow>
           <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
             Your first step is{" "}
-            <span className="editorial-accent text-brand">this Saturday.</span>
+            <span className="editorial-accent text-brand">one live session.</span>
           </h2>
         </Reveal>
 
         {/* Demo Session — a wide invitation band */}
         <Reveal className="mt-14">
           <Link
-            href="/courses#demo"
+            href="/courses/demo"
             className="group block overflow-hidden rounded-3xl border border-border bg-background-elevated transition-colors duration-300 hover:border-brand/50"
           >
             <div className="grid items-center gap-8 p-8 sm:p-12 lg:grid-cols-[1fr_auto]">
@@ -55,7 +55,7 @@ export function FlagshipPrograms() {
         {/* Live Course — the flagship spread */}
         <Reveal className="mt-6">
           <Link
-            href="/courses#live"
+            href="/courses/monthly-consulting"
             className="group block overflow-hidden rounded-3xl border border-border bg-foreground text-background transition-transform duration-500"
           >
             <div className="bg-blueprint grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.2fr_0.8fr] lg:p-16">

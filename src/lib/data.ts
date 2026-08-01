@@ -30,13 +30,13 @@ export const NAV: NavItem[] = [
     children: [
       {
         label: "Demo Session",
-        href: "/courses#demo",
-        description: "Every Saturday · 3 hours live · ₹199 registration fee.",
+        href: "/courses/demo",
+        description: "Weekdays · 3 hours live · ₹99 registration fee.",
       },
       {
-        label: "Live Course",
-        href: "/courses#live",
-        description: "The flagship live learning program — projects, AI, mentorship.",
+        label: "Monthly Consulting",
+        href: "/courses/monthly-consulting",
+        description: "Weekly consulting, planning, and accountability — ₹9,999 / month.",
       },
     ],
   },
@@ -289,8 +289,8 @@ export const PERSONAS: Persona[] = [
       "A network that opens the first door.",
     ],
     path: [
-      { label: "Demo Session", href: "/courses#demo", note: "See how businesses are actually built." },
-      { label: "Live Course", href: "/courses#live", note: "Projects, mentorship, and community." },
+      { label: "Demo Session", href: "/courses/demo", note: "See how businesses are actually built." },
+      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Projects, mentorship, and community." },
       { label: "Knowledge Hub", href: "/knowledge-hub", note: "Free playbooks to start today." },
     ],
   },
@@ -307,8 +307,8 @@ export const PERSONAS: Persona[] = [
       "A tested path from salary to ownership.",
     ],
     path: [
-      { label: "Demo Session", href: "/courses#demo", note: "A working preview of the playbook." },
-      { label: "Live Course", href: "/courses#live", note: "Build a venture alongside your job." },
+      { label: "Demo Session", href: "/courses/demo", note: "A working preview of the playbook." },
+      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Build a venture alongside your job." },
       { label: "Case Studies", href: "/case-studies", note: "Proof it works for people like you." },
     ],
   },
@@ -327,7 +327,7 @@ export const PERSONAS: Persona[] = [
     path: [
       { label: "Business Advisory", href: "/business-advisory", note: "Hands-on transformation, inside your business." },
       { label: "Case Studies", href: "/case-studies", note: "How other founders rebuilt." },
-      { label: "Live Course", href: "/courses#live", note: "The playbook, self-driven." },
+      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "The playbook, self-driven." },
     ],
   },
   {
@@ -361,8 +361,8 @@ export const PERSONAS: Persona[] = [
       "Community and mentorship that shows up.",
     ],
     path: [
-      { label: "Demo Session", href: "/courses#demo", note: "Start small, see the method." },
-      { label: "Live Course", href: "/courses#live", note: "Mentorship and community included." },
+      { label: "Demo Session", href: "/courses/demo", note: "Start small, see the method." },
+      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Mentorship and community included." },
       { label: "Testimonials", href: "/testimonials", note: "Women who built with AP.com." },
     ],
   },
@@ -543,7 +543,7 @@ export const ADVISORY_FAQS = [
   },
   {
     q: "What size of business is this for?",
-    a: "Founders and SMEs with real revenue, and enterprises with a specific transformation or capability mandate. If a Demo Session or the Live Course is the better starting point for your stage, we'll say so.",
+    a: "Founders and SMEs with real revenue, and enterprises with a specific transformation or capability mandate. If a Demo Session or Monthly Consulting is the better starting point for your stage, we'll say so.",
   },
   {
     q: "How long does an engagement run?",
@@ -569,11 +569,11 @@ export const DEMO_SESSION = {
   id: "demo",
   badge: "Start here",
   name: "Demo Session",
-  fee: "₹199",
+  fee: "₹99",
   feeLabel: "Registration Fee",
-  schedule: "Every Saturday",
+  schedule: "Weekdays",
   format: "3 Hours Live",
-  promise: "See how profitable businesses are actually built — in one Saturday.",
+  promise: "See how profitable businesses are actually built — in one focused session.",
   description:
     "Not a webinar. A live working session where Anjan walks through the operating playbook on real business models — how ideas are validated, how margins are designed, and where most businesses quietly fail.",
   hours: [
@@ -604,33 +604,41 @@ export const DEMO_SESSION = {
     "See the validation method before you spend a rupee",
     "Know your exact next step — this month",
   ],
-  cta: "Register for Saturday",
+  cta: "Register now",
 } as const;
 
+/**
+ * Monthly Consulting — the recurring, higher-touch program. Exported under
+ * the historical `LIVE_COURSE` name so existing imports keep working while
+ * the visible identity is Monthly Consulting.
+ */
 export const LIVE_COURSE = {
-  id: "live",
-  badge: "Flagship",
-  name: "Live Course",
-  altName: "Live Learning Program",
-  price: "₹9,000",
-  priceNote: "Cohort program · projects, mentorship & community",
-  promise: "Build a real business system — not a certificate.",
+  id: "monthly-consulting",
+  badge: "Go deeper",
+  name: "Monthly Consulting",
+  altName: "Monthly Consulting Program",
+  price: "₹9,999",
+  priceNote: "Per month · weekday sessions · founder support",
+  promise: "A month of hands-on consulting — your business moved forward every week.",
   description:
-    "A structured live program that takes you from idea to operating business: validation, positioning, sales, finance, AI-assisted systems, and the discipline that keeps it all profitable. Taught by an operator who has done it three times.",
+    "A recurring monthly engagement built around your business. Weekly working sessions, a clear plan, and an operator holding you accountable to it — so execution actually happens between the calls, not just during them.",
   pillars: [
-    { title: "Implementation-first", copy: "Every module ends with something built, not something watched." },
-    { title: "AI-native", copy: "Modern AI workflows woven through marketing, ops, and finance." },
-    { title: "Mentorship", copy: "Direct review of your work — the feedback loop most courses skip." },
-    { title: "Community", copy: "A network of builders that outlives the cohort." },
+    { title: "Weekly consulting", copy: "A standing weekday session on the decisions that matter this week." },
+    { title: "Business planning & roadmaps", copy: "A living plan with priorities, milestones, and the sequence to hit them." },
+    { title: "Founder support & accountability", copy: "Direct access between sessions, and someone tracking that it gets done." },
+    { title: "Execution & scaling", copy: "Systems and hiring designed to grow the business past its founder." },
   ],
   outcomes: [
-    "A validated business model with real unit economics",
-    "A working sales and marketing engine",
-    "AI-assisted operating systems you run yourself",
-    "A community and mentors invested in your progress",
+    "A prioritised operating roadmap for the quarter",
+    "Weekly momentum on your biggest constraints",
+    "Systems and accountability that outlast the month",
+    "Direct founder support when the hard calls hit",
   ],
-  cta: "Apply for the next cohort",
+  cta: "Start Monthly Consulting",
 } as const;
+
+/** Canonical alias for readability in new code. */
+export const MONTHLY_CONSULTING = LIVE_COURSE;
 
 /* ──────────────────────────── Consultation ───────────────────────── */
 
@@ -1019,9 +1027,9 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "The Live Course made me build, not watch. I left with a validated model and my first paying customers.",
+      "Monthly Consulting made me build, not watch. I left with a validated model and my first paying customers.",
     name: "Sneha Iyer",
-    title: "Live Course alum · D2C founder",
+    title: "Monthly Consulting client · D2C founder",
     kind: "Student",
   },
   {

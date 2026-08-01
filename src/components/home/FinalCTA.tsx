@@ -20,11 +20,11 @@ export function FinalCTA() {
             <span className="editorial-accent text-brand">has a method.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-            See it working this Saturday for ₹199 — or bring it straight into
+            See it working live for ₹99 — or bring it straight into
             your business.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <CTAButton href="/courses#demo">Book a ₹199 Demo Session</CTAButton>
+            <CTAButton href="/courses/demo">Book a ₹99 Demo Session</CTAButton>
             <GhostButton href="/consulting">Schedule a Consultation</GhostButton>
           </div>
           <p className="mt-8 text-sm text-foreground-muted">

@@ -179,10 +179,10 @@ export function Header() {
           >
             <ThemeToggle />
             <Link
-              href="/courses#demo"
+              href="/courses/demo"
               className="rounded-full bg-brand px-5 py-2.5 text-[length:var(--text-nav)] font-semibold text-brand-ink shadow-[0_10px_30px_-12px_rgba(79,169,255,0.6)] transition-all hover:bg-brand-hover hover:shadow-[0_16px_40px_-14px_rgba(79,169,255,0.7)]"
             >
-              Join ₹199 Demo Session
+              Join ₹99 Demo Session
             </Link>
           </motion.div>
 
@@ -242,10 +242,10 @@ export function Header() {
               ))}
               <div className="mt-2 border-t border-border pt-3">
                 <Link
-                  href="/courses#demo"
+                  href="/courses/demo"
                   className="block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-brand-ink"
                 >
-                  Join ₹199 Demo Session
+                  Join ₹99 Demo Session
                 </Link>
               </div>
             </div>
