@@ -10,6 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { CTAButton, GhostButton } from "../ui/Primitives";
+import { Portrait } from "../brand/Portrait";
 import { easeSmooth, slideInLeft, staggerContainer } from "../motion";
 
 /**
@@ -126,7 +127,7 @@ export function Hero() {
             variants={slideInLeft}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <CTAButton href="/courses#demo">Book a ₹199 Demo Session</CTAButton>
+            <CTAButton href="/courses/demo">Book a ₹99 Demo Session</CTAButton>
             <GhostButton href="/business-advisory">Explore Business Advisory</GhostButton>
           </motion.div>
 
@@ -158,7 +159,7 @@ export function Hero() {
           data-cursor="view"
         >
           <div className="h-full w-full overflow-hidden rounded-[1.25rem] border border-border bg-background-elevated/50 shadow-[var(--shadow-soft)] transition-transform duration-500 hover:scale-[1.015]">
-            <PortraitPlate />
+            <Portrait priority fallback={<PortraitPlate />} />
           </div>
         </motion.div>
       </div>

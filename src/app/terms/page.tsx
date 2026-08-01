@@ -18,7 +18,7 @@ const SECTIONS = [
   },
   {
     title: "Advisory engagements",
-    copy: "Business Advisory and 1-to-1 Consulting engagements are governed by the scope agreed in writing for each engagement. Advice is given in good faith based on the information you share; decisions and their outcomes remain yours.",
+    copy: "Business Advisory and Consultation engagements are governed by the scope agreed in writing for each engagement. Advice is given in good faith based on the information you share; decisions and their outcomes remain yours.",
   },
   {
     title: "Intellectual property",

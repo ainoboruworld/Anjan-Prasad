@@ -1,16 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
-import { DEMO_SESSION, LIVE_COURSE } from "@/lib/data";
-import { DemoForm } from "@/components/courses/DemoForm";
-import { CTAButton, Eyebrow, GhostButton, PageHero, RuleTick } from "@/components/ui/Primitives";
+import { DEMO_SESSION, LIVE_COURSE as MONTHLY_CONSULTING } from "@/lib/data";
+import { PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Courses — Demo Session & Live Course",
+  title: "Courses — Demo Session & Monthly Consulting",
   description:
-    "Implementation-first business education: the Saturday Demo Session (₹199 registration fee, 3 hours live) and the flagship Live Course — projects, AI, mentorship, and community.",
+    "Implementation-first business education: the ₹99 Demo Session (3 hours live, weekdays) and Monthly Consulting at ₹9,999/month — weekly consulting, planning, and accountability.",
+  alternates: { canonical: "/courses" },
 };
+
+const PRODUCTS = [
+  {
+    href: "/courses/demo",
+    badge: DEMO_SESSION.badge,
+    name: DEMO_SESSION.name,
+    price: DEMO_SESSION.fee,
+    priceNote: "Registration fee · weekdays · 3 hours live",
+    promise: DEMO_SESSION.promise,
+    points: [
+      "Live working session — not a webinar",
+      "The 0 → 1 → Scale framework on real models",
+      "Your questions answered in the room",
+    ],
+    cta: "Explore the Demo Session",
+    featured: false,
+  },
+  {
+    href: "/courses/monthly-consulting",
+    badge: MONTHLY_CONSULTING.badge,
+    name: MONTHLY_CONSULTING.name,
+    price: MONTHLY_CONSULTING.price,
+    priceNote: MONTHLY_CONSULTING.priceNote,
+    promise: MONTHLY_CONSULTING.promise,
+    points: [
+      "Weekly weekday consulting sessions",
+      "Business planning, roadmaps & accountability",
+      "Founder support between the calls",
+    ],
+    cta: "Explore Monthly Consulting",
+    featured: true,
+  },
+];
 
 export default function CoursesPage() {
   return (
@@ -23,193 +56,83 @@ export default function CoursesPage() {
             <span className="editorial-accent text-brand">A build.</span>
           </>
         }
-        lead="Two live programs, one method: the operating playbook behind three bootstrapped companies — taught by implementation, not by slides."
-      >
-        <div className="flex flex-wrap gap-4">
-          <CTAButton href="#demo">Book the Demo Session</CTAButton>
-          <GhostButton href="#live">See the Live Course</GhostButton>
-        </div>
-      </PageHero>
+        lead="Two ways to learn the operating playbook behind three bootstrapped companies — start with a single session, or work with Anjan every week."
+      />
 
-      {/* ── Demo Session — the first step into AP.com ── */}
-      <section id="demo" className="scroll-mt-28 border-t border-border py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <Reveal>
-                <Eyebrow>{DEMO_SESSION.badge}</Eyebrow>
-                <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-                  {DEMO_SESSION.name}
-                </h2>
-                <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-medium uppercase tracking-[0.18em] text-foreground-muted">
-                  <span className="text-brand">{DEMO_SESSION.fee} {DEMO_SESSION.feeLabel}</span>
-                  <span aria-hidden>·</span>
-                  <span>{DEMO_SESSION.schedule}</span>
-                  <span aria-hidden>·</span>
-                  <span>{DEMO_SESSION.format}</span>
-                </p>
-                <p className="mt-6 text-[length:var(--text-lead)] leading-relaxed text-foreground">
-                  {DEMO_SESSION.promise}
-                </p>
-                <p className="mt-4 max-w-xl text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                  {DEMO_SESSION.description}
-                </p>
-              </Reveal>
-
-              {/* The three hours */}
-              <RevealGroup className="mt-10 space-y-4">
-                {DEMO_SESSION.hours.map((h) => (
-                  <RevealItem
-                    key={h.hour}
-                    className="flex gap-6 rounded-2xl border border-border bg-background-elevated p-6"
-                  >
-                    <span className="w-16 shrink-0 font-display text-sm font-semibold uppercase tracking-wide text-brand">
-                      {h.hour}
+      <section className="pb-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <RevealGroup className="grid gap-6 lg:grid-cols-2">
+            {PRODUCTS.map((p) => (
+              <RevealItem key={p.href}>
+                <Link
+                  href={p.href}
+                  className={`card card-hover group flex h-full flex-col p-9 sm:p-11 ${
+                    p.featured ? "ring-1 ring-brand-sky/30" : ""
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-sky">
+                      {p.badge}
                     </span>
-                    <span>
-                      <span className="block font-medium text-foreground">{h.title}</span>
-                      <span className="mt-1 block text-sm leading-relaxed text-foreground-muted">
-                        {h.copy}
-                      </span>
-                    </span>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
+                    <ArrowUpRight
+                      className="h-5 w-5 text-foreground-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+                      strokeWidth={2}
+                    />
+                  </div>
 
-              {/* Who should attend + outcomes */}
-              <div className="mt-10 grid gap-8 sm:grid-cols-2">
-                <Reveal>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
-                    Who should attend
+                  <h2 className="mt-6 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                    {p.name}
+                  </h2>
+                  <p className="mt-4 flex items-baseline gap-2">
+                    <span className="font-display text-4xl font-bold tracking-tight text-foreground">
+                      {p.price}
+                    </span>
                   </p>
-                  <ul className="mt-3 space-y-2.5">
-                    {DEMO_SESSION.audience.map((a) => (
-                      <li key={a} className="flex gap-2.5 text-[15px] leading-relaxed text-foreground-muted">
-                        <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
-                        {a}
+                  <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted">
+                    {p.priceNote}
+                  </p>
+
+                  <p className="mt-6 text-[length:var(--text-body)] leading-relaxed text-foreground">
+                    {p.promise}
+                  </p>
+
+                  <ul className="mt-6 space-y-3 border-t border-border pt-6">
+                    {p.points.map((pt) => (
+                      <li key={pt} className="flex gap-3 text-[15px] leading-relaxed text-foreground-muted">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-brand-sky" strokeWidth={2.5} />
+                        {pt}
                       </li>
                     ))}
                   </ul>
-                </Reveal>
-                <Reveal>
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
-                    You leave with
-                  </p>
-                  <ul className="mt-3 space-y-2.5">
-                    {DEMO_SESSION.outcomes.map((o) => (
-                      <li key={o} className="flex gap-2.5 text-[15px] leading-relaxed text-foreground">
-                        <Check className="mt-1 h-4 w-4 shrink-0 text-brand" strokeWidth={2.5} />
-                        {o}
-                      </li>
-                    ))}
-                  </ul>
-                </Reveal>
-              </div>
-            </div>
 
-            {/* Registration */}
-            <div className="lg:sticky lg:top-32 lg:self-start">
-              <Reveal className="rounded-3xl border border-border bg-background-elevated p-8 shadow-[var(--shadow-soft)]">
-                <DemoForm />
-              </Reveal>
-              <Reveal className="mt-4">
-                <p className="text-center text-xs leading-relaxed text-foreground-muted">
-                  The first step into AP.com — decide about everything else
-                  with evidence.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <RuleTick />
-
-      {/* ── Live Course — the flagship program ── */}
-      <section id="live" className="scroll-mt-28 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <Eyebrow className="justify-center">{LIVE_COURSE.badge}</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-chapter)] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground">
-              {LIVE_COURSE.name}{" "}
-              <span className="editorial-accent text-brand">{LIVE_COURSE.price}</span>
-            </h2>
-            <p className="mt-3 text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
-              {LIVE_COURSE.altName} · {LIVE_COURSE.priceNote}
-            </p>
-            <p className="mt-7 text-[length:var(--text-lead)] leading-relaxed text-foreground">
-              {LIVE_COURSE.promise}
-            </p>
-            <p className="mt-4 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              {LIVE_COURSE.description}
-            </p>
-          </Reveal>
-
-          {/* Pillars as an architectural cross-section */}
-          <RevealGroup className="mx-auto mt-16 grid max-w-5xl gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2">
-            {LIVE_COURSE.pillars.map((p, i) => (
-              <RevealItem
-                key={p.title}
-                className="bg-blueprint bg-background p-8 transition-colors duration-300 hover:bg-background-elevated"
-              >
-                <p aria-hidden className="font-serif text-sm italic text-brand">
-                  {["I", "II", "III", "IV"][i]}
-                </p>
-                <p className="mt-3 font-display text-xl font-semibold tracking-tight text-foreground">
-                  {p.title}
-                </p>
-                <p className="mt-2 text-[15px] leading-relaxed text-foreground-muted">
-                  {p.copy}
-                </p>
+                  <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand">
+                    {p.cta}
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
+                  </span>
+                </Link>
               </RevealItem>
             ))}
           </RevealGroup>
 
-          {/* Outcomes ledger */}
-          <Reveal className="mx-auto mt-16 max-w-3xl">
-            <p className="text-center text-xs font-medium uppercase tracking-[0.24em] text-foreground-muted">
-              What you will have built by the end
+          <Reveal className="mt-14 text-center">
+            <p className="text-sm text-foreground-muted">
+              Prefer to talk it through first?{" "}
+              <Link
+                href="/consulting"
+                className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
+              >
+                Book a Consultation
+              </Link>{" "}
+              or see{" "}
+              <Link
+                href="/testimonials"
+                className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
+              >
+                student &amp; founder stories
+              </Link>
+              .
             </p>
-            <ul className="mt-6 divide-y divide-border rounded-3xl border border-border">
-              {LIVE_COURSE.outcomes.map((o, i) => (
-                <li key={o} className="flex items-center gap-5 px-7 py-5">
-                  <span className="font-display text-sm font-semibold text-brand">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[15px] font-medium text-foreground">{o}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 text-center">
-              <CTAButton href="/contact?interest=live-course">{LIVE_COURSE.cta}</CTAButton>
-              <p className="mt-5 text-sm text-foreground-muted">
-                Unsure? The{" "}
-                <Link
-                  href="#demo"
-                  className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
-                >
-                  Demo Session
-                </Link>{" "}
-                exists precisely so you can decide with evidence.
-              </p>
-            </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Bridge to proof */}
-      <section className="border-t border-border bg-background-sunken py-16">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-6">
-          <p className="max-w-xl font-display text-2xl font-medium tracking-tight text-foreground">
-            Hear it from people who took the seat first.
-          </p>
-          <Link
-            href="/testimonials"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-brand"
-          >
-            Student &amp; founder stories
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
-          </Link>
         </div>
       </section>
     </main>

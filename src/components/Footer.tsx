@@ -9,8 +9,8 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "Learn",
     links: [
-      { label: "Demo Session", href: "/courses#demo" },
-      { label: "Live Course", href: "/courses#live" },
+      { label: "Demo Session", href: "/courses/demo" },
+      { label: "Live Course", href: "/courses/monthly-consulting" },
       { label: "Blogs", href: "/knowledge-hub" },
       { label: "Featured Media", href: "/media" },
     ],
@@ -19,7 +19,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "Work with us",
     links: [
       { label: "Business Advisory", href: "/business-advisory" },
-      { label: "1-to-1 Consulting", href: "/consulting" },
+      { label: "Consultation", href: "/consulting" },
       { label: "Case Studies", href: "/case-studies" },
       { label: "Testimonials", href: "/testimonials" },
     ],
@@ -129,7 +129,7 @@ export function Footer() {
                 href="/contact"
                 className="text-foreground underline decoration-brand underline-offset-4 transition-colors hover:text-brand"
               >
-                Contact form
+                Get in touch
               </Link>
             </li>
           </ul>

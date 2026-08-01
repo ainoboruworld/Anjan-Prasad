@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight, Check } from "lucide-react";
 import {
   ADVISORY_FAQS,
   ADVISORY_OUTCOMES,
   ADVISORY_PROBLEMS,
   ADVISORY_PROCESS,
+  CASE_STUDIES,
   PERSONAS,
+  TESTIMONIALS,
 } from "@/lib/data";
 import { AdvisoryForm } from "@/components/advisory/AdvisoryForm";
 import { OutcomeExplorer } from "@/components/consulting/OutcomeExplorer";
@@ -15,8 +19,43 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Business Advisory",
   description:
-    "Hands-on business advisory: growth, transformation, RevOps, fractional CXO, finance, operations, AI, and corporate training — delivered inside your business, measured in the P&L.",
+    "Strategic, long-term business advisory: transformation, scaling, leadership, systems, growth and decision-making — delivered inside your business and measured in the P&L.",
+  alternates: { canonical: "/business-advisory" },
+  openGraph: {
+    title: "Business Advisory — AP.com",
+    description:
+      "Long-term transformation and scaling, delivered inside your business by an operator — not a slide deck.",
+    url: "/business-advisory",
+    type: "website",
+  },
 };
+
+const INDUSTRIES = [
+  "Finance & Fintech",
+  "D2C & Consumer",
+  "Mobility",
+  "Agriculture",
+  "SaaS & Technology",
+  "Healthcare",
+  "Services & Agencies",
+  "Manufacturing",
+];
+
+const ADVISORY_VS = [
+  "Strategic and long-term, not a single decision",
+  "Transformation and scaling across the business",
+  "Leadership, systems and decision-making installed",
+  "Delivered inside your business, with your team",
+  "Measured in the P&L over an engagement",
+];
+
+const CONSULTATION_VS = [
+  "A focused session on one specific question",
+  "Fast clarity when a single call is on the table",
+  "A framed decision and the first actions to take",
+  "One prepared, private working hour",
+  "Ideal before — or alongside — a larger engagement",
+];
 
 export default function BusinessAdvisoryPage() {
   return (
@@ -38,6 +77,70 @@ export default function BusinessAdvisoryPage() {
           <GhostButton href="/case-studies">See transformations</GhostButton>
         </div>
       </PageHero>
+
+      {/* Business Advisory ≠ Consultation */}
+      <section className="border-t border-border py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>Advisory ≠ Consultation</Eyebrow>
+            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+              Two different jobs.
+            </h2>
+            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+              A Consultation moves one decision in an hour. Business Advisory
+              rebuilds how the business runs over months. Know which one you
+              need — or start small and grow into the other.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <Reveal className="card p-8 sm:p-10">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                  Business Advisory
+                </h3>
+                <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand">
+                  Strategic · long-term
+                </span>
+              </div>
+              <ul className="mt-6 space-y-3">
+                {ADVISORY_VS.map((a) => (
+                  <li key={a} className="flex gap-3 text-[15px] leading-relaxed text-foreground">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-brand-sky" strokeWidth={2.5} />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal className="rounded-[var(--radius-xl)] border border-border bg-background-sunken p-8 sm:p-10">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
+                  Consultation
+                </h3>
+                <span className="rounded-full border border-border px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-foreground-muted">
+                  Focused · one hour
+                </span>
+              </div>
+              <ul className="mt-6 space-y-3">
+                {CONSULTATION_VS.map((c) => (
+                  <li key={c} className="flex gap-3 text-[15px] leading-relaxed text-foreground-muted">
+                    <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-border-strong" />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/consulting"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-brand"
+              >
+                Explore Consultation
+                <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       {/* What it is — the operating stance */}
       <section className="border-y border-border bg-background-elevated py-16">
@@ -173,8 +276,113 @@ export default function BusinessAdvisoryPage() {
         </div>
       </section>
 
-      {/* FAQs */}
+      {/* Industries */}
       <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>Industries</Eyebrow>
+            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+              Where the work has landed
+            </h2>
+            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+              Sixteen years across sectors — the operating principles travel,
+              even when the industry doesn&apos;t.
+            </p>
+          </Reveal>
+          <RevealGroup className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {INDUSTRIES.map((ind) => (
+              <RevealItem
+                key={ind}
+                className="card card-hover flex items-center justify-center px-6 py-8 text-center"
+              >
+                <span className="font-display text-lg font-semibold tracking-tight text-foreground">
+                  {ind}
+                </span>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="border-y border-border bg-background-sunken py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>Testimonials</Eyebrow>
+            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+              What operators say
+            </h2>
+          </Reveal>
+          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.filter((t) => t.kind !== "Student")
+              .slice(0, 3)
+              .map((t) => (
+                <RevealItem key={t.name} className="card flex h-full flex-col p-8">
+                  <p className="text-[length:var(--text-body)] leading-relaxed text-foreground">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="mt-6 border-t border-border pt-5">
+                    <p className="font-display font-semibold text-foreground">{t.name}</p>
+                    <p className="mt-0.5 text-sm text-foreground-muted">{t.title}</p>
+                  </div>
+                </RevealItem>
+              ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <Reveal className="max-w-2xl">
+              <Eyebrow>Case studies</Eyebrow>
+              <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+                Transformations, in the numbers
+              </h2>
+            </Reveal>
+            <Link
+              href="/case-studies"
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-brand"
+            >
+              All case studies
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+            </Link>
+          </div>
+          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-2">
+            {CASE_STUDIES.slice(0, 2).map((cs) => (
+              <RevealItem key={cs.slug}>
+                <Link href="/case-studies" className="card card-hover group flex h-full flex-col p-8">
+                  <p className="text-xs font-medium uppercase tracking-[0.16em] text-brand-sky">
+                    {cs.industry} · {cs.service}
+                  </p>
+                  <h3 className="mt-4 font-display text-xl font-semibold tracking-tight text-foreground">
+                    {cs.headline}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-foreground-muted">
+                    {cs.challenge}
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 border-t border-border pt-5">
+                    {cs.results.slice(0, 3).map((r) => (
+                      <div key={r.label}>
+                        <p className="font-display text-2xl font-bold tracking-tight text-foreground">
+                          {r.metric}
+                        </p>
+                        <p className="mt-0.5 max-w-[12rem] text-xs leading-relaxed text-foreground-muted">
+                          {r.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </Link>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* FAQs */}
+      <section className="border-t border-border py-24">
         <div className="mx-auto max-w-4xl px-6">
           <Reveal>
             <Eyebrow>Questions, answered</Eyebrow>

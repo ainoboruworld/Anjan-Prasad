@@ -1,105 +1,98 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
-import { submitForm } from "@/lib/forms";
+import { useRouter } from "next/navigation";
+import { submitForm, paymentUrl } from "@/lib/forms";
+import { DEMO_SESSION } from "@/lib/data";
+import { Field, SubmitButton, inputCls } from "../ui/Form";
 
-const inputCls = "input";
+const BUSINESS_STAGE = [
+  "Just an idea",
+  "Building / pre-launch",
+  "Early revenue",
+  "Growing business",
+  "Not a founder yet",
+];
 
-/** Demo Session registration — posts through the shared forms layer. */
+/**
+ * Demo Session registration. Captures the lead through the shared forms
+ * layer, then routes to the payment placeholder to collect the ₹99 fee.
+ */
 export function DemoForm() {
+  const router = useRouter();
   const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-
-  if (sent) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-brand/40 bg-brand/10 p-8 text-center"
-        role="status"
-      >
-        <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-brand">
-          <Check className="h-5 w-5 text-brand-ink" strokeWidth={2.5} />
-        </span>
-        <h3 className="mt-4 font-display text-xl font-semibold text-foreground">
-          You&apos;re registered.
-        </h3>
-        <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-foreground-muted">
-          Payment and joining details for Saturday&apos;s session arrive by
-          email shortly.
-        </p>
-      </motion.div>
-    );
-  }
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
     const f = new FormData(e.currentTarget);
     const v = (k: string) => (f.get(k) as string) ?? "";
+    const name = v("fullName");
     await submitForm({
       formType: "Demo Session",
-      name: v("fullName"),
+      name,
       email: v("email"),
       phone: v("phone"),
-      data: { "I am": v("identity") },
+      data: {
+        City: v("city"),
+        Occupation: v("occupation"),
+        "Business Stage": v("stage"),
+        Expectations: v("expectations"),
+      },
     });
-    setSending(false);
-    setSent(true);
+    router.push(
+      paymentUrl({ plan: "Demo Session", amount: DEMO_SESSION.fee, name })
+    );
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
-      <p className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
-        Register for Saturday
-      </p>
-      <div>
-        <label htmlFor="demo-name" className="sr-only">
-          Full Name
-        </label>
-        <input id="demo-name" name="fullName" required placeholder="Full name" className={inputCls} />
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="demo-email" className="sr-only">
-            Email
-          </label>
+    <form onSubmit={onSubmit} className="space-y-6">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <Field label="Full Name" htmlFor="demo-name">
+          <input id="demo-name" name="fullName" required placeholder="Your name" className={inputCls} />
+        </Field>
+        <Field label="Email" htmlFor="demo-email">
           <input id="demo-email" name="email" type="email" required placeholder="you@email.com" className={inputCls} />
-        </div>
-        <div>
-          <label htmlFor="demo-phone" className="sr-only">
-            Phone Number
-          </label>
+        </Field>
+        <Field label="Phone Number" htmlFor="demo-phone">
           <input id="demo-phone" name="phone" type="tel" required placeholder="+91" className={inputCls} />
-        </div>
+        </Field>
+        <Field label="City" htmlFor="demo-city">
+          <input id="demo-city" name="city" required placeholder="City" className={inputCls} />
+        </Field>
+        <Field label="Occupation" htmlFor="demo-occupation">
+          <input id="demo-occupation" name="occupation" required placeholder="Student, professional, founder…" className={inputCls} />
+        </Field>
+        <Field label="Business Stage" htmlFor="demo-stage">
+          <select id="demo-stage" name="stage" required defaultValue="" className={inputCls}>
+            <option value="" disabled>
+              Where are you today?
+            </option>
+            {BUSINESS_STAGE.map((s) => (
+              <option key={s}>{s}</option>
+            ))}
+          </select>
+        </Field>
       </div>
-      <div>
-        <label htmlFor="demo-identity" className="sr-only">
-          I am
-        </label>
-        <select id="demo-identity" name="identity" required defaultValue="" className={inputCls}>
-          <option value="" disabled>
-            I am…
-          </option>
-          {["A Student", "A Working Professional", "A Founder", "A Business Owner", "Other"].map(
-            (o) => (
-              <option key={o}>{o}</option>
-            )
-          )}
-        </select>
-      </div>
-      <button
-        type="submit"
-        disabled={sending}
-        className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand py-4 text-[15px] font-semibold text-brand-ink transition-colors hover:bg-brand-hover disabled:opacity-60"
-      >
-        {sending ? "Registering…" : "Register — ₹199 fee"}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
-      </button>
+
+      <Field label="What do you expect from the session?" htmlFor="demo-expectations">
+        <textarea
+          id="demo-expectations"
+          name="expectations"
+          rows={4}
+          placeholder="A line or two on what you'd like to walk away with…"
+          className={`${inputCls} resize-y`}
+        />
+      </Field>
+
+      <SubmitButton
+        sending={sending}
+        idleLabel={`Proceed to Payment — ${DEMO_SESSION.fee}`}
+        sendingLabel="Saving your details…"
+        className="w-full justify-center"
+      />
       <p className="text-center text-xs text-foreground-muted">
-        ₹199 registration fee · Every Saturday · 3 hours live
+        {DEMO_SESSION.fee} registration fee · Weekdays · 3 hours live
       </p>
     </form>
   );

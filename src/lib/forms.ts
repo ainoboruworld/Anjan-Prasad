@@ -15,7 +15,8 @@ export type FormType =
   | "Contact"
   | "Business Advisory"
   | "Demo Session"
-  | "1-to-1 Consultation"
+  | "Monthly Consulting"
+  | "Consultation"
   | "Newsletter"
   | "General Enquiries";
 
@@ -71,4 +72,19 @@ export async function submitForm(payload: FormPayload): Promise<SubmitResult> {
     console.error("[forms] submission failed:", err);
     return { ok: false, queued: false };
   }
+}
+
+/**
+ * Build the checkout URL for the payment placeholder. UPI / gateway
+ * integration lands later; until then paid flows submit their lead through
+ * `submitForm` and then route the visitor here with an order summary.
+ */
+export function paymentUrl(params: {
+  plan: string;
+  amount: string;
+  name?: string;
+}): string {
+  const q = new URLSearchParams({ plan: params.plan, amount: params.amount });
+  if (params.name) q.set("name", params.name);
+  return `/payment?${q.toString()}`;
 }
