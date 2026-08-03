@@ -18,7 +18,7 @@ function VideoCard({ video }: { video: FeaturedVideo }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="card card-hover group block overflow-hidden"
+      className="card card-hover group flex h-full flex-col overflow-hidden"
       data-cursor="view"
     >
       <div className="relative aspect-video overflow-hidden bg-background-sunken">
@@ -39,7 +39,7 @@ function VideoCard({ video }: { video: FeaturedVideo }) {
           </span>
         </span>
       </div>
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <h3 className="font-display text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-brand">
           {video.title}
         </h3>
@@ -69,7 +69,7 @@ export function FeaturedMedia() {
 
         <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURED_VIDEOS.map((v) => (
-            <RevealItem key={v.title}>
+            <RevealItem key={v.title} className="h-full">
               <VideoCard video={v} />
             </RevealItem>
           ))}

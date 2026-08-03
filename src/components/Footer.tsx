@@ -37,9 +37,14 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background-sunken">
+    <footer className="relative overflow-hidden border-t border-border bg-background-sunken">
+      {/* Subtle brand glow — a whisper of sky at the top edge. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(60%_100%_at_50%_0%,color-mix(in_srgb,var(--brand-sky)_9%,transparent),transparent_70%)]"
+      />
       {/* Newsletter band */}
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="relative mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -60,12 +65,13 @@ export function Footer() {
       </div>
 
       {/* Brand, contact, and link columns */}
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-6">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-6">
         <div className="lg:col-span-2">
           <Wordmark />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground-muted">
-            India&apos;s Business Growth Ecosystem — start, build, and scale a
-            profitable business with the operator behind it.
+          <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-foreground-muted">
+            Entrepreneur, business strategist and growth advisor — helping
+            founders and professionals build businesses that are profitable,
+            scalable and built to last.
           </p>
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-foreground-muted">
             0 → 1 → Scale
