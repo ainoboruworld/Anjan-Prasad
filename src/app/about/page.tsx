@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { LogoMark } from "@/components/brand/LogoMark";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Portrait } from "@/components/brand/Portrait";
+import {
+  ACADEMIC_BRANDS,
+  COMPANIES_FOUNDED,
+  ENTERPRISE_BRANDS,
+  STARTUP_BRANDS,
+} from "@/lib/brandLogos";
 import {
   CTAButton,
   Eyebrow,
@@ -63,49 +69,27 @@ const TIMELINE: { year: string; role: string; org?: string; marks?: string[] }[]
   { year: "2025", role: "CEO", org: "Filing Buddy" },
 ];
 
-/** Featured companies, grouped — logos where licensed, wordmarks otherwise. */
-const COMPANY_GROUPS: { title: string; note: string; names: string[] }[] = [
+/** Featured companies, grouped — official logos from the Brand Portfolio. */
+const COMPANY_GROUPS = [
   {
-    title: "Enterprise & Fortune 500",
+    title: "Companies founded",
+    note: "Ventures built and led from the ground up.",
+    logos: COMPANIES_FOUNDED,
+  },
+  {
+    title: "Enterprise & brands worked with",
     note: "Growth, transformation and acquisition mandates at scale.",
-    names: [
-      "Google",
-      "Motorola",
-      "American Express",
-      "Aditya Birla Capital",
-      "Dabur",
-      "Pizza Hut",
-      "KFC",
-      "Airtel",
-      "Snapdeal",
-      "DLF",
-      "NIIT",
-      "Cairn Energy",
-      "Safilo",
-      "Digit Insurance",
-      "ABP News",
-    ],
+    logos: ENTERPRISE_BRANDS,
   },
   {
-    title: "Startup & Scale-up Ecosystem",
-    note: "Ventures built, advised and mentored from the ground up.",
-    names: [
-      "Lushful",
-      "Filing Buddy",
-      "Kabira Mobility",
-      "UrbanKisaan",
-      "Farmart",
-      "Akounto",
-      "Ping Pong Inc.",
-      "Tellofy",
-      "Northmist",
-      "BodhMarga Foundation",
-    ],
+    title: "Startups advised",
+    note: "Scale-ups guided as advisor and mentor.",
+    logos: STARTUP_BRANDS,
   },
   {
-    title: "Academic Institutions",
+    title: "Academic institutions",
     note: "Visiting faculty in strategy, entrepreneurship and growth.",
-    names: ["IIFT", "IMT Ghaziabad", "BML Munjal University"],
+    logos: ACADEMIC_BRANDS,
   },
 ];
 
@@ -321,13 +305,10 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-sm text-foreground-muted">{group.note}</p>
                 </div>
-                <RevealGroup className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-                  {group.names.map((name) => (
-                    <RevealItem
-                      key={name}
-                      className="flex items-center justify-center"
-                    >
-                      <LogoMark name={name} className="logo-mark text-foreground" />
+                <RevealGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                  {group.logos.map((logo) => (
+                    <RevealItem key={logo.file}>
+                      <BrandLogo logo={logo} />
                     </RevealItem>
                   ))}
                 </RevealGroup>

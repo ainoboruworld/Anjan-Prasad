@@ -1,28 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LogoMark } from "../brand/LogoMark";
-
-const NAMES = [
-  "Google",
-  "Sony",
-  "Motorola",
-  "American Express",
-  "Accenture",
-  "Mindshare",
-  "IPG Mediabrands",
-  "Noboru World",
-  "Lushful",
-  "Filing Buddy",
-  "IIFT",
-  "IMT Ghaziabad",
-];
+import Image from "next/image";
+import { TRUST_MARQUEE } from "@/lib/brandLogos";
 
 /**
  * Trust band directly below the hero — a premium auto-scrolling marquee of
- * the organisations Anjan has built, operated inside, advised, and taught
- * at. The track is duplicated so the loop is seamless; hover pauses it and
- * reduced motion falls back to a centred, static wrap (see globals.css).
+ * official brand logos (from the Brand Portfolio). The track is duplicated
+ * for a seamless loop; hover pauses it and reduced motion falls back to a
+ * centred, static wrap (see globals.css).
  */
 export function TrustLogos() {
   return (
@@ -50,15 +36,22 @@ export function TrustLogos() {
         className="marquee mt-9"
       >
         <div className="marquee__track" aria-hidden>
-          {/* Two identical copies for a seamless loop. */}
           {[0, 1].map((copy) => (
-            <ul key={copy} className="flex shrink-0 items-center gap-x-16 px-8">
-              {NAMES.map((name) => (
+            <ul key={copy} className="flex shrink-0 items-center gap-6 px-3">
+              {TRUST_MARQUEE.map((logo) => (
                 <li
-                  key={`${copy}-${name}`}
-                  className="flex items-center text-foreground-muted"
+                  key={`${copy}-${logo.file}`}
+                  className="flex h-14 w-32 shrink-0 items-center justify-center rounded-xl border border-border bg-white/95 px-4 shadow-[var(--shadow-card)]"
                 >
-                  <LogoMark name={name} className="logo-mark" />
+                  <span className="relative h-8 w-full">
+                    <Image
+                      src={`/brand-logos/${logo.file}`}
+                      alt={`${logo.name} logo`}
+                      fill
+                      sizes="128px"
+                      className="object-contain grayscale transition duration-300 hover:grayscale-0"
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -66,10 +59,9 @@ export function TrustLogos() {
         </div>
       </motion.div>
 
-      {/* Same names, non-animated, for assistive tech. */}
       <ul className="sr-only">
-        {NAMES.map((name) => (
-          <li key={name}>{name}</li>
+        {TRUST_MARQUEE.map((logo) => (
+          <li key={logo.file}>{logo.name}</li>
         ))}
       </ul>
     </section>
