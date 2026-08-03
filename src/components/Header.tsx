@@ -177,18 +177,12 @@ export function Header() {
             transition={{ ease: easeSmooth }}
             className="hidden items-center gap-3.5 xl:flex"
           >
-            <Link
-              href="/sign-in"
-              className="text-[length:var(--text-nav)] font-medium text-foreground-muted transition-colors hover:text-foreground"
-            >
-              Sign In
-            </Link>
             <ThemeToggle />
             <Link
-              href="/courses/demo"
-              className="rounded-full bg-brand px-5 py-2.5 text-[length:var(--text-nav)] font-semibold text-brand-ink shadow-[0_10px_30px_-12px_rgba(79,169,255,0.6)] transition-all hover:bg-brand-hover hover:shadow-[0_16px_40px_-14px_rgba(79,169,255,0.7)]"
+              href="/sign-in"
+              className="rounded-full border border-border-strong px-5 py-2.5 text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:bg-background-elevated"
             >
-              Join ₹99 Demo Session
+              Sign In
             </Link>
           </motion.div>
 
@@ -246,18 +240,12 @@ export function Header() {
                   )}
                 </div>
               ))}
-              <div className="mt-2 space-y-3 border-t border-border pt-3">
+              <div className="mt-2 border-t border-border pt-3">
                 <Link
                   href="/sign-in"
                   className="block rounded-full border border-border-strong px-5 py-3 text-center text-sm font-medium text-foreground"
                 >
                   Sign In
-                </Link>
-                <Link
-                  href="/courses/demo"
-                  className="block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-brand-ink"
-                >
-                  Join ₹99 Demo Session
                 </Link>
               </div>
             </div>

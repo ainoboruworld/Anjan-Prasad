@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import { LogoMark } from "@/components/brand/LogoMark";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Portrait } from "@/components/brand/Portrait";
+import { Counter } from "@/components/ui/Counter";
+import {
+  ACADEMIC_BRANDS,
+  COMPANIES_FOUNDED,
+  ENTERPRISE_BRANDS,
+  STARTUP_BRANDS,
+} from "@/lib/brandLogos";
 import {
   CTAButton,
   Eyebrow,
@@ -63,49 +70,27 @@ const TIMELINE: { year: string; role: string; org?: string; marks?: string[] }[]
   { year: "2025", role: "CEO", org: "Filing Buddy" },
 ];
 
-/** Featured companies, grouped — logos where licensed, wordmarks otherwise. */
-const COMPANY_GROUPS: { title: string; note: string; names: string[] }[] = [
+/** Featured companies, grouped — official logos from the Brand Portfolio. */
+const COMPANY_GROUPS = [
   {
-    title: "Enterprise & Fortune 500",
+    title: "Companies founded",
+    note: "Ventures built and led from the ground up.",
+    logos: COMPANIES_FOUNDED,
+  },
+  {
+    title: "Enterprise & brands worked with",
     note: "Growth, transformation and acquisition mandates at scale.",
-    names: [
-      "Google",
-      "Motorola",
-      "American Express",
-      "Aditya Birla Capital",
-      "Dabur",
-      "Pizza Hut",
-      "KFC",
-      "Airtel",
-      "Snapdeal",
-      "DLF",
-      "NIIT",
-      "Cairn Energy",
-      "Safilo",
-      "Digit Insurance",
-      "ABP News",
-    ],
+    logos: ENTERPRISE_BRANDS,
   },
   {
-    title: "Startup & Scale-up Ecosystem",
-    note: "Ventures built, advised and mentored from the ground up.",
-    names: [
-      "Lushful",
-      "Filing Buddy",
-      "Kabira Mobility",
-      "UrbanKisaan",
-      "Farmart",
-      "Akounto",
-      "Ping Pong Inc.",
-      "Tellofy",
-      "Northmist",
-      "BodhMarga Foundation",
-    ],
+    title: "Startups advised",
+    note: "Scale-ups guided as advisor and mentor.",
+    logos: STARTUP_BRANDS,
   },
   {
-    title: "Academic Institutions",
+    title: "Academic institutions",
     note: "Visiting faculty in strategy, entrepreneurship and growth.",
-    names: ["IIFT", "IMT Ghaziabad", "BML Munjal University"],
+    logos: ACADEMIC_BRANDS,
   },
 ];
 
@@ -158,6 +143,36 @@ export default function AboutPage() {
                 }`}
               >
                 {role}
+              </span>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {/* Animated stats — the record in numbers */}
+      <section className="border-b border-border bg-background-sunken py-16 sm:py-20">
+        <RevealGroup
+          as="ul"
+          className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-12 px-6 lg:grid-cols-4"
+        >
+          {[
+            { n: 16, suffix: "+", label: "Years of experience" },
+            { n: 5, suffix: "", label: "Ventures built & co-founded" },
+            { n: 100, suffix: "+", label: "Brands advised" },
+            { n: 3, suffix: "", label: "Premier B-schools taught at" },
+          ].map((s) => (
+            <RevealItem
+              as="li"
+              key={s.label}
+              className="flex flex-col items-center gap-2 text-center"
+            >
+              <Counter
+                value={s.n}
+                suffix={s.suffix}
+                className="font-display text-5xl font-semibold tracking-tight text-foreground sm:text-6xl"
+              />
+              <span className="max-w-[12rem] text-sm leading-relaxed text-foreground-muted">
+                {s.label}
               </span>
             </RevealItem>
           ))}
@@ -321,13 +336,10 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-sm text-foreground-muted">{group.note}</p>
                 </div>
-                <RevealGroup className="mt-8 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
-                  {group.names.map((name) => (
-                    <RevealItem
-                      key={name}
-                      className="flex items-center justify-center"
-                    >
-                      <LogoMark name={name} className="logo-mark text-foreground" />
+                <RevealGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                  {group.logos.map((logo) => (
+                    <RevealItem key={logo.file}>
+                      <BrandLogo logo={logo} />
                     </RevealItem>
                   ))}
                 </RevealGroup>

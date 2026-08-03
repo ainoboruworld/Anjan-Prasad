@@ -127,8 +127,8 @@ export function Hero() {
             variants={slideInLeft}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <CTAButton href="/courses/demo">Book a ₹99 Demo Session</CTAButton>
-            <GhostButton href="/business-advisory">Explore Business Advisory</GhostButton>
+            <CTAButton href="/consulting#book">Book Consultation</CTAButton>
+            <GhostButton href="/business-advisory">Explore Services</GhostButton>
           </motion.div>
 
           <motion.ul
