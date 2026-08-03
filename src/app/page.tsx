@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { TrustLogos } from "@/components/home/TrustLogos";
 import { TrustIndicators } from "@/components/home/TrustIndicators";
 import { AboutPreview } from "@/components/home/AboutPreview";
 import { AdvisoryServices } from "@/components/home/AdvisoryServices";
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <TrustLogos />
       <TrustIndicators />
       <AboutPreview />
       <AdvisoryServices />

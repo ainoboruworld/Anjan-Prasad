@@ -329,6 +329,65 @@ body {
   background: var(--brand-gold);
 }
 
+/* ── Logo marquee ───────────────────────────────────────────────────── */
+
+/*
+ * Premium auto-scrolling logo band. Two identical tracks translate left in
+ * lockstep for a seamless loop; edges fade via a mask; hover pauses. GPU-
+ * friendly (transform only) and fully disabled under reduced motion.
+ */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 46s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* Two copies sit side by side; shifting by half the width loops seamlessly. */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ── Utility styling ────────────────────────────────────────────────── */
 
 /* Hide the native cursor when the custom cursor is active */
