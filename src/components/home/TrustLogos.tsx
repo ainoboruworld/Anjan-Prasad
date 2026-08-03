@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { LogoMark } from "../brand/LogoMark";
-import { easeSmooth } from "../motion";
 
 const NAMES = [
   "Google",
@@ -20,8 +19,10 @@ const NAMES = [
 ];
 
 /**
- * Trust band directly below the hero: the organisations Anjan has built,
- * operated inside, advised, and taught at — one quiet line of proof.
+ * Trust band directly below the hero — a premium auto-scrolling marquee of
+ * the organisations Anjan has built, operated inside, advised, and taught
+ * at. The track is duplicated so the loop is seamless; hover pauses it and
+ * reduced motion falls back to a centred, static wrap (see globals.css).
  */
 export function TrustLogos() {
   return (
@@ -37,39 +38,40 @@ export function TrustLogos() {
           transition={{ duration: 0.6 }}
           className="text-center text-xs font-medium uppercase tracking-[0.28em] text-foreground-muted"
         >
-          Built with · Operated inside · Advised · Taught at
+          Trusted by leading organisations
         </motion.p>
-
-        <motion.ul
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } },
-          }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-x-12 gap-y-8"
-        >
-          {NAMES.map((name) => (
-            <motion.li
-              key={name}
-              variants={{
-                hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.6, ease: easeSmooth },
-                },
-              }}
-              className="group flex items-center text-foreground-muted transition-all duration-300 hover:-translate-y-0.5 hover:text-foreground"
-              data-cursor="node"
-            >
-              <LogoMark name={name} />
-            </motion.li>
-          ))}
-        </motion.ul>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="marquee mt-9"
+      >
+        <div className="marquee__track" aria-hidden>
+          {/* Two identical copies for a seamless loop. */}
+          {[0, 1].map((copy) => (
+            <ul key={copy} className="flex shrink-0 items-center gap-x-16 px-8">
+              {NAMES.map((name) => (
+                <li
+                  key={`${copy}-${name}`}
+                  className="flex items-center text-foreground-muted"
+                >
+                  <LogoMark name={name} className="logo-mark" />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Same names, non-animated, for assistive tech. */}
+      <ul className="sr-only">
+        {NAMES.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
     </section>
   );
 }

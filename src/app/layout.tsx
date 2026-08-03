@@ -27,27 +27,64 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ap.com"),
   title: {
-    default: "AP.com — India's Business Growth Ecosystem",
-    template: "%s — AP.com",
+    default: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
+    template: "%s — Anjan Prasad",
   },
   description:
-    "AP.com is India's business growth ecosystem — where entrepreneurs, professionals, and organisations learn how successful businesses are actually built. Led by Anjan Prasad, business transformation and growth advisor.",
+    "Anjan Prasad is an entrepreneur, business strategist, startup mentor and growth advisor with 16+ years building, scaling and transforming companies — from Fortune 500 rooms to bootstrapped ventures.",
   keywords: [
-    "start a business in India",
-    "business growth",
-    "business consulting",
-    "corporate training",
-    "AI for business",
     "Anjan Prasad",
+    "business strategist",
+    "startup mentor",
+    "growth advisor",
+    "business advisory India",
+    "business consulting",
+    "startup consulting",
+    "Noboru World",
+    "Filing Buddy",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "AP.com — India's Business Growth Ecosystem",
+    title: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
     description:
-      "Start, build, and scale a profitable business — with the operator who has done it three times.",
+      "16+ years building, scaling and transforming companies. Advisory, consultation, and courses for founders and professionals.",
     type: "website",
     locale: "en_IN",
+    siteName: "Anjan Prasad",
+    url: "/",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
+    description:
+      "16+ years building, scaling and transforming companies. Advisory, consultation, and courses.",
+  },
+};
+
+/** Person + Organisation structured data for rich results. */
+const PERSON_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Anjan Prasad",
+  jobTitle: "Entrepreneur, Business Strategist & Growth Advisor",
+  description:
+    "Entrepreneur, business strategist, startup mentor and growth advisor with 16+ years building, scaling and transforming companies.",
+  worksFor: { "@type": "Organization", name: "Noboru World" },
+  alumniOf: ["IIFT", "IMT Ghaziabad", "BML Munjal University"],
+  knowsAbout: [
+    "Business Strategy",
+    "Startup Consulting",
+    "Business Growth",
+    "Digital Transformation",
+    "Go-to-Market Strategy",
+    "Leadership & Mentorship",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/anjanprasad/",
+    "https://www.instagram.com/anjanpr/?hl=en",
+  ],
 };
 
 export default function RootLayout({
@@ -62,6 +99,10 @@ export default function RootLayout({
       className={`${inter.variable} ${manrope.variable} ${fraunces.variable}`}
     >
       <body className="bg-paper min-h-screen antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSONLD) }}
+        />
         <ThemeProvider>
           <Preloader />
           <Cursor />

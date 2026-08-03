@@ -7,7 +7,7 @@ import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
  * cards, leading to the full advisory page.
  */
 export function AdvisoryServices() {
-  const services = CONSULTING_OUTCOMES.slice(0, 6);
+  const services = CONSULTING_OUTCOMES.slice(0, 3);
 
   return (
     <section className="border-t border-border bg-background-sunken py-28 sm:py-36">

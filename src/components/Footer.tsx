@@ -29,6 +29,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "About Anjan", href: "/about" },
       { label: "Resources", href: "/resources" },
+      { label: "Contact", href: "/contact" },
       { label: "Sign In", href: "/sign-in" },
     ],
   },
