@@ -10,35 +10,17 @@ import { Wordmark } from "./brand/ApMark";
 import { easeSmooth } from "./motion";
 import { NAV, type NavItem } from "@/lib/data";
 
-/** Miniature blueprint glyph rendered per dropdown item. */
-function MenuGlyph({ seed }: { seed: number }) {
-  const variants = [
-    // path drawn between nodes
-    <g key="a">
-      <circle cx="8" cy="24" r="2.5" fill="var(--brand-gold)" />
-      <path d="M8 24 C16 24 16 8 26 8" stroke="currentColor" strokeOpacity="0.45" fill="none" />
-      <circle cx="26" cy="8" r="2.5" fill="currentColor" fillOpacity="0.5" />
-    </g>,
-    // rising steps
-    <g key="b" stroke="currentColor" strokeOpacity="0.45" fill="none">
-      <path d="M4 26 H12 V18 H20 V10 H28" />
-      <circle cx="28" cy="10" r="2.5" fill="var(--brand-gold)" stroke="none" />
-    </g>,
-    // connected grid
-    <g key="c">
-      <rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" strokeOpacity="0.45" fill="none" />
-      <rect x="18" y="18" width="9" height="9" rx="2" stroke="currentColor" strokeOpacity="0.45" fill="none" />
-      <path d="M14 14 L18 18" stroke="var(--brand-gold)" />
-    </g>,
-    // orbit
-    <g key="d">
-      <circle cx="16" cy="16" r="10" stroke="currentColor" strokeOpacity="0.45" fill="none" />
-      <circle cx="24" cy="9" r="2.5" fill="var(--brand-gold)" />
-    </g>,
-  ];
+/** Clean icon chip per dropdown item — a rising-growth glyph, no clutter. */
+function ItemGlyph() {
   return (
-    <svg viewBox="0 0 32 32" className="h-8 w-8 text-foreground" aria-hidden>
-      {variants[seed % variants.length]}
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
+      <path
+        d="M4 20V10M10 20V6M16 20v-8M4 8l6-4 6 4 4-2"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -70,37 +52,39 @@ function Dropdown({ item }: { item: NavItem }) {
         {open && (
           <motion.div
             role="menu"
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            initial={{ opacity: 0, y: 10, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
+            exit={{ opacity: 0, y: 10, scale: 0.985 }}
             transition={{ duration: 0.28, ease: easeSmooth }}
-            className="absolute left-1/2 top-full w-[26rem] -translate-x-1/2 pt-4"
+            className="absolute left-0 top-full w-[32rem] max-w-[calc(100vw-2rem)] pt-4"
           >
-            <div className="overflow-hidden rounded-3xl border border-border bg-glass p-3 shadow-[var(--shadow-soft)] backdrop-blur-2xl">
-              {item.children?.map((child, i) => (
-                <Link
-                  key={child.label}
-                  href={child.href}
-                  role="menuitem"
-                  className="group flex items-start gap-4 rounded-2xl px-4 py-4 transition-colors hover:bg-background-elevated"
-                >
-                  <span className="mt-0.5 shrink-0 rounded-xl border border-border bg-background p-2 transition-colors group-hover:border-brand/40">
-                    <MenuGlyph seed={i} />
-                  </span>
-                  <span className="min-w-0">
-                    <span className="flex items-center gap-1.5 text-[15px] font-medium text-foreground">
-                      {child.label}
-                      <ArrowUpRight
-                        className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100"
-                        strokeWidth={2}
-                      />
+            <div className="rounded-[1.75rem] border border-border-strong bg-background-elevated p-4 shadow-[var(--shadow-soft)] ring-1 ring-black/[0.03] backdrop-blur-2xl">
+              <div className="grid gap-2.5">
+                {item.children?.map((child) => (
+                  <Link
+                    key={child.label}
+                    href={child.href}
+                    role="menuitem"
+                    className="group flex items-start gap-4 rounded-2xl border border-transparent p-5 transition-all duration-300 hover:border-border hover:bg-background-sunken"
+                  >
+                    <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/12 text-brand transition-transform duration-300 group-hover:scale-105">
+                      <ItemGlyph />
                     </span>
-                    <span className="mt-1 block text-[13px] leading-relaxed text-foreground-muted">
-                      {child.description}
+                    <span className="min-w-0">
+                      <span className="flex items-center gap-1.5 font-display text-[17px] font-semibold tracking-tight text-foreground">
+                        {child.label}
+                        <ArrowUpRight
+                          className="h-4 w-4 -translate-x-1 text-brand opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                          strokeWidth={2}
+                        />
+                      </span>
+                      <span className="mt-1.5 block text-[13.5px] leading-relaxed text-foreground-muted">
+                        {child.description}
+                      </span>
                     </span>
-                  </span>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}

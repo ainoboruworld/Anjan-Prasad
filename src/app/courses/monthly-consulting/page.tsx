@@ -7,14 +7,14 @@ import { PageHero, RuleTick, SectionHeading } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Monthly Consulting — ₹9,999 / month",
+  title: "Business Growth Program — ₹9,999 / month",
   description:
-    "A recurring monthly engagement with Anjan Prasad: weekly weekday consulting, business planning, roadmaps, founder support, and accountability. ₹9,999 per month.",
+    "A structured monthly program with Anjan Prasad: business education, weekday sessions, planning, roadmaps, founder support, and accountability. ₹9,999 per month.",
   alternates: { canonical: "/courses/monthly-consulting" },
   openGraph: {
-    title: "Monthly Consulting — ₹9,999/mo · AP.com",
+    title: "Business Growth Program — ₹9,999/mo · AP.com",
     description:
-      "Weekly weekday consulting, planning, and accountability — your business moved forward every week.",
+      "Structured business education, planning, and accountability — your business moved forward every week.",
     url: "/courses/monthly-consulting",
     type: "website",
   },
@@ -33,7 +33,7 @@ const INCLUDES = [
 const FAQS = [
   {
     q: "How is this different from a Consultation?",
-    a: "A Consultation is a single focused session on one decision. Monthly Consulting is an ongoing engagement — weekly sessions, a plan, and accountability that compounds over the month.",
+    a: "A Consultation is a single focused session on one decision. The Business Growth Program is an ongoing, structured engagement — weekly sessions, a curriculum, a plan, and accountability that compounds over the month.",
   },
   {
     q: "When do sessions happen?",
@@ -56,7 +56,7 @@ export default function MonthlyConsultingPage() {
         eyebrow={`${MONTHLY_CONSULTING.badge} · ${MONTHLY_CONSULTING.price}/mo`}
         title={
           <>
-            Monthly Consulting —{" "}
+            Business Growth Program —{" "}
             <span className="editorial-accent text-brand">
               momentum every week.
             </span>

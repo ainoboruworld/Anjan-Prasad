@@ -51,8 +51,8 @@ const PROCESS = [
 
 const FAQS = [
   {
-    q: "How is this different from Monthly Consulting?",
-    a: "A Consultation is a single, focused session on one decision. Monthly Consulting is an ongoing engagement with weekly sessions and accountability across the month.",
+    q: "How is this different from the Business Growth Program?",
+    a: "A Consultation is a single, focused session on one decision. The Business Growth Program is an ongoing, structured engagement with weekly sessions and accountability across the month.",
   },
   {
     q: "Online or in person?",
@@ -80,6 +80,44 @@ export default function ConsultationPage() {
         }
         lead={CONSULTING_SESSION.description}
       />
+
+      {/* What is Consultation? */}
+      <section className="border-t border-border py-20 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <Reveal>
+            <SectionHeading
+              eyebrow="What is Consultation?"
+              title={
+                <>
+                  Personal, one-to-one{" "}
+                  <span className="editorial-accent text-brand">expert guidance.</span>
+                </>
+              }
+            />
+          </Reveal>
+          <Reveal>
+            <p className="text-[length:var(--text-lead)] leading-relaxed text-foreground">
+              A Consultation is a private, focused session with Anjan Prasad —
+              for individuals seeking strategic advice, mentorship, and clarity
+              on a specific business challenge.
+            </p>
+            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+              It&apos;s not a course and it&apos;s not a long-term engagement.
+              You bring one real question — pricing, positioning, growth, a
+              hire, or the next big call — and leave with a decision, a plan,
+              and the first steps to act on. If your business needs an ongoing
+              partnership,{" "}
+              <a
+                href="/business-advisory"
+                className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
+              >
+                Business Advisory
+              </a>{" "}
+              is the better fit.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* Benefits */}
       <section className="border-t border-border py-20 sm:py-24">

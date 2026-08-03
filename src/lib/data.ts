@@ -22,18 +22,20 @@ export type NavItem = {
 
 export const NAV: NavItem[] = [
   {
-    label: "Courses",
+    label: "Programs",
     href: "/courses",
     children: [
       {
-        label: "Demo Session",
+        label: "₹99 Demo Session",
         href: "/courses/demo",
-        description: "Weekdays · 3 hours live · ₹99 registration fee.",
+        description:
+          "A 3-hour live introductory session — teaching, business discussion, and live Q&A. The best way to experience Anjan Prasad's teaching first-hand.",
       },
       {
-        label: "Monthly Consulting",
+        label: "Business Growth Program",
         href: "/courses/monthly-consulting",
-        description: "Weekly consulting, planning, and accountability — ₹9,999 / month.",
+        description:
+          "Structured business education and practical growth strategies for founders, entrepreneurs, professionals, and business owners.",
       },
     ],
   },
@@ -290,7 +292,7 @@ export const PERSONAS: Persona[] = [
     ],
     path: [
       { label: "Demo Session", href: "/courses/demo", note: "See how businesses are actually built." },
-      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Projects, mentorship, and community." },
+      { label: "Business Growth Program", href: "/courses/monthly-consulting", note: "Projects, mentorship, and community." },
       { label: "Knowledge Hub", href: "/knowledge-hub", note: "Free playbooks to start today." },
     ],
   },
@@ -308,7 +310,7 @@ export const PERSONAS: Persona[] = [
     ],
     path: [
       { label: "Demo Session", href: "/courses/demo", note: "A working preview of the playbook." },
-      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Build a venture alongside your job." },
+      { label: "Business Growth Program", href: "/courses/monthly-consulting", note: "Build a venture alongside your job." },
       { label: "Case Studies", href: "/case-studies", note: "Proof it works for people like you." },
     ],
   },
@@ -327,7 +329,7 @@ export const PERSONAS: Persona[] = [
     path: [
       { label: "Business Advisory", href: "/business-advisory", note: "Hands-on transformation, inside your business." },
       { label: "Case Studies", href: "/case-studies", note: "How other founders rebuilt." },
-      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "The playbook, self-driven." },
+      { label: "Business Growth Program", href: "/courses/monthly-consulting", note: "The playbook, self-driven." },
     ],
   },
   {
@@ -362,7 +364,7 @@ export const PERSONAS: Persona[] = [
     ],
     path: [
       { label: "Demo Session", href: "/courses/demo", note: "Start small, see the method." },
-      { label: "Monthly Consulting", href: "/courses/monthly-consulting", note: "Mentorship and community included." },
+      { label: "Business Growth Program", href: "/courses/monthly-consulting", note: "Mentorship and community included." },
       { label: "Testimonials", href: "/testimonials", note: "Women who built with AP.com." },
     ],
   },
@@ -543,7 +545,7 @@ export const ADVISORY_FAQS = [
   },
   {
     q: "What size of business is this for?",
-    a: "Founders and SMEs with real revenue, and enterprises with a specific transformation or capability mandate. If a Demo Session or Monthly Consulting is the better starting point for your stage, we'll say so.",
+    a: "Founders and SMEs with real revenue, and enterprises with a specific transformation or capability mandate. If a Demo Session or the Business Growth Program is the better starting point for your stage, we'll say so.",
   },
   {
     q: "How long does an engagement run?",
@@ -608,33 +610,34 @@ export const DEMO_SESSION = {
 } as const;
 
 /**
- * Monthly Consulting — the recurring, higher-touch program. Exported under
- * the historical `LIVE_COURSE` name so existing imports keep working while
- * the visible identity is Monthly Consulting.
+ * Business Growth Program — the flagship structured learning program.
+ * Exported under the historical `LIVE_COURSE` name so existing imports keep
+ * working while the visible identity is the Business Growth Program.
  */
 export const LIVE_COURSE = {
   id: "monthly-consulting",
-  badge: "Go deeper",
-  name: "Monthly Consulting",
-  altName: "Monthly Consulting Program",
+  badge: "Flagship program",
+  name: "Business Growth Program",
+  altName: "Business Growth Program",
   price: "₹9,999",
-  priceNote: "Per month · weekday sessions · founder support",
-  promise: "A month of hands-on consulting — your business moved forward every week.",
+  priceNote: "Per month · weekday sessions · structured curriculum",
+  promise:
+    "Structured business education and practical growth strategies — your business moved forward every week.",
   description:
-    "A recurring monthly engagement built around your business. Weekly working sessions, a clear plan, and an operator holding you accountable to it — so execution actually happens between the calls, not just during them.",
+    "A comprehensive program for founders, entrepreneurs, professionals, and business owners who want structured business education and a clear path to growth. Weekly working sessions, a living plan, and an operator holding you accountable — so learning turns into execution.",
   pillars: [
-    { title: "Weekly consulting", copy: "A standing weekday session on the decisions that matter this week." },
+    { title: "Structured curriculum", copy: "Business education sequenced from fundamentals to growth strategy." },
     { title: "Business planning & roadmaps", copy: "A living plan with priorities, milestones, and the sequence to hit them." },
     { title: "Founder support & accountability", copy: "Direct access between sessions, and someone tracking that it gets done." },
     { title: "Execution & scaling", copy: "Systems and hiring designed to grow the business past its founder." },
   ],
   outcomes: [
-    "A prioritised operating roadmap for the quarter",
+    "A prioritised growth roadmap for the quarter",
     "Weekly momentum on your biggest constraints",
-    "Systems and accountability that outlast the month",
+    "Business systems and habits that outlast the program",
     "Direct founder support when the hard calls hit",
   ],
-  cta: "Start Monthly Consulting",
+  cta: "Join the Business Growth Program",
 } as const;
 
 /** Canonical alias for readability in new code. */
@@ -1027,9 +1030,9 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      "Monthly Consulting made me build, not watch. I left with a validated model and my first paying customers.",
+      "The Business Growth Program made me build, not watch. I left with a validated model and my first paying customers.",
     name: "Sneha Iyer",
-    title: "Monthly Consulting client · D2C founder",
+    title: "Business Growth Program member · D2C founder",
     kind: "Student",
   },
   {
