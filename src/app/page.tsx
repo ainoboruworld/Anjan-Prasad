@@ -9,7 +9,6 @@ import { WhoWeHelp } from "@/components/home/WhoWeHelp";
 import { BrandsWall } from "@/components/home/BrandsWall";
 import { TestimonialsHome } from "@/components/home/TestimonialsHome";
 import { FeaturedMedia } from "@/components/home/FeaturedMedia";
-import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = {
@@ -36,7 +35,6 @@ export default function Home() {
       <BrandsWall />
       <TestimonialsHome />
       <FeaturedMedia />
-      <NewsletterSection />
       <FinalCTA />
     </main>
   );
