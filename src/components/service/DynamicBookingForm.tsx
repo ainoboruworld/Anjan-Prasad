@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { UploadCloud } from "lucide-react";
@@ -100,6 +100,25 @@ export function DynamicBookingForm({
   const [error, setError] = useState("");
 
   const variant = variants.find((v) => v.id === activeId) ?? variants[0];
+
+  // Deep-linking: a hash of `#book-<variantId>` (from the Programs nav) both
+  // scrolls to the booking anchor and pre-selects the matching program tab.
+  useEffect(() => {
+    const applyHash = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+      const id = hash.startsWith("book-") ? hash.slice("book-".length) : "";
+      if (id && variants.some((v) => v.id === id)) {
+        setActiveId(id);
+        setValues({});
+        setFileName("");
+      }
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+    // variants is stable (page-level config); run on mount + hash changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const tier: PriceTier | undefined = useMemo(() => {
     const id =

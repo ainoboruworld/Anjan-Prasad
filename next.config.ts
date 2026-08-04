@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     // Legacy IA → the current IA.
     return [
-      { source: "/consulting", destination: "/business-advisory", permanent: true },
       { source: "/corporate-training", destination: "/business-advisory", permanent: true },
       { source: "/counselling", destination: "/contact", permanent: true },
       { source: "/resources/blogs", destination: "/knowledge-hub", permanent: true },

@@ -1,40 +1,37 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
-import { TrustLogos } from "@/components/home/TrustLogos";
-import { TrustIndicators } from "@/components/home/TrustIndicators";
-import { AboutPreview } from "@/components/home/AboutPreview";
-import { AdvisoryServices } from "@/components/home/AdvisoryServices";
-import { ConsultingPreview } from "@/components/home/ConsultingPreview";
-import { WhoWeHelp } from "@/components/home/WhoWeHelp";
-import { BrandsWall } from "@/components/home/BrandsWall";
-import { TestimonialsHome } from "@/components/home/TestimonialsHome";
-import { FeaturedMedia } from "@/components/home/FeaturedMedia";
+import { CompaniesWorkedWith } from "@/components/home/CompaniesWorkedWith";
+import { TrustExperience } from "@/components/home/TrustExperience";
+import { AboutIntro } from "@/components/home/AboutIntro";
+import { ConsultationIntro } from "@/components/home/ConsultationIntro";
+import { BrandWallSection } from "@/components/home/BrandWallSection";
+import { HomeTestimonials } from "@/components/home/HomeTestimonials";
+import { KnowledgeMedia } from "@/components/home/KnowledgeMedia";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = {
   title: "AP.com — India's Business Growth Ecosystem",
   description:
-    "Start, build, and scale a profitable business. Education, consulting, and corporate training from Anjan Prasad — business transformation and growth advisor.",
+    "Build a business that outlasts you. Strategic business advisory, executive consulting, leadership development and scalable growth systems from Anjan Prasad.",
 };
 
 /**
- * Homepage — a conversion-focused flow that answers, in order:
- * who Anjan is, why to trust him, who he's worked with, how he helps,
- * which service fits, and what to do next.
+ * Homepage — a premium, executive user journey:
+ * Hero → Companies → Trust & Experience → About → Career Consultation →
+ * Brand Wall → Testimonials → Knowledge & Media → Final CTA.
+ * Simple, story-led, and consistent with the wider AP.com design system.
  */
 export default function Home() {
   return (
     <main>
       <Hero />
-      <TrustLogos />
-      <TrustIndicators />
-      <AboutPreview />
-      <AdvisoryServices />
-      <ConsultingPreview />
-      <WhoWeHelp />
-      <BrandsWall />
-      <TestimonialsHome />
-      <FeaturedMedia />
+      <CompaniesWorkedWith />
+      <TrustExperience />
+      <AboutIntro />
+      <ConsultationIntro />
+      <BrandWallSection />
+      <HomeTestimonials />
+      <KnowledgeMedia />
       <FinalCTA />
     </main>
   );
