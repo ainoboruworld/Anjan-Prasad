@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import { submitForm } from "@/lib/forms";
+import { subscribeNewsletter } from "@/lib/newsletter";
 
 /** Newsletter capture — name + email, posts through the shared forms layer. */
 export function Newsletter() {
@@ -14,8 +14,7 @@ export function Newsletter() {
     e.preventDefault();
     setSending(true);
     const f = new FormData(e.currentTarget);
-    await submitForm({
-      formType: "Newsletter",
+    await subscribeNewsletter({
       name: (f.get("name") as string) ?? "",
       email: (f.get("email") as string) ?? "",
     });

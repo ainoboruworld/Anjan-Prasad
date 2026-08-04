@@ -11,7 +11,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Demo Session", href: "/courses/demo" },
       { label: "Live Course", href: "/courses/monthly-consulting" },
-      { label: "Blogs", href: "/knowledge-hub" },
+      { label: "Blogs", href: "/knowledge-hub/blogs" },
       { label: "Featured Media", href: "/media" },
     ],
   },
@@ -28,7 +28,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "AP.com",
     links: [
       { label: "About Anjan", href: "/about" },
-      { label: "Resources", href: "/resources" },
+      { label: "Knowledge Hub", href: "/knowledge-hub" },
       { label: "Contact", href: "/contact" },
       { label: "Sign In", href: "/sign-in" },
     ],
