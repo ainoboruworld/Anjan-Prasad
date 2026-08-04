@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope, Fraunces } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 import { Preloader } from "@/components/Preloader";
 import { Cursor } from "@/components/Cursor";
 import { Header } from "@/components/Header";
@@ -104,11 +105,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSONLD) }}
         />
         <ThemeProvider>
-          <Preloader />
-          <Cursor />
-          <Header />
-          {children}
-          <Footer />
+          <AuthProvider>
+            <Preloader />
+            <Cursor />
+            <Header />
+            {children}
+            <Footer />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

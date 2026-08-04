@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { UserNav, UserNavMobile } from "./auth/UserNav";
 import { Wordmark } from "./brand/ApMark";
 import { easeSmooth } from "./motion";
 import { NAV, type NavItem } from "@/lib/data";
@@ -162,12 +163,7 @@ export function Header() {
             className="hidden items-center gap-3.5 xl:flex"
           >
             <ThemeToggle />
-            <Link
-              href="/sign-in"
-              className="rounded-full border border-border-strong px-5 py-2.5 text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:bg-background-elevated"
-            >
-              Sign In
-            </Link>
+            <UserNav />
           </motion.div>
 
           {/* Mobile controls */}
@@ -225,12 +221,7 @@ export function Header() {
                 </div>
               ))}
               <div className="mt-2 border-t border-border pt-3">
-                <Link
-                  href="/sign-in"
-                  className="block rounded-full border border-border-strong px-5 py-3 text-center text-sm font-medium text-foreground"
-                >
-                  Sign In
-                </Link>
+                <UserNavMobile onNavigate={() => setMobileOpen(false)} />
               </div>
             </div>
           </motion.div>

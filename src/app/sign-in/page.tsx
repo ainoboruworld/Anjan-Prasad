@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { AuthPanel } from "@/components/AuthPanel";
+import { Suspense } from "react";
+import { SignInForm } from "@/components/auth/SignInForm";
 import { Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Sign In",
-  description: "Access your AP.com courses, community, and saved playbooks.",
+  description:
+    "Sign in to AP.com with a one-time email code — no password needed. Access your profile, bookings, and saved resources.",
 };
 
 export default function SignInPage() {
@@ -20,15 +22,23 @@ export default function SignInPage() {
               <span className="editorial-accent text-brand">the build.</span>
             </h1>
             <p className="mt-7 max-w-md text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-              Courses, community, and your saved playbooks — one door for all
-              of it.
+              Your profile, bookings, and saved playbooks — one door for all of
+              it. Sign in with a one-time code; no password to remember.
             </p>
           </Reveal>
           <Reveal>
-            <AuthPanel />
+            <Suspense fallback={<AuthPanelFallback />}>
+              <SignInForm />
+            </Suspense>
           </Reveal>
         </div>
       </section>
     </main>
+  );
+}
+
+function AuthPanelFallback() {
+  return (
+    <div className="h-72 rounded-3xl border border-border bg-background-elevated shadow-[var(--shadow-soft)]" />
   );
 }
