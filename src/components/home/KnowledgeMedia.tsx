@@ -22,7 +22,7 @@ const ARTICLE_CARDS: Card[] = ARTICLES.slice(0, 2).map((a) => ({
   type: "Article",
   title: a.title,
   note: a.dek,
-  href: "/knowledge-hub",
+  href: "/knowledge-hub/blogs",
 }));
 
 const MEDIA_CARDS: Card[] = [
@@ -112,7 +112,7 @@ export function KnowledgeMedia() {
         </RevealGroup>
 
         <Reveal className="mt-12 flex flex-wrap gap-8">
-          <TextLink href="/knowledge-hub">All articles</TextLink>
+          <TextLink href="/knowledge-hub/blogs">All articles</TextLink>
           <TextLink href="/media">All media &amp; recognition</TextLink>
         </Reveal>
       </div>

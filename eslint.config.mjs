@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Sanity Studio config/schemas — deps installed separately, not part of
+    // the Next.js app build (see tsconfig "exclude").
+    "sanity/**",
+    "sanity.config.ts",
   ]),
 ]);
 

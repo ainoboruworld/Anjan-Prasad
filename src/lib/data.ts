@@ -54,23 +54,18 @@ export const NAV: NavItem[] = [
   { label: "Business Advisory", href: "/business-advisory" },
   { label: "Consultation", href: "/consulting" },
   {
-    label: "Resources",
-    href: "/resources",
+    label: "Knowledge Hub",
+    href: "/knowledge-hub",
     children: [
       {
         label: "Blogs",
-        href: "/knowledge-hub",
+        href: "/knowledge-hub/blogs",
         description: "Playbooks, frameworks, and field notes on building businesses.",
-      },
-      {
-        label: "Newsletter",
-        href: "/resources#newsletter",
-        description: "One operator's letter, every week — method, not motivation.",
       },
       {
         label: "Featured Media",
         href: "/media",
-        description: "Talks, videos, podcasts, faculty work, and press.",
+        description: "Videos, talks and appearances — public content across platforms.",
       },
     ],
   },
