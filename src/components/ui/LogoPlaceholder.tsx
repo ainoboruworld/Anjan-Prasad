@@ -1,40 +1,53 @@
 "use client";
 
-import { useState } from "react";
-import { logoFileFor } from "@/lib/brandLogos";
+import { useMemo, useState } from "react";
+import {
+  brandfetchLogo,
+  logoDomainFor,
+  logoFileFor,
+} from "@/lib/brandLogos";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 
 /**
- * Company-logo tiles — compact, premium, fixed-height chips.
+ * Company-logo tiles — compact, premium, perfectly uniform.
  *
- * Real coloured logos from public/brand-logos render on clean white chips at
- * one consistent height, so a wall reads evenly and no mark looks oversized.
- * A brand with no file yet falls back to a refined wordmark — no broken
- * images. To add a logo: drop `<file>.jpg` in public/brand-logos and map the
- * name in src/lib/brandLogos.ts.
+ * Each tile is one fixed height with the logo centred and capped to the same
+ * visual weight regardless of the source aspect ratio. The logo resolves in
+ * order: latest official logo from the Brandfetch CDN (by domain) →
+ * local file in public/brand-logos → a refined wordmark. No broken images.
  */
 
 export interface LogoItem {
   name: string;
-  /** File in public/brand-logos; resolved from the name when omitted. */
+  domain?: string;
   file?: string;
 }
 
 /** A single logo tile. */
-export function LogoChip({ name, file }: LogoItem) {
-  const resolved = file ?? logoFileFor(name);
-  const [failed, setFailed] = useState(false);
+export function LogoChip({ name, domain, file }: LogoItem) {
+  const candidates = useMemo(() => {
+    const list: string[] = [];
+    const d = domain ?? logoDomainFor(name);
+    const f = file ?? logoFileFor(name);
+    if (d) list.push(brandfetchLogo(d));
+    if (f) list.push(`/brand-logos/${f}`);
+    return list;
+  }, [name, domain, file]);
 
-  if (resolved && !failed) {
+  const [attempt, setAttempt] = useState(0);
+  const src = candidates[attempt];
+
+  if (src) {
     return (
       <div className="group flex h-[72px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-white px-5 shadow-[var(--shadow-card)] ring-1 ring-black/[0.04] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static logo asset, intrinsic size varies */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- official logo hotlinked from Brandfetch CDN / static fallback */}
         <img
-          src={`/brand-logos/${resolved}`}
+          key={src}
+          src={src}
           alt={`${name} logo`}
           loading="lazy"
-          onError={() => setFailed(true)}
-          className="max-h-9 w-auto max-w-[82%] object-contain"
+          onError={() => setAttempt((a) => a + 1)}
+          className="max-h-8 w-auto max-w-[80%] object-contain"
         />
       </div>
     );
@@ -49,7 +62,11 @@ export function LogoChip({ name, file }: LogoItem) {
   );
 }
 
-/** A responsive grid of logo tiles — compact, up to six per row. */
+/**
+ * A responsive grid of logo tiles. Columns (2 / 3 / 6) are chosen so that
+ * logo lists sized as multiples of 6 (e.g. 12, 18) fill every row exactly —
+ * no ragged final row.
+ */
 export function LogoGrid({
   logos,
   className = "",
@@ -59,11 +76,11 @@ export function LogoGrid({
 }) {
   return (
     <RevealGroup
-      className={`grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 ${className}`}
+      className={`grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 ${className}`}
     >
       {logos.map((logo) => (
         <RevealItem key={logo.name}>
-          <LogoChip name={logo.name} file={logo.file} />
+          <LogoChip name={logo.name} domain={logo.domain} file={logo.file} />
         </RevealItem>
       ))}
     </RevealGroup>

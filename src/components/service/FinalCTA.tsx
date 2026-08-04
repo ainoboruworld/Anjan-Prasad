@@ -26,7 +26,7 @@ export function FinalCTA({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="bg-blueprint border-t border-border py-28">
+    <section className="bg-blueprint border-t border-border py-20 sm:py-24">
       <motion.div
         initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

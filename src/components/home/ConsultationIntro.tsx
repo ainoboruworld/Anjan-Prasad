@@ -27,7 +27,7 @@ const POINTS = [
 
 export function ConsultationIntro() {
   return (
-    <section className="border-t border-border bg-background-sunken py-28 sm:py-36">
+    <section className="border-t border-border bg-background-sunken py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">

@@ -17,7 +17,7 @@ const ACHIEVEMENTS = [
 
 export function AboutIntro() {
   return (
-    <section className="py-28 sm:py-36">
+    <section className="py-24 sm:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         {/* Portrait placeholder */}
         <Reveal>

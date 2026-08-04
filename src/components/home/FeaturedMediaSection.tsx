@@ -11,8 +11,8 @@ import { RevealGroup, RevealItem } from "../ui/Reveal";
  */
 export function FeaturedMediaSection() {
   return (
-    <section className="border-t border-border py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-t border-border py-20 sm:py-24">
+      <div className="mx-auto max-w-5xl px-6">
         <SectionHeading
           eyebrow="Featured Media"
           title={
@@ -24,7 +24,7 @@ export function FeaturedMediaSection() {
           lead="Watch Anjan Prasad share practical insights on entrepreneurship, business growth, leadership, startups, and building sustainable businesses."
         />
 
-        <RevealGroup className="mt-14 grid gap-6 sm:grid-cols-2">
+        <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">
           {MEDIA_FEATURES.map((video) => (
             <RevealItem key={video.id} className="h-full">
               <VideoCard video={video} />
@@ -59,19 +59,19 @@ function VideoCard({ video }: { video: MediaFeature }) {
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
         />
         <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-brand-ink shadow-[0_14px_36px_-10px_rgba(79,169,255,0.7)] transition-transform duration-300 group-hover:scale-110">
-            <Play className="ml-0.5 h-6 w-6" strokeWidth={2} fill="currentColor" />
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-brand-ink shadow-[0_12px_30px_-10px_rgba(79,169,255,0.7)] transition-transform duration-300 group-hover:scale-110">
+            <Play className="ml-0.5 h-5 w-5" strokeWidth={2} fill="currentColor" />
           </span>
         </span>
-        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
+        <span className="absolute left-3.5 top-3.5 rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur">
           {video.platform}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-7">
-        <h3 className="font-display text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-brand">
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="font-display text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-brand">
           {video.title}
         </h3>
-        <p className="mt-3 flex-1 text-[15px] leading-relaxed text-foreground-muted">
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-foreground-muted">
           {video.description}
         </p>
       </div>

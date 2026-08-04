@@ -12,7 +12,7 @@ export function CompaniesWorkedWith() {
   return (
     <section
       aria-label="Companies worked with and brands advised"
-      className="border-y border-border bg-background-sunken py-20 sm:py-24"
+      className="border-y border-border bg-background-sunken py-16 sm:py-20"
     >
       <div className="mx-auto max-w-7xl px-6">
         <Reveal className="mx-auto flex max-w-md items-center gap-4">
@@ -21,7 +21,7 @@ export function CompaniesWorkedWith() {
           <span aria-hidden className="h-px flex-1 bg-gradient-to-l from-transparent to-border-strong" />
         </Reveal>
 
-        <div className="mt-14 space-y-16">
+        <div className="mt-12 space-y-12">
           <LogoGroup
             title="Companies Worked With"
             note="Organizations where Anjan Prasad has built leadership and professional experience throughout his career."

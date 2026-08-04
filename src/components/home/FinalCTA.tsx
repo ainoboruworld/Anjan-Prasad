@@ -4,7 +4,7 @@ import { Reveal } from "../ui/Reveal";
 /** Closing invitation — the homepage's answer to "what should I do next?" */
 export function FinalCTA() {
   return (
-    <section className="bg-blueprint relative overflow-hidden border-t border-border py-32 sm:py-40">
+    <section className="bg-blueprint relative overflow-hidden border-t border-border py-24 sm:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.12),transparent_65%)] blur-3xl"
