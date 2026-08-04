@@ -1,4 +1,4 @@
-import { EMPLOYMENT_LOGOS, ADVISORY_LOGOS } from "@/lib/brandLogos";
+import { FOUNDED_LOGOS, EMPLOYMENT_LOGOS, ADVISORY_LOGOS } from "@/lib/brandLogos";
 import { LogoGroup } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
@@ -23,8 +23,13 @@ export function CompaniesWorkedWith() {
 
         <div className="mt-12 space-y-12">
           <LogoGroup
+            title="Companies Built"
+            note="Ventures Anjan Prasad founded, co-founded, and leads — not clients or employers, but companies he built from the ground up."
+            logos={FOUNDED_LOGOS}
+          />
+          <LogoGroup
             title="Companies Worked With"
-            note="Organizations where Anjan Prasad has built leadership and professional experience throughout his career."
+            note="Organizations where Anjan Prasad held leadership and professional roles throughout his career."
             logos={EMPLOYMENT_LOGOS}
           />
           <LogoGroup
