@@ -1,344 +1,317 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { CASE_STUDIES, TESTIMONIALS } from "@/lib/data";
+import { ENTERPRISE_BRANDS } from "@/lib/brandLogos";
 import {
-  ADVISORY_FAQS,
-  ADVISORY_OUTCOMES,
-  ADVISORY_PROBLEMS,
-  ADVISORY_PROCESS,
-  CASE_STUDIES,
-  PERSONAS,
-  TESTIMONIALS,
-} from "@/lib/data";
-import { AdvisoryForm } from "@/components/advisory/AdvisoryForm";
-import { OutcomeExplorer } from "@/components/consulting/OutcomeExplorer";
-import { Accordion } from "@/components/ui/Accordion";
-import { CTAButton, Eyebrow, GhostButton, PageHero, RuleTick } from "@/components/ui/Primitives";
+  HeroSection,
+  TrustMetrics,
+  WhoWhatHow,
+  PricingCards,
+  DynamicBookingForm,
+  LogoWall,
+  Testimonials,
+  Timeline,
+  FAQ,
+  FinalCTA,
+  type BookingVariant,
+} from "@/components/service";
+import { Eyebrow } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Business Advisory",
   description:
-    "Strategic, long-term business advisory: transformation, scaling, leadership, systems, growth and decision-making — delivered inside your business and measured in the P&L.",
+    "Build a business that outlasts you. Start with a ₹99 Business Growth Demo, join the Business Growth Cohort, or engage monthly Business Advisory — transformation delivered inside your business by an operator.",
   alternates: { canonical: "/business-advisory" },
   openGraph: {
     title: "Business Advisory — AP.com",
     description:
-      "Long-term transformation and scaling, delivered inside your business by an operator — not a slide deck.",
+      "Build a business that outlasts you. Demo, Cohort, and monthly Advisory — one operator, one shared payment architecture.",
     url: "/business-advisory",
     type: "website",
   },
 };
 
+/* ── Booking configuration — Demo, Cohort, Monthly Advisory ──────────────── */
+
 const INDUSTRIES = [
-  "Finance & Fintech",
-  "D2C & Consumer",
-  "Mobility",
-  "Agriculture",
-  "SaaS & Technology",
-  "Healthcare",
-  "Services & Agencies",
+  "Consumer / D2C",
+  "B2B Services",
   "Manufacturing",
+  "Technology / SaaS",
+  "Healthcare",
+  "Education",
+  "Retail",
+  "Finance",
+  "Other",
 ];
 
-const ADVISORY_VS = [
-  "Strategic and long-term, not a single decision",
-  "Transformation and scaling across the business",
-  "Leadership, systems and decision-making installed",
-  "Delivered inside your business, with your team",
-  "Measured in the P&L over an engagement",
+const STAGES = ["Idea / pre-revenue", "Early revenue", "Growing", "Established / plateaued", "Enterprise"];
+const SIZES = ["Just me", "2–10", "11–50", "51–200", "201–1000", "1000+"];
+
+const ADVISORY_VARIANTS: BookingVariant[] = [
+  {
+    id: "demo",
+    label: "Growth Demo",
+    blurb: "A 3-hour live working session — the fastest way to experience the playbook first-hand.",
+    formType: "Demo Session",
+    mode: "payment",
+    tier: { fixed: "demo" },
+    fields: [
+      { name: "fullName", label: "Full name", type: "text", required: true, placeholder: "Your name" },
+      { name: "email", label: "Email", type: "email", required: true, placeholder: "you@email.com" },
+      { name: "phone", label: "Phone", type: "tel", required: true, placeholder: "+91" },
+      { name: "city", label: "City", type: "text", required: true, placeholder: "City" },
+      {
+        name: "occupation",
+        label: "You are",
+        type: "select",
+        required: true,
+        placeholder: "Select one",
+        options: ["Student", "Working professional", "Founder", "Business owner"],
+      },
+      { name: "stage", label: "Business stage", type: "select", required: true, placeholder: "Select stage", options: STAGES },
+      {
+        name: "expectations",
+        label: "What do you want from the session?",
+        type: "textarea",
+        placeholder: "A line or two on what you'd like to walk away with…",
+        full: true,
+      },
+    ],
+  },
+  {
+    id: "cohort",
+    label: "Growth Cohort",
+    blurb: "A structured, multi-week program with live sessions, accountability, and a founder community.",
+    formType: "Business Growth Program",
+    mode: "payment",
+    tier: { fixed: "cohort" },
+    fields: [
+      { name: "fullName", label: "Full name", type: "text", required: true, placeholder: "Your name" },
+      { name: "email", label: "Email", type: "email", required: true, placeholder: "you@company.com" },
+      { name: "phone", label: "Phone", type: "tel", required: true, placeholder: "+91" },
+      { name: "company", label: "Company / venture", type: "text", required: true, placeholder: "Business name" },
+      { name: "role", label: "Your role", type: "text", required: true, placeholder: "Founder, owner, professional…" },
+      { name: "industry", label: "Industry", type: "select", required: true, placeholder: "Select industry", options: INDUSTRIES },
+      { name: "stage", label: "Business stage", type: "select", required: true, placeholder: "Select stage", options: STAGES },
+      {
+        name: "goals",
+        label: "What do you want to build in the cohort?",
+        type: "textarea",
+        required: true,
+        placeholder: "The outcome you want by the end of the program…",
+        full: true,
+      },
+    ],
+  },
+  {
+    id: "advisory",
+    label: "Monthly Advisory",
+    blurb: "An ongoing partnership: systems installed inside your business, outcomes measured in the P&L.",
+    formType: "Business Advisory",
+    mode: "payment",
+    submitLabel: "Proceed to secure the engagement",
+    tier: { fixed: "advisory" },
+    fields: [
+      { name: "fullName", label: "Full name", type: "text", required: true, placeholder: "Your name" },
+      { name: "email", label: "Email", type: "email", required: true, placeholder: "you@company.com" },
+      { name: "phone", label: "Phone", type: "tel", required: true, placeholder: "+91" },
+      { name: "company", label: "Company name", type: "text", required: true, placeholder: "Company" },
+      { name: "website", label: "Website", type: "url", optional: true, placeholder: "https://" },
+      { name: "industry", label: "Industry", type: "select", required: true, placeholder: "Select industry", options: INDUSTRIES },
+      { name: "companySize", label: "Company size", type: "select", required: true, placeholder: "Select size", options: SIZES },
+      { name: "stage", label: "Business stage", type: "select", required: true, placeholder: "Select stage", options: STAGES },
+      {
+        name: "challenge",
+        label: "Current challenge",
+        type: "textarea",
+        required: true,
+        placeholder: "Where the business actually is, and where you want it to go…",
+        full: true,
+      },
+    ],
+  },
 ];
 
-const CONSULTATION_VS = [
-  "A focused session on one specific question",
-  "Fast clarity when a single call is on the table",
-  "A framed decision and the first actions to take",
-  "One prepared, private working hour",
-  "Ideal before — or alongside — a larger engagement",
+/* ── Static content ──────────────────────────────────────────────────────── */
+
+const WWH_COLUMNS = [
+  {
+    key: "who",
+    kicker: "Who it's for",
+    title: "Founders, owners & operators",
+    copy: "People running real businesses who want systems and scale — not another slide deck.",
+    items: ["Founders past product-market fit", "Owners modernising a running company", "Leaders scaling past themselves"],
+  },
+  {
+    key: "what",
+    kicker: "What it is",
+    title: "Transformation, three ways in",
+    copy: "One operator, three commitment levels — a ₹99 demo, a structured cohort, or a monthly advisory partnership.",
+    items: ["Diagnosis before prescription", "Systems built with your team", "Outcomes measured in the P&L"],
+  },
+  {
+    key: "how",
+    kicker: "How it works",
+    title: "Inside your operating rhythm",
+    copy: "The work happens in your weekly reviews and your numbers — capability transfers, dependency doesn't.",
+    items: ["Live sessions & working cadence", "Playbooks and installed systems", "One shared, secure checkout"],
+  },
+];
+
+const TRUST_METRICS = [
+  { value: 16, suffix: "+", label: "Years building & scaling" },
+  { value: 3, label: "Companies founded, bootstrapped" },
+  { text: "P&L", label: "Where outcomes are measured" },
+  { value: 20, suffix: "+", label: "Industries transformed" },
+];
+
+const FRAMEWORK = [
+  { step: "01", title: "Diagnose", copy: "Two weeks inside your numbers and your rooms before any recommendation exists." },
+  { step: "02", title: "Design", copy: "One named outcome, one metric, and the operating rhythm to hit it — agreed up front." },
+  { step: "03", title: "Install", copy: "Systems built with your team, inside your week, so capability stays in the building." },
+  { step: "04", title: "Compound", copy: "The engagement ends with your team running the system and the metric on the board." },
+];
+
+const FAQS = [
+  {
+    q: "Which program should I start with?",
+    a: "If you want a fast, low-cost taste of the method, start with the ₹99 Business Growth Demo. If you want structured education with accountability, join the ₹5,999 Business Growth Cohort. If you want transformation delivered inside your business, engage monthly Business Advisory at ₹9,999/month.",
+  },
+  {
+    q: "What does the monthly advisory include?",
+    a: "A dedicated monthly engagement where Anjan works inside your operating rhythm — reviews, numbers, and systems installed with your team — against one named outcome measured in the P&L.",
+  },
+  {
+    q: "How is this different from a consulting firm?",
+    a: "Firms deliver recommendations; this delivers installed systems. Anjan operates alongside your team until the outcome runs without him.",
+  },
+  {
+    q: "Can I move between programs?",
+    a: "Yes. Many start with the Demo, join the Cohort, and graduate into monthly Advisory as the business grows. Each uses the same secure checkout.",
+  },
+  {
+    q: "How does payment work?",
+    a: "Every program uses one shared payment architecture. You submit your details and pay securely via Cashfree (UPI and cards); confirmation and joining details are emailed after a successful payment.",
+  },
 ];
 
 export default function BusinessAdvisoryPage() {
   return (
     <main>
-      <PageHero
+      <HeroSection
         eyebrow="Business Advisory"
+        headline="Build a Business That"
+        accent="Outlasts You."
+        lead="Transformation delivered inside your business by an operator — not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        ctas={[
+          { label: "See the programs", href: "#pricing" },
+          { label: "Start an enquiry", href: "#book", variant: "ghost" },
+        ]}
+        highlights={[
+          { value: "₹99", label: "Growth Demo" },
+          { value: "3", label: "Companies built" },
+          { value: "16+", label: "Years operating" },
+          { value: "P&L", label: "Measured outcomes" },
+        ]}
+      />
+
+      <TrustMetrics metrics={TRUST_METRICS} eyebrow="An operator's track record" />
+
+      <WhoWhatHow
         title={
           <>
             We don&apos;t present services.{" "}
-            <span className="editorial-accent text-brand">
-              We transform businesses.
-            </span>
+            <span className="editorial-accent text-brand">We transform businesses.</span>
           </>
         }
-        lead="Advisory done by an operator: diagnosis before prescription, systems installed with your team, outcomes measured in the P&L. Advice is included; the work is the point."
-      >
-        <div className="flex flex-wrap gap-4">
-          <CTAButton href="#enquiry">Send an enquiry</CTAButton>
-          <GhostButton href="/case-studies">See transformations</GhostButton>
-        </div>
-      </PageHero>
+        columns={WWH_COLUMNS}
+      />
 
-      {/* Business Advisory ≠ Consultation */}
+      <PricingCards
+        serviceType="business-advisory"
+        eyebrow="Programs"
+        title={
+          <>
+            Three ways to{" "}
+            <span className="editorial-accent text-brand">start building.</span>
+          </>
+        }
+        lead="From a ₹99 first taste to a monthly transformation partnership — pick the commitment that matches where the business is."
+        columns={3}
+      />
+
+      {/* Booking forms */}
+      <section id="book" className="scroll-mt-28 border-t border-border py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <Reveal className="max-w-2xl">
+            <Eyebrow>Booking</Eyebrow>
+            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+              Reserve your{" "}
+              <span className="editorial-accent text-brand">place.</span>
+            </h2>
+            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
+              Choose a program, tell us where the business is, and proceed to secure checkout.
+              All three share the same payment architecture.
+            </p>
+          </Reveal>
+          <Reveal className="card mt-12 p-6 sm:p-10">
+            <DynamicBookingForm
+              serviceType="business-advisory"
+              serviceName="Business Advisory"
+              variants={ADVISORY_VARIANTS}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <Timeline
+        eyebrow="Transformation framework"
+        title={
+          <>
+            How a business gets{" "}
+            <span className="editorial-accent text-brand">rebuilt.</span>
+          </>
+        }
+        lead="Every engagement follows the same arc — diagnose, design, install, compound — measured against one metric from day one."
+        steps={FRAMEWORK}
+      />
+
+      <LogoWall
+        eyebrow="Companies worked with"
+        title={
+          <>
+            Sixteen years{" "}
+            <span className="editorial-accent text-brand">across sectors.</span>
+          </>
+        }
+        names={ENTERPRISE_BRANDS.slice(0, 12).map((b) => b.name)}
+        tone="elevated"
+      />
+
+      <Testimonials
+        title={
+          <>
+            What operators{" "}
+            <span className="editorial-accent text-brand">say.</span>
+          </>
+        }
+        items={TESTIMONIALS.filter((t) => t.kind !== "Student")
+          .slice(0, 3)
+          .map((t) => ({ quote: t.quote, name: t.name, title: t.title }))}
+      />
+
+      {/* Success stories */}
       <section className="border-t border-border py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Advisory ≠ Consultation</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Two different jobs.
-            </h2>
-            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              A Consultation moves one decision in an hour. Business Advisory
-              rebuilds how the business runs over months. Know which one you
-              need — or start small and grow into the other.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            <Reveal className="card p-8 sm:p-10">
-              <div className="flex items-center justify-between">
-                <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
-                  Business Advisory
-                </h3>
-                <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand">
-                  Strategic · long-term
-                </span>
-              </div>
-              <ul className="mt-6 space-y-3">
-                {ADVISORY_VS.map((a) => (
-                  <li key={a} className="flex gap-3 text-[15px] leading-relaxed text-foreground">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-brand-sky" strokeWidth={2.5} />
-                    {a}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            <Reveal className="rounded-[var(--radius-xl)] border border-border bg-background-sunken p-8 sm:p-10">
-              <div className="flex items-center justify-between">
-                <h3 className="font-display text-xl font-semibold tracking-tight text-foreground">
-                  Consultation
-                </h3>
-                <span className="rounded-full border border-border px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-foreground-muted">
-                  Focused · one hour
-                </span>
-              </div>
-              <ul className="mt-6 space-y-3">
-                {CONSULTATION_VS.map((c) => (
-                  <li key={c} className="flex gap-3 text-[15px] leading-relaxed text-foreground-muted">
-                    <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-border-strong" />
-                    {c}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/consulting"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-brand"
-              >
-                Explore Consultation
-                <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* What it is — the operating stance */}
-      <section className="border-y border-border bg-background-elevated py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3">
-          {[
-            {
-              n: "01",
-              t: "Diagnose before prescribing",
-              c: "Two weeks inside your numbers and your rooms before any recommendation exists.",
-            },
-            {
-              n: "02",
-              t: "Build with your team",
-              c: "Systems are installed with the people who will run them — capability transfers, dependency doesn't.",
-            },
-            {
-              n: "03",
-              t: "Measured in the P&L",
-              c: "Every engagement names its metric on day one and reports against it until the end.",
-            },
-          ].map((s) => (
-            <Reveal key={s.n}>
-              <p className="font-display text-sm font-semibold text-brand">{s.n}</p>
-              <h2 className="mt-3 font-display text-xl font-semibold tracking-tight text-foreground">
-                {s.t}
-              </h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-foreground-muted">{s.c}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Who it's for + what it solves */}
-      <section className="py-24">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2">
-          <Reveal>
-            <Eyebrow>Who it&apos;s for</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Operators of real businesses
-            </h2>
-            <ul className="mt-8 space-y-4">
-              {PERSONAS.filter((p) =>
-                ["founder", "owner", "enterprise"].includes(p.id)
-              ).map((p) => (
-                <li key={p.id} className="flex gap-4 rounded-2xl border border-border bg-background-elevated px-6 py-5">
-                  <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 bg-brand" />
-                  <div>
-                    <p className="font-medium text-foreground">{p.label.replace(/^An? /, "")}s</p>
-                    <p className="mt-0.5 text-sm text-foreground-muted">{p.headline}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal>
-            <Eyebrow>The problems it solves</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              The walls growth hits
-            </h2>
-            <ul className="mt-8 divide-y divide-border border-y border-border">
-              {ADVISORY_PROBLEMS.map((p, i) => (
-                <li key={p} className="flex items-baseline gap-5 py-4">
-                  <span className="font-display text-sm font-semibold text-brand">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[15px] text-foreground">{p}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      <RuleTick />
-
-      {/* Types of advisory — the explorer */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Types of advisory</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Ten ways a business gets rebuilt
-            </h2>
-            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              Choose an outcome. Each follows the same arc: challenge, approach,
-              execution, outcome — and the proof it rests on.
-            </p>
-          </Reveal>
-          <div className="mt-14">
-            <OutcomeExplorer />
-          </div>
-        </div>
-      </section>
-
-      {/* How the process works */}
-      <section className="border-t border-border bg-background-elevated py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>The process</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              From enquiry to handover
-            </h2>
-          </Reveal>
-          <RevealGroup className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-5">
-            {ADVISORY_PROCESS.map((s) => (
-              <RevealItem key={s.step} className="bg-background p-7">
-                <p className="font-display text-sm font-semibold text-brand">{s.step}</p>
-                <p className="mt-3 font-display text-lg font-semibold tracking-tight text-foreground">
-                  {s.title}
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-foreground-muted">{s.copy}</p>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-
-          {/* Expected outcomes */}
-          <Reveal className="mx-auto mt-16 max-w-3xl">
-            <p className="text-center text-xs font-medium uppercase tracking-[0.24em] text-foreground-muted">
-              What an engagement leaves behind
-            </p>
-            <ul className="mt-6 divide-y divide-border rounded-3xl border border-border bg-background">
-              {ADVISORY_OUTCOMES.map((o, i) => (
-                <li key={o} className="flex items-center gap-5 px-7 py-5">
-                  <span className="font-display text-sm font-semibold text-brand">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[15px] font-medium text-foreground">{o}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Industries</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Where the work has landed
-            </h2>
-            <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              Sixteen years across sectors — the operating principles travel,
-              even when the industry doesn&apos;t.
-            </p>
-          </Reveal>
-          <RevealGroup className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {INDUSTRIES.map((ind) => (
-              <RevealItem
-                key={ind}
-                className="card card-hover flex items-center justify-center px-6 py-8 text-center"
-              >
-                <span className="font-display text-lg font-semibold tracking-tight text-foreground">
-                  {ind}
-                </span>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="border-y border-border bg-background-sunken py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Testimonials</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              What operators say
-            </h2>
-          </Reveal>
-          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.filter((t) => t.kind !== "Student")
-              .slice(0, 3)
-              .map((t) => (
-                <RevealItem key={t.name} className="card flex h-full flex-col p-8">
-                  <p className="text-[length:var(--text-body)] leading-relaxed text-foreground">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="mt-6 border-t border-border pt-5">
-                    <p className="font-display font-semibold text-foreground">{t.name}</p>
-                    <p className="mt-0.5 text-sm text-foreground-muted">{t.title}</p>
-                  </div>
-                </RevealItem>
-              ))}
-          </RevealGroup>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section className="py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <Reveal className="max-w-2xl">
-              <Eyebrow>Case studies</Eyebrow>
+              <Eyebrow>Success stories</Eyebrow>
               <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-                Transformations, in the numbers
+                Transformations, in the{" "}
+                <span className="editorial-accent text-brand">numbers.</span>
               </h2>
             </Reveal>
             <Link
@@ -346,11 +319,14 @@ export default function BusinessAdvisoryPage() {
               className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-brand"
             >
               All case studies
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2} />
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={2}
+              />
             </Link>
           </div>
-          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-2">
-            {CASE_STUDIES.slice(0, 2).map((cs) => (
+          <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
+            {CASE_STUDIES.map((cs) => (
               <RevealItem key={cs.slug}>
                 <Link href="/case-studies" className="card card-hover group flex h-full flex-col p-8">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-brand-sky">
@@ -359,11 +335,11 @@ export default function BusinessAdvisoryPage() {
                   <h3 className="mt-4 font-display text-xl font-semibold tracking-tight text-foreground">
                     {cs.headline}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-foreground-muted">
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-foreground-muted">
                     {cs.challenge}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 border-t border-border pt-5">
-                    {cs.results.slice(0, 3).map((r) => (
+                    {cs.results.slice(0, 2).map((r) => (
                       <div key={r.label}>
                         <p className="font-display text-2xl font-bold tracking-tight text-foreground">
                           {r.metric}
@@ -381,40 +357,24 @@ export default function BusinessAdvisoryPage() {
         </div>
       </section>
 
-      {/* FAQs */}
-      <section className="border-t border-border py-24">
-        <div className="mx-auto max-w-4xl px-6">
-          <Reveal>
-            <Eyebrow>Questions, answered</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Before you write in
-            </h2>
-          </Reveal>
-          <div className="mt-10">
-            <Accordion items={ADVISORY_FAQS} />
-          </div>
-        </div>
-      </section>
+      <FAQ
+        title={
+          <>
+            Before you{" "}
+            <span className="editorial-accent text-brand">begin.</span>
+          </>
+        }
+        items={FAQS}
+      />
 
-      {/* Enquiry */}
-      <section id="enquiry" className="scroll-mt-28 border-t border-border bg-blueprint py-24">
-        <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal>
-            <Eyebrow>Enquiry</Eyebrow>
-            <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-              Start the{" "}
-              <span className="editorial-accent text-brand">conversation.</span>
-            </h2>
-            <p className="mt-5 max-w-md text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-              Tell us where the business actually is. You&apos;ll get a human
-              reply within one working day — and an honest read on fit.
-            </p>
-          </Reveal>
-          <Reveal className="rounded-3xl border border-border bg-background p-8 shadow-[var(--shadow-soft)] sm:p-10">
-            <AdvisoryForm />
-          </Reveal>
-        </div>
-      </section>
+      <FinalCTA
+        eyebrow="The work is the point"
+        title="Start where the business"
+        accent="actually is."
+        lead="Take the ₹99 demo, join the cohort, or open a monthly advisory engagement — and build a business that outlasts you."
+        primary={{ label: "Choose a program", href: "#pricing" }}
+        secondary={{ label: "Book a 1:1 Consultation", href: "/consulting" }}
+      />
     </main>
   );
 }
