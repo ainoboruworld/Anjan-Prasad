@@ -1,39 +1,38 @@
-import { LogoGrid } from "../ui/LogoPlaceholder";
+import { EMPLOYMENT_LOGOS, ADVISORY_LOGOS } from "@/lib/brandLogos";
+import { LogoGroup } from "../ui/LogoPlaceholder";
+import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * Companies Worked With — the trust band directly below the hero. Coloured
- * logo placeholders (never grayscale) on a calm surface; equal sizing and
- * spacing, fully responsive, ready to swap to official coloured artwork.
+ * Credibility — two clearly separated logo walls. "Companies Worked With"
+ * (employment / leadership roles) and "Brands Advised" (consulting &
+ * mentorship) are two different kinds of trust, so they read as two sections.
  */
-const COMPANIES = [
-  "Accenture",
-  "Mindshare",
-  "IPG Mediabrands",
-  "Zeta",
-  "Fareportal",
-  "American Express",
-  "Sony",
-  "Dabur",
-  "KFC",
-  "Pizza Hut",
-  "Snapdeal",
-  "DLF",
-];
-
 export function CompaniesWorkedWith() {
   return (
     <section
-      aria-label="Companies worked with"
-      className="border-y border-border bg-background-sunken py-16 sm:py-20"
+      aria-label="Companies worked with and brands advised"
+      className="border-y border-border bg-background-sunken py-20 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
-        <Reveal>
-          <p className="text-center text-xs font-medium uppercase tracking-[0.28em] text-foreground-muted">
-            Trusted across two decades of building
-          </p>
+        <Reveal className="mx-auto flex max-w-md items-center gap-4">
+          <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-transparent to-border-strong" />
+          <Eyebrow>Trusted across two decades</Eyebrow>
+          <span aria-hidden className="h-px flex-1 bg-gradient-to-l from-transparent to-border-strong" />
         </Reveal>
-        <LogoGrid names={COMPANIES} className="mt-12" />
+
+        <div className="mt-14 space-y-16">
+          <LogoGroup
+            title="Companies Worked With"
+            note="Organizations where Anjan Prasad has built leadership and professional experience throughout his career."
+            logos={EMPLOYMENT_LOGOS}
+          />
+          <LogoGroup
+            title="Brands Advised"
+            note="Businesses, startups, and founders supported through consulting, mentorship, and strategic advisory."
+            logos={ADVISORY_LOGOS}
+          />
+        </div>
       </div>
     </section>
   );

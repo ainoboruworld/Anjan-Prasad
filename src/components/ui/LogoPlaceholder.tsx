@@ -1,70 +1,98 @@
+"use client";
+
+import { useState } from "react";
+import { logoFileFor } from "@/lib/brandLogos";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 
 /**
- * Company-logo placeholders — premium, COLOURED chips (never grayscale).
+ * Company-logo tiles — compact, premium, fixed-height chips.
  *
- * These stand in for official coloured brand logos until the artwork is
- * supplied. Each chip fixes the size, ratio, and spacing the real logo will
- * occupy, so swapping in an `<Image>` later is a drop-in with no layout
- * change. The chip carries the brand name as a tasteful wordmark on a soft
- * tinted card, so the wall reads as trustworthy even before art lands.
+ * Real coloured logos from public/brand-logos render on clean white chips at
+ * one consistent height, so a wall reads evenly and no mark looks oversized.
+ * A brand with no file yet falls back to a refined wordmark — no broken
+ * images. To add a logo: drop `<file>.jpg` in public/brand-logos and map the
+ * name in src/lib/brandLogos.ts.
  */
 
-/** A single coloured logo chip. */
-export function LogoChip({ name }: { name: string }) {
+export interface LogoItem {
+  name: string;
+  /** File in public/brand-logos; resolved from the name when omitted. */
+  file?: string;
+}
+
+/** A single logo tile. */
+export function LogoChip({ name, file }: LogoItem) {
+  const resolved = file ?? logoFileFor(name);
+  const [failed, setFailed] = useState(false);
+
+  if (resolved && !failed) {
+    return (
+      <div className="group flex h-[72px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-white px-5 shadow-[var(--shadow-card)] ring-1 ring-black/[0.04] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]">
+        {/* eslint-disable-next-line @next/next/no-img-element -- static logo asset, intrinsic size varies */}
+        <img
+          src={`/brand-logos/${resolved}`}
+          alt={`${name} logo`}
+          loading="lazy"
+          onError={() => setFailed(true)}
+          className="max-h-9 w-auto max-w-[82%] object-contain"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="group relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-2xl border border-border bg-background-elevated shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-sky/40 hover:shadow-[var(--shadow-card-hover)]">
-      <span
-        aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(130%_100%_at_50%_0%,color-mix(in_srgb,var(--brand-sky)_10%,transparent),transparent_60%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100"
-      />
-      <span className="relative px-4 text-center font-display text-[15px] font-semibold leading-tight tracking-tight text-foreground">
+    <div className="flex h-[72px] items-center justify-center rounded-2xl border border-border bg-gradient-to-b from-background-elevated to-background-sunken px-5 shadow-[var(--shadow-card)]">
+      <span className="text-center font-display text-sm font-semibold leading-tight tracking-tight text-foreground/75">
         {name}
       </span>
     </div>
   );
 }
 
-/** A responsive grid of coloured logo chips. */
+/** A responsive grid of logo tiles — compact, up to six per row. */
 export function LogoGrid({
-  names,
+  logos,
   className = "",
 }: {
-  names: string[];
+  logos: LogoItem[];
   className?: string;
 }) {
   return (
     <RevealGroup
-      className={`grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 ${className}`}
+      className={`grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 ${className}`}
     >
-      {names.map((name) => (
-        <RevealItem key={name}>
-          <LogoChip name={name} />
+      {logos.map((logo) => (
+        <RevealItem key={logo.name}>
+          <LogoChip name={logo.name} file={logo.file} />
         </RevealItem>
       ))}
     </RevealGroup>
   );
 }
 
-/** A titled group of logo chips — used by the Brand Wall. */
+/** A titled group of logo tiles with an optional subtitle. */
 export function LogoGroup({
   title,
   note,
-  names,
+  logos,
 }: {
   title: string;
   note?: string;
-  names: string[];
+  logos: LogoItem[];
 }) {
   return (
     <div>
-      <Reveal className="flex flex-col gap-1 border-b border-border pb-4 sm:flex-row sm:items-baseline sm:justify-between">
-        <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">
+      <Reveal className="max-w-3xl">
+        <h3 className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
           {title}
         </h3>
-        {note && <p className="text-sm text-foreground-muted">{note}</p>}
+        {note && (
+          <p className="mt-2 text-[15px] leading-relaxed text-foreground-muted">
+            {note}
+          </p>
+        )}
       </Reveal>
-      <LogoGrid names={names} className="mt-8" />
+      <LogoGrid logos={logos} className="mt-7" />
     </div>
   );
 }

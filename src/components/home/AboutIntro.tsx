@@ -1,6 +1,6 @@
 import { CheckCircle2 } from "lucide-react";
 import { CTAButton, Eyebrow } from "../ui/Primitives";
-import { Placeholder } from "../ui/Placeholder";
+import { PortraitFrame } from "../brand/PortraitFrame";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
@@ -22,11 +22,7 @@ export function AboutIntro() {
         {/* Portrait placeholder */}
         <Reveal>
           <div className="relative mx-auto w-full max-w-sm lg:mx-0">
-            <Placeholder
-              label="Anjan Prasad"
-              caption="At work — portrait"
-              aspect="4/5"
-            />
+            <PortraitFrame aspect="4/5" />
           </div>
         </Reveal>
 

@@ -10,7 +10,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { CTAButton, GhostButton } from "../ui/Primitives";
-import { Placeholder } from "../ui/Placeholder";
+import { PortraitFrame } from "../brand/PortraitFrame";
 import { easeSmooth, slideInLeft, staggerContainer } from "../motion";
 
 /**
@@ -128,12 +128,7 @@ export function Hero() {
           data-cursor="view"
         >
           <div className="transition-transform duration-500 hover:scale-[1.015]">
-            <Placeholder
-              label="Anjan Prasad"
-              caption="Professional portrait"
-              aspect="4/5"
-              rounded="rounded-[1.5rem]"
-            />
+            <PortraitFrame aspect="4/5" />
           </div>
           {/* Floating credential chip — glass */}
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-glass px-5 py-3.5 shadow-[var(--shadow-soft)] backdrop-blur-xl sm:block">
