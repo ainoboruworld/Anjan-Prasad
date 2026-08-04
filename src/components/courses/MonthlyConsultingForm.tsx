@@ -28,7 +28,7 @@ export function MonthlyConsultingForm() {
     const v = (k: string) => (f.get(k) as string) ?? "";
     const name = v("fullName");
     await submitForm({
-      formType: "Monthly Consulting",
+      formType: "Business Growth Program",
       name,
       email: v("email"),
       phone: v("phone"),
@@ -40,7 +40,7 @@ export function MonthlyConsultingForm() {
     });
     router.push(
       paymentUrl({
-        plan: "Monthly Consulting",
+        plan: "Business Growth Program",
         amount: MONTHLY_CONSULTING.price,
         name,
       })

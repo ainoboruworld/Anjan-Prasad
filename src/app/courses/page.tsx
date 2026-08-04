@@ -6,9 +6,9 @@ import { PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Courses — Demo Session & Monthly Consulting",
+  title: "Programs — Demo Session & Business Growth Program",
   description:
-    "Implementation-first business education: the ₹99 Demo Session (3 hours live, weekdays) and Monthly Consulting at ₹9,999/month — weekly consulting, planning, and accountability.",
+    "Structured business education: the ₹99 Demo Session (3 hours live, weekdays) and the Business Growth Program at ₹9,999/month — curriculum, planning, and accountability.",
   alternates: { canonical: "/courses" },
 };
 
@@ -36,11 +36,11 @@ const PRODUCTS = [
     priceNote: MONTHLY_CONSULTING.priceNote,
     promise: MONTHLY_CONSULTING.promise,
     points: [
-      "Weekly weekday consulting sessions",
+      "Structured weekday curriculum & sessions",
       "Business planning, roadmaps & accountability",
-      "Founder support between the calls",
+      "Founder support between the sessions",
     ],
-    cta: "Explore Monthly Consulting",
+    cta: "Explore the Business Growth Program",
     featured: true,
   },
 ];
@@ -49,7 +49,7 @@ export default function CoursesPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Courses"
+        eyebrow="Programs"
         title={
           <>
             Not lectures.{" "}

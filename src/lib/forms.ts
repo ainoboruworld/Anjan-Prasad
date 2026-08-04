@@ -15,7 +15,7 @@ export type FormType =
   | "Contact"
   | "Business Advisory"
   | "Demo Session"
-  | "Monthly Consulting"
+  | "Business Growth Program"
   | "Consultation"
   | "Newsletter"
   | "General Enquiries";
