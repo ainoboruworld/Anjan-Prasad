@@ -13,7 +13,7 @@ import { useEffect, useState, type ReactNode } from "react";
  * genuinely loaded — this avoids the broken-image flash that a plain SSR
  * `<img onError>` produces when the error fires before React hydrates.
  */
-export const PORTRAIT_SRC = "/images/anjan-prasad.jpg";
+export const PORTRAIT_SRC = "public/images/anjan-prasad.jpg";
 
 export function Portrait({
   className = "",
