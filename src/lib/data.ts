@@ -23,19 +23,31 @@ export type NavItem = {
 export const NAV: NavItem[] = [
   {
     label: "Programs",
-    href: "/courses",
+    href: "/business-advisory",
     children: [
       {
-        label: "₹99 Demo Session",
-        href: "/courses/demo",
+        label: "Business Growth Demo",
+        href: "/business-advisory#book-demo",
         description:
-          "A 3-hour live introductory session — teaching, business discussion, and live Q&A. The best way to experience Anjan Prasad's teaching first-hand.",
+          "A ₹99, 3-hour live introductory session — teaching, business discussion, and live Q&A. The best way to experience Anjan Prasad first-hand.",
       },
       {
-        label: "Business Growth Program",
-        href: "/courses/monthly-consulting",
+        label: "Business Growth Cohort",
+        href: "/business-advisory#book-cohort",
         description:
-          "Structured business education and practical growth strategies for founders, entrepreneurs, professionals, and business owners.",
+          "A structured, multi-week program with live sessions, accountability, and a founder community.",
+      },
+      {
+        label: "Business Advisory",
+        href: "/business-advisory#book-advisory",
+        description:
+          "Ongoing monthly advisory — systems installed inside your business, outcomes measured in the P&L.",
+      },
+      {
+        label: "Career Consultation",
+        href: "/consulting#book",
+        description:
+          "A private, one-to-one session for students, professionals, and BPL candidates — clarity on the decision that matters most.",
       },
     ],
   },

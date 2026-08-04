@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
-import { BrandLogo } from "@/components/brand/BrandLogo";
-import { Portrait } from "@/components/brand/Portrait";
 import { Counter } from "@/components/ui/Counter";
+import { JOURNEY } from "@/lib/data";
 import {
-  ACADEMIC_BRANDS,
-  COMPANIES_FOUNDED,
-  ENTERPRISE_BRANDS,
-  STARTUP_BRANDS,
-} from "@/lib/brandLogos";
-import {
-  CTAButton,
   Eyebrow,
-  GhostButton,
   PageHero,
-  RuleTick,
   SectionHeading,
 } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import {
+  Staircase,
+  type StaircaseChapter,
+} from "@/components/about/Staircase";
 
 export const metadata: Metadata = {
   title: "About Anjan Prasad — Entrepreneur & Business Strategist",
@@ -50,50 +44,6 @@ const STORY: string[] = [
   "Alongside entrepreneurship, Anjan has contributed to management education as Visiting Faculty at IIFT, IMT Ghaziabad and BML Munjal University, mentoring the next generation of business leaders in digital strategy, entrepreneurship and growth.",
 ];
 
-/** Career timeline — the through-line from first job to CEO. */
-const TIMELINE: { year: string; role: string; org?: string; marks?: string[] }[] = [
-  { year: "2010", role: "Started career in Digital Marketing" },
-  { year: "2011", role: "Team Lead", org: "Fareportal" },
-  { year: "2011", role: "Co-founded WebExcel Solutions" },
-  { year: "2012", role: "Manager", org: "Interactive Avenues" },
-  { year: "2014", role: "Digital Project Manager", org: "Accenture" },
-  { year: "2015", role: "Director", org: "Mindshare" },
-  {
-    year: "2015–2021",
-    role: "Visiting Faculty",
-    marks: ["IIFT", "IMT Ghaziabad", "BML Munjal University"],
-  },
-  { year: "2017", role: "Head of Digital Marketing", org: "The Art of Living" },
-  { year: "2018", role: "Founded Noboru World" },
-  { year: "2022", role: "Board Advisor", org: "Filing Buddy" },
-  { year: "2023", role: "Co-founded Lushful" },
-  { year: "2025", role: "CEO", org: "Filing Buddy" },
-];
-
-/** Featured companies, grouped — official logos from the Brand Portfolio. */
-const COMPANY_GROUPS = [
-  {
-    title: "Companies founded",
-    note: "Ventures built and led from the ground up.",
-    logos: COMPANIES_FOUNDED,
-  },
-  {
-    title: "Enterprise & brands worked with",
-    note: "Growth, transformation and acquisition mandates at scale.",
-    logos: ENTERPRISE_BRANDS,
-  },
-  {
-    title: "Startups advised",
-    note: "Scale-ups guided as advisor and mentor.",
-    logos: STARTUP_BRANDS,
-  },
-  {
-    title: "Academic institutions",
-    note: "Visiting faculty in strategy, entrepreneurship and growth.",
-    logos: ACADEMIC_BRANDS,
-  },
-];
-
 /** Core expertise — the disciplines behind the record. */
 const EXPERTISE = [
   "Business Strategy",
@@ -110,6 +60,110 @@ const EXPERTISE = [
   "Marketing Automation",
   "Leadership & Mentorship",
 ];
+
+/**
+ * The staircase chapters — the existing JOURNEY, enriched with the existing
+ * career milestones (TIMELINE), company names and STORY paragraphs,
+ * redistributed so every step is a short, visual composition rather than a
+ * wall of text. No new biography is written here.
+ */
+const CHAPTERS: StaircaseChapter[] = [
+  {
+    step: "01",
+    title: JOURNEY[0].title,
+    blurb: JOURNEY[0].copy,
+    imageLabel: "Boardrooms & planning cycles",
+    logos: ["Mindshare", "Accenture", "IPG Mediabrands", "Interactive Avenues"],
+    milestones: [
+      { year: "2010", label: "Started career in Digital Marketing" },
+      { year: "2012", label: "Manager · Interactive Avenues" },
+      { year: "2014", label: "Digital Project Manager · Accenture" },
+      { year: "2015", label: "Director · Mindshare" },
+    ],
+    quote: STORY[2],
+    highlight: { label: "The step", value: "Corporate Foundation" },
+  },
+  {
+    step: "02",
+    title: JOURNEY[1].title,
+    blurb: JOURNEY[1].copy,
+    imageLabel: "Speaking engagements",
+    logos: ["Zeta", "Fareportal", "The Art of Living"],
+    milestones: [
+      { year: "2011", label: "Team Lead · Fareportal" },
+      { year: "2017", label: "Head of Digital Marketing · The Art of Living" },
+    ],
+    quote: JOURNEY[1].detail,
+    highlight: { label: "The step", value: "Enterprise altitude" },
+  },
+  {
+    step: "03",
+    title: JOURNEY[2].title,
+    blurb: JOURNEY[2].copy,
+    imageLabel: "Founder interactions",
+    logos: ["Noboru World", "Lushful", "Filing Buddy", "WebExcel Solutions"],
+    milestones: [
+      { year: "2011", label: "Co-founded WebExcel Solutions" },
+      { year: "2018", label: "Founded Noboru World" },
+      { year: "2023", label: "Co-founded Lushful" },
+    ],
+    quote: STORY[1],
+    highlight: { label: "The step", value: "Bootstrapped & profitable" },
+  },
+  {
+    step: "04",
+    title: JOURNEY[3].title,
+    blurb: JOURNEY[3].copy,
+    imageLabel: "Team discussions",
+    logos: ["Urban Kisaan", "Akounto", "Filing Buddy"],
+    milestones: [{ year: "2022", label: "Board Advisor · Filing Buddy" }],
+    quote: JOURNEY[3].detail,
+    highlight: { label: "The step", value: "Growth made repeatable" },
+  },
+  {
+    step: "05",
+    title: JOURNEY[4].title,
+    blurb: JOURNEY[4].copy,
+    imageLabel: "Workshops & working sessions",
+    logos: ["American Express", "Dabur", "DLF", "Cairn"],
+    milestones: [{ year: "2025", label: "CEO · Filing Buddy" }],
+    quote: JOURNEY[4].detail,
+    highlight: { label: "The step", value: "Margin, not meetings" },
+  },
+  {
+    step: "06",
+    title: JOURNEY[5].title,
+    blurb: JOURNEY[5].copy,
+    imageLabel: "Guest lectures & mentoring",
+    logos: ["IIFT", "IMT Ghaziabad", "BML Munjal University"],
+    milestones: [
+      { year: "2015–2021", label: "Visiting Faculty · IIFT · IMT · BML Munjal" },
+    ],
+    quote: STORY[3],
+    highlight: { label: "The step", value: "Teaching what building takes" },
+  },
+];
+
+/** The closing tread — the staircase fades into light; the climb continues. */
+function ClosingStep() {
+  return (
+    <div className="relative mx-auto max-w-3xl px-6 py-36 text-center sm:py-44">
+      <Reveal>
+        <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.24em] text-foreground-muted">
+          <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand" />
+          The climb continues
+        </span>
+        <p className="mt-8 font-display text-3xl font-medium leading-[1.3] tracking-tight text-foreground sm:text-[2.5rem]">
+          Every experience becomes another lesson. Every conversation becomes
+          another step.{" "}
+          <span className="editorial-accent text-brand">
+            The journey continues.
+          </span>
+        </p>
+      </Reveal>
+    </div>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -179,59 +233,8 @@ export default function AboutPage() {
         </RevealGroup>
       </section>
 
-      {/* The story — bio alongside a portrait plate */}
+      {/* Mission & Vision — the reason he keeps climbing */}
       <section className="py-24 sm:py-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-20">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.5rem] border border-border bg-background-elevated shadow-[var(--shadow-soft)]">
-                <Portrait
-                  fallback={
-                    <div
-                      aria-label="Portrait of Anjan Prasad — awaiting official photography"
-                      role="img"
-                      className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_50%_-10%,color-mix(in_srgb,var(--brand-sky)_10%,transparent),transparent_60%)] text-center"
-                    >
-                      <span className="font-display text-6xl font-bold tracking-tight text-brand/25">
-                        AP
-                      </span>
-                      <span className="text-xs uppercase tracking-[0.24em] text-foreground-muted">
-                        Portrait — official photo pending
-                      </span>
-                    </div>
-                  }
-                />
-              </div>
-              <p className="mt-5 text-sm leading-relaxed text-foreground-muted">
-                Founder &amp; CEO, Noboru World · CEO, Filing Buddy · Co-founder,
-                Lushful · Board Advisor &amp; Mentor.
-              </p>
-            </div>
-          </Reveal>
-
-          <div>
-            <Eyebrow>The record</Eyebrow>
-            <RevealGroup className="mt-8 space-y-6">
-              {STORY.map((para, i) => (
-                <RevealItem key={i}>
-                  <p
-                    className={
-                      i === 0
-                        ? "text-[length:var(--text-lead)] leading-relaxed text-foreground"
-                        : "text-[length:var(--text-body)] leading-relaxed text-foreground-muted"
-                    }
-                  >
-                    {para}
-                  </p>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="border-y border-border bg-background-sunken py-24 sm:py-28">
         <div className="mx-auto max-w-7xl px-6">
           <RevealGroup className="grid gap-6 lg:grid-cols-2">
             <RevealItem className="card p-9 sm:p-11">
@@ -257,100 +260,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline — animated career journey */}
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6">
-          <SectionHeading
-            eyebrow="Journey"
-            title={
-              <>
-                From first job to{" "}
-                <span className="editorial-accent text-brand">CEO.</span>
-              </>
-            }
-            lead="Fifteen years of operating — inside global brands, then across ventures of his own."
-          />
-
-          <ol className="relative mt-16 border-l border-border-strong pl-8 sm:pl-12">
-            {TIMELINE.map((t) => (
-              <Reveal
-                key={`${t.year}-${t.role}`}
-                as="li"
-                className="relative block pb-11 last:pb-0"
-              >
-                <span
-                  aria-hidden
-                  className="absolute -left-[calc(2rem+1px)] top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-brand-sky ring-4 ring-[color-mix(in_srgb,var(--brand-sky)_20%,transparent)] sm:-left-[calc(3rem+1px)]"
-                />
-                  <span className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-brand-sky">
-                    {t.year}
-                  </span>
-                  <h3 className="mt-1.5 font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                    {t.role}
-                    {t.org && (
-                      <span className="text-foreground-muted"> · {t.org}</span>
-                    )}
-                  </h3>
-                  {t.marks && (
-                    <ul className="mt-3 flex flex-wrap gap-2">
-                      {t.marks.map((m) => (
-                        <li
-                          key={m}
-                          className="rounded-full border border-border bg-background-elevated px-3 py-1 text-xs text-foreground-muted"
-                        >
-                          {m}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <RuleTick />
-
-      {/* Featured companies — grouped logo walls */}
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading
-            eyebrow="Featured companies"
-            title={
-              <>
-                The rooms where the{" "}
-                <span className="editorial-accent text-brand">
-                  playbook was earned.
-                </span>
-              </>
-            }
-            lead="Enterprises, scale-ups and institutions Anjan has built with, advised or taught."
-          />
-
-          <div className="mt-16 space-y-16">
-            {COMPANY_GROUPS.map((group) => (
-              <div key={group.title}>
-                <div className="flex flex-col gap-1 border-b border-border pb-4 sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">
-                    {group.title}
-                  </h3>
-                  <p className="text-sm text-foreground-muted">{group.note}</p>
-                </div>
-                <RevealGroup className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-                  {group.logos.map((logo) => (
-                    <RevealItem key={logo.file}>
-                      <BrandLogo logo={logo} />
-                    </RevealItem>
-                  ))}
-                </RevealGroup>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core expertise */}
-      <section className="border-t border-border bg-background-sunken py-24 sm:py-28">
+      {/* Core expertise — the facets of a curious operator */}
+      <section className="border-y border-border bg-background-sunken py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <SectionHeading
             eyebrow="Core expertise"
@@ -375,25 +286,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why it matters + CTA */}
-      <section className="py-24 sm:py-28">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <Reveal>
-            <Eyebrow className="justify-center">Why it matters</Eyebrow>
-            <p className="mt-8 font-display text-3xl font-medium leading-[1.3] tracking-tight text-foreground sm:text-4xl">
-              Every framework here was paid for in payroll, margins and hard
-              quarters —{" "}
-              <span className="editorial-accent text-brand">
-                before it was ever taught.
-              </span>
-            </p>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-              <CTAButton href="/courses">Learn the method</CTAButton>
-              <GhostButton href="/business-advisory">
-                Bring it into your business
-              </GhostButton>
-            </div>
-          </Reveal>
+      {/* The staircase of continuous learning */}
+      <section className="pt-24 sm:pt-28">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeading
+            eyebrow="The staircase of continuous learning"
+            title={
+              <>
+                Not a ladder to the top —{" "}
+                <span className="editorial-accent text-brand">
+                  a staircase that never ends.
+                </span>
+              </>
+            }
+            lead="Every step is a new lesson, a new industry, a new company, a new perspective. Scroll to climb it."
+          />
+        </div>
+
+        <div className="mt-8">
+          <Staircase chapters={CHAPTERS} ending={<ClosingStep />} />
         </div>
       </section>
     </main>

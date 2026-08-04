@@ -245,6 +245,11 @@ export default function BusinessAdvisoryPage() {
 
       {/* Booking forms */}
       <section id="book" className="scroll-mt-28 border-t border-border py-24">
+        {/* Deep-link anchors — the Programs nav scrolls here and the form
+            pre-selects the matching program tab (see DynamicBookingForm). */}
+        <span id="book-demo" aria-hidden className="block scroll-mt-28" />
+        <span id="book-cohort" aria-hidden className="block scroll-mt-28" />
+        <span id="book-advisory" aria-hidden className="block scroll-mt-28" />
         <div className="mx-auto max-w-5xl px-6">
           <Reveal className="max-w-2xl">
             <Eyebrow>Booking</Eyebrow>

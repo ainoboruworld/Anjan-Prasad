@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { CTAButton, GhostButton } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
@@ -16,27 +15,17 @@ export function FinalCTA() {
             Your next step
           </p>
           <h2 className="mt-6 font-display text-[length:var(--text-chapter)] font-semibold leading-[1.05] tracking-[-0.03em] text-foreground">
-            The business you want to build{" "}
-            <span className="editorial-accent text-brand">has a method.</span>
+            Ready to Build Your{" "}
+            <span className="editorial-accent text-brand">Next Chapter?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-            See it working live for ₹99 — or bring it straight into
-            your business.
+            Bring a proven operating playbook into your business — or get clarity
+            on your next decision.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <CTAButton href="/courses/demo">Book a ₹99 Demo Session</CTAButton>
-            <GhostButton href="/consulting">Schedule a Consultation</GhostButton>
+            <CTAButton href="/business-advisory">Business Advisory</CTAButton>
+            <GhostButton href="/consulting">Career Consultation</GhostButton>
           </div>
-          <p className="mt-8 text-sm text-foreground-muted">
-            Running a business already?{" "}
-            <Link
-              href="/business-advisory"
-              className="font-medium text-foreground underline decoration-brand underline-offset-4 hover:text-brand"
-            >
-              Explore Business Advisory
-            </Link>
-            .
-          </p>
         </Reveal>
       </div>
     </section>
