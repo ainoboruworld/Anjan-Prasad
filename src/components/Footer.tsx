@@ -7,30 +7,29 @@ import { SocialLinks } from "./SocialLinks";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
-    title: "Learn",
-    links: [
-      { label: "Demo Session", href: "/courses/demo" },
-      { label: "Live Course", href: "/courses/monthly-consulting" },
-      { label: "Blogs", href: "/knowledge-hub/blogs" },
-      { label: "Featured Media", href: "/media" },
-    ],
-  },
-  {
-    title: "Work with us",
+    title: "Programs & Services",
     links: [
       { label: "Business Advisory", href: "/business-advisory" },
       { label: "Consultation", href: "/consulting" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Testimonials", href: "/testimonials" },
+      { label: "Courses", href: "/courses" },
+      { label: "About", href: "/about" },
     ],
   },
   {
-    title: "AP.com",
+    title: "Knowledge Hub",
     links: [
-      { label: "About Anjan", href: "/about" },
-      { label: "Knowledge Hub", href: "/knowledge-hub" },
+      { label: "Blogs", href: "/knowledge-hub/blogs" },
+      { label: "Featured Media", href: "/media" },
+      { label: "Newsletter", href: "#newsletter" },
       { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "Account",
+    links: [
       { label: "Sign In", href: "/sign-in" },
+      { label: "My Profile", href: "/account" },
+      { label: "My Bookings", href: "/account/bookings" },
     ],
   },
 ];
@@ -44,7 +43,7 @@ export function Footer() {
         className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(60%_100%_at_50%_0%,color-mix(in_srgb,var(--brand-sky)_9%,transparent),transparent_70%)]"
       />
       {/* Newsletter band */}
-      <div className="relative mx-auto max-w-7xl px-6 py-16">
+      <div id="newsletter" className="relative mx-auto max-w-7xl scroll-mt-28 px-6 py-12">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
@@ -65,7 +64,7 @@ export function Footer() {
       </div>
 
       {/* Brand, contact, and link columns */}
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 lg:grid-cols-6">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-6">
         <div className="lg:col-span-2">
           <Wordmark />
           <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-foreground-muted">

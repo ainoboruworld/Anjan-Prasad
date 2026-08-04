@@ -10,7 +10,7 @@ export function HomeTestimonials() {
   const quotes = TESTIMONIALS.slice(0, 4);
 
   return (
-    <section className="border-t border-border py-28 sm:py-36">
+    <section className="border-t border-border py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           align="center"

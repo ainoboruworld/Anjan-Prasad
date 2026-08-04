@@ -12,7 +12,7 @@ export function KnowledgeMedia() {
   const articles = ARTICLES.slice(0, 4);
 
   return (
-    <section className="border-t border-border bg-background-sunken py-28 sm:py-36">
+    <section className="border-t border-border bg-background-sunken py-24 sm:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
