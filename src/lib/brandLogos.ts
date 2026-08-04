@@ -91,6 +91,18 @@ export function brandfetchLogo(domain: string): string {
   return `https://cdn.brandfetch.io/${domain}/theme/light/fallback/404/type/logo?c=${BRANDFETCH_CLIENT_ID}`;
 }
 
+/**
+ * Companies Anjan Prasad FOUNDED / co-founded and built — not employers or
+ * advisory clients. These are his own ventures and must never appear under
+ * "Companies Worked With" or "Brands Advised".
+ */
+export const FOUNDED_LOGOS: WallLogo[] = [
+  { name: "Noboru World", domain: "noboruworld.com", file: "noboru-world.jpg" },
+  { name: "Filing Buddy", domain: "filingbuddy.in", file: "filing-buddy.jpg" },
+  { name: "Lushful", domain: "lushful.in", file: "lushful.jpg" },
+];
+
+/** Organisations where Anjan held employed / leadership / faculty roles. */
 export const EMPLOYMENT_LOGOS: WallLogo[] = [
   { name: "Accenture", domain: "accenture.com", file: "accenture.jpg" },
   { name: "Mindshare", domain: "mindshare.com", file: "mindshare.jpg" },
@@ -98,9 +110,6 @@ export const EMPLOYMENT_LOGOS: WallLogo[] = [
   { name: "Zeta", domain: "zetaglobal.com", file: "zeta.jpg" },
   { name: "Fareportal", domain: "fareportal.com", file: "fareportal.jpg" },
   { name: "The Art of Living", domain: "artofliving.org" },
-  { name: "Noboru World", domain: "noboruworld.com", file: "noboru-world.jpg" },
-  { name: "Filing Buddy", domain: "filingbuddy.in", file: "filing-buddy.jpg" },
-  { name: "Lushful", domain: "lushful.in", file: "lushful.jpg" },
   { name: "IIFT", domain: "iift.ac.in", file: "iift.jpg" },
   { name: "IMT Ghaziabad", domain: "imt.edu", file: "imt.jpg" },
   { name: "BML Munjal University", domain: "bmu.edu.in", file: "bml-munjal.jpg" },
@@ -148,7 +157,7 @@ export function logoFileFor(name: string): string | undefined {
 
 /** Resolve a brand name to its Brandfetch domain, if known. */
 const NAME_TO_DOMAIN: Record<string, string> = Object.fromEntries(
-  [...EMPLOYMENT_LOGOS, ...ADVISORY_LOGOS]
+  [...FOUNDED_LOGOS, ...EMPLOYMENT_LOGOS, ...ADVISORY_LOGOS]
     .filter((l) => l.domain)
     .map((l) => [l.name, l.domain as string])
 );

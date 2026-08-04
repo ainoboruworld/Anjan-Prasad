@@ -78,12 +78,20 @@ export function LogoGrid({
   logos: LogoItem[];
   className?: string;
 }) {
+  // Centered flex wrap (not a rigid grid) so groups whose count doesn't fill
+  // the final row — e.g. the three founded ventures or nine employers — center
+  // their last row instead of leaving ragged blank cells. Tile widths match
+  // the 2 / 3 / 6 responsive breakpoints, so every tile is identically sized
+  // and aligned across all groups.
   return (
     <RevealGroup
-      className={`grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 ${className}`}
+      className={`flex flex-wrap justify-center gap-3 ${className}`}
     >
       {logos.map((logo) => (
-        <RevealItem key={logo.name}>
+        <RevealItem
+          key={logo.name}
+          className="w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.5rem)] lg:w-[calc(16.666%-0.625rem)]"
+        >
           <LogoChip name={logo.name} domain={logo.domain} file={logo.file} />
         </RevealItem>
       ))}
