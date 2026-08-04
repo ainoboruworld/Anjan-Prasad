@@ -29,8 +29,12 @@ export function LogoChip({ name, domain, file }: LogoItem) {
     const list: string[] = [];
     const d = domain ?? logoDomainFor(name);
     const f = file ?? logoFileFor(name);
-    if (d) list.push(brandfetchLogo(d));
+    // Bundled local asset first: it always loads and is guaranteed visible on
+    // the white chip, so tiles never render blank if the remote CDN is
+    // blocked, rate-limited, or returns an invisible variant. The Brandfetch
+    // hotlink is only a fallback for brands that ship no local file.
     if (f) list.push(`/brand-logos/${f}`);
+    if (d) list.push(brandfetchLogo(d));
     return list;
   }, [name, domain, file]);
 
