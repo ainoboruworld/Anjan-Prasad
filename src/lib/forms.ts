@@ -11,6 +11,8 @@
  * component needs to be touched.
  */
 
+import { env } from "./env";
+
 export type FormType =
   | "Contact"
   | "Business Advisory"
@@ -24,11 +26,9 @@ export const NOTIFY_EMAIL = "performance@noboruworld.com";
 
 /**
  * Google Apps Script web app URL ("Deploy → Web app → Anyone").
- * Configure via NEXT_PUBLIC_FORMS_ENDPOINT; falls back to the constant
- * below so the URL can also be pasted here directly after deployment.
+ * Configure via NEXT_PUBLIC_FORMS_ENDPOINT (see src/lib/env.ts).
  */
-const FORMS_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMS_ENDPOINT ?? "";
+const FORMS_ENDPOINT = env.forms.endpoint;
 
 export type FormPayload = {
   formType: FormType;

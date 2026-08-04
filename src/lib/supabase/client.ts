@@ -1,21 +1,19 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { env, flags } from "../env";
 
 /**
  * Browser Supabase client (singleton).
  *
- * Reads the public project credentials from the environment. Until they are
+ * Reads the public project credentials from `src/lib/env.ts`. Until they are
  * set the client is `null` and the app degrades gracefully — every call site
  * guards on `isSupabaseConfigured()`. Once the URL and anon key are added,
  * the entire auth flow works with no further code changes.
- *
- *   NEXT_PUBLIC_SUPABASE_URL
- *   NEXT_PUBLIC_SUPABASE_ANON_KEY
  */
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+const SUPABASE_URL = env.supabase.url;
+const SUPABASE_ANON_KEY = env.supabase.anonKey;
 
 export function isSupabaseConfigured(): boolean {
-  return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+  return flags.supabase;
 }
 
 let cached: SupabaseClient | null = null;

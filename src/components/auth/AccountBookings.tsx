@@ -1,63 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CalendarClock, Loader2 } from "lucide-react";
 import { useAuth } from "./AuthProvider";
-import { getSupabaseClient } from "@/lib/supabase/client";
-
-interface Booking {
-  id: string;
-  service_type: string;
-  program_type?: string;
-  status?: string;
-  created_at?: string;
-}
+import { useBookings } from "@/hooks/queries/useBookings";
+import type { Booking } from "@/services/profile/profileService";
 
 /**
- * My Bookings — lists the signed-in user's bookings from Supabase.
- *
- * Reads a `bookings` table filtered by the user's email. If the table isn't
- * provisioned yet (or there are none), it degrades to a clean empty state —
- * so the page is production-ready the moment the table exists.
+ * My Bookings — lists the signed-in user's bookings via TanStack Query
+ * (server state). Degrades to a clean empty state until the `bookings` table
+ * is provisioned, so it's production-ready the moment the table exists.
  */
 export function AccountBookings() {
   const { user } = useAuth();
-  const [state, setState] = useState<"loading" | "ready" | "empty">("loading");
-  const [bookings, setBookings] = useState<Booking[]>([]);
+  const { data: bookings = [], isLoading } = useBookings(user?.email ?? undefined);
 
-  useEffect(() => {
-    let active = true;
-    const supabase = getSupabaseClient();
-    const email = user?.email;
-
-    const load = async (): Promise<Booking[] | null> => {
-      if (!supabase || !email) return [];
-      const { data, error } = await supabase
-        .from("bookings")
-        .select("id, service_type, program_type, status, created_at")
-        .eq("email", email)
-        .order("created_at", { ascending: false });
-      if (error) return null;
-      return (data as Booking[]) ?? [];
-    };
-
-    load().then((rows) => {
-      if (!active) return;
-      if (!rows || rows.length === 0) {
-        setState("empty");
-      } else {
-        setBookings(rows);
-        setState("ready");
-      }
-    });
-
-    return () => {
-      active = false;
-    };
-  }, [user]);
-
-  if (state === "loading") {
+  if (isLoading) {
     return (
       <div className="flex items-center gap-3 py-10 text-foreground-muted">
         <Loader2 className="h-5 w-5 animate-spin text-brand-sky" strokeWidth={2} />
@@ -66,7 +24,7 @@ export function AccountBookings() {
     );
   }
 
-  if (state === "empty") {
+  if (bookings.length === 0) {
     return (
       <div className="rounded-3xl border border-border bg-background-elevated p-10 text-center">
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10">

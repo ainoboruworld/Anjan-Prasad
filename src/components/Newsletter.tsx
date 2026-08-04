@@ -1,28 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import { subscribeNewsletter } from "@/lib/newsletter";
+import { newsletterSchema, type NewsletterValues } from "@/lib/validation/schemas";
+import { useNewsletterSubscribe } from "@/hooks/mutations/useNewsletterSubscribe";
 
-/** Newsletter capture — name + email, posts through the shared forms layer. */
+/**
+ * Newsletter capture — RHF + Zod validation, TanStack Query mutation to the
+ * newsletter service (Supabase). UI only; no business logic here.
+ */
 export function Newsletter() {
-  const [sending, setSending] = useState(false);
-  const [done, setDone] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewsletterValues>({ resolver: zodResolver(newsletterSchema) });
+  const subscribe = useNewsletterSubscribe();
 
-  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    const f = new FormData(e.currentTarget);
-    await subscribeNewsletter({
-      name: (f.get("name") as string) ?? "",
-      email: (f.get("email") as string) ?? "",
-    });
-    setSending(false);
-    setDone(true);
-  };
+  const onSubmit = handleSubmit((values) => subscribe.mutate(values));
 
-  if (done) {
+  if (subscribe.isSuccess) {
     return (
       <motion.p
         initial={{ opacity: 0, y: 8 }}
@@ -36,45 +35,58 @@ export function Newsletter() {
     );
   }
 
+  const errorMessage =
+    errors.name?.message ||
+    errors.email?.message ||
+    (subscribe.isError ? "Something went wrong. Please try again." : "");
+
   return (
     <form
-      onSubmit={submit}
-      className="flex w-full min-w-0 max-w-xl flex-wrap gap-2 lg:ml-auto"
+      onSubmit={onSubmit}
+      className="w-full min-w-0 max-w-xl lg:ml-auto"
+      noValidate
     >
-      <label htmlFor="newsletter-name" className="sr-only">
-        Name
-      </label>
-      <input
-        id="newsletter-name"
-        name="name"
-        required
-        size={8}
-        placeholder="Your name"
-        className="input min-w-0 flex-1 rounded-full"
-      />
-      <label htmlFor="newsletter-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="newsletter-email"
-        name="email"
-        type="email"
-        required
-        size={10}
-        placeholder="you@company.com"
-        className="input min-w-0 flex-[1.4] rounded-full"
-      />
-      <button
-        type="submit"
-        disabled={sending}
-        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
-      >
-        {sending ? "Subscribing…" : "Subscribe"}
-        <ArrowRight
-          className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-          strokeWidth={2}
+      <div className="flex flex-wrap gap-2">
+        <label htmlFor="newsletter-name" className="sr-only">
+          Name
+        </label>
+        <input
+          id="newsletter-name"
+          size={8}
+          placeholder="Your name"
+          className="input min-w-0 flex-1 rounded-full"
+          aria-invalid={Boolean(errors.name)}
+          {...register("name")}
         />
-      </button>
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="newsletter-email"
+          type="email"
+          size={10}
+          placeholder="you@company.com"
+          className="input min-w-0 flex-[1.4] rounded-full"
+          aria-invalid={Boolean(errors.email)}
+          {...register("email")}
+        />
+        <button
+          type="submit"
+          disabled={subscribe.isPending}
+          className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
+        >
+          {subscribe.isPending ? "Subscribing…" : "Subscribe"}
+          <ArrowRight
+            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+            strokeWidth={2}
+          />
+        </button>
+      </div>
+      {errorMessage && (
+        <p role="alert" className="mt-2 text-sm font-medium text-red-500">
+          {errorMessage}
+        </p>
+      )}
     </form>
   );
 }

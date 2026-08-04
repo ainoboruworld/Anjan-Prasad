@@ -1,52 +1,39 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
-import { submitForm, type FormType } from "@/lib/forms";
+import { contactSchema, type ContactValues } from "@/lib/validation/schemas";
+import {
+  submitContact,
+  CONTACT_REASONS,
+  INTEREST_TO_REASON,
+} from "@/services/contact/contactService";
+import { TextField, TextareaField, SelectField } from "./ui/form/fields";
 
-const REASONS = [
-  "Business Advisory",
-  "Demo Session",
-  "Live Course",
-  "Partnership",
-  "Speaking Engagement",
-  "General Enquiry",
-  "Other",
-] as const;
-
-/** Map ?interest= query values to a preselected reason. */
-const INTEREST_TO_REASON: Record<string, (typeof REASONS)[number]> = {
-  "business-advisory": "Business Advisory",
-  consulting: "Business Advisory",
-  training: "Business Advisory",
-  demo: "Demo Session",
-  "live-course": "Live Course",
-  premium: "Live Course",
-  partnership: "Partnership",
-  speaking: "Speaking Engagement",
-};
-
-/** Route a submission to the right spreadsheet tab by reason. */
-const REASON_TO_FORM_TYPE: Record<string, FormType> = {
-  "Business Advisory": "Business Advisory",
-  "Demo Session": "Demo Session",
-  "Live Course": "Contact",
-  Partnership: "General Enquiries",
-  "Speaking Engagement": "General Enquiries",
-  "General Enquiry": "General Enquiries",
-  Other: "General Enquiries",
-};
-
-const inputCls = "input";
-
-/** Contact form — posts through the shared forms layer. */
+/**
+ * Contact form — UI only. Validation is Zod (`contactSchema`); submission is
+ * the contact service. No business logic lives here.
+ */
 export function ContactForm({ initialInterest }: { initialInterest?: string }) {
-  const [reason, setReason] = useState<string>(
-    INTEREST_TO_REASON[initialInterest ?? ""] ?? ""
-  );
-  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      reason: INTEREST_TO_REASON[initialInterest ?? ""] ?? "",
+    },
+  });
+
+  const onSubmit = handleSubmit(async (values) => {
+    await submitContact(values);
+    setSent(true);
+  });
 
   if (sent) {
     return (
@@ -70,108 +57,75 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
     );
   }
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    const f = new FormData(e.currentTarget);
-    const v = (k: string) => (f.get(k) as string) ?? "";
-    await submitForm({
-      formType: REASON_TO_FORM_TYPE[v("reason")] ?? "Contact",
-      name: v("fullName"),
-      email: v("email"),
-      phone: v("phone"),
-      company: v("companyName"),
-      data: {
-        "Why do you want to contact us?": v("reason"),
-        Message: v("message"),
-      },
-    });
-    setSending(false);
-    setSent(true);
-  };
-
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="contact-name" className="sr-only">
-            Full Name
-          </label>
-          <input id="contact-name" name="fullName" required placeholder="Full name" className={inputCls} />
-        </div>
-        <div>
-          <label htmlFor="contact-email" className="sr-only">
-            Email
-          </label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            required
-            placeholder="you@company.com"
-            className={inputCls}
-          />
-        </div>
-        <div>
-          <label htmlFor="contact-phone" className="sr-only">
-            Phone Number
-          </label>
-          <input id="contact-phone" name="phone" type="tel" required placeholder="+91" className={inputCls} />
-        </div>
-        <div>
-          <label htmlFor="contact-company" className="sr-only">
-            Company Name (optional)
-          </label>
-          <input
-            id="contact-company"
-            name="companyName"
-            placeholder="Company (optional)"
-            className={inputCls}
-          />
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="contact-reason" className="sr-only">
-          Why do you want to contact us?
-        </label>
-        <select
-          id="contact-reason"
-          name="reason"
-          required
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          className={inputCls}
-        >
-          <option value="" disabled>
-            Why do you want to contact us?
-          </option>
-          {REASONS.map((r) => (
-            <option key={r}>{r}</option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="contact-message" className="sr-only">
-          Message
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          rows={5}
-          required
-          placeholder="A few lines about your business, your goal, or your question…"
-          className={`${inputCls} resize-y`}
+    <form onSubmit={onSubmit} className="space-y-5" noValidate>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <TextField
+          label="Full name"
+          id="contact-name"
+          placeholder="Full name"
+          autoComplete="name"
+          registration={register("fullName")}
+          error={errors.fullName?.message}
+        />
+        <TextField
+          label="Email"
+          id="contact-email"
+          type="email"
+          placeholder="you@company.com"
+          autoComplete="email"
+          registration={register("email")}
+          error={errors.email?.message}
+        />
+        <TextField
+          label="Phone"
+          id="contact-phone"
+          type="tel"
+          placeholder="+91"
+          autoComplete="tel"
+          registration={register("phone")}
+          error={errors.phone?.message}
+        />
+        <TextField
+          label="Company"
+          id="contact-company"
+          optional
+          placeholder="Company"
+          registration={register("companyName")}
+          error={errors.companyName?.message}
         />
       </div>
 
+      <SelectField
+        label="Why do you want to contact us?"
+        id="contact-reason"
+        defaultValue=""
+        registration={register("reason")}
+        error={errors.reason?.message}
+      >
+        <option value="" disabled>
+          Select a reason
+        </option>
+        {CONTACT_REASONS.map((r) => (
+          <option key={r}>{r}</option>
+        ))}
+      </SelectField>
+
+      <TextareaField
+        label="Message"
+        id="contact-message"
+        rows={5}
+        placeholder="A few lines about your business, your goal, or your question…"
+        registration={register("message")}
+        error={errors.message?.message}
+      />
+
       <button
         type="submit"
-        disabled={sending}
+        disabled={isSubmitting}
         className="group inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-[15px] font-semibold text-brand-ink transition-colors hover:bg-brand-hover disabled:opacity-60"
       >
-        {sending ? "Sending…" : "Send it"}
+        {isSubmitting ? "Sending…" : "Send it"}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
       </button>
     </form>
