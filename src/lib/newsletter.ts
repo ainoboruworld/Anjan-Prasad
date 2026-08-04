@@ -21,12 +21,13 @@
  */
 
 import { submitForm } from "./forms";
+import { env, flags } from "./env";
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+const SUPABASE_URL = env.supabase.url;
+const SUPABASE_ANON_KEY = env.supabase.anonKey;
 
 export function isSupabaseConfigured(): boolean {
-  return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+  return flags.supabase;
 }
 
 export type SubscribeResult = { ok: boolean };

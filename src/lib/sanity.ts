@@ -21,15 +21,16 @@ import {
   type BlogPost,
   type BlogCategory,
 } from "./blog";
+import { env, flags } from "./env";
 
 export const SANITY = {
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
-  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? "2024-01-01",
+  projectId: env.sanity.projectId,
+  dataset: env.sanity.dataset,
+  apiVersion: env.sanity.apiVersion,
 };
 
 export function isSanityConfigured(): boolean {
-  return Boolean(SANITY.projectId);
+  return flags.sanity;
 }
 
 /** How often server-rendered blog data is revalidated (seconds). */
