@@ -26,75 +26,64 @@ export interface MediaFeature {
   platform: string;
   title: string;
   description: string;
-  /** ISO date. */
-  publishedAt: string;
+  /** ISO date (optional). */
+  publishedAt?: string;
   /** External URL the card opens. */
   url: string;
-  /** Thumbnail URL; empty renders a Placeholder. For YouTube it can be
-   *  derived from the video id. */
-  thumbnailUrl?: string;
-  /** Optional YouTube video id — thumbnail is derived when present. */
+  /** YouTube video id — thumbnail is derived when present. */
   youtubeId?: string;
 }
 
-/** Build a YouTube thumbnail URL from a video id. */
-export function youtubeThumb(id: string): string {
-  return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/** Extract the video id from any YouTube URL (youtu.be or watch?v=). */
+export function extractYouTubeId(url: string): string {
+  const short = url.match(/youtu\.be\/([\w-]{11})/);
+  if (short) return short[1];
+  const long = url.match(/[?&]v=([\w-]{11})/);
+  if (long) return long[1];
+  const embed = url.match(/youtube\.com\/(?:embed|shorts)\/([\w-]{11})/);
+  if (embed) return embed[1];
+  return "";
 }
 
-/**
- * Representative slate — swap the ids/urls for the official channel content.
- * Empty `youtubeId`/`thumbnailUrl` render a branded Placeholder, so the
- * section ships before the assets do.
- */
+/** Thumbnail URLs for a video id, highest quality first. */
+export function youtubeThumbnails(id: string): { max: string; hq: string } {
+  return {
+    max: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+    hq: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+  };
+}
+
+/** Backwards-compatible helper — the safe (always-present) thumbnail. */
+export function youtubeThumb(id: string): string {
+  return youtubeThumbnails(id).hq;
+}
+
+/** Anjan Prasad's featured YouTube appearances. */
 export const MEDIA_FEATURES: MediaFeature[] = [
   {
-    id: "how-profitable-businesses-are-built",
+    id: "from-accenture-to-serial-entrepreneur",
     type: "Video",
     platform: "YouTube",
-    title: "How Profitable Businesses Are Actually Built",
+    title: "From Accenture to Serial Entrepreneur",
     description:
-      "The 0 → 1 → Scale framework, explained on real business models.",
-    publishedAt: "2026-06-30",
-    url: "https://www.youtube.com/@anjanprasad",
-    youtubeId: "",
+      "Anjan Prasad shares his entrepreneurial journey, lessons from building businesses, and transitioning from corporate leadership to entrepreneurship.",
+    url: "https://youtu.be/U3otsv7eLKA?si=HD6D_Vxyt1GgfKap",
+    youtubeId: "U3otsv7eLKA",
   },
   {
-    id: "validate-before-you-build-video",
+    id: "farm-to-consumer-business-model",
     type: "Video",
     platform: "YouTube",
-    title: "Validate Before You Build",
+    title: "₹5/kg vs ₹150/kg – Farm to Consumer Business Model",
     description:
-      "A ₹0 validation method that kills bad ideas in two weeks.",
-    publishedAt: "2026-05-24",
-    url: "https://www.youtube.com/@anjanprasad",
-    youtubeId: "",
-  },
-  {
-    id: "ai-operating-systems-video",
-    type: "Video",
-    platform: "YouTube",
-    title: "AI Operating Systems for Small Businesses",
-    description:
-      "Where AI actually pays back in an SME — and where it doesn't.",
-    publishedAt: "2026-04-19",
-    url: "https://www.youtube.com/@anjanprasad",
-    youtubeId: "",
-  },
-  {
-    id: "pricing-is-positioning-video",
-    type: "Video",
-    platform: "YouTube",
-    title: "Pricing Is Positioning",
-    description:
-      "Why underpricing is the most expensive branding decision founders make.",
-    publishedAt: "2026-03-15",
-    url: "https://www.youtube.com/@anjanprasad",
-    youtubeId: "",
+      "Learn how direct-to-consumer business models create value, improve profitability, and transform traditional industries.",
+    url: "https://youtu.be/ghVIlCZ7NMQ?si=wCAIR45JzpvLxSDY",
+    youtubeId: "ghVIlCZ7NMQ",
   },
 ];
 
-export function formatMediaDate(iso: string): string {
+export function formatMediaDate(iso?: string): string {
+  if (!iso) return "";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "";
   return d.toLocaleDateString("en-IN", {

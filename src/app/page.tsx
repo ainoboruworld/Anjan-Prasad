@@ -4,7 +4,7 @@ import { CompaniesWorkedWith } from "@/components/home/CompaniesWorkedWith";
 import { TrustExperience } from "@/components/home/TrustExperience";
 import { AboutIntro } from "@/components/home/AboutIntro";
 import { ConsultationIntro } from "@/components/home/ConsultationIntro";
-import { BrandWallSection } from "@/components/home/BrandWallSection";
+import { FeaturedMediaSection } from "@/components/home/FeaturedMediaSection";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { KnowledgeMedia } from "@/components/home/KnowledgeMedia";
 import { FinalCTA } from "@/components/home/FinalCTA";
@@ -17,9 +17,8 @@ export const metadata: Metadata = {
 
 /**
  * Homepage — a premium, executive user journey:
- * Hero → Companies → Trust & Experience → About → Career Consultation →
- * Brand Wall → Testimonials → Knowledge & Media → Final CTA.
- * Simple, story-led, and consistent with the wider AP.com design system.
+ * Hero → Credibility (worked with / advised) → Trust & Experience → About →
+ * Career Consultation → Featured Media → Testimonials → Knowledge Hub → CTA.
  */
 export default function Home() {
   return (
@@ -29,7 +28,7 @@ export default function Home() {
       <TrustExperience />
       <AboutIntro />
       <ConsultationIntro />
-      <BrandWallSection />
+      <FeaturedMediaSection />
       <HomeTestimonials />
       <KnowledgeMedia />
       <FinalCTA />

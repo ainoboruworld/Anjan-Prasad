@@ -11,21 +11,6 @@ import { Wordmark } from "./brand/ApMark";
 import { easeSmooth } from "./motion";
 import { NAV, type NavItem } from "@/lib/data";
 
-/** Clean icon chip per dropdown item — a rising-growth glyph, no clutter. */
-function ItemGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden>
-      <path
-        d="M4 20V10M10 20V6M16 20v-8M4 8l6-4 6 4 4-2"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function Dropdown({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false);
 
@@ -53,39 +38,27 @@ function Dropdown({ item }: { item: NavItem }) {
         {open && (
           <motion.div
             role="menu"
-            initial={{ opacity: 0, y: 10, scale: 0.985 }}
+            initial={{ opacity: 0, y: 8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.985 }}
-            transition={{ duration: 0.28, ease: easeSmooth }}
-            className="absolute left-0 top-full w-[32rem] max-w-[calc(100vw-2rem)] pt-4"
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: easeSmooth }}
+            className="absolute left-0 top-full w-72 max-w-[calc(100vw-2rem)] pt-3"
           >
-            <div className="rounded-[1.75rem] border border-border-strong bg-background-elevated p-4 shadow-[var(--shadow-soft)] ring-1 ring-black/[0.03] backdrop-blur-2xl">
-              <div className="grid gap-2.5">
-                {item.children?.map((child) => (
-                  <Link
-                    key={child.label}
-                    href={child.href}
-                    role="menuitem"
-                    className="group flex items-start gap-4 rounded-2xl border border-transparent p-5 transition-all duration-300 hover:border-border hover:bg-background-sunken"
-                  >
-                    <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/12 text-brand transition-transform duration-300 group-hover:scale-105">
-                      <ItemGlyph />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="flex items-center gap-1.5 font-display text-[17px] font-semibold tracking-tight text-foreground">
-                        {child.label}
-                        <ArrowUpRight
-                          className="h-4 w-4 -translate-x-1 text-brand opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                          strokeWidth={2}
-                        />
-                      </span>
-                      <span className="mt-1.5 block text-[13.5px] leading-relaxed text-foreground-muted">
-                        {child.description}
-                      </span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
+            <div className="rounded-2xl border border-border-strong bg-background-elevated p-2 shadow-[var(--shadow-soft)] ring-1 ring-black/[0.03] backdrop-blur-2xl">
+              {item.children?.map((child) => (
+                <Link
+                  key={child.label}
+                  href={child.href}
+                  role="menuitem"
+                  className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-background-sunken"
+                >
+                  {child.label}
+                  <ArrowUpRight
+                    className="h-3.5 w-3.5 -translate-x-1 text-brand opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
+                    strokeWidth={2}
+                  />
+                </Link>
+              ))}
             </div>
           </motion.div>
         )}
