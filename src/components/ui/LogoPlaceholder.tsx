@@ -29,8 +29,12 @@ export function LogoChip({ name, domain, file }: LogoItem) {
     const list: string[] = [];
     const d = domain ?? logoDomainFor(name);
     const f = file ?? logoFileFor(name);
-    if (d) list.push(brandfetchLogo(d));
+    // Prefer the official local asset (renders reliably on the white chip in
+    // both themes); fall back to the Brandfetch CDN only when we have no
+    // local file. This avoids Brandfetch's occasional light-theme variants
+    // that load as white/invisible on a white background.
     if (f) list.push(`/brand-logos/${f}`);
+    if (d) list.push(brandfetchLogo(d));
     return list;
   }, [name, domain, file]);
 
