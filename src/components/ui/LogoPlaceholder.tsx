@@ -20,7 +20,7 @@ export interface LogoItem {
   file?: string;
 }
 
-/** A single full-colour logo with a restrained hover micro-interaction. */
+/** A single full-colour logo with a restrained scale-on-hover. */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
   const [failed, setFailed] = useState(false);
@@ -33,7 +33,7 @@ export function LogoChip({ name, file }: LogoItem) {
         alt={`${name} logo`}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-7 w-auto object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 sm:h-8"
+        className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 dark:opacity-70 dark:group-hover:opacity-100 sm:h-7 lg:h-8"
       />
     );
   }
@@ -47,8 +47,10 @@ export function LogoChip({ name, file }: LogoItem) {
 
 /**
  * A row of logos embedded directly in the page, separated by thin vertical
- * dividers. The dark-mode light wash lifts the logos off the dark canvas
- * without any hard container edge.
+ * dividers. A full-width wrapping flex keeps it from ever overflowing, so it
+ * stays balanced from mobile to desktop. The logos sit directly on the canvas
+ * at a slightly reduced opacity — no highlight — and lift to full presence on
+ * hover.
  */
 export function LogoRow({
   logos,
@@ -58,28 +60,17 @@ export function LogoRow({
   className?: string;
 }) {
   return (
-    <div className={`flex justify-center ${className}`}>
-      <RevealGroup className="relative inline-flex max-w-full flex-wrap items-center justify-center gap-y-7">
-        {/* Premium lighting: an edge-faded wash sized to the logos themselves
-            (Dark-Mode only) — a lighting effect that lifts even dark marks off
-            the canvas without any hard container edge. */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute -inset-x-12 -inset-y-8 hidden dark:block"
-          style={{
-            background:
-              "radial-gradient(115% 78% at 50% 50%, rgba(255,255,255,0.92), rgba(255,255,255,0.46) 48%, rgba(255,255,255,0) 76%)",
-          }}
-        />
+    <div className={`${className}`}>
+      <RevealGroup className="flex w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-4 sm:gap-x-3 sm:gap-y-6">
         {logos.map((logo, idx) => (
-          <RevealItem key={logo.name} className="relative flex items-center">
-            <span className="group flex items-center justify-center px-6 sm:px-9">
+          <RevealItem key={logo.name} className="group flex items-center">
+            <span className="flex items-center justify-center px-3 sm:px-5 lg:px-6">
               <LogoChip name={logo.name} file={logo.file} />
             </span>
             {idx < logos.length - 1 && (
               <span
                 aria-hidden
-                className="hidden h-7 w-px bg-black/[0.08] sm:block"
+                className="hidden h-6 w-px bg-black/[0.10] dark:bg-white/[0.12] sm:block"
               />
             )}
           </RevealItem>

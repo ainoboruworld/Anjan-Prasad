@@ -44,7 +44,7 @@ export function CompaniesWorkedWith() {
   return (
     <section
       aria-label="Brands built, advised, and worked with"
-      className="relative overflow-hidden border-y border-border bg-background-sunken py-24 sm:py-28"
+      className="relative overflow-hidden border-y border-border bg-background-sunken py-20 sm:py-24 lg:py-28"
     >
       {/* Premium top lighting — a soft brand glow, not a container. */}
       <div
@@ -66,13 +66,13 @@ export function CompaniesWorkedWith() {
           </h2>
         </Reveal>
 
-        <div className="mt-20 space-y-16 sm:space-y-20">
+        <div className="mt-14 space-y-12 sm:mt-20 sm:space-y-16 lg:space-y-20">
           {CATEGORIES.map((cat, i) => (
             <div key={cat.label}>
               {i > 0 && (
                 <div
                   aria-hidden
-                  className="mx-auto mb-16 h-px max-w-sm bg-gradient-to-r from-transparent via-border-strong to-transparent sm:mb-20"
+                  className="mx-auto mb-12 h-px max-w-sm bg-gradient-to-r from-transparent via-border-strong to-transparent sm:mb-16 lg:mb-20"
                 />
               )}
               <Reveal className="mx-auto max-w-xl text-center">
