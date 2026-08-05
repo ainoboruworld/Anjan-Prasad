@@ -2,15 +2,17 @@
 
 import { useState } from "react";
 import { logoFileFor } from "@/lib/brandLogos";
-import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { RevealGroup, RevealItem } from "./Reveal";
 
 /**
- * Brand logos, presented as a clean minimal wall — not as individual stickers.
+ * Brand logos as an editorial showcase — no cards, no boxes.
  *
- * Each logo is delivered as the same 212×72 mark, so height-based sizing renders
- * every one at an identical visual weight. Rather than boxing each logo, a whole
- * group sits on a single, softly lifted surface (`LogoPanel`), so the wall reads
- * as one elegant, integrated grid with balanced spacing in both Light and Dark.
+ * Every mark is delivered on the same 212×72 canvas, so rendering at one fixed
+ * height gives each brand an identical footprint: rows stay perfectly even and
+ * every logo carries equal visual weight regardless of the artwork inside. The
+ * logos sit directly in the layout, separated by hairline dividers, and in Dark
+ * Mode a soft edge-faded light wash (a lighting effect, not a container) keeps
+ * even dark marks legible while fading seamlessly into the page.
  */
 
 export interface LogoItem {
@@ -18,12 +20,7 @@ export interface LogoItem {
   file?: string;
 }
 
-/**
- * A single boxless logo — the transparent, full-colour mark, sized to a uniform
- * height so every brand carries equal visual weight. A restrained hover (a
- * gentle lift and a whisper more presence) keeps the wall feeling alive without
- * turning the logos into buttons.
- */
+/** A single full-colour logo with a restrained hover micro-interaction. */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
   const [failed, setFailed] = useState(false);
@@ -36,7 +33,7 @@ export function LogoChip({ name, file }: LogoItem) {
         alt={`${name} logo`}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-7 w-auto object-contain opacity-90 transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:opacity-100 sm:h-8"
+        className="h-7 w-auto object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 sm:h-8"
       />
     );
   }
@@ -49,32 +46,11 @@ export function LogoChip({ name, file }: LogoItem) {
 }
 
 /**
- * The shared surface for a set of logos: one softly lifted panel with a hairline
- * outline. It provides uniform, gentle contrast for every logo at once — the
- * subtle neutral background that keeps mixed marks legible — instead of a box
- * around each one.
+ * A row of logos embedded directly in the page, separated by thin vertical
+ * dividers. The dark-mode light wash lifts the logos off the dark canvas
+ * without any hard container edge.
  */
-export function LogoPanel({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`w-fit max-w-full rounded-[1.5rem] border border-black/[0.05] bg-white/60 px-7 py-6 shadow-[0_8px_30px_-16px_rgba(2,12,27,0.28)] backdrop-blur-lg sm:px-9 dark:border-white/[0.14] dark:bg-white/75 dark:shadow-[0_14px_44px_-20px_rgba(0,0,0,0.65)] ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-/**
- * A group of logos laid out as a centered, evenly spaced wrap on a single panel.
- * Centering keeps a partly filled final row balanced rather than ragged.
- */
-export function LogoGrid({
+export function LogoRow({
   logos,
   className = "",
 }: {
@@ -82,44 +58,33 @@ export function LogoGrid({
   className?: string;
 }) {
   return (
-    <LogoPanel className={`max-w-4xl ${className}`}>
-      <RevealGroup className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:gap-x-10 sm:gap-y-6">
-        {logos.map((logo) => (
-          <RevealItem
-            key={logo.name}
-            className="group flex items-center justify-center"
-          >
-            <LogoChip name={logo.name} file={logo.file} />
+    <div className={`flex justify-center ${className}`}>
+      <RevealGroup className="relative inline-flex max-w-full flex-wrap items-center justify-center gap-y-7">
+        {/* Premium lighting: an edge-faded wash sized to the logos themselves
+            (Dark-Mode only) — a lighting effect that lifts even dark marks off
+            the canvas without any hard container edge. */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -inset-x-12 -inset-y-8 hidden dark:block"
+          style={{
+            background:
+              "radial-gradient(115% 78% at 50% 50%, rgba(255,255,255,0.92), rgba(255,255,255,0.46) 48%, rgba(255,255,255,0) 76%)",
+          }}
+        />
+        {logos.map((logo, idx) => (
+          <RevealItem key={logo.name} className="relative flex items-center">
+            <span className="group flex items-center justify-center px-6 sm:px-9">
+              <LogoChip name={logo.name} file={logo.file} />
+            </span>
+            {idx < logos.length - 1 && (
+              <span
+                aria-hidden
+                className="hidden h-7 w-px bg-black/[0.08] sm:block"
+              />
+            )}
           </RevealItem>
         ))}
       </RevealGroup>
-    </LogoPanel>
-  );
-}
-
-/** A titled group of logos with an optional subtitle. */
-export function LogoGroup({
-  title,
-  note,
-  logos,
-}: {
-  title: string;
-  note?: string;
-  logos: LogoItem[];
-}) {
-  return (
-    <div>
-      <Reveal className="max-w-3xl">
-        <h3 className="font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          {title}
-        </h3>
-        {note && (
-          <p className="mt-2.5 text-[15px] leading-relaxed text-foreground-muted">
-            {note}
-          </p>
-        )}
-      </Reveal>
-      <LogoGrid logos={logos} className="mt-6" />
     </div>
   );
 }

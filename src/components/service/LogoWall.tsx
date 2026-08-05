@@ -1,5 +1,5 @@
 import type { BrandLogo } from "@/lib/brandLogos";
-import { LogoGrid } from "../ui/LogoPlaceholder";
+import { LogoRow } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
@@ -37,9 +37,7 @@ export function LogoWall({
           </h2>
         </Reveal>
 
-        <div className="mt-14 flex justify-center">
-          <LogoGrid logos={logos} />
-        </div>
+        <LogoRow logos={logos} className="mt-14" />
       </div>
     </section>
   );

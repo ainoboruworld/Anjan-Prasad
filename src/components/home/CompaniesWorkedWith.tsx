@@ -3,50 +3,89 @@ import {
   EMPLOYMENT_LOGOS,
   ADVISORY_LOGOS,
   MENTORED_LOGOS,
+  type BrandLogo,
 } from "@/lib/brandLogos";
-import { LogoGroup } from "../ui/LogoPlaceholder";
+import { LogoRow } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * Credibility — two clearly separated logo walls. "Companies Worked With"
- * (employment / leadership roles) and "Brands Advised" (consulting &
- * mentorship) are two different kinds of trust, so they read as two sections.
+ * The brand showcase — an editorial proof band, not a grid of logo cards.
+ * Three kinds of credibility (built, advised, worked with) read as distinct
+ * categories separated by elegant dividers, with the logos embedded directly
+ * into the layout and lit rather than boxed.
  */
+type Category = { label: string; note: string; logos: BrandLogo[] };
+
+const CATEGORIES: Category[] = [
+  {
+    label: "Ventures Built",
+    note: "Companies Anjan Prasad founded, co-founded, and leads.",
+    logos: FOUNDED_LOGOS,
+  },
+  {
+    label: "Companies Advised",
+    note: "Enterprises and brands guided through consulting and strategic advisory.",
+    logos: ADVISORY_LOGOS,
+  },
+  {
+    label: "Career Experience",
+    note: "Organizations where he held leadership and professional roles.",
+    logos: EMPLOYMENT_LOGOS,
+  },
+  {
+    label: "Startups Mentored",
+    note: "Early-stage ventures and founders guided through growth and go-to-market.",
+    logos: MENTORED_LOGOS,
+  },
+];
+
 export function CompaniesWorkedWith() {
   return (
     <section
-      aria-label="Companies worked with and brands advised"
-      className="border-y border-border bg-background-sunken py-16 sm:py-20"
+      aria-label="Brands built, advised, and worked with"
+      className="relative overflow-hidden border-y border-border bg-background-sunken py-24 sm:py-28"
     >
-      <div className="mx-auto max-w-7xl px-6">
-        <Reveal className="mx-auto flex max-w-md items-center gap-4">
-          <span aria-hidden className="h-px flex-1 bg-gradient-to-r from-transparent to-border-strong" />
-          <Eyebrow>Trusted across two decades</Eyebrow>
-          <span aria-hidden className="h-px flex-1 bg-gradient-to-l from-transparent to-border-strong" />
+      {/* Premium top lighting — a soft brand glow, not a container. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-72"
+        style={{
+          background:
+            "radial-gradient(60% 100% at 50% 0%, color-mix(in srgb, var(--brand-sky) 12%, transparent), transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-6xl px-6">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <div className="flex justify-center">
+            <Eyebrow>Trusted across two decades</Eyebrow>
+          </div>
+          <h2 className="mt-5 font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
+            The brands built, advised, and led.
+          </h2>
         </Reveal>
 
-        <div className="mt-12 space-y-12">
-          <LogoGroup
-            title="Companies Built"
-            note="Ventures Anjan Prasad founded, co-founded, and leads — not clients or employers, but companies he built from the ground up."
-            logos={FOUNDED_LOGOS}
-          />
-          <LogoGroup
-            title="Companies Worked With"
-            note="Organizations where Anjan Prasad held leadership and professional roles throughout his career."
-            logos={EMPLOYMENT_LOGOS}
-          />
-          <LogoGroup
-            title="Brands Advised"
-            note="Established businesses and enterprises supported through consulting and strategic advisory."
-            logos={ADVISORY_LOGOS}
-          />
-          <LogoGroup
-            title="Startups Mentored"
-            note="Early-stage ventures and founders guided through growth, product, and go-to-market."
-            logos={MENTORED_LOGOS}
-          />
+        <div className="mt-20 space-y-16 sm:space-y-20">
+          {CATEGORIES.map((cat, i) => (
+            <div key={cat.label}>
+              {i > 0 && (
+                <div
+                  aria-hidden
+                  className="mx-auto mb-16 h-px max-w-sm bg-gradient-to-r from-transparent via-border-strong to-transparent sm:mb-20"
+                />
+              )}
+              <Reveal className="mx-auto max-w-xl text-center">
+                <p className="text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
+                  {cat.label}
+                </p>
+                <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-foreground-muted/80">
+                  {cat.note}
+                </p>
+              </Reveal>
+              <LogoRow logos={cat.logos} className="mt-9" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
