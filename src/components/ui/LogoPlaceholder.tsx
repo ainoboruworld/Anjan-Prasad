@@ -27,14 +27,14 @@ export function LogoChip({ name, file }: LogoItem) {
 
   if (src && !failed) {
     return (
-      <span className="flex items-center justify-center rounded-full px-3 py-1.5 dark:[background:radial-gradient(62%_128%_at_50%_50%,rgba(255,255,255,0.13),rgba(255,255,255,0.05)_52%,rgba(255,255,255,0)_76%)]">
+      <span className="flex items-center justify-center rounded-full px-5 py-2.5 dark:[background:radial-gradient(50%_115%_at_50%_50%,rgba(255,255,255,0.2),rgba(255,255,255,0.07)_45%,rgba(255,255,255,0)_70%)]">
         {/* eslint-disable-next-line @next/next/no-img-element -- static, pre-optimised brand artwork */}
         <img
           src={`/brand-logos/${src}`}
           alt={`${name} logo`}
           loading="lazy"
           onError={() => setFailed(true)}
-          className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 dark:opacity-95 dark:group-hover:opacity-100 sm:h-7 lg:h-8"
+          className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 dark:opacity-100 sm:h-7 lg:h-8"
         />
       </span>
     );
