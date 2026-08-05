@@ -48,13 +48,13 @@ export function CompaniesWorkedWith() {
     >
       {/* Premium top lighting — a soft brand glow, not a container. */}
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-72"
-        style={{
-          background:
-            "radial-gradient(60% 100% at 50% 0%, color-mix(in srgb, var(--brand-sky) 12%, transparent), transparent 70%)",
-        }}
-      />
+  aria-hidden
+  className="pointer-events-none absolute inset-x-0 top-0 h-72"
+  style={{
+    background:
+      "radial-gradient(35% 55% at 50% 0%, color-mix(in srgb, var(--brand-sky) 22%, transparent), transparent 50%, transparent 100%)",
+  }}
+/>
 
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="mx-auto max-w-2xl text-center">
