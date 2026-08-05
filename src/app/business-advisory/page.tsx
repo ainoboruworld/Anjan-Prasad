@@ -292,7 +292,7 @@ export default function BusinessAdvisoryPage() {
             <span className="editorial-accent text-brand">across sectors.</span>
           </>
         }
-        names={ENTERPRISE_BRANDS.slice(0, 12).map((b) => b.name)}
+        logos={ENTERPRISE_BRANDS.slice(0, 12)}
         tone="elevated"
       />
 

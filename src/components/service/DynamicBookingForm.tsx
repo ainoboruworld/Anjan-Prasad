@@ -233,7 +233,7 @@ export function DynamicBookingForm({
                   aria-selected={active}
                   type="button"
                   onClick={() => switchVariant(vrt.id)}
-                  className={`relative flex-1 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
+                  className={`relative flex-1 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors ${
                     active
                       ? "text-brand-ink"
                       : "text-foreground-muted hover:text-foreground"
@@ -241,12 +241,13 @@ export function DynamicBookingForm({
                 >
                   {active && (
                     <motion.span
+                      aria-hidden
                       layoutId="booking-tab"
-                      className="absolute inset-0 -z-10 rounded-xl bg-brand"
+                      className="absolute inset-0 rounded-xl bg-brand shadow-[0_6px_20px_-6px_var(--brand-sky)] ring-1 ring-brand-sky/40"
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   )}
-                  {vrt.label}
+                  <span className="relative z-10">{vrt.label}</span>
                 </button>
               );
             })}

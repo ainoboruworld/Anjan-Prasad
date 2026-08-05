@@ -1,21 +1,23 @@
-import { LogoMark } from "../brand/LogoMark";
+import type { BrandLogo } from "@/lib/brandLogos";
+import { LogoGrid } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * Logo wall — the "companies worked with" band. Marks render grayscale and
- * regain colour on hover (.logo-mark). Content-driven so both service pages
- * can show the same disciplined proof strip with their own framing.
+ * Logo wall — the "companies worked with" proof band. Renders the official
+ * brand artwork on uniform white chips (the same tile used on the home wall),
+ * so sizing, spacing, and alignment stay identical everywhere and the strip
+ * reads clean and premium in both Light and Dark modes.
  */
 export function LogoWall({
   eyebrow = "Companies worked with",
   title,
-  names,
+  logos,
   tone = "sunken",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
-  names: string[];
+  logos: BrandLogo[];
   tone?: "sunken" | "elevated";
 }) {
   return (
@@ -35,19 +37,7 @@ export function LogoWall({
           </h2>
         </Reveal>
 
-        <Reveal className="mt-14">
-          <ul className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-            {names.map((name) => (
-              <li
-                key={name}
-                tabIndex={0}
-                className="logo-mark flex items-center text-foreground"
-              >
-                <LogoMark name={name} />
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+        <LogoGrid logos={logos} className="mt-14" />
       </div>
     </section>
   );
