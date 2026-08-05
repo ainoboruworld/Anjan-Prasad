@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Quote } from "lucide-react";
 import { Placeholder } from "../ui/Placeholder";
-import { LogoChip } from "../ui/LogoPlaceholder";
+import { LogoChip, LogoPanel } from "../ui/LogoPlaceholder";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
@@ -99,13 +99,15 @@ function StepContent({ chapter }: { chapter: StaircaseChapter }) {
       </Reveal>
 
       {/* Company logos for this stage */}
-      <RevealGroup className="mt-8 flex flex-wrap gap-3">
-        {chapter.logos.map((name) => (
-          <RevealItem key={name} className="w-[136px]">
-            <LogoChip name={name} />
-          </RevealItem>
-        ))}
-      </RevealGroup>
+      <LogoPanel className="mt-8 px-6 py-6 sm:px-8">
+        <RevealGroup className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-start">
+          {chapter.logos.map((name) => (
+            <RevealItem key={name} className="flex items-center justify-center">
+              <LogoChip name={name} />
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </LogoPanel>
     </div>
   );
 }

@@ -5,12 +5,12 @@ import { logoFileFor } from "@/lib/brandLogos";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 
 /**
- * Company-logo tiles — compact, premium, and perfectly uniform.
+ * Brand logos, presented as a clean minimal wall — not as individual stickers.
  *
- * Every logo is delivered as the same 212×72 mark on a clean white field, so a
- * single fixed-height white chip renders each one at identical size, padding,
- * and visual weight — the wall reads even across every group and in both Light
- * and Dark modes. If a name has no artwork it degrades to a refined wordmark.
+ * Each logo is delivered as the same 212×72 mark, so height-based sizing renders
+ * every one at an identical visual weight. Rather than boxing each logo, a whole
+ * group sits on a single, softly lifted surface (`LogoPanel`), so the wall reads
+ * as one elegant, integrated grid with balanced spacing in both Light and Dark.
  */
 
 export interface LogoItem {
@@ -18,39 +18,56 @@ export interface LogoItem {
   file?: string;
 }
 
-/** A single logo tile. */
+/** A single boxless logo — just the mark, sized to a uniform height. */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
   const [failed, setFailed] = useState(false);
 
   if (src && !failed) {
     return (
-      <div className="group flex h-[76px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-white px-6 shadow-[var(--shadow-card)] ring-1 ring-black/[0.04] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card-hover)]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static, pre-optimised brand artwork */}
-        <img
-          src={`/brand-logos/${src}`}
-          alt={`${name} logo`}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          className="max-h-[44px] w-auto max-w-full object-contain"
-        />
-      </div>
+      // eslint-disable-next-line @next/next/no-img-element -- static, pre-optimised brand artwork
+      <img
+        src={`/brand-logos/${src}`}
+        alt={`${name} logo`}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className="h-8 w-auto object-contain sm:h-9"
+      />
     );
   }
 
   return (
-    <div className="flex h-[76px] items-center justify-center rounded-2xl border border-border bg-white px-6 shadow-[var(--shadow-card)] ring-1 ring-black/[0.04]">
-      <span className="text-center font-display text-sm font-semibold leading-tight tracking-tight text-neutral-800">
-        {name}
-      </span>
+    <span className="font-display text-sm font-semibold tracking-tight text-neutral-700">
+      {name}
+    </span>
+  );
+}
+
+/**
+ * The shared surface for a set of logos: one softly lifted panel with a hairline
+ * outline. It provides uniform, gentle contrast for every logo at once — the
+ * subtle neutral background that keeps mixed marks legible — instead of a box
+ * around each one.
+ */
+export function LogoPanel({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`rounded-[1.75rem] border border-black/[0.06] bg-white px-6 py-10 shadow-[var(--shadow-card)] ring-1 ring-black/[0.02] sm:px-10 ${className}`}
+    >
+      {children}
     </div>
   );
 }
 
 /**
- * A responsive grid of logo tiles. A centered flex-wrap keeps partly filled
- * final rows centred (no ragged blank cells), and every tile shares the same
- * responsive width across the 2 / 3 / 6 breakpoints so the grid stays aligned.
+ * A group of logos laid out as a centered, evenly spaced wrap on a single panel.
+ * Centering keeps a partly filled final row balanced rather than ragged.
  */
 export function LogoGrid({
   logos,
@@ -60,20 +77,19 @@ export function LogoGrid({
   className?: string;
 }) {
   return (
-    <RevealGroup className={`flex flex-wrap justify-center gap-3 sm:gap-4 ${className}`}>
-      {logos.map((logo) => (
-        <RevealItem
-          key={logo.name}
-          className="w-[calc(50%-0.375rem)] sm:w-[calc(33.333%-0.667rem)] lg:w-[calc(16.666%-0.834rem)]"
-        >
-          <LogoChip name={logo.name} file={logo.file} />
-        </RevealItem>
-      ))}
-    </RevealGroup>
+    <LogoPanel className={className}>
+      <RevealGroup className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14 sm:gap-y-10">
+        {logos.map((logo) => (
+          <RevealItem key={logo.name} className="flex items-center justify-center">
+            <LogoChip name={logo.name} file={logo.file} />
+          </RevealItem>
+        ))}
+      </RevealGroup>
+    </LogoPanel>
   );
 }
 
-/** A titled group of logo tiles with an optional subtitle. */
+/** A titled group of logos with an optional subtitle. */
 export function LogoGroup({
   title,
   note,
@@ -95,7 +111,7 @@ export function LogoGroup({
           </p>
         )}
       </Reveal>
-      <LogoGrid logos={logos} className="mt-7" />
+      <LogoGrid logos={logos} className="mt-6" />
     </div>
   );
 }
