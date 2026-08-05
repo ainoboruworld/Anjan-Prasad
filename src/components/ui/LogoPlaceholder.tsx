@@ -19,9 +19,10 @@ export interface LogoItem {
 }
 
 /**
- * A single boxless logo — just the transparent mark, sized to a uniform height.
- * It renders as one adaptive tone by default (ink in Light, light in Dark) so
- * the wall reads as a cohesive set, and blooms into full brand colour on hover.
+ * A single boxless logo — the transparent, full-colour mark, sized to a uniform
+ * height so every brand carries equal visual weight. A restrained hover (a
+ * gentle lift and a whisper more presence) keeps the wall feeling alive without
+ * turning the logos into buttons.
  */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
@@ -35,13 +36,13 @@ export function LogoChip({ name, file }: LogoItem) {
         alt={`${name} logo`}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-8 w-auto object-contain opacity-60 transition-all duration-500 ease-out [filter:brightness(0)] group-hover:!opacity-100 group-hover:![filter:none] dark:opacity-70 dark:[filter:brightness(0)_invert(1)] sm:h-9"
+        className="h-7 w-auto object-contain opacity-90 transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:opacity-100 sm:h-8"
       />
     );
   }
 
   return (
-    <span className="font-display text-sm font-semibold tracking-tight text-foreground/70 transition-colors duration-300 group-hover:text-foreground">
+    <span className="font-display text-sm font-semibold tracking-tight text-neutral-500 transition-colors duration-300 group-hover:text-neutral-800">
       {name}
     </span>
   );
@@ -62,7 +63,7 @@ export function LogoPanel({
 }) {
   return (
     <div
-      className={`rounded-[1.75rem] border border-black/[0.06] bg-white/60 px-6 py-12 shadow-[0_12px_44px_-18px_rgba(2,12,27,0.35)] ring-1 ring-white/50 backdrop-blur-md sm:px-12 dark:border-white/[0.08] dark:bg-white/[0.04] dark:shadow-[0_18px_54px_-20px_rgba(0,0,0,0.7)] dark:ring-white/[0.06] ${className}`}
+      className={`w-fit max-w-full rounded-[1.5rem] border border-black/[0.05] bg-white/60 px-7 py-6 shadow-[0_8px_30px_-16px_rgba(2,12,27,0.28)] backdrop-blur-lg sm:px-9 dark:border-white/[0.14] dark:bg-white/75 dark:shadow-[0_14px_44px_-20px_rgba(0,0,0,0.65)] ${className}`}
     >
       {children}
     </div>
@@ -81,8 +82,8 @@ export function LogoGrid({
   className?: string;
 }) {
   return (
-    <LogoPanel className={className}>
-      <RevealGroup className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14 sm:gap-y-10">
+    <LogoPanel className={`max-w-4xl ${className}`}>
+      <RevealGroup className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:gap-x-10 sm:gap-y-6">
         {logos.map((logo) => (
           <RevealItem
             key={logo.name}

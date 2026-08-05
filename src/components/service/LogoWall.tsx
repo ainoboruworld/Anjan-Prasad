@@ -37,7 +37,9 @@ export function LogoWall({
           </h2>
         </Reveal>
 
-        <LogoGrid logos={logos} className="mt-14" />
+        <div className="mt-14 flex justify-center">
+          <LogoGrid logos={logos} />
+        </div>
       </div>
     </section>
   );
