@@ -51,8 +51,13 @@ export function CompaniesWorkedWith() {
   aria-hidden
   className="pointer-events-none absolute inset-x-0 top-0 h-72"
   style={{
-    background:
-      "radial-gradient(35% 55% at 50% 0%, color-mix(in srgb, var(--brand-sky) 22%, transparent), transparent 50%, transparent 100%)",
+    background: radial-gradient(
+  circle,
+  rgba(255,255,255,.18) 0%,
+  rgba(255,255,255,.10) 25%,
+  rgba(79,169,255,.08) 45%,
+  transparent 70%
+);
   }}
 />
 
