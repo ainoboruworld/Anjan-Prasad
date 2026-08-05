@@ -31,11 +31,16 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://ap.com"),
   title: {
-    default: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
+    default:
+      "Anjan Prasad — Business Strategist, Startup Mentor & Growth Advisor",
     template: "%s — Anjan Prasad",
   },
   description:
-    "Anjan Prasad is an entrepreneur, business strategist, startup mentor and growth advisor with 16+ years building, scaling and transforming companies — from Fortune 500 rooms to bootstrapped ventures.",
+    "Anjan Prasad is an entrepreneur, business strategist and growth advisor with 16+ years building, scaling and transforming companies. 250+ businesses guided, 100+ brands advised — from Fortune 500 rooms to bootstrapped ventures.",
+  applicationName: "Anjan Prasad",
+  authors: [{ name: "Anjan Prasad" }],
+  creator: "Anjan Prasad",
+  publisher: "Anjan Prasad",
   keywords: [
     "Anjan Prasad",
     "business strategist",
@@ -44,14 +49,17 @@ export const metadata: Metadata = {
     "business advisory India",
     "business consulting",
     "startup consulting",
+    "leadership coaching",
+    "go-to-market strategy",
     "Noboru World",
     "Filing Buddy",
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
+    title:
+      "Anjan Prasad — Business Strategist, Startup Mentor & Growth Advisor",
     description:
-      "16+ years building, scaling and transforming companies. Advisory, consultation, and courses for founders and professionals.",
+      "16+ years building, scaling and transforming companies. Strategic advisory, executive consulting, and courses for founders and professionals.",
     type: "website",
     locale: "en_IN",
     siteName: "Anjan Prasad",
@@ -59,9 +67,16 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anjan Prasad — Entrepreneur, Business Strategist & Growth Advisor",
+    title:
+      "Anjan Prasad — Business Strategist, Startup Mentor & Growth Advisor",
     description:
-      "16+ years building, scaling and transforming companies. Advisory, consultation, and courses.",
+      "16+ years building, scaling and transforming companies. Strategic advisory, executive consulting, and courses for founders.",
+    creator: "@anjanpr",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
 };
 

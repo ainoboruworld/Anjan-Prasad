@@ -18,7 +18,7 @@ type Stat = {
 const STATS: Stat[] = [
   { value: 16, suffix: "+", label: "Years of Experience" },
   { value: 250, suffix: "+", label: "Businesses Guided" },
-  { value: 5, label: "Ventures Built" },
+  { value: 4, label: "Ventures Built" },
   { value: 100, suffix: "+", label: "Brands Worked With" },
   { text: "Fortune 500", label: "Companies Advised" },
   { value: 3, suffix: "+", label: "Institutions & Universities" },
