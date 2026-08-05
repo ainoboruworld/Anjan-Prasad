@@ -47,17 +47,20 @@ export function CompaniesWorkedWith() {
       className="relative overflow-hidden border-y border-border bg-background-sunken py-20 sm:py-24 lg:py-28"
     >
       {/* Premium top lighting — a soft brand glow, not a container. */}
-      <div
+     <div
   aria-hidden
   className="pointer-events-none absolute inset-x-0 top-0 h-72"
   style={{
-    background: radial-gradient(
-  circle,
-  rgba(255,255,255,.18) 0%,
-  rgba(255,255,255,.10) 25%,
-  rgba(79,169,255,.08) 45%,
-  transparent 70%
-);
+    background: `
+      radial-gradient(
+        ellipse 42% 65% at 50% 0%,
+        rgba(255,255,255,0.18) 0%,
+        rgba(255,255,255,0.12) 18%,
+        rgba(79,169,255,0.08) 35%,
+        rgba(79,169,255,0.03) 50%,
+        transparent 70%
+      )
+    `,
   }}
 />
 
