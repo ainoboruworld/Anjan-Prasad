@@ -125,7 +125,6 @@ const CHAPTERS: StaircaseChapter[] = [
     title: JOURNEY[4].title,
     blurb: JOURNEY[4].copy,
     imageLabel: "Workshops & working sessions",
-    logos: ["American Express", "Dabur", "Aditya Birla Capital", "PwC"],
     milestones: [{ year: "2025", label: "CEO · Filing Buddy" }],
     quote: JOURNEY[4].detail,
     highlight: { label: "The step", value: "Margin, not meetings" },
