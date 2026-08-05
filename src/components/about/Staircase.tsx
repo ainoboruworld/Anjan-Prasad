@@ -102,7 +102,10 @@ function StepContent({ chapter }: { chapter: StaircaseChapter }) {
       <LogoPanel className="mt-8 px-6 py-6 sm:px-8">
         <RevealGroup className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 sm:justify-start">
           {chapter.logos.map((name) => (
-            <RevealItem key={name} className="flex items-center justify-center">
+            <RevealItem
+              key={name}
+              className="group flex items-center justify-center"
+            >
               <LogoChip name={name} />
             </RevealItem>
           ))}

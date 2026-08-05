@@ -18,7 +18,11 @@ export interface LogoItem {
   file?: string;
 }
 
-/** A single boxless logo — just the mark, sized to a uniform height. */
+/**
+ * A single boxless logo — just the transparent mark, sized to a uniform height.
+ * It renders as one adaptive tone by default (ink in Light, light in Dark) so
+ * the wall reads as a cohesive set, and blooms into full brand colour on hover.
+ */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
   const [failed, setFailed] = useState(false);
@@ -31,13 +35,13 @@ export function LogoChip({ name, file }: LogoItem) {
         alt={`${name} logo`}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-8 w-auto object-contain sm:h-9"
+        className="h-8 w-auto object-contain opacity-60 transition-all duration-500 ease-out [filter:brightness(0)] group-hover:!opacity-100 group-hover:![filter:none] dark:opacity-70 dark:[filter:brightness(0)_invert(1)] sm:h-9"
       />
     );
   }
 
   return (
-    <span className="font-display text-sm font-semibold tracking-tight text-neutral-700">
+    <span className="font-display text-sm font-semibold tracking-tight text-foreground/70 transition-colors duration-300 group-hover:text-foreground">
       {name}
     </span>
   );
@@ -58,7 +62,7 @@ export function LogoPanel({
 }) {
   return (
     <div
-      className={`rounded-[1.75rem] border border-black/[0.06] bg-white px-6 py-10 shadow-[var(--shadow-card)] ring-1 ring-black/[0.02] sm:px-10 ${className}`}
+      className={`rounded-[1.75rem] border border-black/[0.06] bg-white/60 px-6 py-12 shadow-[0_12px_44px_-18px_rgba(2,12,27,0.35)] ring-1 ring-white/50 backdrop-blur-md sm:px-12 dark:border-white/[0.08] dark:bg-white/[0.04] dark:shadow-[0_18px_54px_-20px_rgba(0,0,0,0.7)] dark:ring-white/[0.06] ${className}`}
     >
       {children}
     </div>
@@ -80,7 +84,10 @@ export function LogoGrid({
     <LogoPanel className={className}>
       <RevealGroup className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 sm:gap-x-14 sm:gap-y-10">
         {logos.map((logo) => (
-          <RevealItem key={logo.name} className="flex items-center justify-center">
+          <RevealItem
+            key={logo.name}
+            className="group flex items-center justify-center"
+          >
             <LogoChip name={logo.name} file={logo.file} />
           </RevealItem>
         ))}
