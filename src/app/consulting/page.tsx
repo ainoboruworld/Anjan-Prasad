@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { TESTIMONIALS, BRANDS_ADVISED } from "@/lib/data";
+import { TESTIMONIALS } from "@/lib/data";
+import { ADVISORY_LOGOS } from "@/lib/brandLogos";
 import {
   HeroSection,
   TrustMetrics,
@@ -341,7 +342,7 @@ export default function ConsultationPage() {
             <span className="editorial-accent text-brand">two decades of building.</span>
           </>
         }
-        names={BRANDS_ADVISED.slice(0, 12)}
+        logos={ADVISORY_LOGOS.slice(0, 12)}
       />
 
       <TrustMetrics metrics={SUCCESS_METRICS} eyebrow="Success metrics" />
