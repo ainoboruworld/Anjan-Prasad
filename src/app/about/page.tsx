@@ -211,7 +211,7 @@ export default function AboutPage() {
         >
           {[
             { n: 16, suffix: "+", label: "Years of experience" },
-            { n: 5, suffix: "", label: "Ventures built & co-founded" },
+            { n: 4, suffix: "", label: "Ventures built & co-founded" },
             { n: 100, suffix: "+", label: "Brands advised" },
             { n: 3, suffix: "", label: "Premier B-schools taught at" },
           ].map((s) => (

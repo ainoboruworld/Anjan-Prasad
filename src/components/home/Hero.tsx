@@ -107,7 +107,7 @@ export function Hero() {
           >
             {[
               "16+ years experience",
-              "5 ventures built",
+              "4 ventures built",
               "100+ brands advised",
             ].map((t) => (
               <li key={t} className="flex items-center gap-2">

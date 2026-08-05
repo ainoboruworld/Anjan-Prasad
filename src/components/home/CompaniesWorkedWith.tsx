@@ -1,4 +1,9 @@
-import { FOUNDED_LOGOS, EMPLOYMENT_LOGOS, ADVISORY_LOGOS } from "@/lib/brandLogos";
+import {
+  FOUNDED_LOGOS,
+  EMPLOYMENT_LOGOS,
+  ADVISORY_LOGOS,
+  MENTORED_LOGOS,
+} from "@/lib/brandLogos";
 import { LogoGroup } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
@@ -34,8 +39,13 @@ export function CompaniesWorkedWith() {
           />
           <LogoGroup
             title="Brands Advised"
-            note="Businesses, startups, and founders supported through consulting, mentorship, and strategic advisory."
+            note="Established businesses and enterprises supported through consulting and strategic advisory."
             logos={ADVISORY_LOGOS}
+          />
+          <LogoGroup
+            title="Startups Mentored"
+            note="Early-stage ventures and founders guided through growth, product, and go-to-market."
+            logos={MENTORED_LOGOS}
           />
         </div>
       </div>
