@@ -33,7 +33,7 @@ export function LogoChip({ name, file }: LogoItem) {
         alt={`${name} logo`}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 sm:h-7 lg:h-8"
+        className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 dark:opacity-70 dark:group-hover:opacity-100 sm:h-7 lg:h-8"
       />
     );
   }
@@ -48,9 +48,9 @@ export function LogoChip({ name, file }: LogoItem) {
 /**
  * A row of logos embedded directly in the page, separated by thin vertical
  * dividers. A full-width wrapping flex keeps it from ever overflowing, so it
- * stays balanced from mobile to desktop; in Dark Mode a soft, centred, edge-
- * faded light wash lifts even dark marks off the canvas — a lighting effect,
- * not a container.
+ * stays balanced from mobile to desktop. The logos sit directly on the canvas
+ * at a slightly reduced opacity — no highlight — and lift to full presence on
+ * hover.
  */
 export function LogoRow({
   logos,
@@ -60,16 +60,8 @@ export function LogoRow({
   className?: string;
 }) {
   return (
-    <div className={`relative ${className}`}>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[calc(100%+3.5rem)] w-[min(100%,44rem)] -translate-x-1/2 -translate-y-1/2 dark:block"
-        style={{
-          background:
-            "radial-gradient(115% 76% at 50% 50%, rgba(255,255,255,0.92), rgba(255,255,255,0.44) 48%, rgba(255,255,255,0) 76%)",
-        }}
-      />
-      <RevealGroup className="relative flex w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-4 sm:gap-x-3 sm:gap-y-6">
+    <div className={`${className}`}>
+      <RevealGroup className="flex w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-4 sm:gap-x-3 sm:gap-y-6">
         {logos.map((logo, idx) => (
           <RevealItem key={logo.name} className="group flex items-center">
             <span className="flex items-center justify-center px-3 sm:px-5 lg:px-6">
@@ -78,7 +70,7 @@ export function LogoRow({
             {idx < logos.length - 1 && (
               <span
                 aria-hidden
-                className="hidden h-6 w-px bg-black/[0.10] sm:block"
+                className="hidden h-6 w-px bg-black/[0.10] dark:bg-white/[0.12] sm:block"
               />
             )}
           </RevealItem>
