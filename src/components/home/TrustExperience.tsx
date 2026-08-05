@@ -1,6 +1,7 @@
 import { Counter } from "../ui/Counter";
 import { SectionHeading } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
+import { StatImage } from "../ui/StatImage";
 
 /**
  * Trust & Experience — the record in animated numbers. Numeric stats count
@@ -12,6 +13,7 @@ type Stat = {
   prefix?: string;
   suffix?: string;
   text?: string;
+  image?: string;
   label: string;
 };
 
@@ -20,7 +22,7 @@ const STATS: Stat[] = [
   { value: 250, suffix: "+", label: "Businesses Guided" },
   { value: 4, label: "Ventures Built" },
   { value: 100, suffix: "+", label: "Brands Worked With" },
-  { text: "Fortune 500", label: "Companies Advised" },
+  { image: "/images/fortune-500.png", text: "Fortune 500", label: "Companies Advised" },
   { value: 3, suffix: "+", label: "Institutions & Universities" },
 ];
 
@@ -52,9 +54,11 @@ export function TrustExperience() {
               key={s.label}
               className="flex flex-col items-center gap-2 text-center"
             >
-              <span className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+              <span className="flex min-h-[2.75rem] items-center justify-center font-display text-4xl font-semibold tracking-tight text-foreground sm:min-h-[3.25rem] sm:text-5xl">
                 {typeof s.value === "number" ? (
                   <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                ) : s.image ? (
+                  <StatImage src={s.image} alt={s.text ?? s.label} fallback={s.text ?? s.label} />
                 ) : (
                   s.text
                 )}
