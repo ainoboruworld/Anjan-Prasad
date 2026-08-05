@@ -54,6 +54,13 @@ export const MENTORED_LOGOS: BrandLogo[] = [
   { name: "Akounto", file: "akounto.png" },
 ];
 
+/** Institutes and universities where Anjan served as visiting faculty. */
+export const ACADEMIC_LOGOS: BrandLogo[] = [
+  { name: "IIFT", file: "iift.png" },
+  { name: "IMT Ghaziabad", file: "imt.png" },
+  { name: "BML Munjal University", file: "bml-munjal.png" },
+];
+
 /**
  * Recognisable enterprise subset used by the service-page proof strips.
  * Draws from the employment and advisory sets.
@@ -81,6 +88,7 @@ const ALL_LOGOS: BrandLogo[] = Array.from(
       ...EMPLOYMENT_LOGOS,
       ...ADVISORY_LOGOS,
       ...MENTORED_LOGOS,
+      ...ACADEMIC_LOGOS,
     ].map((l) => [l.name, l])
   ).values()
 );
