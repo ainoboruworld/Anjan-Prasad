@@ -88,7 +88,7 @@ const CHAPTERS: StaircaseChapter[] = [
     title: JOURNEY[1].title,
     blurb: JOURNEY[1].copy,
     imageLabel: "Speaking engagements",
-    logos: ["Zeta", "Fareportal", "The Art of Living"],
+    logos: ["Zeta Global", "Fareportal", "The Art of Living"],
     milestones: [
       { year: "2011", label: "Team Lead · Fareportal" },
       { year: "2017", label: "Head of Digital Marketing · The Art of Living" },
@@ -125,7 +125,7 @@ const CHAPTERS: StaircaseChapter[] = [
     title: JOURNEY[4].title,
     blurb: JOURNEY[4].copy,
     imageLabel: "Workshops & working sessions",
-    logos: ["American Express", "Dabur", "DLF", "Cairn"],
+    logos: ["American Express", "Dabur", "Aditya Birla Capital", "PwC"],
     milestones: [{ year: "2025", label: "CEO · Filing Buddy" }],
     quote: JOURNEY[4].detail,
     highlight: { label: "The step", value: "Margin, not meetings" },
