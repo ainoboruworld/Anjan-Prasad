@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitForm, paymentUrl } from "@/lib/forms";
+import { saveBooking } from "@/lib/bookings";
 import { LIVE_COURSE as MONTHLY_CONSULTING } from "@/lib/data";
 import { Field, SubmitButton, inputCls } from "../ui/Form";
 
@@ -27,16 +28,28 @@ export function MonthlyConsultingForm() {
     const f = new FormData(e.currentTarget);
     const v = (k: string) => (f.get(k) as string) ?? "";
     const name = v("fullName");
+    const data = {
+      "Business Stage": v("stage"),
+      "What you want to move this month": v("goal"),
+    };
+    await saveBooking({
+      serviceType: "business-advisory",
+      programType: "Business Growth Program",
+      tierId: "cohort",
+      fullName: name,
+      email: v("email"),
+      phone: v("phone"),
+      company: v("companyName"),
+      status: "pending_payment",
+      payload: data,
+    });
     await submitForm({
       formType: "Business Growth Program",
       name,
       email: v("email"),
       phone: v("phone"),
       company: v("companyName"),
-      data: {
-        "Business Stage": v("stage"),
-        "What you want to move this month": v("goal"),
-      },
+      data,
     });
     router.push(
       paymentUrl({

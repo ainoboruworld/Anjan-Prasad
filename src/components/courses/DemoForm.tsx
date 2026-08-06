@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitForm, paymentUrl } from "@/lib/forms";
+import { saveBooking } from "@/lib/bookings";
 import { DEMO_SESSION } from "@/lib/data";
 import { Field, SubmitButton, inputCls } from "../ui/Form";
 
@@ -28,17 +29,28 @@ export function DemoForm() {
     const f = new FormData(e.currentTarget);
     const v = (k: string) => (f.get(k) as string) ?? "";
     const name = v("fullName");
+    const data = {
+      City: v("city"),
+      Occupation: v("occupation"),
+      "Business Stage": v("stage"),
+      Expectations: v("expectations"),
+    };
+    await saveBooking({
+      serviceType: "business-advisory",
+      programType: "Demo Session",
+      tierId: "demo",
+      fullName: name,
+      email: v("email"),
+      phone: v("phone"),
+      status: "pending_payment",
+      payload: data,
+    });
     await submitForm({
       formType: "Demo Session",
       name,
       email: v("email"),
       phone: v("phone"),
-      data: {
-        City: v("city"),
-        Occupation: v("occupation"),
-        "Business Stage": v("stage"),
-        Expectations: v("expectations"),
-      },
+      data,
     });
     router.push(
       paymentUrl({ plan: "Demo Session", amount: DEMO_SESSION.fee, name })

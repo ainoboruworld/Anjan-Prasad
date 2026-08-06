@@ -6,6 +6,7 @@
  * only identity + tier + form data; pricing is validated server-side.
  */
 import { submitForm, type FormType } from "@/lib/forms";
+import { saveBooking } from "@/lib/bookings";
 import { createPaymentOrder } from "../payments/paymentsService";
 import { ok, fail, type ServiceResponse } from "../types";
 
@@ -35,6 +36,19 @@ export interface BookingResult {
 export async function createConsultationBooking(
   input: ConsultationBookingInput
 ): Promise<ServiceResponse<BookingResult>> {
+  // Persist the booking to Supabase (source of truth) and mirror to the
+  // forms layer (notification / fallback). Neither blocks the payment step.
+  await saveBooking({
+    serviceType: "consultation",
+    programType: input.formType,
+    tierId: input.tierId,
+    fullName: input.customer.name,
+    email: input.customer.email,
+    phone: input.customer.phone,
+    company: input.customer.company,
+    status: input.mode === "verification" ? "verifying" : "pending_payment",
+    payload: input.data,
+  });
   await submitForm({
     formType: input.formType,
     name: input.customer.name,
