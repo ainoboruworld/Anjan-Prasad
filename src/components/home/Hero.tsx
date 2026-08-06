@@ -133,10 +133,7 @@ export function Hero() {
           {/* Floating credential chip - glass */}
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-glass px-5 py-3.5 shadow-[var(--shadow-soft)] backdrop-blur-xl sm:block">
             <p className="font-display text-sm font-semibold text-foreground">
-              Founder &amp; CEO, Noboru World
-            </p>
-            <p className="mt-0.5 text-xs text-foreground-muted">
-              CEO, Filing Buddy · Growth Advisor
+               Strategy • Growth • Scale
             </p>
           </div>
         </motion.div>
