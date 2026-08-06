@@ -1,42 +1,47 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Loader2, Mail } from "lucide-react";
+import { ArrowLeft, Check, Mail } from "lucide-react";
 import { easeSmooth } from "../motion";
 import { OtpInput } from "./OtpInput";
 import { useAuth } from "./AuthProvider";
 import {
-  sendEmailOtp,
+  sendSignInOtp,
   verifyEmailOtp,
   resendEmailOtp,
   getProfile,
 } from "@/lib/auth/service";
 import { friendlyAuthError, isValidEmail } from "@/lib/auth/errors";
+import { AuthPanel, ErrorLine, PrimaryButton } from "./authUi";
 
 type Step = "email" | "otp" | "success";
-
 const RESEND_SECONDS = 30;
 
 /**
- * Passwordless Email-OTP sign-in.
+ * Passwordless Email-OTP log in.
  *
- * Email → OTP → verify. On success, returning users (profile exists) go back
- * to where they came from; first-time users are sent to onboarding. Inline
- * validation, loading states, friendly errors, and a success animation.
+ * Email -> OTP -> verify. Never creates a new account (that is Sign Up); an
+ * unknown email is guided to the sign-up page. Inline validation, loading
+ * states, friendly errors, and a success animation.
  */
 export function SignInForm() {
   const router = useRouter();
   const params = useSearchParams();
   const { configured } = useAuth();
-  const redirectTo = useMemo(() => sanitizeRedirect(params.get("redirect")), [params]);
+  const redirectTo = useMemo(
+    () => sanitizeRedirect(params.get("redirect")),
+    [params]
+  );
 
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [notFound, setNotFound] = useState(false);
   const [cooldown, setCooldown] = useState(0);
 
   useEffect(() => {
@@ -48,15 +53,22 @@ export function SignInForm() {
   const requestOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setNotFound(false);
     if (!isValidEmail(email)) {
       setError("Please enter a valid email address.");
       return;
     }
     setBusy(true);
-    const { error: err } = await sendEmailOtp(email);
+    const { error: err } = await sendSignInOtp(email);
     setBusy(false);
     if (err) {
-      setError(friendlyAuthError({ message: err }));
+      // Log In never creates an account; an unknown email lands here.
+      if (/not allowed|signups|not found|user/i.test(err)) {
+        setNotFound(true);
+        setError("We couldn't find an account for that email.");
+      } else {
+        setError(friendlyAuthError({ message: err }));
+      }
       return;
     }
     setStep("otp");
@@ -73,18 +85,12 @@ export function SignInForm() {
       setOtp("");
       return;
     }
-
-    // Decide destination: returning user → back where they came from;
-    // new user (no profile) → onboarding.
     const { data: profile } = await getProfile(data.user.id);
     setBusy(false);
     setStep("success");
-
     const target = profile
       ? redirectTo
       : `/onboarding?redirect=${encodeURIComponent(redirectTo)}`;
-
-    // Let the success state show briefly, then navigate.
     setTimeout(() => router.replace(target), 700);
   };
 
@@ -99,14 +105,7 @@ export function SignInForm() {
   };
 
   return (
-    <div className="rounded-3xl border border-border bg-background-elevated p-8 shadow-[var(--shadow-soft)] sm:p-10">
-      {!configured && (
-        <p className="mb-6 rounded-2xl border border-border bg-background-sunken px-4 py-3 text-xs leading-relaxed text-foreground-muted">
-          Sign-in activates automatically once the Supabase credentials are
-          added to the environment.
-        </p>
-      )}
-
+    <AuthPanel configured={configured}>
       <AnimatePresence mode="wait">
         {step === "email" && (
           <motion.form
@@ -120,7 +119,7 @@ export function SignInForm() {
           >
             <div>
               <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground">
-                Sign in
+                Log in
               </h2>
               <p className="mt-1.5 text-sm leading-relaxed text-foreground-muted">
                 Enter your email and we&apos;ll send you a one-time code. No
@@ -146,6 +145,7 @@ export function SignInForm() {
                   onChange={(e) => {
                     setEmail(e.target.value);
                     if (error) setError("");
+                    if (notFound) setNotFound(false);
                   }}
                   placeholder="you@company.com"
                   className="input !pl-11"
@@ -156,7 +156,26 @@ export function SignInForm() {
 
             <ErrorLine error={error} />
 
-            <SubmitButton busy={busy} label="Send code" busyLabel="Sending…" />
+            {notFound && (
+              <Link
+                href={`/sign-up?redirect=${encodeURIComponent(redirectTo)}`}
+                className="block text-sm font-medium text-brand underline decoration-brand underline-offset-4"
+              >
+                Create an account instead
+              </Link>
+            )}
+
+            <PrimaryButton busy={busy} label="Send code" busyLabel="Sending…" />
+
+            <p className="text-center text-sm text-foreground-muted">
+              New here?{" "}
+              <Link
+                href="/sign-up"
+                className="font-medium text-foreground underline decoration-brand underline-offset-4 transition-colors hover:text-brand"
+              >
+                Create an account
+              </Link>
+            </p>
           </motion.form>
         )}
 
@@ -204,24 +223,14 @@ export function SignInForm() {
 
             <ErrorLine error={error} />
 
-            <button
+            <PrimaryButton
+              busy={busy}
               type="button"
-              disabled={busy || otp.length < 6}
               onClick={() => submitOtp(otp)}
-              className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand py-4 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
-            >
-              {busy ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" strokeWidth={2} />
-                  Verifying…
-                </>
-              ) : (
-                <>
-                  Verify &amp; continue
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
-                </>
-              )}
-            </button>
+              disabled={otp.length < 6}
+              label="Verify & continue"
+              busyLabel="Verifying…"
+            />
 
             <p className="text-center text-sm text-foreground-muted">
               Didn&apos;t get it?{" "}
@@ -263,55 +272,7 @@ export function SignInForm() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
-  );
-}
-
-function ErrorLine({ error }: { error: string }) {
-  return (
-    <AnimatePresence>
-      {error && (
-        <motion.p
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          role="alert"
-          className="text-sm font-medium text-red-500"
-        >
-          {error}
-        </motion.p>
-      )}
-    </AnimatePresence>
-  );
-}
-
-function SubmitButton({
-  busy,
-  label,
-  busyLabel,
-}: {
-  busy: boolean;
-  label: string;
-  busyLabel: string;
-}) {
-  return (
-    <button
-      type="submit"
-      disabled={busy}
-      className="group flex w-full items-center justify-center gap-2 rounded-full bg-brand py-4 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all hover:bg-brand-hover disabled:opacity-60"
-    >
-      {busy ? (
-        <>
-          <Loader2 className="h-4 w-4 animate-spin" strokeWidth={2} />
-          {busyLabel}
-        </>
-      ) : (
-        <>
-          {label}
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
-        </>
-      )}
-    </button>
+    </AuthPanel>
   );
 }
 

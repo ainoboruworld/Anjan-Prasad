@@ -27,12 +27,20 @@ export function UserNav() {
 
   const redirect = encodeURIComponent(pathname || "/");
   return (
-    <Link
-      href={`/sign-in?redirect=${redirect}`}
-      className="rounded-full border border-border-strong px-5 py-2.5 text-[length:var(--text-nav)] font-medium text-foreground transition-colors hover:bg-background-elevated"
-    >
-      Sign In
-    </Link>
+    <div className="flex items-center gap-2">
+      <Link
+        href={`/sign-in?redirect=${redirect}`}
+        className="rounded-full px-4 py-2.5 text-[length:var(--text-nav)] font-medium text-foreground-muted transition-colors hover:text-foreground"
+      >
+        Log In
+      </Link>
+      <Link
+        href={`/sign-up?redirect=${redirect}`}
+        className="rounded-full bg-brand px-5 py-2.5 text-[length:var(--text-nav)] font-semibold text-brand-ink shadow-[0_8px_24px_-12px_rgba(79,169,255,0.6)] transition-colors hover:bg-brand-hover"
+      >
+        Sign Up
+      </Link>
+    </div>
   );
 }
 
@@ -87,12 +95,21 @@ export function UserNavMobile({ onNavigate }: { onNavigate?: () => void }) {
 
   const redirect = encodeURIComponent(pathname || "/");
   return (
-    <Link
-      href={`/sign-in?redirect=${redirect}`}
-      onClick={onNavigate}
-      className="block rounded-full border border-border-strong px-5 py-3 text-center text-sm font-medium text-foreground"
-    >
-      Sign In
-    </Link>
+    <div className="space-y-2">
+      <Link
+        href={`/sign-up?redirect=${redirect}`}
+        onClick={onNavigate}
+        className="block rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-brand-ink"
+      >
+        Sign Up
+      </Link>
+      <Link
+        href={`/sign-in?redirect=${redirect}`}
+        onClick={onNavigate}
+        className="block rounded-full border border-border-strong px-5 py-3 text-center text-sm font-medium text-foreground"
+      >
+        Log In
+      </Link>
+    </div>
   );
 }

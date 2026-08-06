@@ -21,6 +21,10 @@
  */
 
 :root {
+  /* Declare the theme we render so user-agents (notably Samsung Internet's
+     "Dark mode") don't algorithmically re-darken our surfaces and make the
+     white logo tiles — and the dark PNG logos on them — unreadable. */
+  color-scheme: light;
   /* Sky Blue — the always-on secondary accent. */
   --brand-sky: #4fa9ff;
   --brand-midnight: #0f3d5e;
@@ -52,6 +56,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   /* Dark theme — deep Midnight Blue with Sky Blue accents. */
   --brand-sky: #4fa9ff;
   --brand-midnight: #0f3d5e;
