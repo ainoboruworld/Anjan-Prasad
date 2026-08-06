@@ -20,39 +20,37 @@ export interface LogoItem {
   file?: string;
 }
 
-/** A single full-colour logo with a restrained scale-on-hover. */
+/** A single full-colour logo, sized to a uniform height inside its tile. */
 export function LogoChip({ name, file }: LogoItem) {
   const src = file ?? logoFileFor(name);
   const [failed, setFailed] = useState(false);
 
   if (src && !failed) {
     return (
-      <span className="flex items-center justify-center rounded-full px-5 py-2.5 dark:[background:radial-gradient(50%_115%_at_50%_50%,rgba(255,255,255,0.2),rgba(255,255,255,0.07)_45%,rgba(255,255,255,0)_70%)]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static, pre-optimised brand artwork */}
-        <img
-          src={`/brand-logos/${src}`}
-          alt={`${name} logo`}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          className="h-6 w-auto max-w-[42vw] object-contain opacity-90 transition-all duration-300 ease-out will-change-transform group-hover:scale-[1.06] group-hover:opacity-100 dark:opacity-100 sm:h-7 lg:h-8"
-        />
-      </span>
+      // eslint-disable-next-line @next/next/no-img-element -- static, pre-optimised brand artwork
+      <img
+        src={`/brand-logos/${src}`}
+        alt={`${name} logo`}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className="max-h-7 w-auto max-w-[78%] object-contain transition-transform duration-300 ease-out will-change-transform group-hover:scale-[1.05] sm:max-h-8"
+      />
     );
   }
 
   return (
-    <span className="font-display text-sm font-semibold tracking-tight text-neutral-500 transition-colors duration-300 group-hover:text-neutral-800">
+    <span className="px-2 text-center font-display text-sm font-semibold tracking-tight text-neutral-700">
       {name}
     </span>
   );
 }
 
 /**
- * A row of logos embedded directly in the page, separated by thin vertical
- * dividers. A full-width wrapping flex keeps it from ever overflowing, so it
- * stays balanced from mobile to desktop. The logos sit directly on the canvas
- * at a slightly reduced opacity — no highlight — and lift to full presence on
- * hover.
+ * A wall of logos on uniform, refined tiles. Because every mark shares one
+ * canvas, the tiles are identically sized and the logos carry equal visual
+ * weight. The tile is a light, softly lifted surface in both themes, so every
+ * brand — colourful or near-black — stays crisply legible in Dark and Light
+ * mode, with a gentle hover lift. Centered wrapping keeps it responsive.
  */
 export function LogoRow({
   logos,
@@ -62,22 +60,17 @@ export function LogoRow({
   className?: string;
 }) {
   return (
-    <div className={`${className}`}>
-      <RevealGroup className="flex w-full flex-wrap items-center justify-center gap-x-1.5 gap-y-4 sm:gap-x-3 sm:gap-y-6">
-        {logos.map((logo, idx) => (
-          <RevealItem key={logo.name} className="group flex items-center">
-            <span className="flex items-center justify-center px-3 sm:px-5 lg:px-6">
-              <LogoChip name={logo.name} file={logo.file} />
-            </span>
-            {idx < logos.length - 1 && (
-              <span
-                aria-hidden
-                className="hidden h-6 w-px bg-black/[0.10] dark:bg-white/[0.12] sm:block"
-              />
-            )}
-          </RevealItem>
-        ))}
-      </RevealGroup>
-    </div>
+    <RevealGroup
+      className={`flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 ${className}`}
+    >
+      {logos.map((logo) => (
+        <RevealItem
+          key={logo.name}
+          className="group flex h-[58px] w-[132px] items-center justify-center rounded-2xl border border-black/[0.05] bg-white shadow-[0_1px_2px_rgba(16,33,45,0.05),0_12px_30px_-20px_rgba(16,33,45,0.4)] ring-1 ring-black/[0.02] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(16,33,45,0.06),0_18px_36px_-18px_rgba(16,33,45,0.5)] dark:border-white/[0.10] dark:bg-white/[0.97] dark:ring-white/[0.06] sm:h-16 sm:w-[150px]"
+        >
+          <LogoChip name={logo.name} file={logo.file} />
+        </RevealItem>
+      ))}
+    </RevealGroup>
   );
 }
