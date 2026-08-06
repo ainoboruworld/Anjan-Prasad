@@ -172,6 +172,45 @@ export function getServicePage(slug: string): Promise<CmsServicePage | null> {
   );
 }
 
+export interface CmsFeaturedMedia {
+  title: string;
+  outlet?: string;
+  type?: string;
+  url?: string;
+  publishedAt?: string;
+}
+
+export interface CmsClientLogo {
+  name: string;
+  group?: string;
+  /** Resolved CDN image URL (built from the asset ref). */
+  url: string | null;
+}
+
+export function getFeaturedMedia(): Promise<CmsFeaturedMedia[] | null> {
+  return cmsFetch<CmsFeaturedMedia[]>(
+    `*[_type == "featuredMedia"] | order(coalesce(order, 999) asc, publishedAt desc){
+      title, outlet, type, url, publishedAt
+    }`
+  );
+}
+
+export async function getClientLogos(): Promise<CmsClientLogo[] | null> {
+  const rows = await cmsFetch<
+    { name: string; group?: string; ref?: string }[]
+  >(
+    `*[_type == "clientLogo"] | order(coalesce(order, 999) asc){
+      name, group, "ref": logo.asset._ref
+    }`
+  );
+  if (!rows) return null;
+  return rows.map((r) => ({
+    name: r.name,
+    group: r.group,
+    url: imageUrl(r.ref),
+  }));
+}
+
 export function getCaseStudies(): Promise<CmsCaseStudy[] | null> {
   return cmsFetch<CmsCaseStudy[]>(
     `*[_type == "caseStudy"] | order(order asc){

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { MEDIA_FEATURES } from "@/lib/media";
+import { MEDIA_FEATURES, featuredMediaFromCms } from "@/lib/media";
+import { getFeaturedMedia } from "@/lib/cms";
 import { MediaCard } from "@/components/hub/MediaCard";
 import { CTAButton, Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -18,7 +19,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FeaturedMediaPage() {
+export default async function FeaturedMediaPage() {
+  const cms = await getFeaturedMedia();
+  const features =
+    cms && cms.length > 0 ? featuredMediaFromCms(cms) : MEDIA_FEATURES;
   return (
     <main>
       <PageHero
@@ -42,7 +46,7 @@ export default function FeaturedMediaPage() {
           </Reveal>
 
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {MEDIA_FEATURES.map((item) => (
+            {features.map((item) => (
               <RevealItem key={item.id} className="h-full">
                 <MediaCard item={item} />
               </RevealItem>

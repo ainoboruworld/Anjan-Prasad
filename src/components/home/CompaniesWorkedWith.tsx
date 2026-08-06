@@ -5,7 +5,8 @@ import {
   MENTORED_LOGOS,
   type BrandLogo,
 } from "@/lib/brandLogos";
-import { LogoRow } from "../ui/LogoPlaceholder";
+import { getClientLogos } from "@/lib/cms";
+import { LogoRow, type LogoItem } from "../ui/LogoPlaceholder";
 import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
@@ -40,7 +41,22 @@ const CATEGORIES: Category[] = [
   },
 ];
 
-export function CompaniesWorkedWith() {
+export async function CompaniesWorkedWith() {
+  // Source each group from Sanity brand logos where authored; otherwise keep
+  // the bundled artwork. Grouping matches the category labels exactly.
+  const cms = await getClientLogos();
+  const byGroup = new Map<string, LogoItem[]>();
+  for (const l of cms ?? []) {
+    if (!l.group || !l.url) continue;
+    const arr = byGroup.get(l.group) ?? [];
+    arr.push({ name: l.name, url: l.url });
+    byGroup.set(l.group, arr);
+  }
+  const logosFor = (cat: Category): LogoItem[] => {
+    const fromCms = byGroup.get(cat.label);
+    return fromCms && fromCms.length > 0 ? fromCms : cat.logos;
+  };
+
   return (
     <section
       aria-label="Brands built, advised, and worked with"
@@ -86,7 +102,7 @@ export function CompaniesWorkedWith() {
                   {cat.note}
                 </p>
               </Reveal>
-              <LogoRow logos={cat.logos} className="mt-9" />
+              <LogoRow logos={logosFor(cat)} className="mt-9" />
             </div>
           ))}
         </div>
