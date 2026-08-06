@@ -1,5 +1,9 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { env, flags } from "../env";
+import type { Database } from "./database.types";
+
+/** A Supabase client typed against our schema. */
+export type TypedSupabaseClient = SupabaseClient<Database>;
 
 /**
  * Browser Supabase client (singleton).
@@ -16,13 +20,13 @@ export function isSupabaseConfigured(): boolean {
   return flags.supabase;
 }
 
-let cached: SupabaseClient | null = null;
+let cached: TypedSupabaseClient | null = null;
 
 /** The shared browser client, or `null` when credentials are absent. */
-export function getSupabaseClient(): SupabaseClient | null {
+export function getSupabaseClient(): TypedSupabaseClient | null {
   if (!isSupabaseConfigured()) return null;
   if (cached) return cached;
-  cached = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  cached = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: {
       // Keep users signed in across reloads and refresh tokens automatically.
       persistSession: true,

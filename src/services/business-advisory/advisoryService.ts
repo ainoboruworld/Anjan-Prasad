@@ -3,6 +3,7 @@
  * program. Same shape as consultation; pricing is validated server-side.
  */
 import { submitForm, type FormType } from "@/lib/forms";
+import { saveBooking } from "@/lib/bookings";
 import { createPaymentOrder } from "../payments/paymentsService";
 import { ok, fail, type ServiceResponse } from "../types";
 import type {
@@ -21,6 +22,17 @@ export interface AdvisoryBookingInput {
 export async function createAdvisoryBooking(
   input: AdvisoryBookingInput
 ): Promise<ServiceResponse<BookingResult>> {
+  await saveBooking({
+    serviceType: "business-advisory",
+    programType: input.formType,
+    tierId: input.tierId,
+    fullName: input.customer.name,
+    email: input.customer.email,
+    phone: input.customer.phone,
+    company: input.customer.company,
+    status: "pending_payment",
+    payload: input.data,
+  });
   await submitForm({
     formType: input.formType,
     name: input.customer.name,

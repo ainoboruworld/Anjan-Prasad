@@ -23,31 +23,29 @@ matching `lib/*` implementation.
 
 ## Supabase schema
 
-```sql
--- Profiles: one row per auth user (auth.users.id).
-create table if not exists public.profiles (
-  id uuid primary key references auth.users(id) on delete cascade,
-  full_name text not null,
-  email text not null,
-  phone text,
-  role text,                       -- set at onboarding; nullable after sign-up
-  marketing_consent boolean not null default true,
-  created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
-);
-alter table public.profiles enable row level security;
-create policy "own profile" on public.profiles
-  for all using (auth.uid() = id) with check (auth.uid() = id);
+The full schema lives in **`supabase/migrations/0001_init.sql`** — four tables,
+derived directly from the frontend:
 
--- Newsletter subscriptions.
-create table if not exists public.newsletter_subscriptions (
-  id uuid primary key default gen_random_uuid(),
-  email text not null unique,
-  name text,
-  source text,
-  created_at timestamptz not null default now()
-);
-```
+| Table                     | Backs                                   | Client write        | Read            |
+| ------------------------- | --------------------------------------- | ------------------- | --------------- |
+| `profiles`                | Auth users (auto-created on sign-up)    | owner only          | owner only      |
+| `newsletter_subscriptions`| Footer newsletter                       | anyone (insert)     | none (client)   |
+| `contact_submissions`     | Contact form                            | anyone (insert)     | owner only      |
+| `bookings`                | Consultation / Demo / Cohort / Advisory | anyone (insert)     | owner (by id or email) |
+
+Design notes: UUID PKs, `created_at`/`updated_at` (auto-touched via trigger),
+FKs to `auth.users`, indexes on `email` / `user_id` / `created_at` / `status`,
+and RLS on every table. `bookings` keeps common fields as columns and
+variant-specific answers in a `payload` jsonb, so new offerings need no
+migration.
+
+### Apply it
+
+1. Open the Supabase SQL editor for the project and paste
+   `supabase/migrations/0001_init.sql`, or run `supabase db push` if you use
+   the CLI.
+2. This also installs `handle_new_user()` + the `on_auth_user_created` trigger,
+   which **auto-creates the profile from the sign-up metadata** on first login.
 
 ## Auth flow (email OTP, passwordless)
 

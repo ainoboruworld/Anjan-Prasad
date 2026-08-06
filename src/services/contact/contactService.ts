@@ -4,7 +4,29 @@
  * form component.
  */
 import { submitForm, type FormType } from "@/lib/forms";
+import { getSupabaseClient } from "@/lib/supabase/client";
 import { ok, fail, type ServiceResponse } from "../types";
+
+/** Persist a contact enquiry to Supabase; never throws. */
+async function saveContact(input: ContactInput): Promise<void> {
+  const supabase = getSupabaseClient();
+  if (!supabase) return;
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { error } = await supabase.from("contact_submissions").insert({
+    user_id: user?.id ?? null,
+    full_name: input.fullName,
+    email: input.email,
+    phone: input.phone,
+    company_name: input.companyName ?? null,
+    reason: input.reason,
+    message: input.message,
+    source_page:
+      typeof window !== "undefined" ? window.location.pathname : null,
+  });
+  if (error) console.warn("[contact] insert skipped:", error.message);
+}
 
 export const CONTACT_REASONS = [
   "Business Advisory",
@@ -52,6 +74,7 @@ export interface ContactInput {
 export async function submitContact(
   input: ContactInput
 ): Promise<ServiceResponse<{ received: true }>> {
+  await saveContact(input);
   const res = await submitForm({
     formType: REASON_TO_FORM_TYPE[input.reason] ?? "Contact",
     name: input.fullName,
