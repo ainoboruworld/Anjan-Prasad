@@ -36,6 +36,21 @@ SMTP** at Resend (`smtp.resend.com:465`, user `resend`, password = your
 `RESEND_API_KEY`, sender = a verified address). The OTP template above is used
 regardless of the SMTP provider.
 
+## Do it from code (Management API)
+
+Instead of the dashboard, run the included script — it PATCHes the project's
+auth config so the Magic Link template renders `{{ .Token }}`:
+
+```
+SUPABASE_ACCESS_TOKEN=sbp_xxx npm run auth:otp
+```
+
+`SUPABASE_ACCESS_TOKEN` is a **personal access token** (create at
+https://supabase.com/dashboard/account/tokens) — the Management API needs a PAT,
+not the anon/service_role key. The project ref is read from
+`NEXT_PUBLIC_SUPABASE_URL`. Source: `scripts/setup-email-otp.mjs`.
+
 ## Note
-This is a Supabase project configuration change (dashboard), not a code change —
-the code already requests OTP correctly. It can't be set from the client SDK.
+Which email is sent (code vs link) is a Supabase project **configuration**, not
+something the client SDK can choose. The app code already requests OTP
+correctly; this template/config change is the end-to-end fix.

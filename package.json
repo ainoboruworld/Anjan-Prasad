@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "studio": "sanity dev",
-    "studio:deploy": "sanity deploy"
+    "studio:deploy": "sanity deploy",
+    "auth:otp": "node scripts/setup-email-otp.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
