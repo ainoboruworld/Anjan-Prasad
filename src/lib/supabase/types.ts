@@ -19,15 +19,22 @@ export interface Profile {
   id: string;
   full_name: string;
   email: string;
-  role: UserRole;
+  /** E.164-ish phone captured at sign-up. Optional until provided. */
+  phone?: string | null;
+  /** Role is set during onboarding, so it can be absent right after sign-up. */
+  role?: UserRole | null;
+  /** Opt-in for updates, reminders, newsletters, and announcements. */
+  marketing_consent?: boolean;
   created_at?: string;
   updated_at?: string;
 }
 
-/** Payload the onboarding form sends to create/complete a profile. */
+/** Payload used to create or complete a profile (sign-up + onboarding + edits). */
 export interface ProfileInput {
   id: string;
   email: string;
   full_name: string;
-  role: UserRole;
+  phone?: string | null;
+  role?: UserRole | null;
+  marketing_consent?: boolean;
 }

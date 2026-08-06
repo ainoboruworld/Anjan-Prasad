@@ -39,6 +39,19 @@ export type ContactValues = z.infer<typeof contactSchema>;
 export const authEmailSchema = z.object({ email: emailField });
 export type AuthEmailValues = z.infer<typeof authEmailSchema>;
 
+/** Log In: email only, then OTP. */
+export const loginSchema = z.object({ email: emailField });
+export type LoginValues = z.infer<typeof loginSchema>;
+
+/** Sign Up: full name, email, phone, and a default-on comms consent. */
+export const signUpSchema = z.object({
+  fullName: z.string().min(2, "Please enter your full name"),
+  email: emailField,
+  phone: phoneField,
+  marketingConsent: z.boolean().default(true),
+});
+export type SignUpValues = z.infer<typeof signUpSchema>;
+
 export const otpSchema = z.object({
   token: z.string().length(6, "Enter the 6-digit code"),
 });

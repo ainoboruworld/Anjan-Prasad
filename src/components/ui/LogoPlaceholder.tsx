@@ -66,7 +66,7 @@ export function LogoRow({
       {logos.map((logo) => (
         <RevealItem
           key={logo.name}
-          className="group flex h-[58px] w-[132px] items-center justify-center rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white shadow-[0_1px_2px_rgba(16,33,45,0.05),0_12px_30px_-20px_rgba(16,33,45,0.4)] ring-1 ring-[rgba(0,0,0,0.02)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(16,33,45,0.06),0_18px_36px_-18px_rgba(16,33,45,0.5)] dark:border-[rgba(255,255,255,0.10)] dark:bg-[rgba(255,255,255,0.97)] dark:ring-[rgba(255,255,255,0.06)] sm:h-16 sm:w-[150px]"
+          className="group flex h-[58px] w-[132px] items-center justify-center rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white shadow-[0_1px_2px_rgba(16,33,45,0.05),0_12px_30px_-20px_rgba(16,33,45,0.4)] ring-1 ring-[rgba(0,0,0,0.02)] transition-all duration-300 ease-out [color-scheme:light] hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(16,33,45,0.06),0_18px_36px_-18px_rgba(16,33,45,0.5)] dark:border-[rgba(255,255,255,0.10)] dark:bg-white dark:ring-[rgba(255,255,255,0.06)] sm:h-16 sm:w-[150px]"
         >
           <LogoChip name={logo.name} file={logo.file} />
         </RevealItem>

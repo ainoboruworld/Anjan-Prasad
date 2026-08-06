@@ -7,6 +7,8 @@
  */
 export {
   sendEmailOtp,
+  sendSignInOtp,
+  sendSignUpOtp,
   verifyEmailOtp,
   resendEmailOtp,
   signOut,
@@ -14,6 +16,7 @@ export {
   getProfile,
   upsertProfile,
   type ServiceResult,
+  type SignUpInput,
 } from "@/lib/auth/service";
 
 export { friendlyAuthError, isValidEmail } from "@/lib/auth/errors";
