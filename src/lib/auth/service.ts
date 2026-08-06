@@ -36,6 +36,11 @@ export async function sendEmailOtp(
 ): Promise<ServiceResult> {
   const supabase = getSupabaseClient();
   if (!supabase) return { data: null, error: NOT_CONFIGURED };
+  // Request an email OTP: NO `emailRedirectTo` is passed — setting it makes
+  // Supabase send a magic *link* instead of a code. Whether the recipient gets
+  // a 6-digit code or a link is decided by the Supabase "Magic Link" email
+  // template, which MUST use {{ .Token }} (not {{ .ConfirmationURL }}). See
+  // docs/supabase-email-otp.md.
   const { error } = await supabase.auth.signInWithOtp({
     email: email.trim(),
     options: {
