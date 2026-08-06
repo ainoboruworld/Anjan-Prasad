@@ -9,7 +9,7 @@ import {
 import { Placeholder } from "../ui/Placeholder";
 
 /**
- * Featured article — the front-page spread of the Blogs page. A large,
+ * Featured article - the front-page spread of the Blogs page. A large,
  * two-column editorial card built from the same BlogPost shape as the grid.
  */
 export function FeaturedArticle({ post }: { post: BlogPost }) {

@@ -10,13 +10,13 @@ import { KnowledgeMedia } from "@/components/home/KnowledgeMedia";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "AP.com — India's Business Growth Ecosystem",
+  title: "Anjan Prasad - India's Business Growth Ecosystem",
   description:
     "Build a business that outlasts you. Strategic business advisory, executive consulting, leadership development and scalable growth systems from Anjan Prasad.",
 };
 
 /**
- * Homepage — a premium, executive user journey:
+ * Homepage - a premium, executive user journey:
  * Hero → Credibility (worked with / advised) → Trust & Experience → About →
  * Career Consultation → Featured Media → Testimonials → Knowledge Hub → CTA.
  */

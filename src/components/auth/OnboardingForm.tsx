@@ -12,7 +12,7 @@ import { profileSchema, type ProfileValues } from "@/lib/validation/schemas";
 import { USER_ROLES } from "@/lib/supabase/types";
 
 /**
- * First-time onboarding — RHF + Zod. Collects Full Name and Role and writes
+ * First-time onboarding - RHF + Zod. Collects Full Name and Role and writes
  * the profile via the profile service, then returns the user to where they
  * came from. Returning users never reach this.
  */

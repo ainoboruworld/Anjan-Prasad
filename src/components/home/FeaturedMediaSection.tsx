@@ -5,7 +5,7 @@ import { SectionHeading } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
- * Featured Media — Anjan Prasad's YouTube appearances as thought leadership.
+ * Featured Media - Anjan Prasad's YouTube appearances as thought leadership.
  * Elegant 2-column cards (single column on mobile), official thumbnails with
  * a maxres→hq fallback, play overlay, and the whole card links out.
  */

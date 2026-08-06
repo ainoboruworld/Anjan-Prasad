@@ -1,4 +1,4 @@
-/** Centralised query keys — one source of truth for cache identity. */
+/** Centralised query keys - one source of truth for cache identity. */
 export const queryKeys = {
   blogs: ["blogs"] as const,
   blog: (slug: string) => ["blog", slug] as const,

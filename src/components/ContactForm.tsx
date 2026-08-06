@@ -14,7 +14,7 @@ import {
 import { TextField, TextareaField, SelectField } from "./ui/form/fields";
 
 /**
- * Contact form — UI only. Validation is Zod (`contactSchema`); submission is
+ * Contact form - UI only. Validation is Zod (`contactSchema`); submission is
  * the contact service. No business logic lives here.
  */
 export function ContactForm({ initialInterest }: { initialInterest?: string }) {
@@ -50,7 +50,7 @@ export function ContactForm({ initialInterest }: { initialInterest?: string }) {
           Received. Properly.
         </h2>
         <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-foreground-muted">
-          Your note is in the queue and gets a human reply — usually within one
+          Your note is in the queue and gets a human reply - usually within one
           working day.
         </p>
       </motion.div>

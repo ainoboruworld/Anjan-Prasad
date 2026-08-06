@@ -5,7 +5,7 @@ import { env, flags } from "../env";
  * Browser Supabase client (singleton).
  *
  * Reads the public project credentials from `src/lib/env.ts`. Until they are
- * set the client is `null` and the app degrades gracefully — every call site
+ * set the client is `null` and the app degrades gracefully - every call site
  * guards on `isSupabaseConfigured()`. Once the URL and anon key are added,
  * the entire auth flow works with no further code changes.
  */

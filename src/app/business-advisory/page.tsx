@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CASE_STUDIES, TESTIMONIALS } from "@/lib/data";
+import { CASE_STUDIES, testimonialsFor } from "@/lib/data";
 import { ENTERPRISE_BRANDS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -22,18 +22,18 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Business Advisory",
   description:
-    "Build a business that outlasts you. Start with a ₹99 Business Growth Demo, join the Business Growth Cohort, or engage monthly Business Advisory — transformation delivered inside your business by an operator.",
+    "Build a business that outlasts you. Start with a ₹99 Business Growth Demo, join the Business Growth Cohort, or engage monthly Business Advisory - transformation delivered inside your business by an operator.",
   alternates: { canonical: "/business-advisory" },
   openGraph: {
-    title: "Business Advisory — AP.com",
+    title: "Business Advisory - Anjan Prasad",
     description:
-      "Build a business that outlasts you. Demo, Cohort, and monthly Advisory — one operator, one shared payment architecture.",
+      "Build a business that outlasts you. Demo, Cohort, and monthly Advisory - one operator, one shared payment architecture.",
     url: "/business-advisory",
     type: "website",
   },
 };
 
-/* ── Booking configuration — Demo, Cohort, Monthly Advisory ──────────────── */
+/* ── Booking configuration - Demo, Cohort, Monthly Advisory ──────────────── */
 
 const INDUSTRIES = [
   "Consumer / D2C",
@@ -48,13 +48,13 @@ const INDUSTRIES = [
 ];
 
 const STAGES = ["Idea / pre-revenue", "Early revenue", "Growing", "Established / plateaued", "Enterprise"];
-const SIZES = ["Just me", "2–10", "11–50", "51–200", "201–1000", "1000+"];
+const SIZES = ["Just me", "2-10", "11-50", "51-200", "201-1000", "1000+"];
 
 const ADVISORY_VARIANTS: BookingVariant[] = [
   {
     id: "demo",
     label: "Growth Demo",
-    blurb: "A 3-hour live working session — the fastest way to experience the playbook first-hand.",
+    blurb: "A 3-hour live working session - the fastest way to experience the playbook first-hand.",
     formType: "Demo Session",
     mode: "payment",
     tier: { fixed: "demo" },
@@ -142,21 +142,21 @@ const WWH_COLUMNS = [
     key: "who",
     kicker: "Who it's for",
     title: "Founders, owners & operators",
-    copy: "People running real businesses who want systems and scale — not another slide deck.",
+    copy: "People running real businesses who want systems and scale - not another slide deck.",
     items: ["Founders past product-market fit", "Owners modernising a running company", "Leaders scaling past themselves"],
   },
   {
     key: "what",
     kicker: "What it is",
     title: "Transformation, three ways in",
-    copy: "One operator, three commitment levels — a ₹99 demo, a structured cohort, or a monthly advisory partnership.",
+    copy: "One operator, three commitment levels - a ₹99 demo, a structured cohort, or a monthly advisory partnership.",
     items: ["Diagnosis before prescription", "Systems built with your team", "Outcomes measured in the P&L"],
   },
   {
     key: "how",
     kicker: "How it works",
     title: "Inside your operating rhythm",
-    copy: "The work happens in your weekly reviews and your numbers — capability transfers, dependency doesn't.",
+    copy: "The work happens in your weekly reviews and your numbers - capability transfers, dependency doesn't.",
     items: ["Live sessions & working cadence", "Playbooks and installed systems", "One shared, secure checkout"],
   },
 ];
@@ -170,7 +170,7 @@ const TRUST_METRICS = [
 
 const FRAMEWORK = [
   { step: "01", title: "Diagnose", copy: "Two weeks inside your numbers and your rooms before any recommendation exists." },
-  { step: "02", title: "Design", copy: "One named outcome, one metric, and the operating rhythm to hit it — agreed up front." },
+  { step: "02", title: "Design", copy: "One named outcome, one metric, and the operating rhythm to hit it - agreed up front." },
   { step: "03", title: "Install", copy: "Systems built with your team, inside your week, so capability stays in the building." },
   { step: "04", title: "Compound", copy: "The engagement ends with your team running the system and the metric on the board." },
 ];
@@ -182,7 +182,7 @@ const FAQS = [
   },
   {
     q: "What does the monthly advisory include?",
-    a: "A dedicated monthly engagement where Anjan works inside your operating rhythm — reviews, numbers, and systems installed with your team — against one named outcome measured in the P&L.",
+    a: "A dedicated monthly engagement where Anjan works inside your operating rhythm - reviews, numbers, and systems installed with your team - against one named outcome measured in the P&L.",
   },
   {
     q: "How is this different from a consulting firm?",
@@ -205,7 +205,7 @@ export default function BusinessAdvisoryPage() {
         eyebrow="Business Advisory"
         headline="Build a Business That"
         accent="Outlasts You."
-        lead="Transformation delivered inside your business by an operator — not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        lead="Transformation delivered inside your business by an operator - not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
         ctas={[
           { label: "See the programs", href: "#pricing" },
           { label: "Start an enquiry", href: "#book", variant: "ghost" },
@@ -239,13 +239,13 @@ export default function BusinessAdvisoryPage() {
             <span className="editorial-accent text-brand">start building.</span>
           </>
         }
-        lead="From a ₹99 first taste to a monthly transformation partnership — pick the commitment that matches where the business is."
+        lead="From a ₹99 first taste to a monthly transformation partnership - pick the commitment that matches where the business is."
         columns={3}
       />
 
       {/* Booking forms */}
       <section id="book" className="scroll-mt-28 border-t border-border py-24">
-        {/* Deep-link anchors — the Programs nav scrolls here and the form
+        {/* Deep-link anchors - the Programs nav scrolls here and the form
             pre-selects the matching program tab (see DynamicBookingForm). */}
         <span id="book-demo" aria-hidden className="block scroll-mt-28" />
         <span id="book-cohort" aria-hidden className="block scroll-mt-28" />
@@ -280,7 +280,7 @@ export default function BusinessAdvisoryPage() {
             <span className="editorial-accent text-brand">rebuilt.</span>
           </>
         }
-        lead="Every engagement follows the same arc — diagnose, design, install, compound — measured against one metric from day one."
+        lead="Every engagement follows the same arc - diagnose, design, install, compound - measured against one metric from day one."
         steps={FRAMEWORK}
       />
 
@@ -303,7 +303,7 @@ export default function BusinessAdvisoryPage() {
             <span className="editorial-accent text-brand">say.</span>
           </>
         }
-        items={TESTIMONIALS.filter((t) => t.kind !== "Student")
+        items={testimonialsFor("Business Advisory")
           .slice(0, 3)
           .map((t) => ({ quote: t.quote, name: t.name, title: t.title }))}
       />
@@ -376,7 +376,7 @@ export default function BusinessAdvisoryPage() {
         eyebrow="The work is the point"
         title="Start where the business"
         accent="actually is."
-        lead="Take the ₹99 demo, join the cohort, or open a monthly advisory engagement — and build a business that outlasts you."
+        lead="Take the ₹99 demo, join the cohort, or open a monthly advisory engagement - and build a business that outlasts you."
         primary={{ label: "Choose a program", href: "#pricing" }}
         secondary={{ label: "Book a 1:1 Consultation", href: "/consulting" }}
       />

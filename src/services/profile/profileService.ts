@@ -1,5 +1,5 @@
 /**
- * Profile service — the user's profile and bookings (profile data, distinct
+ * Profile service - the user's profile and bookings (profile data, distinct
  * from Supabase auth data).
  */
 import { getProfile, upsertProfile } from "@/lib/auth/service";

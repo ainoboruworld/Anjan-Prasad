@@ -5,7 +5,7 @@ import { SectionHeading, TextLink } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
- * From the Knowledge Hub — a clean editorial shelf of the latest writing.
+ * From the Knowledge Hub - a clean editorial shelf of the latest writing.
  * Text-first cards (no placeholder imagery), premium and quick to scan.
  */
 export function KnowledgeMedia() {
@@ -23,7 +23,7 @@ export function KnowledgeMedia() {
                 <span className="editorial-accent text-brand">field notes.</span>
               </>
             }
-            lead="How profitable businesses are actually built — written to be used, not skimmed."
+            lead="How profitable businesses are actually built - written to be used, not skimmed."
           />
           <TextLink href="/knowledge-hub/blogs">All articles</TextLink>
         </div>

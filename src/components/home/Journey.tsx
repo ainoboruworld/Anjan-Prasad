@@ -6,7 +6,7 @@ import { Eyebrow } from "../ui/Primitives";
 import { easeSmooth } from "../motion";
 
 /**
- * The journey as cinematic chapters — stacked sticky plates, each with its
+ * The journey as cinematic chapters - stacked sticky plates, each with its
  * own tonal background and an alternating editorial layout, so scrolling
  * reads like turning pages rather than passing sections.
  */
@@ -16,7 +16,7 @@ export function Journey() {
       <div className="mx-auto max-w-7xl px-6 pt-28 pb-10">
         <Eyebrow>The journey</Eyebrow>
         <h2 className="mt-5 max-w-3xl font-display text-[length:var(--text-section)] font-semibold tracking-[-0.02em] text-foreground">
-          Twenty years, six chapters —{" "}
+          Twenty years, six chapters -{" "}
           <span className="editorial-accent text-brand">one discipline.</span>
         </h2>
       </div>
@@ -64,7 +64,7 @@ export function Journey() {
                   {ch.copy}
                 </p>
 
-                {/* Chapter marks — organisations, drawn as connected nodes */}
+                {/* Chapter marks - organisations, drawn as connected nodes */}
                 <ul className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-3">
                   {ch.marks.map((m, j) => (
                     <li key={m} className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 /**
- * Business Advisory service — books a Demo, Cohort, or Monthly Advisory
+ * Business Advisory service - books a Demo, Cohort, or Monthly Advisory
  * program. Same shape as consultation; pricing is validated server-side.
  */
 import { submitForm, type FormType } from "@/lib/forms";

@@ -4,19 +4,19 @@ import { CTAButton, Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Testimonials — Founders & Students",
+  title: "Testimonials - Founders & Students",
   description:
-    "Founder stories, student stories, and business transformations — the people who built with AP.com, in their own words.",
+    "Founder stories, student stories, and business transformations - the people who built with Anjan Prasad, in their own words.",
 };
 
-/** Video plate awaiting the real footage — framed so the embed drops in. */
+/** Video plate awaiting the real footage - framed so the embed drops in. */
 function VideoPlate({ label }: { label: string }) {
   return (
     <div
       data-cursor="play"
       className="bg-blueprint relative aspect-video w-full overflow-hidden rounded-3xl border border-border bg-background-elevated"
       role="img"
-      aria-label={`${label} — video coming soon`}
+      aria-label={`${label} - video coming soon`}
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
         <span className="flex h-16 w-16 items-center justify-center rounded-full border border-border-strong bg-background/70 backdrop-blur">

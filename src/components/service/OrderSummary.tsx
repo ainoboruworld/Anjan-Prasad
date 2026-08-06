@@ -2,7 +2,7 @@ import { ShieldCheck } from "lucide-react";
 import { formatTierPrice, type PriceTier } from "@/lib/pricingConfig";
 
 /**
- * Order summary — the live price panel beside/above a booking form and the
+ * Order summary - the live price panel beside/above a booking form and the
  * confirmation block on checkout. Reads its amount from the resolved tier
  * (pricingConfig), never a hardcoded number, so it stays correct when the
  * backend becomes the source of truth for pricing.
@@ -42,7 +42,7 @@ export function OrderSummary({
           )}
         </div>
         <span className="shrink-0 font-display text-2xl font-bold tracking-tight text-foreground">
-          {tier ? formatTierPrice(tier) : "—"}
+          {tier ? formatTierPrice(tier) : "-"}
         </span>
       </div>
 

@@ -4,7 +4,7 @@ import { useRef, type ReactNode } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 /**
- * Magnetic hover wrapper — the child gently follows the pointer within
+ * Magnetic hover wrapper - the child gently follows the pointer within
  * its bounds and springs back on leave. No-ops on touch devices since
  * mouse events never fire.
  */

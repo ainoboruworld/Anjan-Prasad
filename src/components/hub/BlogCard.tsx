@@ -9,7 +9,7 @@ import {
 import { Placeholder } from "../ui/Placeholder";
 
 /**
- * Blog card — the reusable unit of the Blogs grid. Featured image (real
+ * Blog card - the reusable unit of the Blogs grid. Featured image (real
  * cover when present, else a Placeholder), category chips, title, short
  * description, reading time, published date, author, and a Read More link.
  */

@@ -6,9 +6,9 @@ import { PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Programs — Demo Session & Business Growth Program",
+  title: "Programs - Demo Session & Business Growth Program",
   description:
-    "Structured business education: the ₹99 Demo Session (3 hours live, weekdays) and the Business Growth Program at ₹9,999/month — curriculum, planning, and accountability.",
+    "Structured business education: the ₹99 Demo Session (3 hours live, weekdays) and the Business Growth Program at ₹9,999/month - curriculum, planning, and accountability.",
   alternates: { canonical: "/courses" },
 };
 
@@ -21,7 +21,7 @@ const PRODUCTS = [
     priceNote: "Registration fee · weekdays · 3 hours live",
     promise: DEMO_SESSION.promise,
     points: [
-      "Live working session — not a webinar",
+      "Live working session - not a webinar",
       "The 0 → 1 → Scale framework on real models",
       "Your questions answered in the room",
     ],
@@ -56,7 +56,7 @@ export default function CoursesPage() {
             <span className="editorial-accent text-brand">A build.</span>
           </>
         }
-        lead="Two ways to learn the operating playbook behind three bootstrapped companies — start with a single session, or work with Anjan every week."
+        lead="Two ways to learn the operating playbook behind three bootstrapped companies - start with a single session, or work with Anjan every week."
       />
 
       <section className="pb-28">

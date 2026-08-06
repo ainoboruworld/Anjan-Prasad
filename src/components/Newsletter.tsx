@@ -8,7 +8,7 @@ import { newsletterSchema, type NewsletterValues } from "@/lib/validation/schema
 import { useNewsletterSubscribe } from "@/hooks/mutations/useNewsletterSubscribe";
 
 /**
- * Newsletter capture — RHF + Zod validation, TanStack Query mutation to the
+ * Newsletter capture - RHF + Zod validation, TanStack Query mutation to the
  * newsletter service (Supabase). UI only; no business logic here.
  */
 export function Newsletter() {

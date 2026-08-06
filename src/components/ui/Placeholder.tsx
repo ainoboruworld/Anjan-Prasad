@@ -7,7 +7,7 @@ import { ImageIcon } from "lucide-react";
  * A premium, intentional stand-in for photography that doesn't exist yet
  * (hero, About chapters, workshops, speaking, meetings). It reserves the
  * exact aspect ratio the final image will occupy, so dropping in a real
- * `<Image>` later requires no layout change — just replace the placeholder
+ * `<Image>` later requires no layout change - just replace the placeholder
  * with the photo at the same `aspect`.
  *
  * Kept deliberately calm: a soft sky-blue wash on an elevated surface, a
@@ -32,14 +32,14 @@ export function Placeholder({
   return (
     <div
       role="img"
-      aria-label={label ? `${label} — ${caption}` : caption}
+      aria-label={label ? `${label} - ${caption}` : caption}
       style={{ aspectRatio: aspect }}
       className={`relative w-full overflow-hidden border border-border bg-background-elevated shadow-[var(--shadow-soft)] ${rounded} ${className}`}
     >
       {/* Soft brand wash */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_-10%,color-mix(in_srgb,var(--brand-sky)_12%,transparent),transparent_62%)]"
+        className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_-10%,rgba(79,169,255,0.12),transparent_62%)]"
       />
       {/* Faint architectural grid */}
       <div

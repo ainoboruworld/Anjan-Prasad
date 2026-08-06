@@ -2,7 +2,7 @@
  * Shared contracts for the service layer.
  *
  * Every service function returns a `ServiceResponse<T>` so UI and query hooks
- * handle success/error uniformly. Business logic and API calls live here —
+ * handle success/error uniformly. Business logic and API calls live here -
  * never inside components.
  */
 

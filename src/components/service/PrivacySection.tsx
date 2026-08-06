@@ -6,7 +6,7 @@ const DEFAULT_POINTS = [
   {
     icon: Lock,
     title: "Encrypted in transit",
-    copy: "Your details and documents are transmitted over secure, encrypted connections — never shared or sold.",
+    copy: "Your details and documents are transmitted over secure, encrypted connections - never shared or sold.",
   },
   {
     icon: FileCheck2,
@@ -16,12 +16,12 @@ const DEFAULT_POINTS = [
   {
     icon: ShieldCheck,
     title: "Payments handled by Cashfree",
-    copy: "Card and UPI details are processed by our PCI-compliant payment partner — we never store them.",
+    copy: "Card and UPI details are processed by our PCI-compliant payment partner - we never store them.",
   },
 ];
 
 /**
- * Privacy section — a reassurance band before or after the booking form.
+ * Privacy section - a reassurance band before or after the booking form.
  * Defaults cover the common trust points; pages may override the copy.
  */
 export function PrivacySection({

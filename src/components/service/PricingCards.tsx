@@ -14,7 +14,7 @@ import { track, EVENTS } from "@/lib/analytics";
 
 /**
  * Pricing grid, driven entirely by `pricingConfig`. Cards render whatever
- * tiers the service defines — no amount is hardcoded here. Selecting a card
+ * tiers the service defines - no amount is hardcoded here. Selecting a card
  * deep-links to the booking form with the tier pre-chosen and fires a
  * PostHog event; the display price will not change when backend pricing
  * takes over because cards reference tiers by stable id.

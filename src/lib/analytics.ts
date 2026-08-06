@@ -1,5 +1,5 @@
 /**
- * Analytics — a thin PostHog wrapper.
+ * Analytics - a thin PostHog wrapper.
  *
  * Important user actions across the service pages are instrumented through
  * `track`. It is intentionally dependency-free: if the PostHog snippet has
@@ -31,7 +31,7 @@ export function track(event: string, props?: Props): void {
   }
 }
 
-/** Canonical event names — one place so names stay consistent. */
+/** Canonical event names - one place so names stay consistent. */
 export const EVENTS = {
   pricingViewed: "pricing_viewed",
   tierSelected: "tier_selected",

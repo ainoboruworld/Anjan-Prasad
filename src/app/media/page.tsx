@@ -5,12 +5,12 @@ import { CTAButton, Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Featured Media — Knowledge Hub",
+  title: "Featured Media - Knowledge Hub",
   description:
-    "Anjan Prasad's public content and media appearances — videos, talks and more. Each card links to the original platform.",
+    "Anjan Prasad's public content and media appearances - videos, talks and more. Each card links to the original platform.",
   alternates: { canonical: "/media" },
   openGraph: {
-    title: "Featured Media — AP.com",
+    title: "Featured Media - Anjan Prasad",
     description:
       "Videos, talks and appearances by Anjan Prasad across platforms.",
     url: "/media",
@@ -29,7 +29,7 @@ export default function FeaturedMediaPage() {
             <span className="editorial-accent text-brand">method.</span>
           </>
         }
-        lead="Anjan Prasad's public content and appearances — videos today, with podcasts, interviews, talks and press joining the shelf. Every card opens the original platform."
+        lead="Anjan Prasad's public content and appearances - videos today, with podcasts, interviews, talks and press joining the shelf. Every card opens the original platform."
       />
 
       <section className="border-t border-border py-16 sm:py-24">

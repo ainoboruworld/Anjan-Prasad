@@ -1,12 +1,12 @@
 /**
- * Centralised environment access — the single place the app reads config.
+ * Centralised environment access - the single place the app reads config.
  *
  * Next.js inlines only `NEXT_PUBLIC_*` variables into the browser bundle, so
  * anything the client needs uses that prefix. (If this app is ever ported to
  * Vite the mapping is 1:1 with the `VITE_*` names in `.env.example`.)
  *
  * SECRETS ARE SERVER-ONLY. The Cashfree secret and the Resend API key must
- * never be exposed to the browser — they carry NO `NEXT_PUBLIC_` prefix and
+ * never be exposed to the browser - they carry NO `NEXT_PUBLIC_` prefix and
  * are read only inside server code (route handlers / webhooks). Never
  * hardcode a credential; always read it here.
  */
@@ -38,7 +38,7 @@ export const env = {
 
 /**
  * Server-only secrets. Importing this from a Client Component throws at build
- * time (the values are simply empty in the browser) — use only in route
+ * time (the values are simply empty in the browser) - use only in route
  * handlers, server actions, and webhooks.
  */
 export const serverEnv = {
@@ -47,7 +47,7 @@ export const serverEnv = {
   supabaseServiceRole: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
 } as const;
 
-/** Feature flags derived from configuration — drive graceful degradation. */
+/** Feature flags derived from configuration - drive graceful degradation. */
 export const flags = {
   supabase: Boolean(env.supabase.url && env.supabase.anonKey),
   sanity: Boolean(env.sanity.projectId),

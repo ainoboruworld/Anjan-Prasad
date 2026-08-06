@@ -8,7 +8,7 @@ import { YouTubeThumb } from "./YouTubeThumb";
 import { Placeholder } from "../ui/Placeholder";
 
 /**
- * Media card — one public appearance. Thumbnail, type/platform, title, short
+ * Media card - one public appearance. Thumbnail, type/platform, title, short
  * description, and (optional) date; the whole card opens the original
  * platform in a new tab. Layout is type-agnostic, so Podcasts, Interviews,
  * Press and more slot in without any redesign.

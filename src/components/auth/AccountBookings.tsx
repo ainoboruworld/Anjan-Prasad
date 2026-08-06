@@ -7,7 +7,7 @@ import { useBookings } from "@/hooks/queries/useBookings";
 import type { Booking } from "@/services/profile/profileService";
 
 /**
- * My Bookings — lists the signed-in user's bookings via TanStack Query
+ * My Bookings - lists the signed-in user's bookings via TanStack Query
  * (server state). Degrades to a clean empty state until the `bookings` table
  * is provisioned, so it's production-ready the moment the table exists.
  */

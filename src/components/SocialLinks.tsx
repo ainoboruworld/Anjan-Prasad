@@ -3,7 +3,7 @@ import { SOCIALS } from "@/lib/data";
 
 const ICONS = new Map(SOCIAL_ICON_PATHS.map((i) => [i.name, i]));
 
-/** Official social profiles — used in the footer and on Contact. */
+/** Official social profiles - used in the footer and on Contact. */
 export function SocialLinks({ className = "" }: { className?: string }) {
   return (
     <ul className={`flex items-center gap-3 ${className}`}>
@@ -18,8 +18,8 @@ export function SocialLinks({ className = "" }: { className?: string }) {
               {...(pending
                 ? { "aria-disabled": true, tabIndex: -1 }
                 : { target: "_blank", rel: "noopener noreferrer" })}
-              aria-label={pending ? `${s.name} — link coming soon` : s.name}
-              title={pending ? `${s.name} — coming soon` : s.name}
+              aria-label={pending ? `${s.name} - link coming soon` : s.name}
+              title={pending ? `${s.name} - coming soon` : s.name}
               className={`flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground-muted transition-all duration-300 ${
                 pending
                   ? "cursor-default opacity-60"

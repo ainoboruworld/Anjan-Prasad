@@ -5,7 +5,7 @@ import { Reveal } from "../ui/Reveal";
 
 /**
  * Proof woven as a single editorial pull-quote, followed by the closing
- * invitation — the homepage's answer to "what should I do next?"
+ * invitation - the homepage's answer to "what should I do next?"
  */
 export function ProofAndNextStep() {
   const quote = TESTIMONIALS[0];
@@ -58,7 +58,7 @@ export function ProofAndNextStep() {
               <span className="editorial-accent text-brand">has a method.</span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-              See it working live — or bring it into your business.
+              See it working live - or bring it into your business.
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <CTAButton href="/courses/demo">Book a Demo Session</CTAButton>

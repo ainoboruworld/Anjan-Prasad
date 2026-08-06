@@ -66,7 +66,7 @@ const IDENTITY = new Set(["fullName", "email", "phone", "company"]);
 /* ──────────────────────────────── Form ────────────────────────────────── */
 
 /**
- * DynamicBookingForm — one reusable, config-driven booking surface used by
+ * DynamicBookingForm - one reusable, config-driven booking surface used by
  * both service pages. It renders variant tabs (audience / program), the
  * active variant's fields, a live OrderSummary, and handles two submit
  * modes:
@@ -75,7 +75,7 @@ const IDENTITY = new Set(["fullName", "email", "phone", "company"]);
  *   • verification → submitForm with the uploaded document (BPL / free).
  *
  * The frontend sends only { serviceType, tierId, formType, ...formData }.
- * The backend re-validates the price and creates the Cashfree order — this
+ * The backend re-validates the price and creates the Cashfree order - this
  * component never trusts or transmits an authoritative amount.
  */
 export function DynamicBookingForm({
@@ -198,7 +198,7 @@ export function DynamicBookingForm({
 
     router.push(
       paymentUrl({
-        plan: `${serviceName} — ${tier.label}`,
+        plan: `${serviceName} - ${tier.label}`,
         amount: formatTierPrice(tier),
         name: v("fullName"),
       })
@@ -209,7 +209,7 @@ export function DynamicBookingForm({
     return (
       <SuccessCard
         title="Application received."
-        copy="Your BPL verification documents are with our team. Once verified, we'll email your confirmation and meeting details — at no cost."
+        copy="Your BPL verification documents are with our team. Once verified, we'll email your confirmation and meeting details - at no cost."
       />
     );
   }
@@ -300,7 +300,7 @@ export function DynamicBookingForm({
                 (variant.mode === "verification"
                   ? "Submit for verification"
                   : tier
-                    ? `Proceed to payment — ${formatTierPrice(tier)}`
+                    ? `Proceed to payment - ${formatTierPrice(tier)}`
                     : "Proceed to payment")
               }
               sendingLabel="Saving your details…"

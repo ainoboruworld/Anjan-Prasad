@@ -4,14 +4,14 @@ import { PortraitFrame } from "../brand/PortraitFrame";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
- * About Anjan Prasad — a short introduction only (not the full About page).
+ * About Anjan Prasad - a short introduction only (not the full About page).
  * A portrait placeholder, two compact text blocks, and a few small
  * achievements, leading to the full story.
  */
 const ACHIEVEMENTS = [
   "Founder & CEO, Noboru World",
   "CEO, Filing Buddy",
-  "Visiting Faculty — IIFT · IMT Ghaziabad",
+  "Visiting Faculty - IIFT · IMT Ghaziabad",
   "16+ years across Fortune 500 & startups",
 ];
 
@@ -45,7 +45,7 @@ export function AboutIntro() {
             </RevealItem>
             <RevealItem>
               <p className="max-w-xl text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-                He advises businesses the way he runs them — on systems, margins,
+                He advises businesses the way he runs them - on systems, margins,
                 and accountable execution.
               </p>
             </RevealItem>

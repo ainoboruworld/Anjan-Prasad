@@ -1,5 +1,5 @@
 /**
- * Central content layer for AP.com — India's Business Growth Ecosystem.
+ * Central content layer for Anjan Prasad - India's Business Growth Ecosystem.
  *
  * Every page reads from here so copy, programs, and proof can be retuned
  * in one place. Entries marked "representative" are placeholder narratives
@@ -29,7 +29,7 @@ export const NAV: NavItem[] = [
         label: "Business Growth Demo",
         href: "/business-advisory#book-demo",
         description:
-          "A ₹99, 3-hour live introductory session — teaching, business discussion, and live Q&A. The best way to experience Anjan Prasad first-hand.",
+          "A ₹99, 3-hour live introductory session - teaching, business discussion, and live Q&A. The best way to experience Anjan Prasad first-hand.",
       },
       {
         label: "Business Growth Cohort",
@@ -41,13 +41,13 @@ export const NAV: NavItem[] = [
         label: "Business Advisory",
         href: "/business-advisory#book-advisory",
         description:
-          "Ongoing monthly advisory — systems installed inside your business, outcomes measured in the P&L.",
+          "Ongoing monthly advisory - systems installed inside your business, outcomes measured in the P&L.",
       },
       {
         label: "Career Consultation",
         href: "/consulting#book",
         description:
-          "A private, one-to-one session for students, professionals, and BPL candidates — clarity on the decision that matters most.",
+          "A private, one-to-one session for students, professionals, and BPL candidates - clarity on the decision that matters most.",
       },
     ],
   },
@@ -65,7 +65,7 @@ export const NAV: NavItem[] = [
       {
         label: "Featured Media",
         href: "/media",
-        description: "Videos, talks and appearances — public content across platforms.",
+        description: "Videos, talks and appearances - public content across platforms.",
       },
     ],
   },
@@ -87,22 +87,22 @@ export const PHILOSOPHY_SCENES = [
   },
   {
     kicker: "The commitment",
-    line: "He works with businesses — not just on them.",
+    line: "He works with businesses - not just on them.",
   },
 ] as const;
 
 /* ────────────────────── Contact & social presence ─────────────────────── */
 
 export const CONTACT_EMAIL = "performance@noboruworld.com";
-/** Set when the official number is confirmed — the UI hides the row if empty. */
+/** Set when the official number is confirmed - the UI hides the row if empty. */
 export const CONTACT_PHONE: string = "";
-/** Set when the office address is confirmed — the UI hides the row if empty. */
+/** Set when the office address is confirmed - the UI hides the row if empty. */
 export const OFFICE_LOCATION: string = "";
 
 export const SOCIALS = [
   { name: "Instagram", href: "https://www.instagram.com/anjanpr/?hl=en" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/anjanprasad/" },
-  /** Official channel link pending — icon stays visible per brand direction. */
+  /** Official channel link pending - icon stays visible per brand direction. */
   { name: "YouTube", href: "#" },
 ] as const;
 
@@ -122,7 +122,7 @@ export const JOURNEY: JourneyChapter[] = [
     index: "01",
     era: "Corporate Foundation",
     title: "Learning how large businesses run",
-    copy: "Growth mandates inside global agencies and consultancies — where discipline is not optional.",
+    copy: "Growth mandates inside global agencies and consultancies - where discipline is not optional.",
     marks: ["Mindshare · GroupM", "IPG Mediabrands", "Accenture"],
     detail:
       "Years inside the engine rooms of global brands: planning cycles, P&L reviews, and the systems that keep billion-dollar businesses accountable.",
@@ -131,7 +131,7 @@ export const JOURNEY: JourneyChapter[] = [
     index: "02",
     era: "Enterprise Leadership",
     title: "Owning growth at enterprise altitude",
-    copy: "Marketing technology and travel commerce at scale — where one percent moves millions.",
+    copy: "Marketing technology and travel commerce at scale - where one percent moves millions.",
     marks: ["Zeta Global", "Fareportal"],
     detail:
       "Owning outcomes across markets and channels, and learning that scale is an operations problem long before it is a marketing problem.",
@@ -140,16 +140,16 @@ export const JOURNEY: JourneyChapter[] = [
     index: "03",
     era: "Building Businesses",
     title: "Starting companies from zero",
-    copy: "Founding businesses across growth, consumer, and compliance — bootstrapped and profitable.",
+    copy: "Founding businesses across growth, consumer, and compliance - bootstrapped and profitable.",
     marks: ["Noboru World", "Lushful", "Filing Buddy"],
     detail:
-      "Three companies started from a blank page. Payroll made, margins defended, systems written by hand — the education no classroom sells.",
+      "Three companies started from a blank page. Payroll made, margins defended, systems written by hand - the education no classroom sells.",
   },
   {
     index: "04",
     era: "Scaling Ventures",
     title: "Turning products into companies",
-    copy: "Recurring revenue, real teams, defensible margins — growth made repeatable.",
+    copy: "Recurring revenue, real teams, defensible margins - growth made repeatable.",
     marks: ["Enterprise clients", "Thousands of SMEs"],
     detail:
       "The ventures grew past their founder: enterprise product lines, recurring-revenue bases, and leadership benches that run the week without him.",
@@ -158,7 +158,7 @@ export const JOURNEY: JourneyChapter[] = [
     index: "05",
     era: "Business Transformation",
     title: "Rebuilding businesses from the inside",
-    copy: "Advisory done in the client's operating rhythm — not in a slide deck.",
+    copy: "Advisory done in the client's operating rhythm - not in a slide deck.",
     marks: ["Founders", "SMEs", "Enterprises"],
     detail:
       "Revenue engines redesigned, back offices rebuilt, leadership benches formed. Transformation measured in margin, not in meetings.",
@@ -168,9 +168,9 @@ export const JOURNEY: JourneyChapter[] = [
     era: "Founder Mentor",
     title: "Teaching what building takes",
     copy: "Courses, mentorship, and a growing community of people who want businesses that outlast them.",
-    marks: ["AP.com", "IIFT", "IMT Ghaziabad"],
+    marks: ["Anjan Prasad", "IIFT", "IMT Ghaziabad"],
     detail:
-      "The playbooks earned across two decades — taught live, lectured at institutes, and translated into programs anyone ambitious can start with.",
+      "The playbooks earned across two decades - taught live, lectured at institutes, and translated into programs anyone ambitious can start with.",
   },
 ];
 
@@ -306,7 +306,7 @@ export const PERSONAS: Persona[] = [
   {
     id: "professional",
     label: "A Working Professional",
-    headline: "Turn experience into leverage — or into a business.",
+    headline: "Turn experience into leverage - or into a business.",
     pain: [
       "Ten years in, growth has flattened.",
       "The itch to build something of your own, without a runway to gamble.",
@@ -372,7 +372,7 @@ export const PERSONAS: Persona[] = [
     path: [
       { label: "Demo Session", href: "/courses/demo", note: "Start small, see the method." },
       { label: "Business Growth Program", href: "/courses/monthly-consulting", note: "Mentorship and community included." },
-      { label: "Testimonials", href: "/testimonials", note: "Women who built with AP.com." },
+      { label: "Testimonials", href: "/testimonials", note: "Women who built with Anjan Prasad." },
     ],
   },
   {
@@ -389,7 +389,7 @@ export const PERSONAS: Persona[] = [
     ],
     path: [
       { label: "Business Advisory", href: "/business-advisory", note: "Transformation, training, and fractional leadership." },
-      { label: "Media & Recognition", href: "/media", note: "Why organisations trust AP.com." },
+      { label: "Media & Recognition", href: "/media", note: "Why organisations trust Anjan Prasad." },
       { label: "Contact", href: "/contact", note: "Design an engagement." },
     ],
   },
@@ -412,7 +412,7 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     id: "growth",
     title: "Business Growth",
     challenge: "Revenue depends on effort, not on a system. Every quarter starts from zero.",
-    approach: "Diagnose the full revenue engine — positioning, pipeline, pricing, retention — before touching tactics.",
+    approach: "Diagnose the full revenue engine - positioning, pipeline, pricing, retention - before touching tactics.",
     execution: "A growth operating system installed inside your team: cadence, metrics, experiments, ownership.",
     outcome: "Repeatable, forecastable growth with defended margins.",
     proof: "Built and scaled three bootstrapped companies on exactly this system.",
@@ -421,7 +421,7 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     id: "digital-transformation",
     title: "Digital Transformation",
     challenge: "The business runs on habits and spreadsheets while the market moves to platforms and AI.",
-    approach: "Map the value chain, then digitise the constraints — not everything at once.",
+    approach: "Map the value chain, then digitise the constraints - not everything at once.",
     execution: "Tooling, automation, and AI workflows deployed with the people who will run them.",
     outcome: "A modern operating stack the team actually uses.",
     proof: "Transformation delivery honed at Accenture and applied across SME engagements.",
@@ -432,14 +432,14 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     challenge: "Marketing, sales, and service optimise their own silos while revenue leaks between them.",
     approach: "One revenue architecture: shared funnel, shared data, shared accountability.",
     execution: "CRM discipline, pipeline hygiene, forecasting rhythm, and enablement built in-house.",
-    outcome: "A single, truthful view of revenue — and the levers that move it.",
+    outcome: "A single, truthful view of revenue - and the levers that move it.",
     proof: "RevOps practice built operating high-velocity commerce at enterprise scale.",
   },
   {
     id: "fractional-cxo",
     title: "Fractional CXO",
     challenge: "You need senior operating leadership before you can afford it full-time.",
-    approach: "A defined mandate with owned outcomes — not advisory hours.",
+    approach: "A defined mandate with owned outcomes - not advisory hours.",
     execution: "Inside your leadership rhythm weekly: decisions made, teams led, systems installed.",
     outcome: "Executive-grade leadership at a fraction of the cost and risk.",
     proof: "Two decades operating businesses from startup to enterprise.",
@@ -475,7 +475,7 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     id: "operations",
     title: "Operations & Systems",
     challenge: "Every process lives in someone's head. Scale multiplies the chaos.",
-    approach: "Document, simplify, automate — in that order.",
+    approach: "Document, simplify, automate - in that order.",
     execution: "SOPs, tooling, and a management operating system with weekly rhythm.",
     outcome: "A business that runs without the founder in every room.",
     proof: "The exact system that let three bootstrapped companies run profitably.",
@@ -486,16 +486,16 @@ export const CONSULTING_OUTCOMES: ConsultingOutcome[] = [
     challenge: "AI is a headline in the boardroom and a rumour on the floor.",
     approach: "Start from workflows and economics, not from tools.",
     execution: "AI-assisted operations, automation pilots, and team capability building.",
-    outcome: "Compounding productivity — measured, not promised.",
+    outcome: "Compounding productivity - measured, not promised.",
     proof: "AI-first operating systems built and shipped at Noboru World.",
   },
   {
     id: "corporate-training",
     title: "Corporate Training",
-    challenge: "Teams need leadership, AI, and modern operating skills — and workshops alone don't stick.",
+    challenge: "Teams need leadership, AI, and modern operating skills - and workshops alone don't stick.",
     approach: "Design capability programs from your workflows, your data, your constraints.",
     execution: "Cohorts anchored to live work: leadership, AI for business teams, transformation, upskilling.",
-    outcome: "Measured capability across the whole floor — baseline before, evidence after.",
+    outcome: "Measured capability across the whole floor - baseline before, evidence after.",
     proof: "Programs taught by an operator who has run the functions being trained.",
   },
 ];
@@ -523,12 +523,12 @@ export const ADVISORY_PROCESS = [
   {
     step: "03",
     title: "Mandate",
-    copy: "One named outcome, one metric, one operating rhythm — agreed before work begins.",
+    copy: "One named outcome, one metric, one operating rhythm - agreed before work begins.",
   },
   {
     step: "04",
     title: "Execution",
-    copy: "Systems installed with your team, inside your week — capability transfers, dependency doesn't.",
+    copy: "Systems installed with your team, inside your week - capability transfers, dependency doesn't.",
   },
   {
     step: "05",
@@ -548,7 +548,7 @@ export const ADVISORY_OUTCOMES = [
 export const ADVISORY_FAQS = [
   {
     q: "How is this different from hiring a consulting firm?",
-    a: "Firms deliver recommendations; this engagement delivers installed systems. Anjan works inside your operating rhythm — in the weekly reviews, in the numbers, alongside the team — until the outcome is running without him.",
+    a: "Firms deliver recommendations; this engagement delivers installed systems. Anjan works inside your operating rhythm - in the weekly reviews, in the numbers, alongside the team - until the outcome is running without him.",
   },
   {
     q: "What size of business is this for?",
@@ -556,11 +556,11 @@ export const ADVISORY_FAQS = [
   },
   {
     q: "How long does an engagement run?",
-    a: "The diagnostic takes two weeks. Mandates typically run one to two quarters — long enough to install a system, short enough to stay accountable to the metric.",
+    a: "The diagnostic takes two weeks. Mandates typically run one to two quarters - long enough to install a system, short enough to stay accountable to the metric.",
   },
   {
     q: "Does advisory include corporate training?",
-    a: "Yes. Capability programs — leadership, AI for business teams, transformation, upskilling — run as part of an advisory mandate or standalone for organisations.",
+    a: "Yes. Capability programs - leadership, AI for business teams, transformation, upskilling - run as part of an advisory mandate or standalone for organisations.",
   },
   {
     q: "What does it cost?",
@@ -568,7 +568,7 @@ export const ADVISORY_FAQS = [
   },
   {
     q: "What happens after I send the enquiry?",
-    a: "A human reply within one working day, and a working conversation about your business — not a pitch about ours.",
+    a: "A human reply within one working day, and a working conversation about your business - not a pitch about ours.",
   },
 ] as const;
 
@@ -582,9 +582,9 @@ export const DEMO_SESSION = {
   feeLabel: "Registration Fee",
   schedule: "Weekdays",
   format: "3 Hours Live",
-  promise: "See how profitable businesses are actually built — in one focused session.",
+  promise: "See how profitable businesses are actually built - in one focused session.",
   description:
-    "Not a webinar. A live working session where Anjan walks through the operating playbook on real business models — how ideas are validated, how margins are designed, and where most businesses quietly fail.",
+    "Not a webinar. A live working session where Anjan walks through the operating playbook on real business models - how ideas are validated, how margins are designed, and where most businesses quietly fail.",
   hours: [
     {
       hour: "Hour 1",
@@ -611,13 +611,13 @@ export const DEMO_SESSION = {
   outcomes: [
     "Understand the anatomy of a profitable business",
     "See the validation method before you spend a rupee",
-    "Know your exact next step — this month",
+    "Know your exact next step - this month",
   ],
   cta: "Register now",
 } as const;
 
 /**
- * Business Growth Program — the flagship structured learning program.
+ * Business Growth Program - the flagship structured learning program.
  * Exported under the historical `LIVE_COURSE` name so existing imports keep
  * working while the visible identity is the Business Growth Program.
  */
@@ -629,9 +629,9 @@ export const LIVE_COURSE = {
   price: "₹9,999",
   priceNote: "Per month · weekday sessions · structured curriculum",
   promise:
-    "Structured business education and practical growth strategies — your business moved forward every week.",
+    "Structured business education and practical growth strategies - your business moved forward every week.",
   description:
-    "A comprehensive program for founders, entrepreneurs, professionals, and business owners who want structured business education and a clear path to growth. Weekly working sessions, a living plan, and an operator holding you accountable — so learning turns into execution.",
+    "A comprehensive program for founders, entrepreneurs, professionals, and business owners who want structured business education and a clear path to growth. Weekly working sessions, a living plan, and an operator holding you accountable - so learning turns into execution.",
   pillars: [
     { title: "Structured curriculum", copy: "Business education sequenced from fundamentals to growth strategy." },
     { title: "Business planning & roadmaps", copy: "A living plan with priorities, milestones, and the sequence to hit them." },
@@ -655,11 +655,11 @@ export const MONTHLY_CONSULTING = LIVE_COURSE;
 export const CONSULTING_SESSION = {
   badge: "Direct access",
   name: "Consultation",
-  promise: "One hour with the operator. One decision moved.",
+  promise: "Thirty minutes with the operator. One decision moved.",
   description:
-    "A private working session with Anjan on the single question that matters most in your business right now — pricing, positioning, growth, hiring, or the next big call. You bring the context; you leave with a decision and a plan.",
+    "A private working session with Anjan on the single question that matters most in your business right now - pricing, positioning, growth, hiring, or the next big call. You bring the context; you leave with a decision and a plan.",
   format: [
-    { title: "60 minutes, live", copy: "Video call, fully focused on your business — no deck, no pitch." },
+    { title: "30 minutes, live", copy: "Video call, fully focused on your business, no deck, no pitch." },
     { title: "Prepared, not improvised", copy: "You share context in advance; Anjan arrives having read it." },
     { title: "A written next step", copy: "You leave with the decision framed and the first actions named." },
   ],
@@ -677,14 +677,14 @@ export const CONSULTING_SESSION = {
 /* ─────────────────────────── Featured videos ──────────────────────────── */
 
 export type FeaturedVideo = {
-  /** YouTube video ID — thumbnail and link are derived from it. */
+  /** YouTube video ID - thumbnail and link are derived from it. */
   videoId: string;
   title: string;
   note: string;
 };
 
 /**
- * Representative slate — swap in real IDs from the official channel.
+ * Representative slate - swap in real IDs from the official channel.
  * An empty videoId renders a branded placeholder plate instead of a
  * broken thumbnail, so the section ships before the channel does.
  */
@@ -702,7 +702,7 @@ export const FEATURED_VIDEOS: FeaturedVideo[] = [
   {
     videoId: "",
     title: "AI Operating Systems for Small Businesses",
-    note: "Where AI actually pays back in an SME — and where it doesn't.",
+    note: "Where AI actually pays back in an SME - and where it doesn't.",
   },
 ];
 
@@ -734,12 +734,12 @@ export type Article = {
   editorsPick?: boolean;
 };
 
-/** Representative editorial slate — replace with the real publication feed. */
+/** Representative editorial slate - replace with the real publication feed. */
 export const ARTICLES: Article[] = [
   {
     slug: "anatomy-of-a-profitable-business",
     title: "The Anatomy of a Profitable Business",
-    dek: "Nine systems every durable business runs on — and the order to build them in.",
+    dek: "Nine systems every durable business runs on - and the order to build them in.",
     category: "Playbooks & Frameworks",
     readingTime: "12 min",
     featured: true,
@@ -755,7 +755,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "ai-operating-system-for-smes",
     title: "An AI Operating System for Small Businesses",
-    dek: "Where AI actually pays back in an SME — and the three places it quietly doesn't.",
+    dek: "Where AI actually pays back in an SME - and the three places it quietly doesn't.",
     category: "AI for Business",
     readingTime: "11 min",
     editorsPick: true,
@@ -785,7 +785,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "hiring-your-first-leader",
     title: "Hiring Your First Real Leader",
-    dek: "When to stop hiring hands and start hiring judgement — and how to test for it.",
+    dek: "When to stop hiring hands and start hiring judgement - and how to test for it.",
     category: "Team & Leadership",
     readingTime: "9 min",
   },
@@ -799,14 +799,14 @@ export const ARTICLES: Article[] = [
   {
     slug: "founder-mindset-traps",
     title: "Five Founder Mindset Traps",
-    dek: "The psychological patterns that cap growth — observed across hundreds of founder conversations.",
+    dek: "The psychological patterns that cap growth - observed across hundreds of founder conversations.",
     category: "Founder Mindset",
     readingTime: "6 min",
   },
   {
     slug: "business-ideas-2026",
     title: "Where the Opportunities Are: India 2026",
-    dek: "Sectors where structural change is outrunning incumbents — a field report.",
+    dek: "Sectors where structural change is outrunning incumbents - a field report.",
     category: "Industry Reports",
     readingTime: "15 min",
   },
@@ -820,7 +820,7 @@ export const ARTICLES: Article[] = [
   {
     slug: "second-growth-curve",
     title: "Finding the Second Growth Curve",
-    dek: "What to do when a working business stops growing — before it starts shrinking.",
+    dek: "What to do when a working business stops growing - before it starts shrinking.",
     category: "Scaling & Growth",
     readingTime: "10 min",
   },
@@ -844,7 +844,7 @@ export type CaseStudy = {
   lesson: string;
 };
 
-/** Representative transformations — real client stories to be swapped in. */
+/** Representative transformations - real client stories to be swapped in. */
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "meridian-foods",
@@ -854,7 +854,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     service: "Operations & Systems",
     headline: "From founder-dependent to system-run in one quarter",
     challenge:
-      "A profitable D2C food brand where every decision — pricing, purchasing, people — routed through the founder. Growth had stalled at the ceiling of one person's attention.",
+      "A profitable D2C food brand where every decision - pricing, purchasing, people - routed through the founder. Growth had stalled at the ceiling of one person's attention.",
     strategy:
       "Install a management operating system: documented processes, a weekly metrics rhythm, and named owners for every revenue and cost line.",
     execution: [
@@ -885,7 +885,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     challenge:
       "Sales, operations, and service each optimised their own numbers while contract margins quietly eroded. Nobody owned the customer economics end to end.",
     strategy:
-      "Unify the revenue engine: one funnel, one data spine, one forecast — with margin accountability attached to every account.",
+      "Unify the revenue engine: one funnel, one data spine, one forecast - with margin accountability attached to every account.",
     execution: [
       "Rebuilt CRM and pipeline stages around customer economics",
       "Instituted a monthly account-margin review with named owners",
@@ -912,7 +912,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     service: "Business Growth",
     headline: "From firefighting to a fundable growth engine",
     challenge:
-      "A promising health-tech startup with real users, chaotic execution, and no coherent growth story — six months of runway and an approaching raise.",
+      "A promising health-tech startup with real users, chaotic execution, and no coherent growth story - six months of runway and an approaching raise.",
     strategy:
       "Sequence ruthlessly: fix retention economics first, then build one repeatable acquisition channel, then package the evidence for investors.",
     execution: [
@@ -922,7 +922,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     results: [
       { metric: "3×", label: "improvement in 90-day retention" },
-      { metric: "1", label: "acquisition channel at target CAC — then a second" },
+      { metric: "1", label: "acquisition channel at target CAC - then a second" },
       { metric: "Closed", label: "the round, led by an investor citing the metrics discipline" },
     ],
     timeline: "5 months",
@@ -951,7 +951,7 @@ export type MediaItem = {
   note: string;
 };
 
-/** Representative appearances — replace with the verified media log. */
+/** Representative appearances - replace with the verified media log. */
 export const MEDIA_ITEMS: MediaItem[] = [
   {
     kind: "Speaking",
@@ -964,7 +964,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
     kind: "Podcast",
     title: "The Operator's Playbook",
     venue: "Founder & business podcasts",
-    year: "2024–25",
+    year: "2024-25",
     note: "Long-form conversations on bootstrapping, margins, and systems.",
   },
   {
@@ -976,7 +976,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
   },
   {
     kind: "Faculty",
-    title: "Visiting Faculty — Business & Marketing",
+    title: "Visiting Faculty - Business & Marketing",
     venue: "Management institutes",
     year: "Ongoing",
     note: "Structured teaching engagements with management cohorts.",
@@ -985,7 +985,7 @@ export const MEDIA_ITEMS: MediaItem[] = [
     kind: "Press",
     title: "Commentary on SME growth and digital transformation",
     venue: "Business media",
-    year: "2023–25",
+    year: "2023-25",
     note: "Quoted analysis on India's SME economy and AI adoption.",
   },
   {
@@ -999,11 +999,22 @@ export const MEDIA_ITEMS: MediaItem[] = [
 
 /* ───────────────────────────── Testimonials ───────────────────────────── */
 
+/**
+ * Which page/service a testimonial belongs to. A single voice can appear on
+ * more than one surface. Add new values here to scale to future categories
+ * (e.g. "Corporate Training"); no component changes are needed.
+ */
+export type TestimonialCategory =
+  | "Business Advisory"
+  | "Consultation"
+  | "Courses";
+
 export type Testimonial = {
   quote: string;
   name: string;
   title: string;
   kind: "Founder" | "Student" | "Enterprise";
+  categories: TestimonialCategory[];
 };
 
 export const TESTIMONIALS: Testimonial[] = [
@@ -1013,6 +1024,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Rhea Malhotra",
     title: "Founder & CEO, Meridian Foods",
     kind: "Founder",
+    categories: ["Business Advisory"],
   },
   {
     quote:
@@ -1020,6 +1032,7 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Daniel Okafor",
     title: "Managing Director, Northwind Logistics",
     kind: "Enterprise",
+    categories: ["Business Advisory"],
   },
   {
     quote:
@@ -1027,26 +1040,35 @@ export const TESTIMONIALS: Testimonial[] = [
     name: "Ananya Verma",
     title: "Co-founder, Aperture Health",
     kind: "Founder",
+    categories: ["Business Advisory", "Consultation"],
   },
   {
     quote:
-      "Fifteen years of operating instinct in every conversation. He builds businesses — you feel it in the first meeting.",
+      "Fifteen years of operating instinct in every conversation. He builds businesses, you feel it in the first meeting.",
     name: "Marcus Feld",
     title: "Partner, Cavalt Capital",
     kind: "Enterprise",
+    categories: ["Business Advisory"],
   },
   {
     quote:
       "The Business Growth Program made me build, not watch. I left with a validated model and my first paying customers.",
     name: "Sneha Iyer",
-    title: "Business Growth Program member · D2C founder",
+    title: "Business Growth Program member, D2C founder",
     kind: "Student",
+    categories: ["Courses", "Consultation"],
   },
   {
     quote:
       "The best money I've spent on my career. The Demo Session alone reframed how I think about business.",
     name: "Arjun Nair",
-    title: "Working professional · Demo Session attendee",
+    title: "Working professional, Demo Session attendee",
     kind: "Student",
+    categories: ["Consultation", "Courses"],
   },
 ];
+
+/** All testimonials tagged for a given page/service category. */
+export function testimonialsFor(category: TestimonialCategory): Testimonial[] {
+  return TESTIMONIALS.filter((t) => t.categories.includes(category));
+}

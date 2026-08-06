@@ -1,5 +1,5 @@
 /**
- * Zod schemas — the single validation layer, shared by every form.
+ * Zod schemas - the single validation layer, shared by every form.
  *
  * Forms bind these via `@hookform/resolvers/zod`; services can re-validate
  * the same shapes server-side. Validation lives here, never in components.

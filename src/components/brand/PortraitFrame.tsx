@@ -3,7 +3,7 @@ import { Portrait } from "./Portrait";
 /**
  * Framed portrait of Anjan Prasad. Renders the real photo from
  * public/images/anjan-prasad.jpg the moment it exists (see Portrait), and a
- * branded fallback until then — never a broken image. Fixed aspect so
+ * branded fallback until then - never a broken image. Fixed aspect so
  * dropping in the photo needs no layout change.
  */
 export function PortraitFrame({
@@ -23,7 +23,7 @@ export function PortraitFrame({
           <div
             role="img"
             aria-label="Portrait of Anjan Prasad"
-            className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_50%_-10%,color-mix(in_srgb,var(--brand-sky)_12%,transparent),transparent_60%)] text-center"
+            className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_50%_-10%,rgba(79,169,255,0.12),transparent_60%)] text-center"
           >
             <span className="font-display text-6xl font-bold tracking-tight text-brand/25">
               AP

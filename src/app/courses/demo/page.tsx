@@ -7,14 +7,14 @@ import { PageHero, RuleTick, SectionHeading } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Demo Session — ₹99, Weekdays",
+  title: "Demo Session - ₹99, Weekdays",
   description:
     "A live, 3-hour working session on how profitable businesses are actually built. ₹99 registration · weekdays. Agenda, outcomes, and registration.",
   alternates: { canonical: "/courses/demo" },
   openGraph: {
-    title: "Demo Session — ₹99 · AP.com",
+    title: "Demo Session - ₹99 · Anjan Prasad",
     description:
-      "See how profitable businesses are actually built — one live, 3-hour session. ₹99, weekdays.",
+      "See how profitable businesses are actually built - one live, 3-hour session. ₹99, weekdays.",
     url: "/courses/demo",
     type: "website",
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Is this a recorded webinar?",
-    a: "No. It's a live, 3-hour working session with Anjan — you can ask questions about your own business and get answers in the room.",
+    a: "No. It's a live, 3-hour working session with Anjan - you can ask questions about your own business and get answers in the room.",
   },
   {
     q: "When does it run?",
@@ -39,7 +39,7 @@ const FAQS = [
   },
   {
     q: "How is payment handled?",
-    a: "You register with your details, then proceed to checkout. Online payment (UPI and cards) is being integrated — until then the team confirms your seat and sends a secure payment link by email.",
+    a: "You register with your details, then proceed to checkout. Online payment (UPI and cards) is being integrated - until then the team confirms your seat and sends a secure payment link by email.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function DemoSessionPage() {
         eyebrow={`${DEMO_SESSION.badge} · ${DEMO_SESSION.fee}`}
         title={
           <>
-            The Demo Session —{" "}
+            The Demo Session -{" "}
             <span className="editorial-accent text-brand">
               see it built live.
             </span>
@@ -78,7 +78,7 @@ export default function DemoSessionPage() {
                 </p>
               </Reveal>
 
-              {/* Agenda — the three hours */}
+              {/* Agenda - the three hours */}
               <p className="mt-12 text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
                 The agenda
               </p>

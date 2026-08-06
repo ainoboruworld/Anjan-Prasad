@@ -150,7 +150,7 @@ export function Constellation() {
           </div>
         </div>
 
-        {/* Brands index — editorial, not a wall */}
+        {/* Brands index - editorial, not a wall */}
         <Reveal className="mt-16 border-t border-border pt-10">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
             Brands advised across agency &amp; consulting years

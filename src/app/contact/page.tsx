@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 
-/** Inline LinkedIn glyph — avoids depending on a named lucide export. */
+/** Inline LinkedIn glyph - avoids depending on a named lucide export. */
 function LinkedInGlyph() {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
@@ -16,7 +16,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with AP.com — email, phone, and office hours. For courses, consulting, corporate training, or speaking, reach out and get a human reply.",
+    "Get in touch with Anjan Prasad - email, phone, and office hours. For courses, consulting, corporate training, or speaking, reach out and get a human reply.",
   alternates: { canonical: "/contact" },
 };
 
@@ -51,7 +51,7 @@ const CARDS: Card[] = [
   {
     icon: <Clock className="h-5 w-5" strokeWidth={1.75} />,
     label: "Office Hours",
-    value: "Mon–Fri · Coming soon",
+    value: "Mon-Fri · Coming soon",
     pending: true,
   },
   {
@@ -80,7 +80,7 @@ export default function ContactPage() {
             <span className="editorial-accent text-brand">talk business.</span>
           </>
         }
-        lead="For courses, consulting, corporate training, or speaking — reach out and you'll get a human reply, usually within one working day."
+        lead="For courses, consulting, corporate training, or speaking - reach out and you'll get a human reply, usually within one working day."
       />
 
       <section className="pb-16">
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   <MapPin className="h-5 w-5" strokeWidth={1.75} />
                 </span>
                 <span className="font-display text-lg font-semibold tracking-tight text-foreground">
-                  Map — location coming soon
+                  Map - location coming soon
                 </span>
                 <span className="max-w-sm text-sm text-foreground-muted">
                   The office address and an embedded map will appear here once

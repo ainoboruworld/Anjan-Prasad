@@ -19,7 +19,7 @@ export interface HeroCTA {
 }
 
 /**
- * Premium service-page hero. Shared by Consultation and Business Advisory —
+ * Premium service-page hero. Shared by Consultation and Business Advisory -
  * an eyebrow, an oversized editorial headline, a lead, CTAs, and an optional
  * glass highlight rail. Subtle gradient wash + staggered entrance keep it
  * closer to Stripe/Linear than a coaching site.
@@ -58,7 +58,7 @@ export function HeroSection({
     <section className="hero-bg relative overflow-hidden pt-40 pb-20 sm:pt-48 sm:pb-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-16 -z-10 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--brand-sky)_18%,transparent),transparent_65%)] blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-16 -z-10 h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(79,169,255,0.18),transparent_65%)] blur-3xl"
       />
       <motion.div
         variants={container}

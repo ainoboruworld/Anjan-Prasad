@@ -1,5 +1,5 @@
 /**
- * Media service — featured media items. Backed by a local slate today;
+ * Media service - featured media items. Backed by a local slate today;
  * swap the source for Sanity by changing only this function.
  */
 import { MEDIA_FEATURES, type MediaFeature } from "@/lib/media";

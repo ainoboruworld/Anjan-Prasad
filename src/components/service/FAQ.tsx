@@ -3,7 +3,7 @@ import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * FAQ — a titled wrapper around the shared Accordion, plus FAQPage JSON-LD
+ * FAQ - a titled wrapper around the shared Accordion, plus FAQPage JSON-LD
  * for rich results. Both service pages use the same block.
  */
 export function FAQ({

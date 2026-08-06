@@ -88,7 +88,7 @@ export function MonthlyConsultingForm() {
 
       <SubmitButton
         sending={sending}
-        idleLabel={`Proceed to Payment — ${MONTHLY_CONSULTING.price}/mo`}
+        idleLabel={`Proceed to Payment - ${MONTHLY_CONSULTING.price}/mo`}
         sendingLabel="Saving your details…"
         className="w-full justify-center"
       />

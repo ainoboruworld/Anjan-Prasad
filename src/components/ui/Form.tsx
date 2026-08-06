@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 
 /**
- * Shared form primitives — every form on the site (Contact, Advisory,
+ * Shared form primitives - every form on the site (Contact, Advisory,
  * Demo, Consultation, Newsletter, Sign In) composes these so inputs,
  * labels, buttons, and success states stay one design language.
  */

@@ -7,7 +7,7 @@
  * matching tab of one Google Spreadsheet and emails a notification to
  * NOTIFY_EMAIL. See docs/forms-google-sheets.md for the script and setup.
  *
- * When the real backend ships, only `submitForm` changes — no form
+ * When the real backend ships, only `submitForm` changes - no form
  * component needs to be touched.
  */
 
@@ -32,7 +32,7 @@ const FORMS_ENDPOINT = env.forms.endpoint;
 
 export type FormPayload = {
   formType: FormType;
-  /** Core identity fields — mapped to dedicated spreadsheet columns. */
+  /** Core identity fields - mapped to dedicated spreadsheet columns. */
   name?: string;
   email?: string;
   phone?: string;
@@ -54,7 +54,7 @@ export async function submitForm(payload: FormPayload): Promise<SubmitResult> {
   if (!FORMS_ENDPOINT) {
     // Frontend-complete mode: no endpoint configured yet. Log so QA can
     // verify payloads, and report the submission as queued.
-    console.info("[forms] endpoint not configured — payload:", body);
+    console.info("[forms] endpoint not configured - payload:", body);
     return { ok: true, queued: true };
   }
 

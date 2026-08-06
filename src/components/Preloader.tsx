@@ -13,7 +13,7 @@ const draw = (delay: number, duration = 0.8) => ({
 /**
  * Minimal intro: thin architectural strokes draw the AP monogram over a
  * clean surface, a gold underline sweeps in, and the tagline reveals before
- * the plate dissolves into the page. No grid — just the mark and a glow.
+ * the plate dissolves into the page. No grid - just the mark and a glow.
  * Runs once per browser session; total ≈ 2.1s.
  */
 export function Preloader() {
@@ -52,7 +52,7 @@ export function Preloader() {
           transition={{ duration: 0.6, ease: easeSmooth }}
           aria-hidden
         >
-          {/* Soft centred glow — depth without a grid */}
+          {/* Soft centred glow - depth without a grid */}
           <motion.div
             className="pointer-events-none absolute inset-0"
             style={{

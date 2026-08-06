@@ -4,7 +4,7 @@ import { RevealGroup, RevealItem } from "../ui/Reveal";
 import { StatImage } from "../ui/StatImage";
 
 /**
- * Trust & Experience — the record in animated numbers. Numeric stats count
+ * Trust & Experience - the record in animated numbers. Numeric stats count
  * up on scroll (premium easeOut settle); non-numeric stats render as text.
  * Answers "why trust him?" before a paragraph is read.
  */

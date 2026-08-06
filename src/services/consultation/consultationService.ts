@@ -1,5 +1,5 @@
 /**
- * Consultation service — books a consultation.
+ * Consultation service - books a consultation.
  *
  * Flow: capture the lead, then either take payment (Cashfree via the payments
  * service) or, for free/BPL tiers, record a verification request. UI passes

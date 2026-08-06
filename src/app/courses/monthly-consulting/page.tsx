@@ -7,14 +7,14 @@ import { PageHero, RuleTick, SectionHeading } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Business Growth Program — ₹9,999 / month",
+  title: "Business Growth Program - ₹9,999 / month",
   description:
     "A structured monthly program with Anjan Prasad: business education, weekday sessions, planning, roadmaps, founder support, and accountability. ₹9,999 per month.",
   alternates: { canonical: "/courses/monthly-consulting" },
   openGraph: {
-    title: "Business Growth Program — ₹9,999/mo · AP.com",
+    title: "Business Growth Program - ₹9,999/mo · Anjan Prasad",
     description:
-      "Structured business education, planning, and accountability — your business moved forward every week.",
+      "Structured business education, planning, and accountability - your business moved forward every week.",
     url: "/courses/monthly-consulting",
     type: "website",
   },
@@ -33,7 +33,7 @@ const INCLUDES = [
 const FAQS = [
   {
     q: "How is this different from a Consultation?",
-    a: "A Consultation is a single focused session on one decision. The Business Growth Program is an ongoing, structured engagement — weekly sessions, a curriculum, a plan, and accountability that compounds over the month.",
+    a: "A Consultation is a single focused session on one decision. The Business Growth Program is an ongoing, structured engagement - weekly sessions, a curriculum, a plan, and accountability that compounds over the month.",
   },
   {
     q: "When do sessions happen?",
@@ -41,11 +41,11 @@ const FAQS = [
   },
   {
     q: "Is there a lock-in?",
-    a: "No. It's billed monthly and you can stop whenever it has done its job — though most momentum shows up when you stay for a few cycles.",
+    a: "No. It's billed monthly and you can stop whenever it has done its job - though most momentum shows up when you stay for a few cycles.",
   },
   {
     q: "How does payment work?",
-    a: "You enrol with your details, then proceed to checkout. Online payment (UPI and cards) is being integrated — until then the team confirms and sends a secure monthly payment link.",
+    a: "You enrol with your details, then proceed to checkout. Online payment (UPI and cards) is being integrated - until then the team confirms and sends a secure monthly payment link.",
   },
 ];
 
@@ -56,7 +56,7 @@ export default function MonthlyConsultingPage() {
         eyebrow={`${MONTHLY_CONSULTING.badge} · ${MONTHLY_CONSULTING.price}/mo`}
         title={
           <>
-            Business Growth Program —{" "}
+            Business Growth Program -{" "}
             <span className="editorial-accent text-brand">
               momentum every week.
             </span>

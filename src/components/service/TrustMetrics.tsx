@@ -12,7 +12,7 @@ export interface TrustMetric {
 }
 
 /**
- * Trust strip — a quiet band of proof metrics. Numeric metrics count up on
+ * Trust strip - a quiet band of proof metrics. Numeric metrics count up on
  * scroll; text metrics render as-is. Shared across both service pages.
  */
 export function TrustMetrics({

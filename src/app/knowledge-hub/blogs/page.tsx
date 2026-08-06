@@ -6,12 +6,12 @@ import { Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Blogs — Knowledge Hub",
+  title: "Blogs - Knowledge Hub",
   description:
     "Premium blogs from Anjan Prasad across business, startups, marketing, society, spirituality and politics. Search, filter by category, and read the latest.",
   alternates: { canonical: "/knowledge-hub/blogs" },
   openGraph: {
-    title: "Blogs — Knowledge Hub · AP.com",
+    title: "Blogs - Knowledge Hub · Anjan Prasad",
     description:
       "Playbooks, frameworks and field notes on building profitable businesses.",
     url: "/knowledge-hub/blogs",
@@ -34,7 +34,7 @@ export default async function BlogsPage() {
             <span className="editorial-accent text-brand">used.</span>
           </>
         }
-        lead="Playbooks, frameworks, and field notes from inside real businesses — across business, startup, marketing, society, spirituality and politics."
+        lead="Playbooks, frameworks, and field notes from inside real businesses - across business, startup, marketing, society, spirituality and politics."
       />
 
       {/* Featured article */}
@@ -51,7 +51,7 @@ export default async function BlogsPage() {
         </section>
       )}
 
-      {/* All blogs — search, filters, load more */}
+      {/* All blogs - search, filters, load more */}
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="max-w-2xl">
