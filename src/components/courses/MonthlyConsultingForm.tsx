@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitForm, paymentUrl } from "@/lib/forms";
 import { saveBooking } from "@/lib/bookings";
+import { notifyEmail } from "@/lib/emailClient";
 import { LIVE_COURSE as MONTHLY_CONSULTING } from "@/lib/data";
 import { Field, SubmitButton, inputCls } from "../ui/Form";
 
@@ -50,6 +51,14 @@ export function MonthlyConsultingForm() {
       phone: v("phone"),
       company: v("companyName"),
       data,
+    });
+    void notifyEmail("advisory", {
+      name,
+      email: v("email"),
+      phone: v("phone"),
+      company: v("companyName"),
+      plan: "Business Growth Program",
+      details: data,
     });
     router.push(
       paymentUrl({

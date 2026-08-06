@@ -1,5 +1,11 @@
 import { Play } from "lucide-react";
-import { MEDIA_FEATURES, extractYouTubeId, type MediaFeature } from "@/lib/media";
+import {
+  MEDIA_FEATURES,
+  extractYouTubeId,
+  featuredMediaFromCms,
+  type MediaFeature,
+} from "@/lib/media";
+import { getFeaturedMedia } from "@/lib/cms";
 import { YouTubeThumb } from "../hub/YouTubeThumb";
 import { SectionHeading } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
@@ -9,7 +15,10 @@ import { RevealGroup, RevealItem } from "../ui/Reveal";
  * Elegant 2-column cards (single column on mobile), official thumbnails with
  * a maxres→hq fallback, play overlay, and the whole card links out.
  */
-export function FeaturedMediaSection() {
+export async function FeaturedMediaSection() {
+  const cms = await getFeaturedMedia();
+  const features =
+    cms && cms.length > 0 ? featuredMediaFromCms(cms) : MEDIA_FEATURES;
   return (
     <section className="border-t border-border py-20 sm:py-24">
       <div className="mx-auto max-w-5xl px-6">
@@ -25,7 +34,7 @@ export function FeaturedMediaSection() {
         />
 
         <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2">
-          {MEDIA_FEATURES.map((video) => (
+          {features.map((video) => (
             <RevealItem key={video.id} className="h-full">
               <VideoCard video={video} />
             </RevealItem>

@@ -4,6 +4,7 @@
  */
 import { submitForm, type FormType } from "@/lib/forms";
 import { saveBooking } from "@/lib/bookings";
+import { notifyEmail } from "@/lib/emailClient";
 import { createPaymentOrder } from "../payments/paymentsService";
 import { ok, fail, type ServiceResponse } from "../types";
 import type {
@@ -44,6 +45,14 @@ export async function createAdvisoryBooking(
       tier_id: input.tierId,
       ...input.data,
     },
+  });
+  void notifyEmail(input.tierId === "demo" ? "demo" : "advisory", {
+    name: input.customer.name,
+    email: input.customer.email,
+    phone: input.customer.phone,
+    company: input.customer.company,
+    plan: input.formType,
+    details: input.data,
   });
 
   const { data: order, error } = await createPaymentOrder({

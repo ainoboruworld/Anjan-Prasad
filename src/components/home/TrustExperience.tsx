@@ -2,6 +2,7 @@ import { Counter } from "../ui/Counter";
 import { SectionHeading } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
 import { StatImage } from "../ui/StatImage";
+import type { CmsStat } from "@/lib/cms";
 
 /**
  * Trust & Experience - the record in animated numbers. Numeric stats count
@@ -26,7 +27,15 @@ const STATS: Stat[] = [
   { value: 3, suffix: "+", label: "Institutions & Universities" },
 ];
 
-export function TrustExperience() {
+/** Map a CMS stat ("16+", "Fortune 500") to the render shape. */
+function fromCms(s: CmsStat): Stat {
+  const m = s.value.trim().match(/^(\d+)(\D*)$/);
+  if (m) return { value: Number(m[1]), suffix: m[2] || undefined, label: s.label };
+  return { text: s.value, label: s.label };
+}
+
+export function TrustExperience({ stats }: { stats?: CmsStat[] | null }) {
+  const items: Stat[] = stats && stats.length > 0 ? stats.map(fromCms) : STATS;
   return (
     <section
       aria-label="Trust and experience"
@@ -48,7 +57,7 @@ export function TrustExperience() {
           as="ul"
           className="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6"
         >
-          {STATS.map((s) => (
+          {items.map((s) => (
             <RevealItem
               as="li"
               key={s.label}

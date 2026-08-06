@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CASE_STUDIES, testimonialsFor } from "@/lib/data";
+import { getFaqs, getCaseStudies, getServicePage } from "@/lib/cms";
 import { ENTERPRISE_BRANDS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -198,14 +199,49 @@ const FAQS = [
   },
 ];
 
-export default function BusinessAdvisoryPage() {
+export default async function BusinessAdvisoryPage() {
+  // CMS FAQs where authored; otherwise the built-in set.
+  const cmsFaqs = await getFaqs("Business Advisory");
+  const faqs =
+    cmsFaqs && cmsFaqs.length > 0
+      ? cmsFaqs.map((f) => ({ q: f.question, a: f.answer }))
+      : FAQS;
+
+  // CMS case studies where authored; otherwise the built-in set. Only the
+  // fields the card renders are normalised, so both sources are compatible.
+  const svc = await getServicePage("business-advisory");
+  const cmsCase = await getCaseStudies();
+  const caseStudies =
+    cmsCase && cmsCase.length > 0
+      ? cmsCase.map((c, i) => ({
+          slug: `cms-${i}`,
+          industry: c.sector ?? "",
+          service: c.client ?? "Case study",
+          headline: c.title,
+          challenge: c.summary ?? c.problem ?? "",
+          results: (c.metrics ?? []).map((m) => ({
+            metric: m.value,
+            label: m.label,
+          })),
+        }))
+      : CASE_STUDIES.map((cs) => ({
+          slug: cs.slug,
+          industry: cs.industry,
+          service: cs.service,
+          headline: cs.headline,
+          challenge: cs.challenge,
+          results: cs.results,
+        }));
   return (
     <main>
       <HeroSection
-        eyebrow="Business Advisory"
-        headline="Build a Business That"
-        accent="Outlasts You."
-        lead="Transformation delivered inside your business by an operator - not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        eyebrow={svc?.eyebrow || "Business Advisory"}
+        headline={svc?.heroHeadline || "Build a Business That"}
+        accent={svc?.heroHeadlineAccent || "Outlasts You."}
+        lead={
+          svc?.heroSubhead ||
+          "Transformation delivered inside your business by an operator - not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        }
         ctas={[
           { label: "See the programs", href: "#pricing" },
           { label: "Start an enquiry", href: "#book", variant: "ghost" },
@@ -331,7 +367,7 @@ export default function BusinessAdvisoryPage() {
             </Link>
           </div>
           <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
-            {CASE_STUDIES.map((cs) => (
+            {caseStudies.map((cs) => (
               <RevealItem key={cs.slug}>
                 <Link href="/case-studies" className="card card-hover group flex h-full flex-col p-8">
                   <p className="text-xs font-medium uppercase tracking-[0.16em] text-brand-sky">
@@ -369,7 +405,7 @@ export default function BusinessAdvisoryPage() {
             <span className="editorial-accent text-brand">begin.</span>
           </>
         }
-        items={FAQS}
+        items={faqs}
       />
 
       <FinalCTA

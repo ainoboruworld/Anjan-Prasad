@@ -64,6 +64,13 @@ export const serverEnv = {
   cashfreeSecret: process.env.CASHFREE_SECRET ?? "",
   resendApiKey: process.env.RESEND_API_KEY ?? "",
   supabaseServiceRole: process.env.SUPABASE_SERVICE_ROLE_KEY ?? "",
+  sanityApiToken: process.env.SANITY_API_TOKEN ?? "",
+  /** Verified "from" address for outbound mail. */
+  resendFrom:
+    process.env.RESEND_FROM_EMAIL ?? "Anjan Prasad <onboarding@resend.dev>",
+  /** Where internal notifications (new bookings, contacts) are sent. */
+  notifyAdminEmail:
+    process.env.NOTIFY_ADMIN_EMAIL ?? "performance@noboruworld.com",
 } as const;
 
 /** Feature flags derived from configuration - drive graceful degradation. */
@@ -73,4 +80,5 @@ export const flags = {
   cashfree: Boolean(env.cashfree.appId),
   posthog: Boolean(env.posthog.key),
   forms: Boolean(env.forms.endpoint),
+  resend: Boolean(process.env.RESEND_API_KEY),
 } as const;

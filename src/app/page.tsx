@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getHomePage } from "@/lib/cms";
 import { Hero } from "@/components/home/Hero";
 import { CompaniesWorkedWith } from "@/components/home/CompaniesWorkedWith";
 import { TrustExperience } from "@/components/home/TrustExperience";
@@ -20,12 +21,14 @@ export const metadata: Metadata = {
  * Hero → Credibility (worked with / advised) → Trust & Experience → About →
  * Career Consultation → Featured Media → Testimonials → Knowledge Hub → CTA.
  */
-export default function Home() {
+export default async function Home() {
+  // CMS-driven where authored; falls back to built-in copy when absent.
+  const home = await getHomePage();
   return (
     <main>
-      <Hero />
+      <Hero content={home} />
       <CompaniesWorkedWith />
-      <TrustExperience />
+      <TrustExperience stats={home?.stats} />
       <AboutIntro />
       <ConsultationIntro />
       <FeaturedMediaSection />

@@ -5,6 +5,7 @@
  */
 import { submitForm, type FormType } from "@/lib/forms";
 import { getSupabaseClient } from "@/lib/supabase/client";
+import { notifyEmail } from "@/lib/emailClient";
 import { ok, fail, type ServiceResponse } from "../types";
 
 /** Persist a contact enquiry to Supabase; never throws. */
@@ -75,6 +76,13 @@ export async function submitContact(
   input: ContactInput
 ): Promise<ServiceResponse<{ received: true }>> {
   await saveContact(input);
+  void notifyEmail("contact", {
+    name: input.fullName,
+    email: input.email,
+    phone: input.phone,
+    company: input.companyName,
+    details: { Reason: input.reason, Message: input.message },
+  });
   const res = await submitForm({
     formType: REASON_TO_FORM_TYPE[input.reason] ?? "Contact",
     name: input.fullName,

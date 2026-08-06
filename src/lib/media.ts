@@ -34,6 +34,23 @@ export interface MediaFeature {
   youtubeId?: string;
 }
 
+/** Map Sanity featured-media docs onto the MediaFeature shape the UI uses. */
+export function featuredMediaFromCms(
+  rows: { title: string; outlet?: string; type?: string; url?: string; publishedAt?: string }[]
+): MediaFeature[] {
+  const types = MEDIA_TYPES as readonly string[];
+  return rows.map((m, i) => ({
+    id: `cms-${i}`,
+    type: (m.type && types.includes(m.type) ? m.type : "Video") as MediaType,
+    platform: m.outlet ?? "",
+    title: m.title,
+    description: "",
+    publishedAt: m.publishedAt,
+    url: m.url ?? "#",
+    youtubeId: extractYouTubeId(m.url ?? ""),
+  }));
+}
+
 /** Extract the video id from any YouTube URL (youtu.be or watch?v=). */
 export function extractYouTubeId(url: string): string {
   const short = url.match(/youtu\.be\/([\w-]{11})/);

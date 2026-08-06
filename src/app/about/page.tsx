@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Counter } from "@/components/ui/Counter";
 import { JOURNEY } from "@/lib/data";
+import { getAboutPage } from "@/lib/cms";
 import {
   Eyebrow,
   PageHero,
@@ -165,20 +166,35 @@ function ClosingStep() {
   );
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const about = await getAboutPage();
   return (
     <main>
       <PageHero
-        eyebrow="About"
+        eyebrow={about?.eyebrow || "About"}
         title={
-          <>
-            He builds businesses -{" "}
-            <span className="editorial-accent text-brand">
-              then teaches how it&apos;s done.
-            </span>
-          </>
+          about?.title ? (
+            <>
+              {about.title}{" "}
+              {about.titleAccent && (
+                <span className="editorial-accent text-brand">
+                  {about.titleAccent}
+                </span>
+              )}
+            </>
+          ) : (
+            <>
+              He builds businesses -{" "}
+              <span className="editorial-accent text-brand">
+                then teaches how it&apos;s done.
+              </span>
+            </>
+          )
         }
-        lead="Anjan Prasad is an entrepreneur, business strategist and growth advisor with 16+ years across startups, Fortune 500 companies and the classroom. This is the record of how an operator was formed."
+        lead={
+          about?.lead ||
+          "Anjan Prasad is an entrepreneur, business strategist and growth advisor with 16+ years across startups, Fortune 500 companies and the classroom. This is the record of how an operator was formed."
+        }
       />
 
       {/* The identity arc - six becomings on one line */}

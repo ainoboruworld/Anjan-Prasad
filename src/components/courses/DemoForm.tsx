@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { submitForm, paymentUrl } from "@/lib/forms";
 import { saveBooking } from "@/lib/bookings";
+import { notifyEmail } from "@/lib/emailClient";
 import { DEMO_SESSION } from "@/lib/data";
 import { Field, SubmitButton, inputCls } from "../ui/Form";
 
@@ -51,6 +52,13 @@ export function DemoForm() {
       email: v("email"),
       phone: v("phone"),
       data,
+    });
+    void notifyEmail("demo", {
+      name,
+      email: v("email"),
+      phone: v("phone"),
+      plan: "Demo Session",
+      details: data,
     });
     router.push(
       paymentUrl({ plan: "Demo Session", amount: DEMO_SESSION.fee, name })
