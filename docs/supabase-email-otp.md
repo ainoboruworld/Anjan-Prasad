@@ -13,9 +13,14 @@ a magic link is arriving, the template is still emitting a URL.
 
 ## Fix: make the template send a code
 
-Supabase Dashboard → **Authentication → Email Templates → "Magic Link"**.
-Replace the body so it uses **`{{ .Token }}`** (the 6-digit code) instead of
-`{{ .ConfirmationURL }}`. For example:
+Supabase Dashboard → **Authentication → Email Templates**. Two templates are
+used by this app, and **both** must render **`{{ .Token }}`** (the 6-digit code)
+instead of `{{ .ConfirmationURL }}`:
+
+- **"Magic Link"** — sent on **Log In** (existing user).
+- **"Confirm signup"** — sent on **Sign Up** (new user).
+
+Example body for each:
 
 ```html
 <h2>Your sign-in code</h2>

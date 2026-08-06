@@ -53,15 +53,19 @@ if (!ref) {
   process.exit(1);
 }
 
-const OTP_TEMPLATE = `<h2>Your sign-in code</h2>
-<p>Enter this 6-digit code to finish signing in:</p>
+const otpTemplate = (heading, action) => `<h2>${heading}</h2>
+<p>Enter this 6-digit code to ${action}:</p>
 <p style="font-size:28px;font-weight:700;letter-spacing:6px;margin:16px 0">{{ .Token }}</p>
 <p style="color:#5b6b7a;font-size:13px">This code expires in {{ .OTPExpiry }} minutes. If you didn't request it, you can ignore this email.</p>`;
 
 const body = {
-  // Make the "Magic Link" mail send the OTP code instead of a link.
+  // Log In (existing user) uses the "Magic Link" template…
   mailer_subjects_magic_link: "Your Anjan Prasad sign-in code",
-  mailer_templates_magic_link_content: OTP_TEMPLATE,
+  mailer_templates_magic_link_content: otpTemplate("Your sign-in code", "finish signing in"),
+  // …and Sign Up (new user) uses the "Confirm signup" template. Both must
+  // render {{ .Token }} so the whole flow is OTP, never a link.
+  mailer_subjects_confirmation: "Confirm your email — your code",
+  mailer_templates_confirmation_content: otpTemplate("Confirm your email", "create your account"),
   // OTP validity (seconds). 1 hour.
   mailer_otp_exp: 3600,
 };
