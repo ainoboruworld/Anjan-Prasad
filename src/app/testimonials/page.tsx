@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { TESTIMONIALS } from "@/lib/data";
+import { TESTIMONIALS, type Testimonial } from "@/lib/data";
+import { getTestimonials } from "@/lib/cms";
 import { CTAButton, Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
@@ -36,7 +37,20 @@ const GROUPS = [
   { kind: "Enterprise", title: "Enterprises that transformed" },
 ] as const;
 
-export default function TestimonialsPage() {
+export default async function TestimonialsPage() {
+  // Prefer Sanity-authored testimonials; fall back to the built-in set.
+  const cms = await getTestimonials();
+  const voicesAll: Testimonial[] =
+    cms && cms.length > 0
+      ? cms.map((t) => ({
+          quote: t.quote,
+          name: t.name,
+          title: t.title ?? "",
+          kind: (t.kind ?? "Founder") as Testimonial["kind"],
+          categories: (t.categories ?? []) as Testimonial["categories"],
+        }))
+      : TESTIMONIALS;
+
   return (
     <main>
       <PageHero
@@ -66,7 +80,7 @@ export default function TestimonialsPage() {
 
       {/* Voices, grouped */}
       {GROUPS.map((g, gi) => {
-        const voices = TESTIMONIALS.filter((t) => t.kind === g.kind);
+        const voices = voicesAll.filter((t) => t.kind === g.kind);
         if (voices.length === 0) return null;
         return (
           <section

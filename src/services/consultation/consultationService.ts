@@ -7,6 +7,7 @@
  */
 import { submitForm, type FormType } from "@/lib/forms";
 import { saveBooking } from "@/lib/bookings";
+import { notifyEmail } from "@/lib/emailClient";
 import { createPaymentOrder } from "../payments/paymentsService";
 import { ok, fail, type ServiceResponse } from "../types";
 
@@ -56,6 +57,15 @@ export async function createConsultationBooking(
     phone: input.customer.phone,
     company: input.customer.company,
     data: { service_type: "consultation", tier_id: input.tierId, ...input.data },
+  });
+  // Best-effort admin + customer email; never blocks checkout/verification.
+  void notifyEmail("consultation", {
+    name: input.customer.name,
+    email: input.customer.email,
+    phone: input.customer.phone,
+    company: input.customer.company,
+    plan: input.tierId,
+    details: input.data,
   });
 
   if (input.mode === "verification") {
