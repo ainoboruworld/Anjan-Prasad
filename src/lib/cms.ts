@@ -124,6 +124,31 @@ export interface CmsCaseStudy {
 
 /* ── Fetchers ─────────────────────────────────────────────────────────── */
 
+export interface CmsSeoSettings {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImageUrl?: string | null;
+}
+
+export async function getSeoSettings(): Promise<CmsSeoSettings | null> {
+  const row = await cmsFetch<{
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    ogRef?: string;
+  }>(
+    `*[_type == "seoSettings"][0]{title, description, keywords, "ogRef": ogImage.asset._ref}`
+  );
+  if (!row) return null;
+  return {
+    title: row.title,
+    description: row.description,
+    keywords: row.keywords,
+    ogImageUrl: imageUrl(row.ogRef),
+  };
+}
+
 export function getSiteSettings(): Promise<CmsSiteSettings | null> {
   return cmsFetch<CmsSiteSettings>(
     `*[_type == "siteSettings"][0]{siteName,tagline,contactEmail,contactPhone,officeLocation,copyright,socials[]{name,href}}`

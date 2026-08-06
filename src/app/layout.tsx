@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Manrope, Fraunces } from "next/font/google";
+import { getSeoSettings } from "@/lib/cms";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
@@ -28,7 +29,7 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL("https://ap.com"),
   title: {
     default:
@@ -79,6 +80,38 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
 };
+
+/**
+ * Merge Sanity global SEO defaults over the built-in metadata. Falls back to
+ * the base values when unauthored. The favicon and OG image stay file-based
+ * (src/app/icon.png, opengraph-image.png) unless the CMS supplies an OG image.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getSeoSettings();
+  if (!seo) return baseMetadata;
+
+  const title = seo.title;
+  const description = seo.description ?? baseMetadata.description ?? undefined;
+
+  return {
+    ...baseMetadata,
+    ...(title ? { title: { default: title, template: "%s - Anjan Prasad" } } : {}),
+    ...(seo.description ? { description } : {}),
+    ...(seo.keywords && seo.keywords.length ? { keywords: seo.keywords } : {}),
+    openGraph: {
+      ...baseMetadata.openGraph,
+      ...(title ? { title } : {}),
+      ...(seo.description ? { description } : {}),
+      ...(seo.ogImageUrl ? { images: [{ url: seo.ogImageUrl }] } : {}),
+    },
+    twitter: {
+      ...baseMetadata.twitter,
+      ...(title ? { title } : {}),
+      ...(seo.description ? { description } : {}),
+      ...(seo.ogImageUrl ? { images: [seo.ogImageUrl] } : {}),
+    },
+  };
+}
 
 /** Person + Organisation structured data for rich results. */
 const PERSON_JSONLD = {
