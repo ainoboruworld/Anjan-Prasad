@@ -161,7 +161,8 @@ export const homePage = defineType({
   type: "document",
   fields: [
     defineField({ name: "eyebrow", type: "string" }),
-    defineField({ name: "heroHeadline", type: "string" }),
+    defineField({ name: "heroHeadline", type: "string", description: "Main headline text." }),
+    defineField({ name: "heroHeadlineAccent", type: "string", description: "Trailing phrase shown in the accent colour." }),
     defineField({ name: "heroSubhead", type: "text", rows: 3 }),
     defineField({ name: "heroImage", type: "image", options: { hotspot: true } }),
     defineField({ name: "primaryCta", type: "ctaButton" }),

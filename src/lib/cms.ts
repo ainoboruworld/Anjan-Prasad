@@ -71,6 +71,38 @@ export interface CmsFaq {
   page?: string;
 }
 
+export interface CmsCta {
+  label: string;
+  href: string;
+}
+
+export interface CmsStat {
+  value: string;
+  label: string;
+}
+
+export interface CmsHomePage {
+  eyebrow?: string;
+  heroHeadline?: string;
+  heroHeadlineAccent?: string;
+  heroSubhead?: string;
+  trustIndicators?: string[];
+  primaryCta?: CmsCta;
+  secondaryCta?: CmsCta;
+  stats?: CmsStat[];
+}
+
+export interface CmsCaseStudy {
+  title: string;
+  client?: string;
+  sector?: string;
+  summary?: string;
+  problem?: string;
+  approach?: string;
+  result?: string;
+  metrics?: CmsStat[];
+}
+
 /* ── Fetchers ─────────────────────────────────────────────────────────── */
 
 export function getSiteSettings(): Promise<CmsSiteSettings | null> {
@@ -93,4 +125,21 @@ export function getFaqs(page?: string): Promise<CmsFaq[] | null> {
     ? `*[_type == "faq" && page == "${page}"]`
     : `*[_type == "faq"]`;
   return cmsFetch<CmsFaq[]>(`${filter} | order(order asc){question,answer,page}`);
+}
+
+export function getHomePage(): Promise<CmsHomePage | null> {
+  return cmsFetch<CmsHomePage>(
+    `*[_type == "homePage"][0]{
+      eyebrow, heroHeadline, heroHeadlineAccent, heroSubhead, trustIndicators,
+      primaryCta{label,href}, secondaryCta{label,href}, stats[]{value,label}
+    }`
+  );
+}
+
+export function getCaseStudies(): Promise<CmsCaseStudy[] | null> {
+  return cmsFetch<CmsCaseStudy[]>(
+    `*[_type == "caseStudy"] | order(order asc){
+      title, client, sector, summary, problem, approach, result, metrics[]{value,label}
+    }`
+  );
 }

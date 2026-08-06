@@ -12,6 +12,7 @@ import {
 import { CTAButton, GhostButton } from "../ui/Primitives";
 import { PortraitFrame } from "../brand/PortraitFrame";
 import { easeSmooth, slideInLeft, staggerContainer } from "../motion";
+import type { CmsHomePage } from "@/lib/cms";
 
 /**
  * Homepage hero - the executive opening statement. Editorial headline and a
@@ -20,7 +21,26 @@ import { easeSmooth, slideInLeft, staggerContainer } from "../motion";
  * mouse-lit gradient and scroll parallax keep it closer to Stripe/Linear
  * than a coaching site.
  */
-export function Hero() {
+export function Hero({ content }: { content?: CmsHomePage | null }) {
+  // CMS content overrides the built-in copy; defaults preserve the exact design.
+  const eyebrow = content?.eyebrow ?? "India's Business Growth Ecosystem";
+  const subhead =
+    content?.heroSubhead ??
+    "Strategic business advisory, executive consulting, leadership development, and scalable growth systems - helping founders and business owners build resilient, profitable businesses that create lasting impact.";
+  const indicators = content?.trustIndicators ?? [
+    "16+ years experience",
+    "4 ventures built",
+    "100+ brands advised",
+  ];
+  const primaryCta = content?.primaryCta ?? {
+    label: "Book ₹99 Demo Session",
+    href: "/business-advisory#book-demo",
+  };
+  const secondaryCta = content?.secondaryCta ?? {
+    label: "Explore Business Advisory",
+    href: "/business-advisory",
+  };
+
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -66,37 +86,46 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-foreground-muted"
           >
             <span className="h-1.5 w-1.5 rotate-45 bg-brand" />
-            India&apos;s Business Growth Ecosystem
+            {eyebrow}
           </motion.span>
 
           <motion.h1
             variants={slideInLeft}
             className="mt-7 font-display text-[length:var(--text-hero)] font-semibold leading-[1.02] tracking-[-0.035em] text-foreground"
           >
-            Build a Business
-            <br />
-            That <span className="editorial-accent text-brand">Outlasts You.</span>
+            {content?.heroHeadline ? (
+              <>
+                {content.heroHeadline}{" "}
+                {content.heroHeadlineAccent && (
+                  <span className="editorial-accent text-brand">
+                    {content.heroHeadlineAccent}
+                  </span>
+                )}
+              </>
+            ) : (
+              <>
+                Build a Business
+                <br />
+                That{" "}
+                <span className="editorial-accent text-brand">Outlasts You.</span>
+              </>
+            )}
           </motion.h1>
 
           <motion.p
             variants={slideInLeft}
             className="mt-7 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted"
           >
-            Strategic business advisory, executive consulting, leadership
-            development, and scalable growth systems - helping founders and
-            business owners build resilient, profitable businesses that create
-            lasting impact.
+            {subhead}
           </motion.p>
 
           <motion.div
             variants={slideInLeft}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <CTAButton href="/business-advisory#book-demo">
-              Book ₹99 Demo Session
-            </CTAButton>
-            <GhostButton href="/business-advisory">
-              Explore Business Advisory
+            <CTAButton href={primaryCta.href}>{primaryCta.label}</CTAButton>
+            <GhostButton href={secondaryCta.href}>
+              {secondaryCta.label}
             </GhostButton>
           </motion.div>
 
@@ -105,11 +134,7 @@ export function Hero() {
             aria-label="Trust indicators"
             className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-foreground-muted"
           >
-            {[
-              "16+ years experience",
-              "4 ventures built",
-              "100+ brands advised",
-            ].map((t) => (
+            {indicators.map((t) => (
               <li key={t} className="flex items-center gap-2">
                 <span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-brand" />
                 {t}

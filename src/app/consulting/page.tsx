@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { testimonialsFor } from "@/lib/data";
+import { getFaqs } from "@/lib/cms";
 import { ADVISORY_LOGOS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -236,7 +237,12 @@ const FAQS = [
   },
 ];
 
-export default function ConsultationPage() {
+export default async function ConsultationPage() {
+  const cmsFaqs = await getFaqs("Consultation");
+  const faqs =
+    cmsFaqs && cmsFaqs.length > 0
+      ? cmsFaqs.map((f) => ({ q: f.question, a: f.answer }))
+      : FAQS;
   return (
     <main>
       <HeroSection
@@ -377,7 +383,7 @@ export default function ConsultationPage() {
             <span className="editorial-accent text-brand">answered.</span>
           </>
         }
-        items={FAQS}
+        items={faqs}
       />
 
       <PrivacySection />
