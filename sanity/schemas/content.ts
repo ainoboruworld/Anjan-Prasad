@@ -180,6 +180,7 @@ export const aboutPage = defineType({
   fields: [
     defineField({ name: "eyebrow", type: "string" }),
     defineField({ name: "title", type: "string" }),
+    defineField({ name: "titleAccent", type: "string", description: "Trailing phrase in the accent colour." }),
     defineField({ name: "lead", type: "text", rows: 3 }),
     defineField({ name: "story", type: "array", of: [{ type: "text" }] }),
     defineField({ name: "arc", type: "array", of: [{ type: "string" }] }),

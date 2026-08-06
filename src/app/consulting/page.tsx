@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
 import { testimonialsFor } from "@/lib/data";
-import { getFaqs } from "@/lib/cms";
+import { getFaqs, getServicePage } from "@/lib/cms";
 import { ADVISORY_LOGOS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -238,6 +238,7 @@ const FAQS = [
 ];
 
 export default async function ConsultationPage() {
+  const svc = await getServicePage("consulting");
   const cmsFaqs = await getFaqs("Consultation");
   const faqs =
     cmsFaqs && cmsFaqs.length > 0
@@ -246,10 +247,13 @@ export default async function ConsultationPage() {
   return (
     <main>
       <HeroSection
-        eyebrow="Consultation"
-        headline="Clarity Today."
-        accent="Better Decisions Tomorrow."
-        lead="A private, one-to-one session with Anjan Prasad on the single decision that matters most - for students, working professionals, and BPL candidates. You bring the question; you leave with a plan."
+        eyebrow={svc?.eyebrow || "Consultation"}
+        headline={svc?.heroHeadline || "Clarity Today."}
+        accent={svc?.heroHeadlineAccent || "Better Decisions Tomorrow."}
+        lead={
+          svc?.heroSubhead ||
+          "A private, one-to-one session with Anjan Prasad on the single decision that matters most - for students, working professionals, and BPL candidates. You bring the question; you leave with a plan."
+        }
         ctas={[
           { label: "See pricing", href: "#pricing" },
           { label: "How it works", href: "#how", variant: "ghost" },

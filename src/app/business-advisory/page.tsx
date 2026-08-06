@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { CASE_STUDIES, testimonialsFor } from "@/lib/data";
-import { getFaqs, getCaseStudies } from "@/lib/cms";
+import { getFaqs, getCaseStudies, getServicePage } from "@/lib/cms";
 import { ENTERPRISE_BRANDS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -209,6 +209,7 @@ export default async function BusinessAdvisoryPage() {
 
   // CMS case studies where authored; otherwise the built-in set. Only the
   // fields the card renders are normalised, so both sources are compatible.
+  const svc = await getServicePage("business-advisory");
   const cmsCase = await getCaseStudies();
   const caseStudies =
     cmsCase && cmsCase.length > 0
@@ -234,10 +235,13 @@ export default async function BusinessAdvisoryPage() {
   return (
     <main>
       <HeroSection
-        eyebrow="Business Advisory"
-        headline="Build a Business That"
-        accent="Outlasts You."
-        lead="Transformation delivered inside your business by an operator - not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        eyebrow={svc?.eyebrow || "Business Advisory"}
+        headline={svc?.heroHeadline || "Build a Business That"}
+        accent={svc?.heroHeadlineAccent || "Outlasts You."}
+        lead={
+          svc?.heroSubhead ||
+          "Transformation delivered inside your business by an operator - not a slide deck. Start with a ₹99 demo, join the growth cohort, or engage monthly advisory. One playbook, three ways in."
+        }
         ctas={[
           { label: "See the programs", href: "#pricing" },
           { label: "Start an enquiry", href: "#book", variant: "ghost" },

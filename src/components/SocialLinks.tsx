@@ -3,11 +3,23 @@ import { SOCIALS } from "@/lib/data";
 
 const ICONS = new Map(SOCIAL_ICON_PATHS.map((i) => [i.name, i]));
 
-/** Official social profiles - used in the footer and on Contact. */
-export function SocialLinks({ className = "" }: { className?: string }) {
+/**
+ * Official social profiles - used in the footer and on Contact. Icons come
+ * from the built-in set; `overrides` (from Sanity site settings) can update the
+ * hrefs by name without touching the icon mapping.
+ */
+export function SocialLinks({
+  className = "",
+  overrides,
+}: {
+  className?: string;
+  overrides?: { name: string; href: string }[];
+}) {
+  const hrefFor = new Map((overrides ?? []).map((o) => [o.name, o.href]));
   return (
     <ul className={`flex items-center gap-3 ${className}`}>
-      {SOCIALS.map((s) => {
+      {SOCIALS.map((base) => {
+        const s = { ...base, href: hrefFor.get(base.name) || base.href };
         const icon = ICONS.get(s.name);
         if (!icon) return null;
         const pending = s.href === "#";

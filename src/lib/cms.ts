@@ -92,6 +92,25 @@ export interface CmsHomePage {
   stats?: CmsStat[];
 }
 
+export interface CmsAboutPage {
+  eyebrow?: string;
+  title?: string;
+  titleAccent?: string;
+  lead?: string;
+  story?: string[];
+  arc?: string[];
+  expertise?: string[];
+  stats?: CmsStat[];
+}
+
+export interface CmsServicePage {
+  eyebrow?: string;
+  heroHeadline?: string;
+  heroHeadlineAccent?: string;
+  heroSubhead?: string;
+  stats?: CmsStat[];
+}
+
 export interface CmsCaseStudy {
   title: string;
   client?: string;
@@ -132,6 +151,23 @@ export function getHomePage(): Promise<CmsHomePage | null> {
     `*[_type == "homePage"][0]{
       eyebrow, heroHeadline, heroHeadlineAccent, heroSubhead, trustIndicators,
       primaryCta{label,href}, secondaryCta{label,href}, stats[]{value,label}
+    }`
+  );
+}
+
+export function getAboutPage(): Promise<CmsAboutPage | null> {
+  return cmsFetch<CmsAboutPage>(
+    `*[_type == "aboutPage"][0]{
+      eyebrow, title, titleAccent, lead, story, arc, expertise, stats[]{value,label}
+    }`
+  );
+}
+
+/** A service page (Business Advisory / Demo / Monthly Advisory / Consultation) by slug. */
+export function getServicePage(slug: string): Promise<CmsServicePage | null> {
+  return cmsFetch<CmsServicePage>(
+    `*[_type == "servicePage" && slug.current == "${slug}"][0]{
+      eyebrow, heroHeadline, heroHeadlineAccent, heroSubhead, stats[]{value,label}
     }`
   );
 }

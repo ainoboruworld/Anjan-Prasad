@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { CONTACT_EMAIL, CONTACT_PHONE, OFFICE_LOCATION } from "@/lib/data";
+import { getSiteSettings } from "@/lib/cms";
 import { Wordmark } from "./brand/ApMark";
 import { Newsletter } from "./Newsletter";
 import { SocialLinks } from "./SocialLinks";
@@ -33,7 +34,16 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   },
 ];
 
-export function Footer() {
+export async function Footer() {
+  const settings = await getSiteSettings();
+  const contactEmail = settings?.contactEmail || CONTACT_EMAIL;
+  const contactPhone = settings?.contactPhone ?? CONTACT_PHONE;
+  const officeLocation = settings?.officeLocation ?? OFFICE_LOCATION;
+  const copyright =
+    settings?.copyright ||
+    `© ${new Date().getFullYear()} Anjan Prasad. All rights reserved.`;
+  const socialOverrides = settings?.socials;
+
   return (
     <footer className="relative overflow-hidden border-t border-border bg-background-sunken">
       {/* Subtle brand glow - a whisper of sky at the top edge. */}
@@ -74,7 +84,7 @@ export function Footer() {
           <p className="mt-6 text-xs uppercase tracking-[0.22em] text-foreground-muted">
             0 → 1 → Scale
           </p>
-          <SocialLinks className="mt-6" />
+          <SocialLinks className="mt-6" overrides={socialOverrides} />
         </div>
 
         {COLUMNS.map((col) => (
@@ -105,28 +115,28 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm">
             <li>
               <a
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={`mailto:${contactEmail}`}
                 className="flex items-start gap-2 text-foreground transition-colors hover:text-brand"
               >
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-foreground-muted" strokeWidth={1.75} />
-                <span className="break-all">{CONTACT_EMAIL}</span>
+                <span className="break-all">{contactEmail}</span>
               </a>
             </li>
-            {CONTACT_PHONE && (
+            {contactPhone && (
               <li>
                 <a
-                  href={`tel:${CONTACT_PHONE}`}
+                  href={`tel:${contactPhone}`}
                   className="flex items-start gap-2 text-foreground transition-colors hover:text-brand"
                 >
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-foreground-muted" strokeWidth={1.75} />
-                  {CONTACT_PHONE}
+                  {contactPhone}
                 </a>
               </li>
             )}
-            {OFFICE_LOCATION && (
+            {officeLocation && (
               <li className="flex items-start gap-2 text-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-foreground-muted" strokeWidth={1.75} />
-                {OFFICE_LOCATION}
+                {officeLocation}
               </li>
             )}
             <li>
@@ -143,7 +153,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-foreground-muted sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Anjan Prasad. All rights reserved.</p>
+          <p>{copyright}</p>
           <div className="flex items-center gap-5">
             <Link href="/privacy" className="transition-colors hover:text-foreground">
               Privacy Policy
