@@ -11,10 +11,29 @@
  * hardcode a credential; always read it here.
  */
 
+/**
+ * Normalise the Supabase base URL to the bare project origin.
+ *
+ * The Supabase SDK expects the PROJECT URL (e.g. https://xxxx.supabase.co)
+ * and appends its own service paths (`/auth/v1/...`, `/rest/v1/...`). If the
+ * env value accidentally carries a service suffix or trailing slash — a very
+ * common paste of the "Project URL" shown next to the REST snippet — the SDK
+ * would build a broken path like `/rest/v1/auth/v1/otp` (404). Stripping any
+ * trailing slash and `/(rest|auth|storage|realtime)/v1` segment here means the
+ * client, the server client, and every REST call always start from the origin.
+ */
+function normalizeSupabaseUrl(raw: string): string {
+  return raw
+    .trim()
+    .replace(/\/+$/, "")
+    .replace(/\/(rest|auth|storage|realtime)\/v1$/i, "")
+    .replace(/\/+$/, "");
+}
+
 /* Public (browser-safe) configuration. */
 export const env = {
   supabase: {
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL ?? "",
+    url: normalizeSupabaseUrl(process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""),
     anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "",
   },
   sanity: {
