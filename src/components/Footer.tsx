@@ -11,7 +11,6 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Business Advisory", href: "/business-advisory" },
       { label: "Consultation", href: "/consulting" },
-      { label: "Courses", href: "/courses" },
       { label: "About", href: "/about" },
     ],
   },
@@ -37,10 +36,10 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-border bg-background-sunken">
-      {/* Subtle brand glow — a whisper of sky at the top edge. */}
+      {/* Subtle brand glow - a whisper of sky at the top edge. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(60%_100%_at_50%_0%,color-mix(in_srgb,var(--brand-sky)_9%,transparent),transparent_70%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(60%_100%_at_50%_0%,rgba(79,169,255,0.09),rgba(79,169,255,0)_70%)]"
       />
       {/* Newsletter band */}
       <div id="newsletter" className="relative mx-auto max-w-7xl scroll-mt-28 px-6 py-12">
@@ -52,7 +51,7 @@ export function Footer() {
             </h2>
             <p className="mt-3 max-w-md text-[15px] leading-relaxed text-foreground-muted">
               Playbooks, margins, and field notes on building profitable
-              businesses in India — no motivation, only method.
+              businesses in India - no motivation, only method.
             </p>
           </div>
           <Newsletter />
@@ -68,7 +67,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <Wordmark />
           <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-foreground-muted">
-            Entrepreneur, business strategist and growth advisor — helping
+            Entrepreneur, business strategist and growth advisor - helping
             founders and professionals build businesses that are profitable,
             scalable and built to last.
           </p>
@@ -98,7 +97,7 @@ export function Footer() {
           </nav>
         ))}
 
-        {/* Contact — lives here, not in the navigation */}
+        {/* Contact - lives here, not in the navigation */}
         <div>
           <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
             Contact
@@ -144,7 +143,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-foreground-muted sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} Anjan Prasad · AP.com. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Anjan Prasad. All rights reserved.</p>
           <div className="flex items-center gap-5">
             <Link href="/privacy" className="transition-colors hover:text-foreground">
               Privacy Policy

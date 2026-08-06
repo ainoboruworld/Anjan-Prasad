@@ -3,7 +3,7 @@ import { SectionHeading } from "../ui/Primitives";
 import { RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
- * Testimonials — four premium, compact cards. Clean 2×2 / 4-up grid built
+ * Testimonials - four premium, compact cards. Clean 2×2 / 4-up grid built
  * from the shared testimonial content layer.
  */
 export function HomeTestimonials() {

@@ -30,7 +30,7 @@ export function Reveal({
   );
 }
 
-/** Staggered group — children should use `RevealItem`. */
+/** Staggered group - children should use `RevealItem`. */
 export function RevealGroup({
   children,
   className = "",

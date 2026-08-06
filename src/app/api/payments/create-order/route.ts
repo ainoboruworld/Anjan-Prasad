@@ -5,7 +5,7 @@ import { flags, serverEnv } from "@/lib/env";
 /**
  * Create a Cashfree order.
  *
- * SECURITY: the amount is re-derived from `pricingConfig` on the server — the
+ * SECURITY: the amount is re-derived from `pricingConfig` on the server - the
  * client's price is never trusted. Free tiers (e.g. BPL) short-circuit with no
  * payment. When Cashfree credentials are present, this is where the Cashfree
  * "create order" call goes (using serverEnv.cashfreeSecret) and where the

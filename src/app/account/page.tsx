@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "My Profile",
-  description: "Manage your AP.com profile.",
+  description: "Manage your Anjan Prasad profile.",
   robots: { index: false },
 };
 

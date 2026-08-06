@@ -16,37 +16,37 @@ function ChapterFigure({ index }: { index: number }) {
   } as const;
 
   const figures = [
-    // 01 — foundation grid
+    // 01 - foundation grid
     <g key="0">
       <motion.path d="M20 100 H140" stroke="var(--foreground-muted)" {...drawn} />
       <motion.path d="M30 100 V70 H70 V100 M90 100 V55 H130 V100" stroke="var(--foreground-muted)" {...drawn} />
       <motion.circle cx="80" cy="30" r="3" fill="var(--brand-gold)" stroke="none" initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.1 }} />
     </g>,
-    // 02 — ascending line
+    // 02 - ascending line
     <g key="1">
       <motion.path d="M20 100 L60 70 L95 82 L140 30" stroke="var(--foreground-muted)" {...drawn} />
       <motion.circle cx="140" cy="30" r="3" fill="var(--brand-gold)" stroke="none" initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.1 }} />
     </g>,
-    // 03 — three seeds
+    // 03 - three seeds
     <g key="2">
       <motion.circle cx="40" cy="65" r="16" stroke="var(--foreground-muted)" fill="none" {...drawn} />
       <motion.circle cx="80" cy="65" r="16" stroke="var(--foreground-muted)" fill="none" {...drawn} />
       <motion.circle cx="120" cy="65" r="16" stroke="var(--foreground-muted)" fill="none" {...drawn} />
       <motion.path d="M40 100 V81 M80 100 V81 M120 100 V81" stroke="var(--brand-gold)" {...drawn} />
     </g>,
-    // 04 — compounding curve
+    // 04 - compounding curve
     <g key="3">
       <motion.path d="M20 100 C60 100 90 90 105 60 C115 40 120 30 140 22" stroke="var(--foreground-muted)" {...drawn} />
       <motion.path d="M20 100 H140" stroke="var(--blueprint)" {...drawn} />
       <motion.circle cx="140" cy="22" r="3" fill="var(--brand-gold)" stroke="none" initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 1.1 }} />
     </g>,
-    // 05 — rebuilt structure
+    // 05 - rebuilt structure
     <g key="4">
       <motion.rect x="35" y="45" width="90" height="55" rx="4" stroke="var(--foreground-muted)" fill="none" {...drawn} />
       <motion.path d="M35 65 H125 M65 45 V100 M95 45 V100" stroke="var(--blueprint)" {...drawn} />
       <motion.path d="M50 55 L110 55" stroke="var(--brand-gold)" {...drawn} />
     </g>,
-    // 06 — radiating mentorship
+    // 06 - radiating mentorship
     <g key="5">
       <motion.circle cx="80" cy="65" r="10" stroke="var(--brand-gold)" fill="none" {...drawn} />
       <motion.path d="M80 55 V25 M90 70 L125 88 M70 70 L35 88 M88 57 L115 35 M72 57 L45 35" stroke="var(--foreground-muted)" {...drawn} />
@@ -136,7 +136,7 @@ export function Chapters() {
 
   return (
     <div ref={ref} className="relative mx-auto max-w-7xl px-6" data-cursor="text">
-      {/* The spine — draws itself as the story is read */}
+      {/* The spine - draws itself as the story is read */}
       <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px lg:block">
         <div className="h-full w-full bg-hairline" />
         <motion.div

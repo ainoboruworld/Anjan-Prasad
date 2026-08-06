@@ -7,7 +7,7 @@ import type {
 import type { UseFormRegisterReturn } from "react-hook-form";
 
 /**
- * Reusable, RHF-aware form fields. Presentational only — they take a
+ * Reusable, RHF-aware form fields. Presentational only - they take a
  * `registration` from `register(name)` and an optional `error` string. No
  * validation or business logic lives here (that's Zod + the services).
  */

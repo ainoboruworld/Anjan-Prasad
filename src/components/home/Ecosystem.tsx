@@ -7,7 +7,7 @@ const PILLARS = [
   {
     index: "I",
     title: "Learn",
-    copy: "The Demo Session and the flagship Live Course — implementation-first business education.",
+    copy: "The Demo Session and the flagship Live Course - implementation-first business education.",
     href: "/courses",
     label: "Courses",
   },
@@ -21,7 +21,7 @@ const PILLARS = [
   {
     index: "III",
     title: "Prove",
-    copy: "Transformation stories told end to end — challenge, execution, and the numbers after.",
+    copy: "Transformation stories told end to end - challenge, execution, and the numbers after.",
     href: "/case-studies",
     label: "Case Studies",
   },
@@ -35,8 +35,8 @@ const PILLARS = [
 ];
 
 /**
- * What AP.com is: four connected practices drawn as one architectural
- * elevation — a stepped structure rather than a card grid.
+ * What Anjan Prasad is: four connected practices drawn as one architectural
+ * elevation - a stepped structure rather than a card grid.
  */
 export function Ecosystem() {
   return (
@@ -51,7 +51,7 @@ export function Ecosystem() {
             </span>
           </h2>
           <p className="mt-5 text-[length:var(--text-body)] leading-relaxed text-foreground-muted">
-            Education, advisory, and community — one system, so the next step
+            Education, advisory, and community - one system, so the next step
             always exists.
           </p>
         </Reveal>

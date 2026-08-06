@@ -1,7 +1,7 @@
 import type { SVGProps } from "react";
 
 /**
- * Official "Anjan Prasad" wordmark — the brand logo used across the site.
+ * Official "Anjan Prasad" wordmark - the brand logo used across the site.
  * "Anjan" sits in Midnight Blue (white on dark surfaces), "Prasad" in the
  * Sky Blue accent, stacked and tightly leaded, matching the master logo.
  */
@@ -26,7 +26,7 @@ export function Wordmark({
   );
 }
 
-/** Square "AP" monogram — used in the preloader and favicons. */
+/** Square "AP" monogram - used in the preloader and favicons. */
 export function ApMark(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 100 100" role="img" aria-label="AP monogram" {...props}>

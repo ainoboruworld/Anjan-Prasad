@@ -1,5 +1,5 @@
 /**
- * Auth service — the frontend's auth API surface.
+ * Auth service - the frontend's auth API surface.
  *
  * Wraps the Supabase auth implementation so components and hooks import from
  * one stable place. When backend auth changes, only this module + the

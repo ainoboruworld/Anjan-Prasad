@@ -104,7 +104,7 @@ export function Header() {
           }`}
         >
           <motion.div variants={fadeDown} transition={{ ease: easeSmooth }}>
-            <Link href="/" aria-label="Anjan Prasad — home">
+            <Link href="/" aria-label="Anjan Prasad - home">
               <Wordmark />
             </Link>
           </motion.div>

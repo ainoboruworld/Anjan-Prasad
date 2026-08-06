@@ -11,7 +11,7 @@ export interface WWHColumn {
 }
 
 /**
- * Who • What • How — a three-column framing block. Same layout on both
+ * Who • What • How - a three-column framing block. Same layout on both
  * pages; content differs. Reads as an editorial triptych, not a feature list.
  */
 export function WhoWhatHow({

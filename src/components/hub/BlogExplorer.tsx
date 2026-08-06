@@ -11,7 +11,7 @@ const PAGE_SIZE = 6;
 const FILTERS = ["All", ...BLOG_CATEGORIES] as const;
 
 /**
- * Blogs explorer — client-side search, category filter tabs, and Load More
+ * Blogs explorer - client-side search, category filter tabs, and Load More
  * paging over the posts passed in from the server. Filtering animates
  * smoothly; nothing navigates away.
  */

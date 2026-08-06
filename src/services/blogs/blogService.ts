@@ -1,5 +1,5 @@
 /**
- * Blog service — reads blog content (Sanity when configured, seed otherwise).
+ * Blog service - reads blog content (Sanity when configured, seed otherwise).
  * The frontend consumes this; it never talks to Sanity directly.
  */
 import {

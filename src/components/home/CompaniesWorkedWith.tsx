@@ -10,7 +10,7 @@ import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * The brand showcase — an editorial proof band, not a grid of logo cards.
+ * The brand showcase - an editorial proof band, not a grid of logo cards.
  * Three kinds of credibility (built, advised, worked with) read as distinct
  * categories separated by elegant dividers, with the logos embedded directly
  * into the layout and lit rather than boxed.
@@ -46,13 +46,16 @@ export function CompaniesWorkedWith() {
       aria-label="Brands built, advised, and worked with"
       className="relative overflow-hidden border-y border-border bg-background-sunken py-20 sm:py-24 lg:py-28"
     >
-      {/* Premium top lighting — a soft brand glow, not a container. */}
+      {/* Premium top lighting - a soft brand glow, not a container. Uses an
+          explicit rgba (not color-mix, which older Samsung Internet / Chromium
+          < 111 drop) so the glow renders identically across browsers. The
+          colour is --brand-sky (#4fa9ff) at 12%. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-72"
         style={{
           background:
-            "radial-gradient(60% 100% at 50% 0%, color-mix(in srgb, var(--brand-sky) 12%, transparent), transparent 70%)",
+            "radial-gradient(60% 100% at 50% 0%, rgba(79, 169, 255, 0.12), rgba(79, 169, 255, 0) 70%)",
         }}
       />
 
@@ -79,7 +82,7 @@ export function CompaniesWorkedWith() {
                 <p className="text-xs font-medium uppercase tracking-[0.22em] text-foreground-muted">
                   {cat.label}
                 </p>
-                <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-foreground-muted/80">
+                <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-foreground-muted">
                   {cat.note}
                 </p>
               </Reveal>

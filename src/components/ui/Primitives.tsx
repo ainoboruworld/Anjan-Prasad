@@ -60,7 +60,7 @@ type CTAProps = {
   className?: string;
 };
 
-/** Primary gold call-to-action — magnetic on fine pointers. */
+/** Primary gold call-to-action - magnetic on fine pointers. */
 export function CTAButton({ href, children, external, className = "" }: CTAProps) {
   const cls = `group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-[15px] font-semibold text-brand-ink shadow-[0_10px_30px_-10px_rgba(79,169,255,0.55)] transition-all duration-300 hover:bg-brand-hover hover:shadow-[0_16px_40px_-12px_rgba(79,169,255,0.65)] ${className}`;
   const inner = (

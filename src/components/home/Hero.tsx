@@ -14,7 +14,7 @@ import { PortraitFrame } from "../brand/PortraitFrame";
 import { easeSmooth, slideInLeft, staggerContainer } from "../motion";
 
 /**
- * Homepage hero — the executive opening statement. Editorial headline and a
+ * Homepage hero - the executive opening statement. Editorial headline and a
  * premium professional portrait of Anjan Prasad on the right (image
  * placeholder for now; swaps to a photo with no layout change). Subtle
  * mouse-lit gradient and scroll parallax keep it closer to Stripe/Linear
@@ -83,7 +83,7 @@ export function Hero() {
             className="mt-7 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted"
           >
             Strategic business advisory, executive consulting, leadership
-            development, and scalable growth systems — helping founders and
+            development, and scalable growth systems - helping founders and
             business owners build resilient, profitable businesses that create
             lasting impact.
           </motion.p>
@@ -130,7 +130,7 @@ export function Hero() {
           <div className="transition-transform duration-500 hover:scale-[1.015]">
             <PortraitFrame aspect="4/5" />
           </div>
-          {/* Floating credential chip — glass */}
+          {/* Floating credential chip - glass */}
           <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-glass px-5 py-3.5 shadow-[var(--shadow-soft)] backdrop-blur-xl sm:block">
             <p className="font-display text-sm font-semibold text-foreground">
               Founder &amp; CEO, Noboru World

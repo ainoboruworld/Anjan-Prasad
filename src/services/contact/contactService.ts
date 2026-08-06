@@ -1,5 +1,5 @@
 /**
- * Contact service — submits a contact enquiry and routes it to the right
+ * Contact service - submits a contact enquiry and routes it to the right
  * CRM/spreadsheet bucket. The reason→destination logic lives here, not in the
  * form component.
  */

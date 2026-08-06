@@ -9,7 +9,7 @@ export interface TimelineStep {
 }
 
 /**
- * Timeline — an ordered process rail with a connecting spine. Used for both
+ * Timeline - an ordered process rail with a connecting spine. Used for both
  * the consultation journey and the advisory transformation framework.
  */
 export function Timeline({

@@ -4,7 +4,7 @@ import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * Logo wall — the "companies worked with" proof band. Renders the official
+ * Logo wall - the "companies worked with" proof band. Renders the official
  * brand artwork on uniform white chips (the same tile used on the home wall),
  * so sizing, spacing, and alignment stay identical everywhere and the strip
  * reads clean and premium in both Light and Dark modes.

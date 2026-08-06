@@ -11,7 +11,7 @@ export const staggerContainer: Variants = {
   },
 };
 
-/** Rise + fade — the workhorse reveal. */
+/** Rise + fade - the workhorse reveal. */
 export const riseIn: Variants = {
   hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
   visible: {

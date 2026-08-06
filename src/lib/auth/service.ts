@@ -1,5 +1,5 @@
 /**
- * Auth service — the only module that talks to Supabase Auth and the
+ * Auth service - the only module that talks to Supabase Auth and the
  * `profiles` table. UI and context call these functions; they never touch
  * the Supabase client directly. Every function returns a typed result so
  * callers can render loading/error/success states uniformly.

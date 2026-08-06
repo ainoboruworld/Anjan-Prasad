@@ -10,7 +10,7 @@ import { TextLink } from "../ui/Primitives";
 type FilterKey = keyof typeof CASE_FILTERS;
 
 /**
- * Case studies as filterable transformation stories — each one told as an
+ * Case studies as filterable transformation stories - each one told as an
  * editorial dossier (challenge → strategy → execution → results → lesson),
  * not a testimonial card.
  */
@@ -168,7 +168,7 @@ export function CaseStories() {
 
         {list.length === 0 && (
           <p className="py-10 text-sm text-foreground-muted">
-            No transformations match that combination yet —{" "}
+            No transformations match that combination yet -{" "}
             <Link href="/contact" className="font-medium text-foreground underline decoration-brand underline-offset-4">
               yours could be the first
             </Link>

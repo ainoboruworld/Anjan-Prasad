@@ -135,6 +135,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Guard against any stray wide element causing horizontal scroll on mobile,
+     while leaving vertical scroll and position: sticky untouched. */
+  overflow-x: hidden;
 }
 
 body {
@@ -209,7 +212,7 @@ body {
   outline: none;
   border-color: var(--brand-gold);
   box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--brand-sky) 22%, transparent);
+    rgba(79, 169, 255, 0.22);
 }
 
 /* Grayscale-by-default brand logos that regain presence on hover. */
@@ -243,14 +246,14 @@ body {
 .hero-bg {
   background-image: radial-gradient(
     130% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-sky) 6%, transparent),
+    rgba(79, 169, 255, 0.06),
     transparent 58%
   );
 }
 .dark .hero-bg {
   background-image: radial-gradient(
       78% 60% at 50% -5%,
-      color-mix(in srgb, var(--brand-sky) 9%, transparent),
+      rgba(79, 169, 255, 0.09),
       transparent 60%
     ),
     radial-gradient(
@@ -269,14 +272,14 @@ body {
 .bg-grid {
   background-image: radial-gradient(
     130% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-sky) 5%, transparent),
+    rgba(79, 169, 255, 0.05),
     transparent 60%
   );
 }
 .dark .bg-grid {
   background-image: radial-gradient(
     120% 90% at 50% -10%,
-    color-mix(in srgb, var(--brand-sky) 8%, transparent),
+    rgba(79, 169, 255, 0.08),
     transparent 58%
   );
 }
@@ -285,7 +288,7 @@ body {
 .bg-blueprint {
   background-image: radial-gradient(
       90% 120% at 100% 0%,
-      color-mix(in srgb, var(--brand-sky) 6%, transparent),
+      rgba(79, 169, 255, 0.06),
       transparent 55%
     ),
     linear-gradient(
@@ -297,7 +300,7 @@ body {
 .dark .bg-blueprint {
   background-image: radial-gradient(
       90% 120% at 100% 0%,
-      color-mix(in srgb, var(--brand-sky) 8%, transparent),
+      rgba(79, 169, 255, 0.08),
       transparent 55%
     ),
     linear-gradient(

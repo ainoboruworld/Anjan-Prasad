@@ -8,19 +8,19 @@ import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
  * The Staircase of Continuous Learning.
  *
  * Each chapter is one step. As you scroll you climb alongside Anjan: a new
- * step means new lessons, industries, companies and perspectives — never a
+ * step means new lessons, industries, companies and perspectives - never a
  * career ladder that ends. Steps alternate sides and rise, and the final
  * step fades into soft light to signal that the learning continues.
  *
- * Every step is a visual composition — number, title, short text, image,
- * logos, milestone, pull quote and a highlight card — so no step is ever
+ * Every step is a visual composition - number, title, short text, image,
+ * logos, milestone, pull quote and a highlight card - so no step is ever
  * text-only.
  */
 
 export interface StaircaseChapter {
   step: string;
   title: string;
-  /** 2–4 short lines. */
+  /** 2-4 short lines. */
   blurb: string;
   imageLabel: string;
   logos: string[];
@@ -30,7 +30,7 @@ export interface StaircaseChapter {
   highlight: { label: string; value: string };
 }
 
-/** Small ascending-steps glyph — the staircase motif beside each number. */
+/** Small ascending-steps glyph - the staircase motif beside each number. */
 function StairGlyph() {
   return (
     <svg viewBox="0 0 24 24" className="h-6 w-6 text-brand-sky" fill="none" aria-hidden>
@@ -115,7 +115,7 @@ function StepImage({ chapter }: { chapter: StaircaseChapter }) {
   );
 }
 
-/** One step of the staircase — alternates image/content sides as it climbs. */
+/** One step of the staircase - alternates image/content sides as it climbs. */
 export function StaircaseStep({
   chapter,
   index,
@@ -147,7 +147,7 @@ export function StaircaseStep({
   );
 }
 
-/** The staircase container — steps plus the closing fade into light. */
+/** The staircase container - steps plus the closing fade into light. */
 export function Staircase({
   chapters,
   ending,
@@ -161,11 +161,11 @@ export function Staircase({
         <StaircaseStep key={c.step} chapter={c} index={i} />
       ))}
 
-      {/* The staircase never ends — the final step fades into soft light. */}
+      {/* The staircase never ends - the final step fades into soft light. */}
       <div className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(180deg,transparent,color-mix(in_srgb,var(--brand-sky)_10%,transparent)_60%,color-mix(in_srgb,var(--brand-sky)_18%,transparent))]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 top-0 bg-[linear-gradient(180deg,transparent,rgba(79,169,255,0.10)_60%,rgba(79,169,255,0.18))]"
         />
         {ending}
       </div>

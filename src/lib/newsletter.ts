@@ -1,5 +1,5 @@
 /**
- * Newsletter subscriptions — stored in Supabase.
+ * Newsletter subscriptions - stored in Supabase.
  *
  * When Supabase env is configured, subscriptions are inserted into the
  * `newsletter_subscriptions` table via the REST API (no SDK). Otherwise the

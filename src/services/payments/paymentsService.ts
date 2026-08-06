@@ -1,5 +1,5 @@
 /**
- * Payments service — the frontend's payment API surface (Cashfree).
+ * Payments service - the frontend's payment API surface (Cashfree).
  *
  * The frontend NEVER computes or trusts a price. It sends the service +
  * tier + customer to our server route, which re-derives and validates the
@@ -7,7 +7,7 @@
  * payment session. No payment logic lives in UI components.
  *
  * Backend wiring later: implement the Cashfree calls inside
- * `src/app/api/payments/*` — this client contract does not change.
+ * `src/app/api/payments/*` - this client contract does not change.
  */
 import type { ServiceType } from "@/lib/pricingConfig";
 import { ok, fail, type ServiceResponse } from "../types";

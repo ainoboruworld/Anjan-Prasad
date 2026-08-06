@@ -8,7 +8,7 @@ import { easeSmooth } from "./motion";
 
 const emptySubscribe = () => () => {};
 
-/** True once hydrated on the client — avoids a theme flash mismatch. */
+/** True once hydrated on the client - avoids a theme flash mismatch. */
 function useMounted() {
   return useSyncExternalStore(
     emptySubscribe,

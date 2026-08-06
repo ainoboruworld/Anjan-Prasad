@@ -4,9 +4,9 @@ import { CTAButton, PageHero } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Business Transformations",
+  title: "Case Studies - Business Transformations",
   description:
-    "Business transformation stories told end to end: challenge, strategy, execution, results, and the lesson — filterable by industry, stage, and service.",
+    "Business transformation stories told end to end: challenge, strategy, execution, results, and the lesson - filterable by industry, stage, and service.",
 };
 
 export default function CaseStudiesPage() {
@@ -20,7 +20,7 @@ export default function CaseStudiesPage() {
             <span className="editorial-accent text-brand">and after.</span>
           </>
         }
-        lead="Each dossier is a complete transformation — what was broken, what was decided, what was built, and what the numbers said afterwards. Names and details are representative until clients approve publication."
+        lead="Each dossier is a complete transformation - what was broken, what was decided, what was built, and what the numbers said afterwards. Names and details are representative until clients approve publication."
       />
 
       <section className="border-t border-border py-20">

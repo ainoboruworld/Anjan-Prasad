@@ -8,7 +8,7 @@ import { upsertProfile } from "@/lib/auth/service";
 import { friendlyAuthError } from "@/lib/auth/errors";
 import { USER_ROLES, type UserRole } from "@/lib/supabase/types";
 
-/** My Profile — view and edit the signed-in user's name and role. */
+/** My Profile - view and edit the signed-in user's name and role. */
 export function AccountProfile() {
   const { user, profile, refreshProfile } = useAuth();
   const [fullName, setFullName] = useState(profile?.full_name ?? "");
@@ -18,7 +18,7 @@ export function AccountProfile() {
   const [saved, setSaved] = useState(false);
 
   // Re-seed the form when the profile identity resolves/changes (e.g. after
-  // the session restores). Adjusting state during render — not in an effect —
+  // the session restores). Adjusting state during render - not in an effect -
   // is the recommended pattern for syncing to a prop.
   const [syncedId, setSyncedId] = useState<string | undefined>(profile?.id);
   if (profile?.id !== syncedId) {
@@ -61,13 +61,13 @@ export function AccountProfile() {
 
   return (
     <form onSubmit={save} className="space-y-8">
-      {/* Email — read-only (auth data) */}
+      {/* Email - read-only (auth data) */}
       <div>
         <label className="mb-2 block text-xs font-medium uppercase tracking-[0.16em] text-foreground-muted">
           Email
         </label>
         <div className="input flex items-center justify-between !bg-background-sunken text-foreground-muted">
-          <span className="truncate">{user?.email ?? "—"}</span>
+          <span className="truncate">{user?.email ?? "-"}</span>
           <span className="ml-3 shrink-0 rounded-full bg-brand/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-brand">
             Verified
           </span>

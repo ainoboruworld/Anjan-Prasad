@@ -7,7 +7,7 @@ import { easeSmooth } from "../motion";
 import { track, EVENTS } from "@/lib/analytics";
 
 /**
- * Final CTA — a full-width closing band with a glass gradient and a single
+ * Final CTA - a full-width closing band with a glass gradient and a single
  * decisive action. Shared by both service pages.
  */
 export function FinalCTA({

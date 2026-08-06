@@ -6,7 +6,7 @@ import { PageHero } from "@/components/ui/Primitives";
 export const metadata: Metadata = {
   title: "Checkout",
   description:
-    "Secure checkout for AP.com programs. UPI and card payments are being integrated.",
+    "Secure checkout for Anjan Prasad programs. UPI and card payments are being integrated.",
   robots: { index: false },
 };
 
@@ -32,7 +32,7 @@ export default async function PaymentPage({
             <span className="editorial-accent text-brand">.</span>
           </>
         }
-        lead="Your details are saved. Complete payment to confirm your place — online payments are being integrated and will appear here."
+        lead="Your details are saved. Complete payment to confirm your place - online payments are being integrated and will appear here."
       />
 
       <section className="pb-28">
@@ -59,7 +59,7 @@ export default async function PaymentPage({
               </p>
               <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
                 UPI and card checkout are being connected. Your registration is
-                already recorded — the team will reach out with a secure payment
+                already recorded - the team will reach out with a secure payment
                 link and joining details by email shortly.
               </p>
             </div>

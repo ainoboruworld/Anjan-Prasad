@@ -4,7 +4,7 @@ import { BRAND_ICON_PATHS } from "./brandIconPaths";
  * One organisation mark. Renders the official vector glyph where a
  * licensed single-colour SVG exists (via the simple-icons set); private
  * companies and institutes that publish no vector mark render as refined
- * typographic wordmarks in the site's display face — real names, set
+ * typographic wordmarks in the site's display face - real names, set
  * deliberately, never placeholder boxes.
  */
 const VECTOR = new Map(BRAND_ICON_PATHS.map((i) => [i.title, i.path]));

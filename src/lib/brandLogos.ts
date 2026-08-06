@@ -1,5 +1,5 @@
 /**
- * Official, final brand logos — delivered as uniform artwork and stored under
+ * Official, final brand logos - delivered as uniform artwork and stored under
  * `public/brand-logos/` (each a 212×72 mark on a clean white field). Rendered
  * as-is on uniform white chips across the trust wall, the About logo walls, and
  * the service pages, so the brand wall reads consistent, premium, and evenly
@@ -8,7 +8,7 @@
 export type BrandLogo = { name: string; file: string };
 
 /**
- * Companies Anjan Prasad FOUNDED / co-founded and built — his own ventures,
+ * Companies Anjan Prasad FOUNDED / co-founded and built - his own ventures,
  * not employers or advisory clients. Never shown under "Companies Worked With"
  * or "Brands Advised".
  */

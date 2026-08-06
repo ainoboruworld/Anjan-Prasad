@@ -5,7 +5,7 @@ import { Eyebrow } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
 /**
- * The two flagship programs presented as product launches — one editorial
+ * The two flagship programs presented as product launches - one editorial
  * spread each, not pricing cards.
  */
 export function FlagshipPrograms() {
@@ -20,7 +20,7 @@ export function FlagshipPrograms() {
           </h2>
         </Reveal>
 
-        {/* Demo Session — a wide invitation band */}
+        {/* Demo Session - a wide invitation band */}
         <Reveal className="mt-14">
           <Link
             href="/courses/demo"
@@ -52,7 +52,7 @@ export function FlagshipPrograms() {
           </Link>
         </Reveal>
 
-        {/* Live Course — the flagship spread */}
+        {/* Live Course - the flagship spread */}
         <Reveal className="mt-6">
           <Link
             href="/courses/monthly-consulting"

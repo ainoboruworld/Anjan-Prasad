@@ -1,5 +1,5 @@
 /**
- * Newsletter service — subscribe an email (stored in Supabase, with a
+ * Newsletter service - subscribe an email (stored in Supabase, with a
  * forms-layer fallback until Supabase is connected).
  */
 import { subscribeNewsletter as subscribe } from "@/lib/newsletter";

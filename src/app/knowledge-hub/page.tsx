@@ -7,12 +7,12 @@ import { Eyebrow, PageHero } from "@/components/ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Knowledge Hub — Blogs & Featured Media",
+  title: "Knowledge Hub - Blogs & Featured Media",
   description:
-    "The Knowledge Hub of AP.com — premium blogs on business, startups, marketing and more, plus featured media and public appearances by Anjan Prasad.",
+    "The Knowledge Hub of Anjan Prasad - premium blogs on business, startups, marketing and more, plus featured media and public appearances by Anjan Prasad.",
   alternates: { canonical: "/knowledge-hub" },
   openGraph: {
-    title: "Knowledge Hub — AP.com",
+    title: "Knowledge Hub - Anjan Prasad",
     description:
       "Premium blogs and featured media on building profitable businesses.",
     url: "/knowledge-hub",
@@ -25,13 +25,13 @@ const ENTRIES = [
     icon: BookOpen,
     title: "Blogs",
     href: "/knowledge-hub/blogs",
-    copy: "Playbooks, frameworks and field notes — across business, startup, marketing, society, spirituality and politics.",
+    copy: "Playbooks, frameworks and field notes - across business, startup, marketing, society, spirituality and politics.",
   },
   {
     icon: PlaySquare,
     title: "Featured Media",
     href: "/media",
-    copy: "Videos, talks and appearances — Anjan Prasad's public content across platforms.",
+    copy: "Videos, talks and appearances - Anjan Prasad's public content across platforms.",
   },
 ];
 
@@ -49,10 +49,10 @@ export default async function KnowledgeHubPage() {
             <span className="editorial-accent text-brand">library.</span>
           </>
         }
-        lead="A premium editorial home for everything AP.com publishes — blogs written to be used, and the media where the method is explained aloud."
+        lead="A premium editorial home for everything Anjan Prasad publishes - blogs written to be used, and the media where the method is explained aloud."
       />
 
-      {/* Two entries — Blogs & Featured Media */}
+      {/* Two entries - Blogs & Featured Media */}
       <section className="border-t border-border py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6">
           <RevealGroup className="grid gap-6 sm:grid-cols-2">

@@ -2,7 +2,7 @@ import { Newsletter } from "../Newsletter";
 import { SectionHeading } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
-/** Simple, elegant newsletter capture — name, email, subscribe. */
+/** Simple, elegant newsletter capture - name, email, subscribe. */
 export function NewsletterSection() {
   return (
     <section

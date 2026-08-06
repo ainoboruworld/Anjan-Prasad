@@ -7,8 +7,8 @@ import { useAuth } from "./AuthProvider";
 
 /**
  * Guards a client route. Restores session first (shows a loader), redirects
- * unauthenticated visitors to sign-in with a return path, and — unless
- * `allowIncompleteProfile` — sends first-time users to onboarding.
+ * unauthenticated visitors to sign-in with a return path, and - unless
+ * `allowIncompleteProfile` - sends first-time users to onboarding.
  */
 export function ProtectedRoute({
   children,

@@ -8,7 +8,7 @@ export interface TestimonialItem {
 }
 
 /**
- * Testimonials — a three-up wall of quotes with an editorial mark. Shared
+ * Testimonials - a three-up wall of quotes with an editorial mark. Shared
  * shape; each page passes the voices that fit its audience.
  */
 export function Testimonials({

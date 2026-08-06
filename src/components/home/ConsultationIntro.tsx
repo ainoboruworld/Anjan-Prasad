@@ -3,7 +3,7 @@ import { CTAButton, Eyebrow } from "../ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 
 /**
- * Career Consultation — a short overview: who it's for, what you receive,
+ * Career Consultation - a short overview: who it's for, what you receive,
  * and why to book it. Three compact cards, one idea each, leading to the
  * full Consultation page.
  */
@@ -21,7 +21,7 @@ const POINTS = [
   {
     icon: Compass,
     kicker: "Why book it",
-    copy: "An operator's read on your options — clarity today, better decisions tomorrow.",
+    copy: "An operator's read on your options - clarity today, better decisions tomorrow.",
   },
 ];
 

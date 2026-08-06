@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Check } from "lucide-react";
-import { TESTIMONIALS } from "@/lib/data";
+import { testimonialsFor } from "@/lib/data";
 import { ADVISORY_LOGOS } from "@/lib/brandLogos";
 import {
   HeroSection,
@@ -22,10 +22,10 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Consultation",
   description:
-    "Private, one-to-one consultation with Anjan Prasad for students, working professionals and BPL candidates. Clarity today, better decisions tomorrow — book a focused session on the call that matters most.",
+    "Private, one-to-one consultation with Anjan Prasad for students, working professionals and BPL candidates. Clarity today, better decisions tomorrow - book a focused session on the call that matters most.",
   alternates: { canonical: "/consulting" },
   openGraph: {
-    title: "Consultation — AP.com",
+    title: "Consultation - Anjan Prasad",
     description:
       "Clarity today. Better decisions tomorrow. A private consultation for students, professionals and BPL candidates.",
     url: "/consulting",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
 };
 
-/* ── Booking configuration — shared form, three audience variants ────────── */
+/* ── Booking configuration - shared form, three audience variants ────────── */
 
-const MODES = ["Online — video call", "Offline — in person"];
+const MODES = ["Online - video call", "Offline - in person"];
 
 const CONSULTATION_VARIANTS: BookingVariant[] = [
   {
@@ -47,7 +47,7 @@ const CONSULTATION_VARIANTS: BookingVariant[] = [
     tier: {
       fromField: "level",
       map: {
-        "KPG–12": "kpg-12",
+        "KPG-12": "kpg-12",
         "Undergraduate (UG)": "ug",
         "Postgraduate (PG)": "pg",
       },
@@ -63,7 +63,7 @@ const CONSULTATION_VARIANTS: BookingVariant[] = [
         type: "select",
         required: true,
         placeholder: "Select your level",
-        options: ["KPG–12", "Undergraduate (UG)", "Postgraduate (PG)"],
+        options: ["KPG-12", "Undergraduate (UG)", "Postgraduate (PG)"],
         help: "This sets your consultation fee.",
       },
       { name: "institution", label: "School / College", type: "text", required: true, placeholder: "Institution name" },
@@ -89,9 +89,9 @@ const CONSULTATION_VARIANTS: BookingVariant[] = [
     tier: {
       fromField: "experience",
       map: {
-        "1–3 years": "exp-1-3",
-        "3–6 years": "exp-3-6",
-        "6–12 years": "exp-6-12",
+        "1-3 years": "exp-1-3",
+        "3-6 years": "exp-3-6",
+        "6-12 years": "exp-6-12",
       },
     },
     fields: [
@@ -106,7 +106,7 @@ const CONSULTATION_VARIANTS: BookingVariant[] = [
         type: "select",
         required: true,
         placeholder: "Select experience",
-        options: ["1–3 years", "3–6 years", "6–12 years"],
+        options: ["1-3 years", "3-6 years", "6-12 years"],
         help: "This sets your consultation fee.",
       },
       { name: "industry", label: "Industry", type: "text", required: true, placeholder: "Your sector" },
@@ -166,14 +166,14 @@ const WWH_COLUMNS = [
     key: "who",
     kicker: "Who it's for",
     title: "Students, professionals & BPL candidates",
-    copy: "Anyone facing a real decision about their path — and who wants an operator's read, not generic advice.",
+    copy: "Anyone facing a real decision about their path - and who wants an operator's read, not generic advice.",
     items: ["School & university students", "Working professionals at any stage", "BPL candidates, served free of cost"],
   },
   {
     key: "what",
     kicker: "What you get",
     title: "One focused, private session",
-    copy: "A prepared one-to-one on the single question that matters most right now — no deck, no pitch.",
+    copy: "A prepared one-to-one on the single question that matters most right now - no deck, no pitch.",
     items: ["A framed decision, not vague pointers", "An operator who has actually built", "A written next step you can act on"],
   },
   {
@@ -181,7 +181,7 @@ const WWH_COLUMNS = [
     kicker: "How it runs",
     title: "Prepared, then decisive",
     copy: "You share context when you book; Anjan arrives having read it, so the session goes straight to the point.",
-    items: ["Online or in person", "45–75 minutes, by level", "Follow-up written summary"],
+    items: ["Online or in person", "30 minutes, focused", "Follow-up written summary"],
   },
 ];
 
@@ -200,15 +200,15 @@ const SUCCESS_METRICS = [
 ];
 
 const WHY = [
-  { t: "An operator, not a coach", c: "Advice from someone who has made payroll, defended margins, and built companies — not read about it." },
-  { t: "Prepared for you", c: "Anjan reads your context before the call, so no time is lost on setup — the hour is all decision." },
+  { t: "An operator, not a coach", c: "Advice from someone who has made payroll, defended margins, and built companies - not read about it." },
+  { t: "Prepared for you", c: "Anjan reads your context before the call, so no time is lost on setup - the hour is all decision." },
   { t: "A written next step", c: "You leave with the decision framed and the first actions named, delivered in writing afterward." },
-  { t: "Access, not exclusivity", c: "Fair, level-based pricing — and free consultations for BPL candidates, verified with dignity." },
+  { t: "Access, not exclusivity", c: "Fair, level-based pricing - and free consultations for BPL candidates, verified with dignity." },
 ];
 
 const TIMELINE = [
   { step: "01", title: "Choose & book", copy: "Pick your audience and level, share context, and confirm your slot." },
-  { step: "02", title: "Anjan prepares", copy: "He arrives having read your situation — the session starts on the real question." },
+  { step: "02", title: "Anjan prepares", copy: "He arrives having read your situation - the session starts on the real question." },
   { step: "03", title: "The working session", copy: "A focused, private hour on your decision, online or in person." },
   { step: "04", title: "Your written next step", copy: "You receive the decision framed and the first actions to take." },
 ];
@@ -216,15 +216,15 @@ const TIMELINE = [
 const FAQS = [
   {
     q: "How is the price decided?",
-    a: "By audience and level — school students (KPG–12) ₹499, UG and PG ₹999, and professionals by experience: 1–3 years ₹1,499, 3–6 years ₹1,999, 6–12 years ₹2,999. BPL candidates are served free after verification.",
+    a: "By audience and level - school students (KPG-12) ₹499, UG and PG ₹999, and professionals by experience: 1-3 years ₹1,499, 3-6 years ₹1,999, 6-12 years ₹2,999. BPL candidates are served free after verification.",
   },
   {
     q: "How does the free BPL consultation work?",
-    a: "Choose the BPL Candidate tab and upload a valid BPL or income certificate. Our team verifies eligibility, then confirms your session and sends meeting details — at no cost.",
+    a: "Choose the BPL Candidate tab and upload a valid BPL or income certificate. Our team verifies eligibility, then confirms your session and sends meeting details - at no cost.",
   },
   {
     q: "Online or in person?",
-    a: "Both. You choose your preferred mode when you book — a video call or, where feasible, an in-person session.",
+    a: "Both. You choose your preferred mode when you book - a video call or, where feasible, an in-person session.",
   },
   {
     q: "What should I prepare?",
@@ -243,14 +243,14 @@ export default function ConsultationPage() {
         eyebrow="Consultation"
         headline="Clarity Today."
         accent="Better Decisions Tomorrow."
-        lead="A private, one-to-one session with Anjan Prasad on the single decision that matters most — for students, working professionals, and BPL candidates. You bring the question; you leave with a plan."
+        lead="A private, one-to-one session with Anjan Prasad on the single decision that matters most - for students, working professionals, and BPL candidates. You bring the question; you leave with a plan."
         ctas={[
           { label: "See pricing", href: "#pricing" },
           { label: "How it works", href: "#how", variant: "ghost" },
         ]}
         highlights={[
           { value: "1:1", label: "Private session" },
-          { value: "45–75m", label: "By level" },
+          { value: "30 min", label: "Focused session" },
           { value: "Written", label: "Next-step summary" },
           { value: "Free", label: "For BPL candidates" },
         ]}
@@ -276,7 +276,7 @@ export default function ConsultationPage() {
             <span className="editorial-accent text-brand">pricing.</span>
           </>
         }
-        lead="Every tier is the same focused, prepared session — priced by who you are, not by how much we can charge. BPL candidates are served free."
+        lead="Every tier is the same focused, prepared session - priced by who you are, not by how much we can charge. BPL candidates are served free."
         columns={4}
       />
 
@@ -354,11 +354,9 @@ export default function ConsultationPage() {
             <span className="editorial-accent text-brand">after the session.</span>
           </>
         }
-        items={TESTIMONIALS.slice(0, 3).map((t) => ({
-          quote: t.quote,
-          name: t.name,
-          title: t.title,
-        }))}
+        items={testimonialsFor("Consultation")
+          .slice(0, 3)
+          .map((t) => ({ quote: t.quote, name: t.name, title: t.title }))}
       />
 
       <Timeline
@@ -388,7 +386,7 @@ export default function ConsultationPage() {
         eyebrow="Ready when you are"
         title="One hour can change the"
         accent="whole decision."
-        lead="Book your consultation and arrive at your next move with clarity — not guesswork."
+        lead="Book your consultation and arrive at your next move with clarity - not guesswork."
         primary={{ label: "Book a consultation", href: "#book" }}
         secondary={{ label: "Explore Business Advisory", href: "/business-advisory" }}
       />

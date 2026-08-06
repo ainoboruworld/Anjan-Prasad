@@ -2,7 +2,7 @@
  * Auth & profile domain types.
  *
  * Authentication data (email, session, identities) lives in Supabase's
- * `auth.users`. Profile data lives in a separate `public.profiles` table —
+ * `auth.users`. Profile data lives in a separate `public.profiles` table -
  * this `Profile` shape mirrors that table. See docs/supabase-auth.md.
  */
 

@@ -4,13 +4,13 @@ import { PageHero } from "@/components/ui/Primitives";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "The terms that govern use of AP.com and its programs.",
+  description: "The terms that govern use of Anjan Prasad and its programs.",
 };
 
 const SECTIONS = [
   {
     title: "Use of the site",
-    copy: "AP.com provides business education, advisory, and consulting services. The content on this site is for general information and education; it is not a guarantee of any specific business outcome.",
+    copy: "Anjan Prasad provides business education, advisory, and consulting services. The content on this site is for general information and education; it is not a guarantee of any specific business outcome.",
   },
   {
     title: "Programs & payments",
@@ -22,7 +22,7 @@ const SECTIONS = [
   },
   {
     title: "Intellectual property",
-    copy: "Frameworks, playbooks, course materials, and content on this site belong to AP.com and may not be reproduced or resold without permission.",
+    copy: "Frameworks, playbooks, course materials, and content on this site belong to Anjan Prasad and may not be reproduced or resold without permission.",
   },
   {
     title: "Contact",
@@ -41,7 +41,7 @@ export default function TermsPage() {
             <span className="editorial-accent text-brand">Conditions.</span>
           </>
         }
-        lead="The working agreement between AP.com and everyone who uses it."
+        lead="The working agreement between Anjan Prasad and everyone who uses it."
       />
       <section className="pb-28">
         <div className="mx-auto max-w-3xl space-y-10 px-6">

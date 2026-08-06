@@ -10,7 +10,7 @@ import { useEffect, useState, type ReactNode } from "react";
  * `fallback` (a branded placeholder plate) renders instead.
  *
  * The image is preloaded client-side and only swapped in once it has
- * genuinely loaded — this avoids the broken-image flash that a plain SSR
+ * genuinely loaded - this avoids the broken-image flash that a plain SSR
  * `<img onError>` produces when the error fires before React hydrates.
  */
 export const PORTRAIT_SRC = "/public/images/anjan-prasad.jpg";
@@ -53,7 +53,7 @@ export function Portrait({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={PORTRAIT_SRC}
-      alt="Anjan Prasad — entrepreneur and business strategist"
+      alt="Anjan Prasad - entrepreneur and business strategist"
       className={`h-full w-full animate-[fadein_0.6s_ease] object-cover ${className}`}
     />
   );

@@ -1,5 +1,5 @@
 /**
- * Pricing — single source of truth (AP.com).
+ * Pricing - single source of truth (Anjan Prasad).
  *
  * During development, prices are DISPLAYED from this file so the UI is
  * immediately populated. Nothing in a component hardcodes a rupee amount;
@@ -18,7 +18,7 @@ export type ServiceType = "consultation" | "business-advisory";
 export type Interval = "one-time" | "month";
 
 export interface PriceTier {
-  /** Stable key sent to the backend — never localise or reorder-couple this. */
+  /** Stable key sent to the backend - never localise or reorder-couple this. */
   id: string;
   /** Human label shown in pricing cards and order summaries. */
   label: string;
@@ -27,7 +27,7 @@ export interface PriceTier {
   /** Display amount in INR. `null` means no fixed price (free / verification). */
   amount: number | null;
   interval?: Interval;
-  /** BPL / concession flow — no payment, verification instead. */
+  /** BPL / concession flow - no payment, verification instead. */
   free?: boolean;
   /** Marketing highlight on the pricing grid. */
   featured?: boolean;
@@ -49,46 +49,46 @@ export const CONSULTATION_PRICING: ServicePricing = {
   tiers: [
     {
       id: "kpg-12",
-      label: "KPG–12",
+      label: "KPG-12",
       caption: "School students",
       amount: 499,
-      includes: ["45-min 1:1 session", "Stream & path clarity", "Written next step"],
+      includes: ["30-min 1:1 session", "Stream & path clarity", "Written next step"],
     },
     {
       id: "ug",
       label: "Undergraduate",
       caption: "UG students",
       amount: 999,
-      includes: ["60-min 1:1 session", "Career & skill roadmap", "Written next step"],
+      includes: ["30-min 1:1 session", "Career & skill roadmap", "Written next step"],
     },
     {
       id: "pg",
       label: "Postgraduate",
       caption: "PG students",
       amount: 999,
-      includes: ["60-min 1:1 session", "Career & specialisation call", "Written next step"],
+      includes: ["30-min 1:1 session", "Career & specialisation call", "Written next step"],
     },
     {
       id: "exp-1-3",
-      label: "1–3 Years",
+      label: "1-3 Years",
       caption: "Early-career professionals",
       amount: 1499,
-      includes: ["60-min 1:1 session", "Growth vs. ownership read", "Written action plan"],
+      includes: ["30-min 1:1 session", "Growth vs. ownership read", "Written action plan"],
     },
     {
       id: "exp-3-6",
-      label: "3–6 Years",
+      label: "3-6 Years",
       caption: "Mid-career professionals",
       amount: 1999,
       featured: true,
-      includes: ["60-min 1:1 session", "Career or venture decision", "Written action plan"],
+      includes: ["30-min 1:1 session", "Career or venture decision", "Written action plan"],
     },
     {
       id: "exp-6-12",
-      label: "6–12 Years",
+      label: "6-12 Years",
       caption: "Senior professionals",
       amount: 2999,
-      includes: ["75-min 1:1 session", "Leadership / pivot strategy", "Written action plan"],
+      includes: ["30-min 1:1 session", "Leadership / pivot strategy", "Written action plan"],
     },
     {
       id: "bpl",

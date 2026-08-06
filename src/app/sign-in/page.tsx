@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Sign In",
   description:
-    "Sign in to AP.com with a one-time email code — no password needed. Access your profile, bookings, and saved resources.",
+    "Sign in to Anjan Prasad with a one-time email code - no password needed. Access your profile, bookings, and saved resources.",
 };
 
 export default function SignInPage() {
@@ -22,7 +22,7 @@ export default function SignInPage() {
               <span className="editorial-accent text-brand">the build.</span>
             </h1>
             <p className="mt-7 max-w-md text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-              Your profile, bookings, and saved playbooks — one door for all of
+              Your profile, bookings, and saved playbooks - one door for all of
               it. Sign in with a one-time code; no password to remember.
             </p>
           </Reveal>

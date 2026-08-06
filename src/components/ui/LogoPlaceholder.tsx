@@ -5,7 +5,7 @@ import { logoFileFor } from "@/lib/brandLogos";
 import { RevealGroup, RevealItem } from "./Reveal";
 
 /**
- * Brand logos as an editorial showcase — no cards, no boxes.
+ * Brand logos as an editorial showcase - no cards, no boxes.
  *
  * Every mark is delivered on the same 212×72 canvas, so rendering at one fixed
  * height gives each brand an identical footprint: rows stay perfectly even and
@@ -49,7 +49,7 @@ export function LogoChip({ name, file }: LogoItem) {
  * A wall of logos on uniform, refined tiles. Because every mark shares one
  * canvas, the tiles are identically sized and the logos carry equal visual
  * weight. The tile is a light, softly lifted surface in both themes, so every
- * brand — colourful or near-black — stays crisply legible in Dark and Light
+ * brand - colourful or near-black - stays crisply legible in Dark and Light
  * mode, with a gentle hover lift. Centered wrapping keeps it responsive.
  */
 export function LogoRow({
@@ -66,7 +66,7 @@ export function LogoRow({
       {logos.map((logo) => (
         <RevealItem
           key={logo.name}
-          className="group flex h-[58px] w-[132px] items-center justify-center rounded-2xl border border-black/[0.05] bg-white shadow-[0_1px_2px_rgba(16,33,45,0.05),0_12px_30px_-20px_rgba(16,33,45,0.4)] ring-1 ring-black/[0.02] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(16,33,45,0.06),0_18px_36px_-18px_rgba(16,33,45,0.5)] dark:border-white/[0.10] dark:bg-white/[0.97] dark:ring-white/[0.06] sm:h-16 sm:w-[150px]"
+          className="group flex h-[58px] w-[132px] items-center justify-center rounded-2xl border border-[rgba(0,0,0,0.05)] bg-white shadow-[0_1px_2px_rgba(16,33,45,0.05),0_12px_30px_-20px_rgba(16,33,45,0.4)] ring-1 ring-[rgba(0,0,0,0.02)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(16,33,45,0.06),0_18px_36px_-18px_rgba(16,33,45,0.5)] dark:border-[rgba(255,255,255,0.10)] dark:bg-[rgba(255,255,255,0.97)] dark:ring-[rgba(255,255,255,0.06)] sm:h-16 sm:w-[150px]"
         >
           <LogoChip name={logo.name} file={logo.file} />
         </RevealItem>

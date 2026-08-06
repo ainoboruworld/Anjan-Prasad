@@ -1,5 +1,5 @@
 /**
- * Sanity content source for the Knowledge Hub — dependency-free.
+ * Sanity content source for the Knowledge Hub - dependency-free.
  *
  * When a Sanity project is configured via env, blogs are fetched live over
  * Sanity's public query (GROQ) HTTP API; otherwise the local seed slate in
@@ -47,7 +47,7 @@ async function sanityFetch<T>(query: string): Promise<T | null> {
     const json = (await res.json()) as { result?: T };
     return json.result ?? null;
   } catch {
-    // Network/parse failure — fall back to seed content rather than error.
+    // Network/parse failure - fall back to seed content rather than error.
     return null;
   }
 }
@@ -77,14 +77,14 @@ function isNonEmptyArray<T>(v: unknown): v is T[] {
   return Array.isArray(v) && v.length > 0;
 }
 
-/** All blog posts — live from Sanity when configured, else the seed slate. */
+/** All blog posts - live from Sanity when configured, else the seed slate. */
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const live = await sanityFetch<BlogPost[]>(ALL_POSTS_QUERY);
   if (isNonEmptyArray<BlogPost>(live)) return live;
   return filterPublished(SEED_BLOG_POSTS);
 }
 
-/** A single post by slug — live from Sanity when configured, else the seed. */
+/** A single post by slug - live from Sanity when configured, else the seed. */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const query = `*[_type == "blogPost" && slug.current == "${slug}"][0] ${POST_PROJECTION}`;
   const live = await sanityFetch<BlogPost>(query);

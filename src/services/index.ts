@@ -1,10 +1,10 @@
 /**
- * Service layer barrel — the frontend's API surface.
+ * Service layer barrel - the frontend's API surface.
  *
  * Components and query hooks import services from here. Each service owns the
  * business logic and the (eventual) network calls for one backend concern, so
  * connecting Supabase / Sanity / Cashfree / Resend / PostHog means editing
- * these modules only — never the UI.
+ * these modules only - never the UI.
  */
 export * as authService from "./auth/authService";
 export * as consultationService from "./consultation/consultationService";

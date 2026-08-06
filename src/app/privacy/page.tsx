@@ -4,21 +4,21 @@ import { PageHero } from "@/components/ui/Primitives";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How AP.com collects, uses, and protects your information.",
+  description: "How Anjan Prasad collects, uses, and protects your information.",
 };
 
 const SECTIONS = [
   {
     title: "What we collect",
-    copy: "When you register for a session, enquire about advisory, book a consultation, or subscribe to the newsletter, we collect the details you provide — typically your name, email, phone number, company, and the context you share about your business.",
+    copy: "When you register for a session, enquire about advisory, book a consultation, or subscribe to the newsletter, we collect the details you provide - typically your name, email, phone number, company, and the context you share about your business.",
   },
   {
     title: "How we use it",
-    copy: "Your information is used to respond to your enquiry, deliver the program or engagement you signed up for, and — if you subscribed — send the weekly newsletter. We do not sell or rent your personal information to anyone.",
+    copy: "Your information is used to respond to your enquiry, deliver the program or engagement you signed up for, and - if you subscribed - send the weekly newsletter. We do not sell or rent your personal information to anyone.",
   },
   {
     title: "How it is stored",
-    copy: "Form submissions are stored in access-controlled systems used to run AP.com's programs and engagements. We keep information only as long as it is needed for those purposes.",
+    copy: "Form submissions are stored in access-controlled systems used to run Anjan Prasad's programs and engagements. We keep information only as long as it is needed for those purposes.",
   },
   {
     title: "Your choices",

@@ -87,7 +87,7 @@ export function DemoForm() {
 
       <SubmitButton
         sending={sending}
-        idleLabel={`Proceed to Payment — ${DEMO_SESSION.fee}`}
+        idleLabel={`Proceed to Payment - ${DEMO_SESSION.fee}`}
         sendingLabel="Saving your details…"
         className="w-full justify-center"
       />

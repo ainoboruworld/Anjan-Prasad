@@ -1,5 +1,5 @@
 /**
- * Blog content model — the shape the Knowledge Hub renders, plus a local
+ * Blog content model - the shape the Knowledge Hub renders, plus a local
  * seed slate so the Blogs page is fully populated before Sanity is wired.
  *
  * The frontend reads blogs through `src/lib/sanity.ts`, which returns real
@@ -55,13 +55,13 @@ export interface BlogPost {
 
 const AP: BlogAuthor = { name: "Anjan Prasad", role: "Founder & Growth Advisor" };
 
-/** Representative editorial slate — replaced automatically by Sanity content. */
+/** Representative editorial slate - replaced automatically by Sanity content. */
 export const SEED_BLOG_POSTS: BlogPost[] = [
   {
     slug: "anatomy-of-a-profitable-business",
     title: "The Anatomy of a Profitable Business",
     excerpt:
-      "Nine systems every durable business runs on — and the exact order to build them in.",
+      "Nine systems every durable business runs on - and the exact order to build them in.",
     categories: ["Business", "Startup"],
     coverImage: { alt: "Blueprint of a profitable business" },
     author: AP,
@@ -70,7 +70,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     featured: true,
     bodyPreview: [
       "Profit is not an event. It is the output of a handful of systems working in sequence.",
-      "This is the order those systems are built in — and why skipping one quietly caps every business that skips it.",
+      "This is the order those systems are built in - and why skipping one quietly caps every business that skips it.",
     ],
   },
   {
@@ -85,7 +85,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     readingTimeMins: 9,
     bodyPreview: [
       "Most founders build first and ask questions later. The order is backwards.",
-      "Here is the validation loop that separates a real market from a hopeful one — before you spend a rupee.",
+      "Here is the validation loop that separates a real market from a hopeful one - before you spend a rupee.",
     ],
   },
   {
@@ -99,7 +99,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     publishedAt: "2026-06-18",
     readingTimeMins: 7,
     bodyPreview: [
-      "Your price is the first thing the market reads about you — long before your copy.",
+      "Your price is the first thing the market reads about you - long before your copy.",
       "Set it like a position, not a guess.",
     ],
   },
@@ -107,7 +107,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     slug: "ai-operating-system-for-smes",
     title: "An AI Operating System for Small Businesses",
     excerpt:
-      "Where AI actually pays back in an SME — and the three places it quietly doesn't.",
+      "Where AI actually pays back in an SME - and the three places it quietly doesn't.",
     categories: ["Business", "Marketing"],
     coverImage: { alt: "AI operating system" },
     author: AP,
@@ -115,7 +115,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     readingTimeMins: 11,
     bodyPreview: [
       "AI is a headline in the boardroom and a rumour on the floor.",
-      "Start from workflows and economics, not from tools — and it starts paying back.",
+      "Start from workflows and economics, not from tools - and it starts paying back.",
     ],
   },
   {
@@ -137,7 +137,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     slug: "policy-and-the-indian-founder",
     title: "Policy and the Indian Founder",
     excerpt:
-      "How regulation quietly shapes which businesses get built in India — and which don't.",
+      "How regulation quietly shapes which businesses get built in India - and which don't.",
     categories: ["Politics", "Business"],
     coverImage: { alt: "Policy and enterprise" },
     author: AP,
@@ -167,7 +167,7 @@ export const SEED_BLOG_POSTS: BlogPost[] = [
     slug: "building-a-business-that-serves-society",
     title: "Building a Business That Serves Society",
     excerpt:
-      "Profit and purpose are not opposites — the durable businesses hold both at once.",
+      "Profit and purpose are not opposites - the durable businesses hold both at once.",
     categories: ["Society", "Business"],
     coverImage: { alt: "Business and society" },
     author: AP,

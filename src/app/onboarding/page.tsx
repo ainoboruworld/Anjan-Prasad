@@ -6,15 +6,15 @@ import { Eyebrow } from "@/components/ui/Primitives";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Welcome — Complete your profile",
-  description: "Tell us a little about you to finish setting up your AP.com account.",
+  title: "Welcome - Complete your profile",
+  description: "Tell us a little about you to finish setting up your Anjan Prasad account.",
   robots: { index: false },
 };
 
 export default function OnboardingPage() {
   return (
     <main>
-      {/* Authenticated, but the profile row may not exist yet — allow it. */}
+      {/* Authenticated, but the profile row may not exist yet - allow it. */}
       <ProtectedRoute allowIncompleteProfile>
         <section className="bg-grid relative flex min-h-screen items-center overflow-hidden pt-36 pb-20">
           <div className="mx-auto w-full max-w-xl px-6">
@@ -25,7 +25,7 @@ export default function OnboardingPage() {
                 <span className="editorial-accent text-brand">details.</span>
               </h1>
               <p className="mt-6 max-w-md text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-                This is a one-time step — it personalises your experience and
+                This is a one-time step - it personalises your experience and
                 takes a few seconds.
               </p>
             </Reveal>

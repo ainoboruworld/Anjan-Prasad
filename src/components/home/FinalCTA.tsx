@@ -1,7 +1,7 @@
 import { CTAButton, GhostButton } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 
-/** Closing invitation — the homepage's answer to "what should I do next?" */
+/** Closing invitation - the homepage's answer to "what should I do next?" */
 export function FinalCTA() {
   return (
     <section className="bg-blueprint relative overflow-hidden border-t border-border py-24 sm:py-28">
@@ -19,7 +19,7 @@ export function FinalCTA() {
             <span className="editorial-accent text-brand">Next Chapter?</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-foreground-muted">
-            Bring a proven operating playbook into your business — or get clarity
+            Bring a proven operating playbook into your business - or get clarity
             on your next decision.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

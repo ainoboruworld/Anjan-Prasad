@@ -30,7 +30,7 @@ interface AuthContextValue {
   /** True once we've resolved whether a profile exists for the user. */
   profileLoaded: boolean;
   isAuthenticated: boolean;
-  /** Authenticated but no profile row yet — needs onboarding. */
+  /** Authenticated but no profile row yet - needs onboarding. */
   needsOnboarding: boolean;
   displayName: string;
   refreshProfile: () => Promise<void>;
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     mounted.current = true;
     const supabase = getSupabaseClient();
     // When unconfigured, state is already initialised to "unauthenticated"
-    // (see useState above) — nothing to synchronise.
+    // (see useState above) - nothing to synchronise.
     if (!supabase) return;
 
     // 1) Restore any existing session on load.
