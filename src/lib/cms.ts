@@ -149,6 +149,33 @@ export async function getSeoSettings(): Promise<CmsSeoSettings | null> {
   };
 }
 
+export interface CmsNavChild {
+  label: string;
+  href: string;
+  description?: string;
+}
+export interface CmsNavItem {
+  label: string;
+  href: string;
+  children?: CmsNavChild[];
+}
+export interface CmsFooterColumn {
+  title: string;
+  links: { label: string; href: string }[];
+}
+
+export function getNavbar(): Promise<CmsNavItem[] | null> {
+  return cmsFetch<CmsNavItem[]>(
+    `*[_type == "navbar"][0].items[]{label, href, children[]{label, href, description}}`
+  );
+}
+
+export function getFooterColumns(): Promise<CmsFooterColumn[] | null> {
+  return cmsFetch<CmsFooterColumn[]>(
+    `*[_type == "footer"][0].columns[]{title, links[]{label, href}}`
+  );
+}
+
 export function getSiteSettings(): Promise<CmsSiteSettings | null> {
   return cmsFetch<CmsSiteSettings>(
     `*[_type == "siteSettings"][0]{siteName,tagline,contactEmail,contactPhone,officeLocation,copyright,socials[]{name,href}}`

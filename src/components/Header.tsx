@@ -72,7 +72,7 @@ const fadeDown = {
   visible: { opacity: 1, y: 0 },
 };
 
-export function Header() {
+export function Header({ items = NAV }: { items?: NavItem[] }) {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   // Keyed open-state: any navigation renders the sheet closed without an effect.
@@ -115,7 +115,7 @@ export function Header() {
             aria-label="Primary"
             className="hidden items-center gap-6 2xl:gap-7 xl:flex"
           >
-            {NAV.map((item) =>
+            {items.map((item) =>
               item.children ? (
                 <Dropdown key={item.label} item={item} />
               ) : (
@@ -170,7 +170,7 @@ export function Header() {
             className="mx-auto mt-3 max-w-7xl px-4 sm:px-6 xl:hidden"
           >
             <div className="max-h-[75vh] overflow-y-auto rounded-3xl border border-border bg-glass p-4 backdrop-blur-xl">
-              {NAV.map((item) => (
+              {items.map((item) => (
                 <div key={item.label} className="py-1.5">
                   <Link
                     href={item.href}
