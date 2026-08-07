@@ -9,7 +9,7 @@ on its built-in content, and email is simply skipped.
 Add to `.env.local` (git-ignored) and to your host (Vercel → Settings → Env):
 
 ```
-NEXT_PUBLIC_SANITY_PROJECT_ID=w0h41191
+NEXT_PUBLIC_SANITY_PROJECT_ID=w0h41l91
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 SANITY_API_TOKEN=<viewer/editor token>        # server-only
