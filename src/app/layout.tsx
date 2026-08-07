@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Manrope, Fraunces } from "next/font/google";
-import { getSeoSettings } from "@/lib/cms";
+import { getSeoSettings, getNavbar } from "@/lib/cms";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
@@ -137,11 +137,29 @@ const PERSON_JSONLD = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cmsNav = await getNavbar();
+  const nav =
+    cmsNav && cmsNav.length
+      ? cmsNav.map((item) => ({
+          label: item.label,
+          href: item.href,
+          ...(item.children
+            ? {
+                children: item.children.map((c) => ({
+                  label: c.label,
+                  href: c.href,
+                  description: c.description ?? "",
+                })),
+              }
+            : {}),
+        }))
+      : undefined;
+
   return (
     <html
       lang="en"
@@ -158,7 +176,7 @@ export default function RootLayout({
             <AuthProvider>
               <Preloader />
               <Cursor />
-              <Header />
+              <Header items={nav} />
               {children}
               <Footer />
             </AuthProvider>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { CONTACT_EMAIL, CONTACT_PHONE, OFFICE_LOCATION } from "@/lib/data";
-import { getSiteSettings } from "@/lib/cms";
+import { getSiteSettings, getFooterColumns } from "@/lib/cms";
 import { Wordmark } from "./brand/ApMark";
 import { Newsletter } from "./Newsletter";
 import { SocialLinks } from "./SocialLinks";
@@ -35,7 +35,11 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 ];
 
 export async function Footer() {
-  const settings = await getSiteSettings();
+  const [settings, cmsColumns] = await Promise.all([
+    getSiteSettings(),
+    getFooterColumns(),
+  ]);
+  const columns = cmsColumns && cmsColumns.length ? cmsColumns : COLUMNS;
   const contactEmail = settings?.contactEmail || CONTACT_EMAIL;
   const contactPhone = settings?.contactPhone ?? CONTACT_PHONE;
   const officeLocation = settings?.officeLocation ?? OFFICE_LOCATION;
@@ -87,7 +91,7 @@ export async function Footer() {
           <SocialLinks className="mt-6" overrides={socialOverrides} />
         </div>
 
-        {COLUMNS.map((col) => (
+        {columns.map((col) => (
           <nav key={col.title} aria-label={col.title}>
             <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-foreground-muted">
               {col.title}
