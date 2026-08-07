@@ -12,7 +12,7 @@ Add to `.env.local` (git-ignored) and to your host (Vercel → Settings → Env)
 NEXT_PUBLIC_SANITY_PROJECT_ID=w0h41l91
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-SANITY_API_TOKEN=<viewer/editor token>        # server-only
+SANITY_API_TOKEN=skRmSHyIkSvGdSgvCwrcbknlLwtVv4a8O1nCkfRb1nHjd6EEzm8ABLTktplSn4Svu1FQft5WwDeYJSR46VwCNSo6bwtqeVOXRcuKHegL8dGHbXxvKlntqPcMRske52eQuh6Ks45waiSg2uufvAnjEJGOinfCYjo75RfXLB4SoJff3CAcZWIc      # server-only
 
 RESEND_API_KEY=<re_...>                        # server-only
 RESEND_FROM_EMAIL=Anjan Prasad <hello@your-verified-domain>
