@@ -18,4 +18,4 @@ export const dataset =
 export const projectId =
   process.env.SANITY_STUDIO_PROJECT_ID ||
   process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
-  "w0h41191";
+  "w0h41l91";
